@@ -2,8 +2,10 @@
 
 This repo is the **marketing and support site** for the Wealth-it app. It is not the app.
 
-- **The app** lives at `~/Documents/Wealth-it-app` → `github.com/faisalayyy/wealth-it` (private).
-  Work on it happens in its own Claude Code session. Do not edit it from here.
+- **The app** is the sibling folder, `../app` → `github.com/faisalayyy/wealth-it` (private).
+  Work on it happens in its own Claude Code session. Do not edit it from here — the two share a
+  parent folder for tidiness and nothing else. The parent is not a repository and there is no
+  build step that reaches across.
 - **This repo** is `github.com/faisalayyy/wealth-it-web` (private).
 
 ## Stack

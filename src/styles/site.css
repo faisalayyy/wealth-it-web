@@ -1,0 +1,311 @@
+/* The design layer: the brand's face, a type scale a page can be built from, and the six or
+ * seven shapes this site actually uses. `tokens.css` is the palette, `base.css` is the floor,
+ * and this is the part that is design.
+ *
+ * It follows the app's two rules. The lime is a fill — buttons, dots, bars, the FAB — and type
+ * that wants to be lime uses `--acc-t`, which darkens on paper. Hierarchy comes from size,
+ * colour and space before it comes from weight, which is why there is exactly one 700 on most
+ * pages and it is the thing the page is about.
+ *
+ * There are no shadows here, as there are none in the app: depth is a step in surface colour
+ * and a 1px hairline, and that is the whole vocabulary.
+ */
+
+/* The brand face is declared in `Base.astro`, not here.
+ * Four weights, self-hosted, subset to Latin, 46 KB in total — a site whose argument is that
+ * nothing leaves your phone should not open by asking Google for a font. The rules live in the
+ * layout because their URLs have to carry the deploy's `base` path, and a stylesheet cannot
+ * read the config. Built from the app's own @expo-google-fonts package by
+ * `scripts/make-fonts.py`; OFL licence beside the files in /fonts/OFL.txt.
+ */
+
+:root {
+  --wrap: 1120px;
+  --wrap-narrow: 720px;
+  /* The distance between sections carries the composition, so it is one value, not eight. */
+  --s-page: clamp(56px, 7vw, 104px);
+
+  /* The web type scale. Larger than the app's, because a page is read at arm's length and a
+     phone is held at a foot, but the same intervals and the same tightening as size grows. */
+  --t-hero: clamp(2.25rem, 1.55rem + 3.1vw, 3.75rem);
+  --t-h2:   clamp(1.75rem, 1.5rem + 1.2vw, 2.375rem);
+  --t-h3:   1.1875rem;
+  --t-lede: clamp(1.0625rem, 1rem + .35vw, 1.25rem);
+}
+
+/* ---------------------------------------------------------------- skeleton */
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--s-gutter);
+}
+.wrap--narrow { max-width: var(--wrap-narrow); }
+/* A narrow column inside a full-width wrap — so a page whose sections are wide can still have
+   a heading that reads at a sane measure, without its left edge moving. */
+.hold { max-width: 38em; }
+
+section { padding-block: var(--s-page); }
+/* A hairline between sections, not a change of colour — the app separates the same way. */
+.section--ruled { border-top: 1px solid var(--ln); }
+.section--sunk { background: var(--page); }
+
+.stack > * + * { margin-top: var(--s-gap); }
+
+/* Keyboard users get the same way past the header that everyone else gets by not reading it. */
+.skip {
+  position: absolute; left: var(--s-gutter); top: -100px;
+  z-index: 10;
+  padding: var(--s-snug) var(--s-gap);
+  background: var(--sf); color: var(--tx);
+  border: 1px solid var(--ln); border-radius: var(--r-md);
+  font-size: .9375rem; font-weight: 600; text-decoration: none;
+}
+.skip:focus { top: var(--s-snug); }
+
+/* ------------------------------------------------------------------- type */
+
+h1, h2, h3, h4 { margin: 0; font-weight: 600; text-wrap: balance; }
+
+.hero-title {
+  font-size: var(--t-hero);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -.035em;
+}
+h2, .h2 {
+  font-size: var(--t-h2);
+  line-height: 1.12;
+  letter-spacing: -.028em;
+}
+h3, .h3 {
+  font-size: var(--t-h3);
+  line-height: 1.3;
+  letter-spacing: -.02em;
+}
+
+/* Sentence case at 15, never capitals. The app took its shouted labels out for a reason: the
+   shape of a word is how it is recognised, and capitals throw that away (A170). */
+.eyebrow {
+  margin: 0 0 var(--s-snug);
+  font-size: .9375rem;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  color: var(--acc-t);
+}
+.eyebrow--mu { color: var(--mu); }
+
+.lede {
+  margin: 0;
+  font-size: var(--t-lede);
+  line-height: 1.55;
+  color: var(--mu);
+  max-width: 34em;
+}
+.lede--center { margin-inline: auto; }
+
+p { margin: 0 0 var(--s-gap); max-width: 38em; }
+p:last-child { margin-bottom: 0; }
+
+.mu { color: var(--mu); }
+.num { font-variant-numeric: tabular-nums; }
+.center { text-align: center; }
+.center .lede { margin-inline: auto; }
+
+/* Long-form copy — the privacy and support pages, and nowhere else. */
+.prose { max-width: 42em; }
+/* Inside an already-narrow column the prose sets its own measure per paragraph, so the second
+   constraint only knocks the left edge out of line with the heading above it. */
+.wrap--narrow .prose { max-width: none; }
+.prose h2 { margin-top: var(--s-page); margin-bottom: var(--s-gap); }
+.prose h2:first-child { margin-top: 0; }
+.prose h3 { margin-top: var(--s-section); margin-bottom: var(--s-tight); }
+.prose ul { margin: 0 0 var(--s-gap); padding-left: 1.15em; }
+.prose li { margin-bottom: var(--s-tight); }
+.prose li::marker { color: var(--mu); }
+.prose a { color: var(--acc-t); text-underline-offset: .2em; }
+.prose strong { font-weight: 600; }
+
+/* --------------------------------------------------------------- controls */
+
+.row {
+  display: flex; flex-wrap: wrap;
+  gap: var(--s-snug);
+  align-items: center;
+}
+.row--center { justify-content: center; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: var(--s-tight);
+  min-height: 48px;
+  padding: 0 var(--s-block);
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  font: inherit; font-size: .9375rem; font-weight: 600; letter-spacing: -.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: transform var(--t-quick) var(--ease), background-color var(--t-quick) var(--ease);
+}
+.btn:active { transform: scale(.98); }
+
+/* The lime, doing the one job it is allowed: a fill, with near-black type on top of it. */
+.btn--primary { background: var(--acc); color: #0B0D0C; }
+.btn--primary:hover { background: #D4F76E; }
+
+.btn--quiet {
+  background: var(--sf);
+  color: var(--tx);
+  border-color: var(--ln);
+}
+.btn--quiet:hover { background: var(--sf2); }
+
+/* Icons inside a button size themselves here, globally: an SVG with only a viewBox is a
+   flex item with no intrinsic width, and would otherwise collapse to nothing. */
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn__arrow { transition: transform var(--t-quick) var(--ease); }
+.btn:hover .btn__arrow { transform: translateX(3px); }
+
+:where(a, button):focus-visible {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+.pill {
+  display: inline-flex; align-items: center; gap: var(--s-tight);
+  padding: 6px var(--s-snug);
+  background: var(--sf);
+  border: 1px solid var(--ln);
+  border-radius: var(--r-pill);
+  font-size: .8125rem; font-weight: 500;
+  color: var(--mu);
+}
+.pill__dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--acc);
+  flex: none;
+}
+
+/* ---------------------------------------------------------------- surfaces */
+
+.grid {
+  display: grid;
+  gap: var(--s-gap);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+/* Two columns, and two exactly — four cards that fall 3 + 1 look like a mistake, because
+   they are one. */
+@media (min-width: 860px) {
+  .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+.card {
+  padding: var(--s-block);
+  background: var(--sf);
+  border: 1px solid var(--ln);
+  border-radius: var(--r-lg);
+}
+.card h3 { margin-bottom: var(--s-tight); }
+.card p { font-size: .9375rem; color: var(--mu); }
+
+.card__mark {
+  display: grid; place-items: center;
+  width: 40px; height: 40px;
+  margin-bottom: var(--s-gap);
+  border-radius: var(--r-sm);
+  background: var(--tint);
+  color: var(--tx);
+}
+.card__mark svg { width: 21px; height: 21px; }
+
+/* A numbered list of claims, separated by hairlines rather than boxed — four questions do not
+   need four cards. */
+.rule-list { border-top: 1px solid var(--ln); }
+.rule-list > * {
+  display: grid;
+  gap: var(--s-tight) var(--s-block);
+  padding-block: var(--s-block);
+  border-bottom: 1px solid var(--ln);
+}
+@media (min-width: 720px) {
+  .rule-list > * { grid-template-columns: 2.5rem 15rem 1fr; align-items: baseline; }
+}
+.rule-list__n {
+  font-size: .9375rem; font-weight: 600;
+  color: var(--acc-t);
+  font-variant-numeric: tabular-nums;
+}
+.rule-list p { margin: 0; font-size: .9375rem; color: var(--mu); }
+
+/* ------------------------------------------------------------ header/footer */
+
+.hdr {
+  position: sticky; top: 0; z-index: 8;
+  background: color-mix(in srgb, var(--bg) 92%, transparent);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--ln);
+}
+.hdr__in {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--s-gap);
+  min-height: 64px;
+}
+.hdr__nav { display: flex; align-items: center; gap: var(--s-hair); }
+.hdr__link {
+  padding: var(--s-tight) var(--s-snug);
+  border-radius: var(--r-sm);
+  font-size: .9375rem; font-weight: 500;
+  color: var(--mu);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hdr__link:hover { color: var(--tx); background: var(--tint); }
+.hdr__link[aria-current='page'] { color: var(--tx); }
+
+.mark {
+  display: inline-flex; align-items: center; gap: var(--s-tight);
+  font-size: 1.0625rem; font-weight: 700; letter-spacing: -.03em;
+  white-space: nowrap;
+  color: var(--tx); text-decoration: none;
+}
+.mark__glyph {
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  background: var(--acc);
+  display: grid; place-items: center;
+  color: #0B0D0C;
+  flex: none;
+}
+.mark__glyph svg { width: 15px; height: 15px; }
+
+.ftr {
+  padding-block: var(--s-page) var(--s-section);
+  border-top: 1px solid var(--ln);
+  background: var(--page);
+}
+.ftr__in {
+  display: flex; flex-wrap: wrap; gap: var(--s-block);
+  justify-content: space-between; align-items: flex-start;
+}
+.ftr__nav { display: flex; flex-wrap: wrap; gap: var(--s-gap); }
+.ftr a { color: var(--mu); text-decoration: none; font-size: .9375rem; }
+.ftr a:hover { color: var(--tx); }
+.ftr__fine {
+  margin-top: var(--s-section);
+  padding-top: var(--s-gap);
+  border-top: 1px solid var(--ln);
+  font-size: .8125rem; color: var(--mu);
+}
+
+/* On a narrow phone the name and three links do not fit on one line, and a header that wraps
+   is worse than one that abbreviates. The mark keeps its glyph; the name is on the page below
+   it anyway, in larger type than a header would ever give it. */
+@media (max-width: 559px) {
+  .hdr .mark { font-size: 0; gap: 0; }
+  .hdr__link { padding-inline: var(--s-tight); font-size: .875rem; }
+  .hdr__in { min-height: 56px; }
+}

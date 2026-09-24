@@ -1,0 +1,191 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { contactEmail } from '../site';
+
+/**
+ * The support page, and the URL the App Store asks for.
+ *
+ * It answers first and offers an address second, because an app with no account and no server
+ * has no way to look anything up on your behalf — almost every question about it is one the
+ * page can settle faster than a reply could.
+ */
+const faqs = [
+  {
+    q: 'I got a new phone. How do I move my ledger across?',
+    a: [
+      'On the old phone: More → Data → export a backup, and save the file somewhere that is not the old phone — a cloud drive, a computer, a message to yourself.',
+      'On the new phone: install Wealth-it, then More → Data → restore, and pick that file.',
+      'There is no automatic transfer, because an automatic transfer would mean your ledger passing through somebody\'s server on the way.',
+    ],
+  },
+  {
+    q: 'How often should I back up?',
+    a: [
+      'Often enough that losing the phone would annoy you rather than hurt. Once a month is a reasonable habit; after a long evening of catching up on records is a better one.',
+      'The backup is a single file. Keep the last two or three and delete the rest.',
+    ],
+  },
+  {
+    q: 'I lost the phone and I have no backup. What can be recovered?',
+    a: [
+      'Nothing, and there is no gentler way to put it. The ledger was only ever on that phone. Nobody has a copy — that is the same property that means nobody has a copy to leak.',
+    ],
+  },
+  {
+    q: 'I have forgotten my PIN.',
+    a: [
+      'There is no reset. There is no account behind the PIN and nobody to prove who you are to, which is why it is not a password.',
+      'A backup file is what a locked-out phone and a lost phone both come back from. This is the reason to keep one.',
+    ],
+  },
+  {
+    q: 'A figure is missing from my total, and the app says so.',
+    a: [
+      'That is a currency the app cannot convert honestly. It will not guess a rate: it uses a cross-currency transfer you recorded yourself, or the published AED/USD peg, and nothing else.',
+      'Record one transfer between the two wallets at the rate you actually got, and the amounts that were excluded can be converted from then on. Until then they are shown in their own currency rather than folded into a total that would be wrong.',
+    ],
+  },
+  {
+    q: 'My transfer is not showing up in spending.',
+    a: [
+      'It should not. Moving your own money from one wallet to another is not an expense, and no total, chart or budget in the app treats it as one. Both halves of it appear in the wallets themselves.',
+    ],
+  },
+  {
+    q: 'I deleted a label and want to know what happened to the records.',
+    a: [
+      'They are untouched. A deleted label takes only the references to itself; the amount, the category, the wallet and every balance are exactly as they were.',
+      'Categories work the other way round: one that has been used is archived rather than deleted, so history keeps making sense. It disappears from the pickers and stays readable in the list.',
+    ],
+  },
+  {
+    q: 'A budget I set has disappeared.',
+    a: [
+      'Clearing the amount removes the budget rather than setting it to zero. A blank row means "not budgeted", which is a different statement from "budgeted nothing" — and the second one would fill your screen with bars that are permanently over.',
+    ],
+  },
+  {
+    q: 'Did my scheduled payment post twice?',
+    a: [
+      'It cannot. Each occurrence takes its identity from its schedule and its date, so the same rent on the same first of the month is the same record however many times the app is opened.',
+      'If you are seeing two, one of them was almost certainly entered by hand. Open both and check the times.',
+    ],
+  },
+  {
+    q: 'Reminders are not arriving.',
+    a: [
+      'Check the phone\'s own notification settings for Wealth-it. Reminders are scheduled locally and the app can only ask — if the system refuses, the screen in the app says so rather than claiming it worked.',
+      'There are no push notifications at all, so nothing can arrive while the app is uninstalled.',
+    ],
+  },
+  {
+    q: 'What is the difference between hiding amounts and locking the app?',
+    a: [
+      'Hiding amounts scrambles the digits on screen so the person next to you cannot read them. It is privacy, not security, and the data underneath is untouched.',
+      'The app lock is a PIN or the phone\'s biometrics, and it keeps the app closed.',
+    ],
+  },
+  {
+    q: 'Can I use it on two phones, or on a tablet as well?',
+    a: [
+      'You can install it anywhere, but each one keeps its own ledger. There is no sync, and adding it would mean putting a server in the middle of the thing whose whole point is that there is not one.',
+    ],
+  },
+];
+---
+
+<Base
+  title="Support"
+  description="Backups, lost phones, currencies that will not convert, and the rest of the questions Wealth-it gets — answered on one page, with an address at the bottom."
+>
+  <section>
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow">Support</p>
+      <h1 class="hero-title">Most of it is answered here.</h1>
+      <p class="lede" style="margin-top: var(--s-block);">
+        There is no account to look up at the other end and no server to check, so there is very
+        little a reply can find out that this page cannot tell you faster. The address is at the
+        bottom for everything else.
+      </p>
+    </div>
+  </section>
+
+  <section class="section--ruled">
+    <div class="wrap wrap--narrow">
+      <div class="faq">
+        {faqs.map(item => (
+          <details class="faq__item">
+            <summary>
+              <span>{item.q}</span>
+              <Icon name="arrow" class="faq__chev" />
+            </summary>
+            <div class="faq__a">
+              {item.a.map(p => <p>{p}</p>)}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--sunk">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow">Still stuck</p>
+      <h2>Write, and say what happened.</h2>
+      <p class="lede" style="margin-top: var(--s-gap);">
+        One person reads this address, so a reply takes as long as it takes. What makes it
+        quicker:
+      </p>
+      <ul class="ticks" style="margin-top: var(--s-block);">
+        <li><Icon name="check" /><span>The phone and the version of Wealth-it — both are on More → About.</span></li>
+        <li><Icon name="check" /><span>What you did, what you expected, and what happened instead.</span></li>
+        <li><Icon name="check" /><span>A screenshot, if there is anything to see. Hide the amounts first if you would rather.</span></li>
+      </ul>
+      <p class="row" style="margin-top: var(--s-block);">
+        <a class="btn btn--primary" href={`mailto:${contactEmail}`}>{contactEmail}</a>
+      </p>
+      <p class="mu" style="margin-top: var(--s-gap); font-size: .875rem;">
+        Please do not send a backup file unless you have been asked for one — it is your whole
+        ledger, and email is not the place for it.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .faq { border-top: 1px solid var(--ln); }
+  .faq__item { border-bottom: 1px solid var(--ln); }
+
+  .faq__item summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--s-gap);
+    padding-block: var(--s-block);
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -.02em;
+  }
+  .faq__item summary::-webkit-details-marker { display: none; }
+  .faq__item summary:hover { color: var(--acc-t); }
+
+  .faq__item :global(.faq__chev) {
+    width: 20px; height: 20px; flex: none;
+    margin-top: 3px;
+    color: var(--mu);
+    transform: rotate(90deg);
+    transition: transform var(--t-quick) var(--ease);
+  }
+  .faq__item[open] :global(.faq__chev) { transform: rotate(-90deg); }
+
+  .faq__a { padding-bottom: var(--s-block); }
+  .faq__a p { color: var(--mu); font-size: .9375rem; max-width: 40em; }
+  .faq__a p:last-child { margin-bottom: 0; }
+
+  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-snug); }
+  .ticks li { display: flex; gap: var(--s-snug); align-items: flex-start; color: var(--mu); line-height: 1.5; }
+  .ticks :global(svg) { width: 20px; height: 20px; flex: none; margin-top: 3px; color: var(--acc-t); }
+</style>

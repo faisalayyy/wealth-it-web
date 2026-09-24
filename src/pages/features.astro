@@ -1,0 +1,223 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import StoreLinks from '../components/StoreLinks.astro';
+import { url } from '../site';
+
+/**
+ * The long answer to "what does it do". Written from the app's own docs, and deliberately
+ * including the parts that are not built — a features page that only lists wins is an advert,
+ * and this product's argument is that it tells you the truth about itself.
+ */
+const areas = [
+  {
+    icon: 'wallet',
+    title: 'Wallets',
+    lead: 'Six types, and the type does more than change the icon.',
+    body: 'A wallet\'s type decides which fields it has, what its detail screen shows, and whether its balance counts as something you own or something you owe. A credit card sits on the other side of the total from a savings account, because that is where it belongs.',
+    points: [
+      'Cash, bank, credit card, savings, loan and investment.',
+      'One signed opening balance per wallet; everything after it is worked out from the transactions.',
+      'Each wallet holds its own currency.',
+      'A wallet with history is archived rather than deleted, so the transactions that mention it are never left pointing at nothing.',
+    ],
+  },
+  {
+    icon: 'swap',
+    title: 'Recording',
+    lead: 'Expense, income, transfer — and a keypad, not a text field.',
+    body: 'Amounts are entered on an in-app keypad, which is faster with one thumb and cannot produce the sort of nonsense a free-text field accepts. The form never asks which currency: it takes the wallet\'s.',
+    points: [
+      'A transfer is two linked legs, not one row. It is never income, never an expense, and nothing that counts spending responds to it.',
+      'Cross-currency transfers are supported, and the rate you used is remembered as a fact about that transfer.',
+      'Payee, note, category and as many labels as you like.',
+      'A swipe reveals a record\'s actions — it never fires them. The gesture opens the drawer; a tap makes the decision.',
+    ],
+  },
+  {
+    icon: 'eye',
+    title: 'History and search',
+    lead: 'Every record, filtered six ways at once.',
+    body: 'The full list groups by day, sorts four ways, and filters on period, type, wallet, category, subcategory and label together. Search covers payee, note, category, wallet and label names.',
+    points: [
+      'A draggable month rail runs alongside the list, and the two follow each other.',
+      'Archived categories and labels stay readable in history even though they are gone from the pickers.',
+    ],
+  },
+  {
+    icon: 'tag',
+    title: 'Categories and labels',
+    lead: 'Two levels of category, and labels for everything that cuts across them.',
+    body: 'Categories and subcategories are yours to create, rename, recolour and retire. A transaction points at a subcategory and the category is derived from it, so renaming one never breaks a record.',
+    points: [
+      'Subcategories inherit their parent\'s colour and differ by icon.',
+      'Labels are free-form and stack: a transaction can carry as many as it earns.',
+      'A used category is archived; a deleted label takes only its own references with it, and leaves every amount, category and balance untouched.',
+    ],
+  },
+  {
+    icon: 'chart',
+    title: 'Budgets and goals',
+    lead: 'A budget per category, weekly or monthly.',
+    body: 'Set them all in one screen with the planned total adding up live at the top. Each budget carries its own currency. A blank row is not a budget of zero — it is simply not a budget, and it disappears.',
+    points: [
+      'The bar fills in the category\'s own colour, and turns when it is nearly gone rather than once it has gone.',
+      'Savings goals are the target on a savings wallet, not a separate thing to keep in step with one.',
+    ],
+  },
+  {
+    icon: 'calendar',
+    title: 'Scheduled payments',
+    lead: 'Rent on the 1st. Once.',
+    body: 'Set the recurrence and the app posts each occurrence when it falls due. Every generated transaction takes its identity from its schedule and its date, which is a dry way of saying the same rent cannot be posted twice however often you open the app.',
+    points: [
+      'Pause and resume without losing the schedule.',
+      'Upcoming payments are projected forward so a month with rent and insurance in it is not a surprise.',
+    ],
+  },
+  {
+    icon: 'donut',
+    title: 'Statistics',
+    lead: 'Five views, and none of them flatter you.',
+    body: 'Total balance over time, spending by category, cashflow in and out, the outlook ahead, and where the credit cards stand. The largest slice of the donut always takes the accent colour, so the thing you spend most on is the thing you see first.',
+    points: [
+      'Any period: week, month, year, or a range you choose.',
+      'Drag around the donut to read a slice.',
+      'Estimates are labelled and bounded, and never sit inside the same figure as a confirmed one.',
+    ],
+  },
+  {
+    icon: 'globe',
+    title: 'Currency',
+    lead: 'No invented rates. Not once.',
+    body: 'A rate in this app is an output, not a download. It comes from a cross-currency transfer you recorded yourself, or from the published AED/USD peg. Anything that cannot be converted from one of those is excluded from the total, named as excluded, and still shown in its own currency.',
+    points: [
+      'No total silently sums across currencies. An aggregate either covers everything or says what it covers.',
+    ],
+  },
+  {
+    icon: 'lock',
+    title: 'Privacy and locking',
+    lead: 'A PIN, a fingerprint, and a way to hide the figures on a bus.',
+    body: 'The app can be locked with a PIN or the phone\'s own biometrics. The PIN lives in the device keychain — never in the ledger, and never in a backup file.',
+    points: [
+      'Hide-amounts scrambles the digits on screen. It is privacy from the person beside you, not security, and the data underneath is untouched.',
+      'A photo you pick as a profile picture is copied into the app and stays on the phone.',
+    ],
+  },
+  {
+    icon: 'download',
+    title: 'Your data, in your hands',
+    lead: 'A backup file is the only copy that outlives the phone.',
+    body: 'Export the whole ledger as a JSON backup, or the transactions as CSV, and save them wherever you save things. Restoring a backup puts everything back. Nothing is uploaded on your behalf, which also means nothing is backed up on your behalf.',
+    points: [
+      'The export is a plain file. It is readable, and it is yours.',
+      'There is no cloud copy to fall back on. Do this occasionally.',
+    ],
+  },
+  {
+    icon: 'bell',
+    title: 'Reminders and appearance',
+    lead: 'Local notifications, and a theme that follows the phone.',
+    body: 'Reminders are scheduled on the device itself, by the device itself. Dark, light or whatever the system is doing — the same three choices as everything else on the phone.',
+    points: [
+      'If the phone refuses permission for something, the screen says so rather than claiming it worked.',
+    ],
+  },
+] as const;
+
+const notYet = [
+  ['Sync between devices', 'It would need a server. There isn\'t one, and adding one would undo the rest of this page.'],
+  ['Bank or card connections', 'No linked accounts, no imported statements.'],
+  ['A cloud backup', 'Backups are files you save yourself. That is the whole mechanism.'],
+];
+---
+
+<Base
+  title="What it does"
+  description="Wallets, transactions, budgets, scheduled payments and statistics — the full list of what Wealth-it does on your phone, and what it deliberately does not."
+>
+  <section>
+    <div class="wrap">
+      <div class="hold">
+      <p class="eyebrow">What it does</p>
+      <h1 class="hero-title">All of it, in order.</h1>
+      <p class="lede" style="margin-top: var(--s-block);">
+        Nothing below is planned, coming soon or in beta. What is not built yet has its own
+        section at the bottom, with the reason.
+      </p>
+      </div>
+    </div>
+  </section>
+
+  {areas.map((area, i) => (
+    <section class={i % 2 ? 'section--sunk' : 'section--ruled'}>
+      <div class="wrap area">
+        <div class="area__head">
+          <span class="card__mark"><Icon name={area.icon} /></span>
+          <h2>{area.title}</h2>
+          <p class="area__lead">{area.lead}</p>
+        </div>
+        <div class="area__body">
+          <p>{area.body}</p>
+          <ul class="ticks">
+            {area.points.map(p => (
+              <li><Icon name="check" /><span>{p}</span></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <section class="section--ruled">
+    <div class="wrap">
+      <p class="eyebrow eyebrow--mu">Not built</p>
+      <h2>Three things it does not do, and is not about to.</h2>
+      <div class="grid" style="margin-top: var(--s-page);">
+        {notYet.map(([title, body]) => (
+          <article class="card">
+            <h3>{title}</h3>
+            <p>{body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section--sunk center">
+    <div class="wrap wrap--narrow">
+      <h2>That is the app.</h2>
+      <p class="lede lede--center" style="margin-top: var(--s-gap);">
+        The privacy page explains what all of this means for where your money data actually sits.
+      </p>
+      <div style="margin-top: var(--s-block);">
+        <StoreLinks
+          center
+          fallbackPrimary={{ href: url('/privacy/'), label: 'Where the data lives' }}
+          fallbackSecondary={{ href: url('/support/'), label: 'Support and help' }}
+        />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .area { display: grid; gap: var(--s-block); align-items: start; }
+  @media (min-width: 880px) {
+    .area { grid-template-columns: minmax(0, 20rem) minmax(0, 1fr); gap: clamp(40px, 5vw, 80px); }
+    .area__head { position: sticky; top: 96px; }
+  }
+  .area__lead {
+    margin: var(--s-snug) 0 0;
+    font-size: 1.0625rem;
+    color: var(--acc-t);
+    max-width: 22em;
+  }
+  .area__head h2 { font-size: var(--t-h2); }
+  .area__head :global(.card__mark) { margin-bottom: var(--s-gap); }
+
+  .ticks { list-style: none; margin: var(--s-block) 0 0; padding: 0; display: grid; gap: var(--s-snug); }
+  .ticks li { display: flex; gap: var(--s-snug); align-items: flex-start; color: var(--mu); font-size: .9375rem; line-height: 1.5; }
+  .ticks :global(svg) { width: 18px; height: 18px; flex: none; margin-top: 3px; color: var(--acc-t); }
+</style>

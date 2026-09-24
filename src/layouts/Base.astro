@@ -1,23 +1,45 @@
 ---
 /**
- * The shell every page sits in: head, metadata, the brand's stylesheets, and a slot.
+ * The shell every page sits in: head, metadata, the brand's stylesheets, the header and the
+ * footer. Chrome lives here once rather than in five pages that then have to agree with each
+ * other forever.
  *
- * Deliberately empty of chrome. There is no header and no footer here yet, because what belongs
- * in them is a design decision and none has been made. When there is one, it goes here — once —
- * rather than into eight pages that then have to agree with each other forever.
+ * Nothing in here loads from anywhere else. No font CDN, no tag manager, no consent banner to
+ * apologise for the tag manager. The site makes a claim about where data goes and it would be a
+ * strange site that broke it in its own <head>.
  */
 import '../styles/tokens.css';
 import '../styles/base.css';
+import '../styles/site.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site, url } from '../site';
 
 interface Props {
   title: string;
   description?: string;
-  /** set on a page that should not be indexed — a thank-you page, a preview */
+  /** Set on a page that should not be indexed — a thank-you page, a preview. */
   noindex?: boolean;
 }
 
-const { title, description = '', noindex = false } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title, description = site.description, noindex = false } = Astro.props;
+/* Always with the trailing slash the built pages actually live at, so the canonical URL and
+ * the sitemap agree with each other. */
+const path = Astro.url.pathname.endsWith('/') ? Astro.url.pathname : `${Astro.url.pathname}/`;
+const canonical = new URL(path, Astro.site);
+const ogImage = new URL(url('/og.png'), Astro.site);
+
+/* The @font-face rules, built here so their URLs carry the deploy's base path. In the head
+ * rather than in the stylesheet they also start downloading a beat earlier, because the browser
+ * meets them without waiting for a CSS file first. */
+const fontFaces = [400, 500, 600, 700]
+  .map(w =>
+    `@font-face{font-family:'Plus Jakarta Sans';` +
+    `src:url('${url(`/fonts/plus-jakarta-sans-${w}.woff2`)}') format('woff2');` +
+    `font-weight:${w};font-style:normal;font-display:swap}`)
+  .join('');
+/** The home page is just the name; everywhere else says where it is first. */
+const fullTitle = title === site.name ? `${site.name} — ${site.tagline}` : `${title} · ${site.name}`;
 ---
 
 <!doctype html>
@@ -25,21 +47,45 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex" />}
 
-    <link rel="icon" href="/favicon.png" />
+    <style is:inline set:html={fontFaces}></style>
+
+    <!-- The two weights above the fold. The other two can arrive when they arrive. -->
+    <link rel="preload" href={url('/fonts/plus-jakarta-sans-400.woff2')} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={url('/fonts/plus-jakarta-sans-700.woff2')} as="font" type="font/woff2" crossorigin />
+
+    <link rel="icon" href={url('/favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={url('/favicon.png')} sizes="any" />
+    <link rel="apple-touch-icon" href={url('/favicon.png')} />
+
+    <!-- The browser chrome takes the page colour, in both themes. -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#F6F5F1" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0B0D0C" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    {description && <meta property="og:description" content={description} />}
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
   </head>
 
   <body>
-    <slot />
+    <a class="skip" href="#main">Skip to content</a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>

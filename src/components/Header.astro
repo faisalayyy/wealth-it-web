@@ -1,0 +1,25 @@
+---
+/**
+ * The header: the name, three links, and a hairline. No menu button, because three links fit on
+ * a phone, and a hamburger would be the one piece of client-side JavaScript on the site — spent
+ * on hiding something that was never in the way.
+ */
+import Wordmark from './Wordmark.astro';
+import { nav, url } from '../site';
+
+const here = Astro.url.pathname;
+---
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <Wordmark />
+    <nav class="hdr__nav" aria-label="Main">
+      {nav.map(item => (
+        <a
+          class="hdr__link"
+          href={url(item.href)}
+          aria-current={here === url(item.href) ? 'page' : undefined}
+        >{item.label}</a>
+      ))}
+    </nav>
+  </div>
+</header>

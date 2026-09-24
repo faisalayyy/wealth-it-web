@@ -1,0 +1,154 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { contactEmail } from '../site';
+
+/**
+ * The privacy policy, and the URL the App Store asks for.
+ *
+ * Every claim here is a claim about the app as built: no network calls, no analytics, no
+ * account, storage in AsyncStorage, the PIN in the device keychain. If any of that changes in
+ * the app, it has to change here on the same day — a privacy page that has drifted is worse
+ * than no privacy page.
+ *
+ * TODO before launch: Faisal to read this end to end, and put a real address in `site.ts`.
+ */
+const updated = '24 September 2026';
+
+const nots = [
+  'No account, no sign-in, no profile on anybody\'s server.',
+  'No analytics, no usage statistics, no crash reporting.',
+  'No advertising identifiers, no ad networks, no trackers.',
+  'No third party receives anything about you, because nothing is sent to one.',
+];
+---
+
+<Base
+  title="Privacy"
+  description="Wealth-it has no account, no server and no analytics. Everything it knows about your money is stored on your phone. This is the whole policy."
+>
+  <section>
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow">Privacy</p>
+      <h1 class="hero-title">Nothing leaves your phone.</h1>
+      <p class="lede" style="margin-top: var(--s-block);">
+        This is the entire policy, and it is short because the app does very little that a
+        policy needs to explain. Last updated {updated}.
+      </p>
+
+      <ul class="ticks" style="margin-top: var(--s-section);">
+        {nots.map(n => <li><Icon name="check" /><span>{n}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section--ruled">
+    <div class="wrap wrap--narrow prose">
+      <h2>What the app stores</h2>
+      <p>
+        Wealth-it keeps a ledger: your wallets and their opening balances, the transactions you
+        record, the categories and labels you make, your budgets, your scheduled payments, your
+        settings, and a profile name and picture if you set one.
+      </p>
+      <p>
+        All of it is written to storage belonging to the app, on your phone. It is covered by
+        whatever protects the rest of your phone — the lock screen, the device encryption, and
+        the sandbox the operating system puts around every app. If you have set a PIN for
+        Wealth-it, the PIN is held in the device keychain, never in the ledger and never in a
+        backup file.
+      </p>
+
+      <h2>What the app sends</h2>
+      <p>
+        Nothing. There is no server in this product. The app makes no network requests of its
+        own, so there is no telemetry to switch off, no consent to give and nothing to opt out
+        of. Nobody — including whoever wrote it — knows that you installed it, opened it, or
+        recorded a single dirham.
+      </p>
+      <p class="mu">
+        Which also means there is nothing to restore from if the phone is lost. That trade is
+        deliberate, and it is the reason the app keeps offering to make you a backup.
+      </p>
+
+      <h2>Permissions, and why each one is asked for</h2>
+      <ul>
+        <li>
+          <strong>Photos</strong> — only if you choose a profile picture. The image you pick is
+          copied into the app and stays on the phone. The app does not read your library
+          otherwise.
+        </li>
+        <li>
+          <strong>Face ID, Touch ID or the Android equivalent</strong> — only if you turn on the
+          app lock. The check happens on the device; the app is told yes or no and never sees
+          anything biometric.
+        </li>
+        <li>
+          <strong>Notifications</strong> — only if you turn reminders on. They are scheduled on
+          the phone, by the phone. There are no push notifications, because pushing one would
+          need a server to push it.
+        </li>
+        <li>
+          <strong>Files</strong> — when you export a backup or a CSV, or pick a backup to
+          restore. The app writes the file where you tell it to and does nothing else with it.
+        </li>
+      </ul>
+      <p>
+        Refuse any of these and the rest of the app carries on. If the phone refuses a
+        permission, the screen says so rather than pretending the thing worked.
+      </p>
+
+      <h2>Backups and exports</h2>
+      <p>
+        A backup is a file. Once you have saved or shared it, where it goes is up to you and
+        subject to whatever holds it — your files app, your cloud drive, the message you sent it
+        in. The app has no further say in the matter, and no copy of its own. A backup does not
+        contain your PIN.
+      </p>
+
+      <h2>Deleting everything</h2>
+      <p>
+        Delete the app. That removes the ledger with it, and there is no second copy anywhere to
+        chase down, no account to close and nobody to email about it. Any backup files you saved
+        yourself are still wherever you put them.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        Wealth-it is a personal ledger with no accounts, no messaging, no content from anyone
+        else and no data collection. It is not directed at children, and it collects nothing from
+        anybody of any age.
+      </p>
+
+      <h2>This website</h2>
+      <p>
+        The page you are reading is a static file. It sets no cookies, runs no analytics, embeds
+        nothing from anywhere else, and loads its own fonts from its own server. There is no
+        banner asking your consent for any of that because there is nothing to consent to.
+      </p>
+      <p>
+        Being honest about the one exception: whoever hosts these files can see the ordinary
+        request logs any web server keeps — an IP address, a page, a time. That is the web
+        working as designed, it is not something the site does on purpose, and it is the only
+        record of your visit that exists anywhere.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        If the app ever starts doing something this page does not describe, this page changes
+        first, and the date at the top changes with it.
+      </p>
+
+      <h2>Asking about any of this</h2>
+      <p>
+        Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. There is no account to
+        look up at the other end, so say what you need in the message.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--s-snug); }
+  .ticks li { display: flex; gap: var(--s-snug); align-items: flex-start; font-size: 1rem; line-height: 1.5; }
+  .ticks :global(svg) { width: 20px; height: 20px; flex: none; margin-top: 3px; color: var(--acc-t); }
+</style>

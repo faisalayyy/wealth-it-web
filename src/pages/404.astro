@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import { url } from '../site';
+---
+
+<Base title="Page not found" noindex>
+  <section class="center" style="padding-block: clamp(80px, 14vh, 160px);">
+    <div class="wrap wrap--narrow">
+      <p class="eyebrow eyebrow--mu">404</p>
+      <h1 class="hero-title">There is nothing here.</h1>
+      <p class="lede lede--center" style="margin-top: var(--s-block);">
+        Which, on this particular website, is at least on brand. The three pages that do exist
+        are below.
+      </p>
+      <p class="row row--center" style="margin-top: var(--s-section);">
+        <a class="btn btn--primary" href={url('/')}>Start again <Icon name="arrow" class="btn__arrow" /></a>
+        <a class="btn btn--quiet" href={url('/features/')}>What it does</a>
+        <a class="btn btn--quiet" href={url('/support/')}>Support</a>
+      </p>
+    </div>
+  </section>
+</Base>

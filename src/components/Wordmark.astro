@@ -1,0 +1,23 @@
+---
+/**
+ * The name, with a mark beside it.
+ *
+ * The mark is a rising line, which is the one drawing this app already makes: the eight-point
+ * sparkline on every account card. It is a stand-in, not an identity — the app has no icon of
+ * its own yet (the one in the repo is the Expo placeholder), and when there is a real one it
+ * replaces this in two places, here and the favicon.
+ */
+import { url } from '../site';
+
+interface Props { href?: string }
+const { href = url('/') } = Astro.props;
+---
+<a class="mark" href={href}>
+  <span class="mark__glyph" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.75"
+         stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 17.5 9 11l4 4 8-9" />
+    </svg>
+  </span>
+  Wealth-it
+</a>

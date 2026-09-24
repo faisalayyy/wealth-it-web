@@ -16,9 +16,14 @@ that nothing leaves your phone; a site that ships a runtime and a pile of tracke
 arguing against itself.
 
 - `src/pages/*.astro` — one file, one URL. That is the multipage.
-- `src/layouts/Base.astro` — the shell: head, metadata, stylesheets, a slot.
+- `src/layouts/Base.astro` — the shell: head, metadata, stylesheets, header, footer, a slot.
+- `src/components/` — Header, Footer, Wordmark, Icon, StoreLinks, PhoneMock. Six, and each one
+  earns its place by being used on more than one page or by being too big to sit in a page.
+- `src/site.ts` — the facts every page repeats, and the two store links that do not exist yet.
 - `src/styles/tokens.css` — the brand, transcribed from the app.
 - `src/styles/base.css` — reset and typographic floor. Not design.
+- `src/styles/site.css` — the design layer: `@font-face`, the web type scale, the shapes.
+- `scripts/` — the two asset generators. Nothing runs at build time that is not Astro.
 
 ```bash
 npm run dev      # http://localhost:4321
@@ -55,9 +60,40 @@ over abstract. Not a comedy site, and not a bank either. **No fintech register**
 - Currency conversion never invents a rate: it uses the user's own cross-currency transfers or
   the published AED/USD peg, and anything it cannot convert honestly is left out and named.
 
+## Two things the site does that are easy to undo by accident
+
+**Nothing is loaded from anywhere else.** The font is self-hosted from `public/fonts` (subset to
+Latin, four weights, 46 KB), there is no analytics, no tag manager and no consent banner to
+apologise for one. A site whose argument is that nothing leaves your phone cannot open by asking
+Google for a typeface. If something new needs a third-party request, it needs a conversation
+first.
+
+**No download link exists yet.** `stores.ios` and `stores.android` in `src/site.ts` are `null`
+and every call to action renders *"Not in the stores yet"*. Do not replace that with a button
+that goes nowhere, a mailing list or a badge that implies a listing. Set the two values on the
+day the builds are accepted and every CTA becomes a real one.
+
+## Claims about the product are load-bearing
+
+The privacy page is a promise, not a landing page — every line of it describes the app as built.
+If the app gains a network call, an analytics SDK or a sync feature, `/privacy/` changes in the
+same commit or the site is lying. The same goes for `/features/`, which lists what is *not*
+built on purpose; that section is the reason the rest of the page is believable.
+
+## Where it is published
+
+GitHub Pages, at **https://faisalayyy.github.io/wealth-it-web/**, built by
+`.github/workflows/deploy.yml` on every push to `main`. The repo is public so that Pages will
+serve it; the app repo is not.
+
+Because it is served from a subdirectory, **every internal link goes through `url()` in
+`src/site.ts`** — a bare `/features/` renders fine in `npm run dev` and 404s in production.
+Font, favicon and OG paths go through it too. The README has the three-edit path to a real
+domain, on the day there is one.
+
 ## Not yet decided
 
-- The domain. `astro.config.mjs` has a placeholder `site:` — canonical URLs and OG tags read it.
-- The host. Cloudflare Pages or Netlify; both connect to the repo and build on push to `main`.
-- Everything about the design. The scaffold deliberately has no header, no footer and no
-  components — Faisal will say what the site should contain before any of that is decided.
+- The domain. The github.io path is a place to live, not a decision.
+- The icon. The app's own is still the Expo placeholder, so the wordmark glyph and the favicon
+  are a rising line — the drawing the app already makes on every account card. Both are
+  stand-ins, in two files, and neither is an identity.

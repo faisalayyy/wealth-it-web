@@ -1,0 +1,9 @@
+# Everything here is public and meant to be read. Nothing here tracks anyone.
+#
+# On a github.io project site this file is decorative: crawlers only read the one at the origin
+# root, which belongs to the user site, not to this subdirectory. It becomes real on the day the
+# site has a domain of its own.
+User-agent: *
+Allow: /
+
+Sitemap: https://faisalayyy.github.io/wealth-it-web/sitemap.xml

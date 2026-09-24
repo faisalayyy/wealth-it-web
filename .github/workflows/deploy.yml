@@ -1,0 +1,52 @@
+# Build the site and publish it to GitHub Pages on every push to main.
+#
+# Nothing here is a third-party action: all five are GitHub's own. The site is static, so the
+# job is `npm ci && npm run build` and then handing `dist/` to Pages — there is no server to
+# run, nothing to warm up and nothing to keep alive.
+name: Deploy to Pages
+
+on:
+  push:
+    branches: [main]
+  # so a deploy can be re-run by hand without an empty commit
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time, and a newer push waits rather than racing the one in front of it.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

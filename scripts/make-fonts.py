@@ -8,7 +8,7 @@ from fontTools.subset import main as subset_main
 
 SRC = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
                    "app", "node_modules", "@expo-google-fonts", "plus-jakarta-sans")
-OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "public", "fonts")
+OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src", "fonts")
 os.makedirs(OUT, exist_ok=True)
 
 # Google's own "latin" subset range, plus the punctuation this site actually sets.

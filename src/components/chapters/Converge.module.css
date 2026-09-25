@@ -1,0 +1,69 @@
+.close {
+  position: relative;
+  z-index: var(--z-content);
+  padding: var(--chapter) var(--gutter) var(--s-6);
+  max-width: var(--wrap);
+  margin-inline: auto;
+  min-height: 100svh;
+  display: grid;
+  align-content: center;
+  gap: var(--s-5);
+}
+
+.words { display: grid; gap: 0; }
+.wordMask { display: block; overflow: hidden; }
+.word {
+  display: block;
+  font-size: clamp(2.25rem, 1rem + 6vw, 6rem);
+  line-height: 1.02;
+  letter-spacing: -.04em;
+  font-weight: 500;
+  color: var(--tx-ghost);
+  will-change: transform;
+}
+.wordMask:last-child .word { color: var(--acc-t); }
+
+.name {
+  margin-top: var(--s-7);
+  font-size: var(--t-mega);
+  line-height: .9;
+  letter-spacing: var(--track-mega);
+  font-weight: 600;
+}
+
+.sub { max-width: 46ch; color: var(--tx-dim); font-size: var(--t-sm); }
+
+.actions { margin-top: var(--s-5); display: grid; gap: var(--s-3); justify-items: start; }
+.cta {
+  display: inline-grid; gap: var(--s-3);
+  padding: var(--s-4) var(--s-6);
+  border: 1px solid var(--rule-lit);
+  border-radius: 2px;
+  font-size: var(--t-xs);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  color: var(--tx-dim);
+  transition: color var(--d-ui) var(--e-out), border-color var(--d-ui) var(--e-out);
+}
+.cta:hover { color: var(--tx); border-color: var(--acc); }
+.ctaRule { display: block; height: 1px; background: var(--acc); transform: scaleX(.25); transform-origin: left; transition: transform var(--d-spatial) var(--e-out); }
+.cta:hover .ctaRule { transform: scaleX(1); }
+.ctaNote { font-size: var(--t-micro); color: var(--tx-mute); text-transform: uppercase; letter-spacing: .1em; }
+
+.foot {
+  margin-top: var(--s-9);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+  display: grid;
+  gap: var(--s-4);
+}
+.footNav { display: flex; flex-wrap: wrap; gap: var(--s-5); font-size: var(--t-xs); color: var(--tx-dim); }
+.footNav a { transition: color var(--d-tap) var(--e-out); }
+.footNav a:hover { color: var(--acc-t); }
+.note, .fine { font-size: var(--t-micro); color: var(--tx-mute); max-width: 62ch; letter-spacing: .04em; }
+.fine { color: var(--tx-ghost); }
+
+@media (min-width: 900px) {
+  .foot { grid-template-columns: auto 1fr; align-items: start; column-gap: var(--s-9); }
+  .footNav { grid-row: 1 / span 2; }
+}

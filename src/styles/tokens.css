@@ -1,101 +1,125 @@
-/* The brand, transcribed from the app.
- *
- *  Source of truth: `src/theme/tokens.ts` in the Wealth-it app repo, and the reasoning behind
- *  every value is in its `docs/DESIGN_SYSTEM.md`. This is a copy on purpose — a shared package
- *  between a React Native app and a static site would be build tooling in both places to share
- *  about forty values that change twice a year. When the app's palette moves, move it here by
- *  hand and say so in the commit.
- *
- *  Two rules survive the port and matter more than the rest:
- *  - the lime is a FILL, never text. Text uses the `-t` variants, which darken in light mode,
- *    because a colour that works as a fill on near-black is unreadable as type on paper.
- *  - hierarchy comes from size, weight, colour and space, in that order. Weight is the last
- *    resort, not the first.
- */
+/* ═══════════════════════════════════════════════════════════════════════════════════════════
+   THE DESIGN LANGUAGE
+   ═══════════════════════════════════════════════════════════════════════════════════════════
+
+   Not the app's design system. The app is an instrument held at a foot's distance in one hand;
+   this is a room you walk into. What the two share is a conviction, not a stylesheet: that a
+   figure earns its authority from the movement behind it.
+
+   The motif is THE RULE. Ledger paper is horizontal lines and a column of figures, and it has
+   been the visual language of money for six hundred years. So this site is ruled: a fixed
+   rhythm of hairlines, and everything — type, data, the whole WebGL field — moves across them.
+   That is the anti-decoration position. Depth comes from structure and contrast, never from a
+   glass panel, a glow or a gradient.
+
+   Three rules survive from the app because they are true in any medium:
+     1. The lime is a FILL. Never type, never a gradient, never a glow.
+     2. Hierarchy is size → colour → space → weight, in that order. Weight is the last resort.
+     3. A figure is tabular. Columns of money line up; digits do not jitter as they count.
+   ═══════════════════════════════════════════════════════════════════════════════════════════ */
 
 :root {
-  /* surfaces — light is the default, dark is the override below */
-  --page: #E9E8E3;
-  --bg:   #F6F5F1;
-  --sf:   #FFFFFF;
-  --sf2:  #F0EFEA;
-  --ln:   #E6E4DE;
+  /* ── ground ─────────────────────────────────────────────────────────────────────────────
+     Near-black, not black: #000 on an OLED is a hole in the page and everything above it
+     detaches. These three steps are the only elevation vocabulary there is. */
+  --ink-000: #07 09 08;      /* the canvas */
+  --ink-100: #0C0F0E;        /* raised: a panel, a held state */
+  --ink-200: #141917;        /* the app surface, where the product appears */
+  --rule:    #1C2320;        /* the hairline. The motif. */
+  --rule-lit:#2B342F;        /* a hairline under attention */
 
-  /* type */
+  --page: #070908;
+  --paper: #F2F4F1;          /* used inverted, in exactly one chapter */
+
+  /* ── type ───────────────────────────────────────────────────────────────────────────── */
+  --tx:    #F2F4F1;
+  --tx-dim:#9AA29D;
+  --tx-mute:#5E6864;
+  --tx-ghost:#333B37;
+
+  /* ── the accent, as a fill only ─────────────────────────────────────────────────────── */
+  --acc:     #C8F24E;
+  --acc-t:   #CBEE66;        /* the one place it may be type: on near-black, large, sparingly */
+  --acc-dim: #7C9630;
+
+  /* ── money has a sign, and the sign has a colour ────────────────────────────────────── */
+  --in:  #5BC98C;
+  --out: #E2664F;
+  --in-t:  #6BD49B;
+  --out-t: #F0806A;
+  /* An estimate is never the same colour as a fact. It is this, and it is hatched. */
+  --est: #6E7B84;
+
+  /* ── type scale ─────────────────────────────────────────────────────────────────────────
+     Fluid, and wider in range than a product UI would dare. The display sizes are meant to be
+     read as image first and sentence second. */
+  --t-mega:  clamp(3.5rem, 1.2rem + 11vw, 13rem);
+  --t-xl:    clamp(2.75rem, 1.4rem + 6vw, 7rem);
+  --t-lg:    clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --t-md:    clamp(1.5rem, 1.2rem + 1.5vw, 2.25rem);
+  --t-body:  clamp(1rem, .95rem + .35vw, 1.1875rem);
+  --t-sm:    .9375rem;
+  --t-xs:    .8125rem;
+  --t-micro: .6875rem;
+
+  --lead-tight: .92;
+  --lead-snug: 1.1;
+  --lead-body: 1.55;
+
+  --track-mega: -.045em;
+  --track-display: -.035em;
+  --track-body: -.011em;
+  --track-mono: .02em;
+
+  /* ── space ──────────────────────────────────────────────────────────────────────────────
+     A doubling rhythm, and one value — `--gutter` — that every page edge answers to. */
+  --s-1: 4px;   --s-2: 8px;   --s-3: 12px;  --s-4: 16px;
+  --s-5: 24px;  --s-6: 32px;  --s-7: 48px;  --s-8: 64px;
+  --s-9: 96px;  --s-10: 128px; --s-11: 192px; --s-12: 256px;
+
+  --gutter: clamp(20px, 4.2vw, 64px);
+  --chapter: clamp(96px, 14vh, 200px);   /* the air between one chapter and the next */
+  --measure: 34ch;                        /* nothing readable is wider than this */
+  --wrap: 1600px;
+
+  /* The ruled rhythm. Everything vertical is a multiple of it. */
+  --rule-gap: 88px;
+
+  /* ── motion ─────────────────────────────────────────────────────────────────────────────
+     Four durations and four curves, and a component may not invent a fifth of either. */
+  --d-tap: 140ms;        /* it answered */
+  --d-ui: 320ms;         /* a control changed */
+  --d-spatial: 720ms;    /* something moved through space */
+  --d-cinema: 1400ms;    /* the world changed */
+
+  --e-out: cubic-bezier(.16, 1, .3, 1);        /* the house curve: fast, then settles */
+  --e-in-out: cubic-bezier(.76, 0, .24, 1);    /* a scene exchanging itself for another */
+  --e-spring: cubic-bezier(.34, 1.42, .5, 1);  /* mass, arriving */
+  --e-linear: linear;                          /* scrubbed by the finger, never eased */
+
+  /* ── depth ──────────────────────────────────────────────────────────────────────────── */
+  --z-webgl: 0;
+  --z-content: 10;
+  --z-rules: 5;
+  --z-nav: 60;
+  --z-menu: 70;
+  --z-cursor: 90;
+  --z-veil: 100;
+}
+
+/* The one inverted chapter. Declared here so the switch is a data attribute, not a rewrite. */
+[data-tone='paper'] {
+  --page: #EDEDE8;
+  --ink-000: #EDEDE8;
+  --ink-100: #E4E4DD;
+  --ink-200: #FFFFFF;
+  --rule: #D2D2C9;
+  --rule-lit: #B9B9AE;
   --tx: #0B0D0C;
-  --mu: #666C68;
-
-  /* colour as text — darker, so it survives on paper */
-  --acc-t:  #4C6A08;
-  --inc-t:  #0F6E45;
-  --exp-t:  #AE3627;
-  --warn-t: #8F5514;
-
-  /* colour as fill — never as type */
-  --acc:  #C8F24E;
-  --inc:  #5BC98C;
-  --exp:  #E2664F;
-  --warn: #D2A05F;
-
-  --tint: rgba(0, 0, 0, .05);
-
-  /* the corner scale: the smaller the thing, the tighter the corner */
-  --r-sm: 12px;
-  --r-md: 16px;
-  --r-lg: 20px;
-  --r-xl: 28px;
-  --r-pill: 999px;
-
-  /* the spacing rhythm: 4 · 8 · 12 · 16 · 20 · 24 · 32 */
-  --s-hair: 4px;
-  --s-tight: 8px;
-  --s-snug: 12px;
-  --s-gap: 16px;
-  --s-gutter: 20px;
-  --s-block: 24px;
-  --s-section: 32px;
-
-  /* movement — the house curve, and the four durations the app speaks in */
-  --ease: cubic-bezier(.22, 1, .36, 1);
-  --t-micro: 140ms;
-  --t-quick: 200ms;
-  --t-standard: 300ms;
-  --t-deep: 440ms;
-
-  --font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --page: #050605;
-    --bg:   #0B0D0C;
-    --sf:   #141817;
-    --sf2:  #1B201E;
-    --ln:   #262C29;
-
-    --tx: #F2F4F1;
-    --mu: #8A918D;
-
-    --acc-t:  #CBEE66;
-    --inc-t:  #6BD49B;
-    --exp-t:  #F0806A;
-    --warn-t: #DCA968;
-
-    --tint: rgba(255, 255, 255, .06);
-  }
-}
-
-:root[data-theme='dark'] {
-  --page: #050605;
-  --bg:   #0B0D0C;
-  --sf:   #141817;
-  --sf2:  #1B201E;
-  --ln:   #262C29;
-  --tx: #F2F4F1;
-  --mu: #8A918D;
-  --acc-t:  #CBEE66;
-  --inc-t:  #6BD49B;
-  --exp-t:  #F0806A;
-  --warn-t: #DCA968;
-  --tint: rgba(255, 255, 255, .06);
+  --tx-dim: #4A524E;
+  --tx-mute: #79817C;
+  --tx-ghost: #C3C3B9;
+  --acc-t: #5C7A12;
+  --in-t: #0F6E45;
+  --out-t: #AE3627;
 }

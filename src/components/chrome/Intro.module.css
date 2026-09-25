@@ -1,0 +1,10 @@
+.veil {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-veil);
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  pointer-events: none;
+}
+.bar { background: var(--ink-000); will-change: transform; }
+.bar + .bar { border-left: 1px solid var(--rule); }

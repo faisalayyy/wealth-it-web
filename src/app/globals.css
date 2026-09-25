@@ -1,0 +1,12 @@
+@import '../styles/tokens.css';
+@import '../styles/base.css';
+
+:root {
+  /* The instrument voice: the monospace already on the reader's machine. Nothing is downloaded
+     for it, and it carries exactly the right register for a figure — a readout, not a headline.
+     Every number on this site is set in it. */
+  --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, 'Roboto Mono', 'DejaVu Sans Mono', monospace;
+  /* Set until the scroll layer starts reporting, so no component has to guard against NaN. */
+  --vel: 0;
+  --vel-abs: 0;
+}

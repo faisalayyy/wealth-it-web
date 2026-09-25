@@ -1,0 +1,57 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  mix-blend-mode: difference; /* legible on ink and on paper without a second colour */
+}
+.root > * { position: absolute; top: 0; left: 0; will-change: transform; }
+
+.dot {
+  width: 6px; height: 6px;
+  margin: -3px 0 0 -3px;
+  background: var(--paper);
+  border-radius: 50%;
+  transition: width var(--d-ui) var(--e-out), height var(--d-ui) var(--e-out),
+              margin var(--d-ui) var(--e-out), opacity var(--d-tap) linear,
+              border-radius var(--d-ui) var(--e-out);
+}
+
+.ring {
+  width: 0; height: 0;
+  margin: 0;
+  border: 1px solid var(--paper);
+  border-radius: 50%;
+  opacity: 0;
+  transition: width var(--d-ui) var(--e-out), height var(--d-ui) var(--e-out),
+              margin var(--d-ui) var(--e-out), opacity var(--d-ui) var(--e-out),
+              border-radius var(--d-ui) var(--e-out);
+}
+
+.label {
+  margin: 14px 0 0 14px;
+  font-size: var(--t-micro);
+  color: var(--paper);
+  opacity: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  transition: opacity var(--d-ui) var(--e-out);
+}
+
+/* ── modes ─────────────────────────────────────────────────────────────────────────────── */
+
+.root[data-mode='link'] .dot { width: 3px; height: 3px; margin: -1.5px 0 0 -1.5px; }
+.root[data-mode='link'] .ring { width: 44px; height: 44px; margin: -22px 0 0 -22px; opacity: 1; }
+
+/* Reading a position in time: the pointer becomes the rule it is casting. */
+.root[data-mode='scrub'] .dot { width: 1px; height: 76px; margin: -38px 0 0 -.5px; border-radius: 0; }
+.root[data-mode='scrub'] .ring { width: 16px; height: 16px; margin: -8px 0 0 -8px; opacity: .55; }
+.root[data-mode='scrub'] .label { opacity: 1; }
+
+/* Able to take hold: a bar with two ends, pointing along the axis of travel. */
+.root[data-mode='drag'] .dot { width: 34px; height: 2px; margin: -1px 0 0 -17px; border-radius: 0; }
+.root[data-mode='drag'] .ring { width: 64px; height: 26px; margin: -13px 0 0 -32px; border-radius: 2px; opacity: .4; }
+.root[data-mode='drag'] .label { opacity: 1; }
+
+.root[data-mode='hide'] .dot,
+.root[data-mode='hide'] .ring { opacity: 0; }

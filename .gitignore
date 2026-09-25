@@ -1,9 +1,9 @@
 node_modules/
-dist/
-.astro/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
 .DS_Store
-.env
-.env.production
-.vercel
-.netlify
+.env*
+!.env.example
 npm-debug.log*

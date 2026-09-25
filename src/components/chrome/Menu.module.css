@@ -1,0 +1,77 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+  opacity: 0;
+  pointer-events: none;
+}
+.sheet {
+  position: absolute;
+  inset: 0;
+  background: var(--ink-000);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: var(--s-5) var(--gutter) var(--s-6);
+  transform: translateY(-101%);
+  /* The room is ruled too. */
+  background-image: repeating-linear-gradient(to bottom, var(--rule) 0 1px, transparent 1px var(--rule-gap));
+}
+
+.close {
+  justify-self: end;
+  display: inline-flex; align-items: center; gap: var(--s-3);
+  height: 34px; padding-inline: var(--s-3);
+  font-size: var(--t-micro); text-transform: uppercase; letter-spacing: .08em;
+  color: var(--tx-dim); cursor: pointer;
+}
+.close:hover { color: var(--tx); }
+
+.list { align-self: center; display: grid; gap: clamp(4px, 1.4vh, 18px); }
+.row {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, auto) 1fr;
+  align-items: baseline;
+  gap: var(--s-5);
+  border-top: 1px solid var(--rule);
+  padding-top: clamp(8px, 1.6vh, 20px);
+}
+.num { font-size: var(--t-micro); color: var(--tx-ghost); }
+
+.link { display: block; overflow: hidden; }
+.line {
+  display: block;
+  font-size: var(--t-xl);
+  font-weight: 500;
+  letter-spacing: var(--track-display);
+  line-height: 1.02;
+  color: var(--tx-dim);
+  transition: color var(--d-ui) var(--e-out), transform var(--d-spatial) var(--e-out);
+  will-change: transform;
+}
+.link:hover .line { color: var(--tx); transform: translateX(clamp(6px, 1.2vw, 22px)); }
+.link[aria-current='page'] .line { color: var(--tx); }
+
+.blurb {
+  font-size: var(--t-xs);
+  color: var(--tx-ghost);
+  max-width: 28ch;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--d-ui) var(--e-out), transform var(--d-ui) var(--e-out), color var(--d-ui) var(--e-out);
+}
+.blurb[data-lit='true'] { opacity: 1; transform: none; color: var(--tx-mute); }
+
+.foot {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-4);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+  font-size: var(--t-micro);
+  color: var(--tx-mute);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+@media (max-width: 767px) {
+  .row { grid-template-columns: 2.2rem 1fr; gap: var(--s-3); }
+  .blurb { display: none; }
+}

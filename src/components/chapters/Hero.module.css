@@ -1,0 +1,123 @@
+.hero {
+  position: relative;
+  z-index: var(--z-content);
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto auto;
+  align-items: center;
+  padding: calc(var(--s-9) + 4vh) var(--gutter) var(--s-7);
+  /* The whole hero is the scrub surface, so the gesture is not a control you have to find. */
+  cursor: none;
+}
+
+.readout { justify-self: center; text-align: center; align-self: center; }
+
+.eyebrow {
+  font-size: var(--t-micro);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--tx-mute);
+  margin-bottom: clamp(8px, 1.4vh, 18px);
+}
+
+.figure {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: .06em;
+  font-weight: 500;
+  line-height: .86;
+  outline-offset: 12px;
+}
+.int {
+  font-size: var(--t-mega);
+  letter-spacing: var(--track-mega);
+  color: var(--tx);
+  /* The digits must not reflow as they count. Tabular figures and a fixed-width slot. */
+  font-variant-numeric: tabular-nums;
+}
+.dec {
+  font-size: clamp(1.25rem, .6rem + 2.4vw, 3rem);
+  letter-spacing: -.02em;
+  color: var(--tx-mute);
+}
+
+.date {
+  margin-top: clamp(10px, 1.8vh, 22px);
+  display: flex; flex-wrap: wrap; justify-content: center; gap: var(--s-3);
+  font-size: var(--t-xs);
+  color: var(--tx-mute);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+.date span:first-child { color: var(--acc-t); min-width: 9ch; text-align: right; }
+.sep { color: var(--tx-ghost); }
+
+/* ── the axis ──────────────────────────────────────────────────────────────────────────── */
+.axis { position: relative; height: 34px; margin-top: var(--s-6); }
+.axisLine {
+  position: absolute; left: 3%; right: 3%; top: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule-lit) 12%, var(--rule-lit) 88%, transparent);
+}
+.cursorRule {
+  position: absolute;
+  top: -46vh; bottom: -10px;
+  left: var(--at, 97%);
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, color-mix(in oklab, var(--acc) 55%, transparent));
+  transform: translateX(-.5px);
+  transition: opacity var(--d-ui) var(--e-out);
+}
+.tick {
+  position: absolute; top: 10px;
+  transform: translateX(-50%);
+  font-size: var(--t-micro);
+  color: var(--tx-ghost);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+/* ── the copy, kept out of the middle ──────────────────────────────────────────────────── */
+.legend {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--s-3);
+  max-width: 46ch;
+  margin-top: var(--s-6);
+}
+.claim { font-size: var(--t-md); letter-spacing: var(--track-display); line-height: 1.12; }
+.body { font-size: var(--t-sm); color: var(--tx-mute); max-width: var(--measure); }
+
+.hint {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--s-7);
+  display: flex; align-items: center; gap: var(--s-3);
+  font-size: var(--t-micro);
+  color: var(--tx-mute);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+}
+.hintRule { display: block; width: 46px; height: 1px; background: var(--acc); }
+
+@media (min-width: 900px) {
+  .hero { grid-template-rows: 1fr auto; padding-bottom: var(--s-8); }
+  .legend {
+    position: absolute;
+    left: var(--gutter);
+    bottom: var(--s-7);
+    margin: 0;
+  }
+  .axis { margin-top: 0; }
+}
+
+@media (max-width: 899px) {
+  .hint { position: static; margin-top: var(--s-5); }
+  .legend { margin-top: var(--s-5); }
+}
+
+/* A finger has no hover state, so on touch the hint says what to do rather than implying it. */
+@media (hover: none) {
+  .hero { cursor: auto; }
+}

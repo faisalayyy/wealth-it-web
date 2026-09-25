@@ -1,0 +1,8 @@
+.stage {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-webgl);
+  pointer-events: none;
+  /* The field is behind the rules and behind the type, and it never competes with either. */
+  opacity: .92;
+}

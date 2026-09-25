@@ -1,0 +1,114 @@
+.pin { position: relative; z-index: var(--z-content); }
+
+.inner {
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--s-5);
+  padding: calc(var(--s-9) + 2vh) var(--gutter) var(--s-7);
+  max-width: var(--wrap);
+  margin-inline: auto;
+}
+
+.head { display: grid; gap: var(--s-3); border-bottom: 1px solid var(--rule); padding-bottom: var(--s-4); }
+.head > div { display: flex; gap: var(--s-4); align-items: baseline; }
+.index { font-size: var(--t-micro); color: var(--acc-t); letter-spacing: .1em; }
+.kicker { font-size: var(--t-micro); color: var(--tx-mute); text-transform: uppercase; letter-spacing: .14em; }
+.title { font-size: var(--t-lg); max-width: 20ch; }
+.body { font-size: var(--t-sm); color: var(--tx-dim); max-width: 52ch; }
+
+@media (min-width: 1000px) {
+  .head { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; }
+  .head > div { grid-column: 1 / -1; }
+  .body { justify-self: end; text-align: left; }
+}
+
+/* ── the chart ─────────────────────────────────────────────────────────────────────────── */
+.chartWrap { margin: 0; align-self: center; width: 100%; }
+.chart { width: 100%; height: auto; overflow: visible; }
+
+.past { fill: none; stroke: var(--tx); stroke-width: 2; stroke-linejoin: round; }
+.mid { fill: none; stroke: var(--est); stroke-width: 1.5; stroke-dasharray: 5 5; }
+
+.goalLine { stroke: var(--acc); stroke-width: 1; stroke-dasharray: 2 6; opacity: .65; }
+.goalLabel { fill: var(--acc-t); font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+
+.today { stroke: var(--rule-lit); stroke-width: 1; }
+.todayLabel { fill: var(--tx-mute); font-size: 13px; letter-spacing: .1em; text-transform: uppercase; }
+
+.hit circle { fill: var(--acc); }
+.hit text { fill: var(--tx); font-size: 14px; letter-spacing: .04em; }
+
+.caption {
+  margin-top: var(--s-3);
+  font-size: var(--t-micro);
+  color: var(--tx-ghost);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+/* ── the control ───────────────────────────────────────────────────────────────────────── */
+.control {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s-4);
+  display: grid;
+  gap: var(--s-3);
+  transition: opacity var(--d-ui) var(--e-out);
+}
+.controlRow { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--s-4); }
+.controlLabel { font-size: var(--t-micro); text-transform: uppercase; letter-spacing: .12em; color: var(--tx-mute); }
+.controlValue {
+  font-size: clamp(1.5rem, .9rem + 2vw, 2.75rem);
+  letter-spacing: -.03em;
+  color: var(--tx);
+  transition: color var(--d-ui) var(--e-out);
+}
+.controlValue[data-moved='true'] { color: var(--acc-t); }
+
+/* A real range input, restyled. Keyboard, screen reader and touch all keep working, which a
+   div with a pointerdown handler would have thrown away for nothing. */
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 34px;
+  background: none;
+  cursor: none;
+}
+.range::-webkit-slider-runnable-track {
+  height: 1px;
+  background: linear-gradient(to right, var(--rule-lit), var(--rule-lit));
+}
+.range::-moz-range-track { height: 1px; background: var(--rule-lit); }
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 3px; height: 46px;
+  margin-top: -23px;
+  background: var(--acc);
+  border: 0; border-radius: 1px;
+  transition: height var(--d-tap) var(--e-out);
+}
+.range::-moz-range-thumb {
+  width: 3px; height: 46px;
+  background: var(--acc);
+  border: 0; border-radius: 1px;
+}
+.range:active::-webkit-slider-thumb { height: 62px; margin-top: -31px; }
+
+.outcome { font-size: var(--t-body); color: var(--tx-dim); display: flex; flex-wrap: wrap; gap: var(--s-3); align-items: baseline; }
+.outcome strong { color: var(--tx); font-weight: 500; }
+.months { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.delta {
+  font-family: var(--font-mono);
+  font-size: var(--t-xs);
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  color: var(--out-t);
+}
+.delta[data-good='true'] { color: var(--in-t); }
+
+@media (max-width: 767px) {
+  .inner { gap: var(--s-4); }
+  .chart { min-height: 220px; }
+}

@@ -90,7 +90,7 @@ const areas = [
     icon: 'globe',
     title: 'Currency',
     lead: 'No invented rates. Not once.',
-    body: 'A rate in this app is an output, not a download. It comes from a cross-currency transfer you recorded yourself, or from the published AED/USD peg. Anything that cannot be converted from one of those is excluded from the total, named as excluded, and still shown in its own currency.',
+    body: 'A rate comes from a cross-currency transfer you recorded yourself first, then a published peg such as AED to the dollar, then the day\'s published market rate. Anything that cannot be converted from one of those is excluded from the total, named as excluded, and still shown in its own currency.',
     points: [
       'No total silently sums across currencies. An aggregate either covers everything or says what it covers.',
     ],
@@ -108,11 +108,11 @@ const areas = [
   {
     icon: 'download',
     title: 'Your data, in your hands',
-    lead: 'A backup file is the only copy that outlives the phone.',
-    body: 'Export the whole ledger as a JSON backup, or the transactions as CSV, and save them wherever you save things. Restoring a backup puts everything back. Nothing is uploaded on your behalf, which also means nothing is backed up on your behalf.',
+    lead: 'Kept in your account, and yours to take.',
+    body: 'Sign in with Apple, Google or your email, and your records are kept in your account: a lost phone loses nothing, and every phone you sign in on shows the same money. Export the whole ledger as a JSON backup, or the transactions as CSV, whenever you like.',
     points: [
       'The export is a plain file. It is readable, and it is yours.',
-      'There is no cloud copy to fall back on. Do this occasionally.',
+      'Records made offline go up as soon as the phone is back online.',
     ],
   },
   {
@@ -127,15 +127,14 @@ const areas = [
 ] as const;
 
 const notYet = [
-  ['Sync between devices', 'It would need a server. There isn\'t one, and adding one would undo the rest of this page.'],
-  ['Bank or card connections', 'No linked accounts, no imported statements.'],
-  ['A cloud backup', 'Backups are files you save yourself. That is the whole mechanism.'],
+  ['Bank or card connections', 'No linked accounts. Records are yours to enter.'],
+  ['Ads or tracking', 'None, and none planned.'],
 ];
 ---
 
 <Base
   title="What it does"
-  description="Wallets, transactions, budgets, scheduled payments and statistics — the full list of what Wealth-it does on your phone, and what it deliberately does not."
+  description="Wallets, transactions, budgets, scheduled payments and statistics — the full list of what Wealthit does, and what it deliberately does not."
 >
   <section>
     <div class="wrap">
@@ -173,7 +172,7 @@ const notYet = [
   <section class="section--ruled">
     <div class="wrap">
       <p class="eyebrow eyebrow--mu">Not built</p>
-      <h2>Three things it does not do, and is not about to.</h2>
+      <h2>Two things it does not do, and is not about to.</h2>
       <div class="grid" style="margin-top: var(--s-page);">
         {notYet.map(([title, body]) => (
           <article class="card">

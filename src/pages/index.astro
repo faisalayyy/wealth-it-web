@@ -59,10 +59,6 @@ const features = [
 
 const absent = [
   {
-    title: 'No sync between devices',
-    body: 'Two phones would be two separate ledgers. Syncing them means a server in the middle, and the server is the thing this app does not have.',
-  },
-  {
     title: 'No bank connections',
     body: 'Nothing to link, nothing to authorise, and no third party holding read access to your account on your behalf. Records are yours to enter, which takes about four seconds.',
   },
@@ -71,8 +67,8 @@ const absent = [
     body: 'Nothing is behind a tier, and no screen stops halfway to sell you the rest of itself.',
   },
   {
-    title: 'No password reset',
-    body: 'There is no password and no account, so there is nothing to reset. The trade is real: a lost phone loses the ledger unless you have saved a backup file somewhere.',
+    title: 'No tracking',
+    body: 'No analytics, no advertising identifiers and no crash reporting. Your records are used to keep your phones in step and to work out your figures, and for nothing else.',
   },
 ];
 ---
@@ -82,12 +78,11 @@ const absent = [
   <section class="hero">
     <div class="wrap hero__in">
       <div class="hero__copy">
-        <h1 class="hero-title">Know where you stand,<br />without telling anyone.</h1>
+        <h1 class="hero-title">Know where you stand.</h1>
         <p class="lede">
-          Wealth-it is a personal finance app for iPhone and Android. Wallets, transactions,
-          budgets and what is due next month — all of it worked out on the phone in your hand,
-          and none of it sent anywhere. There is no account, because there is no server to keep
-          one on.
+          Wealthit is a personal finance app for iPhone. Wallets, transactions, budgets and what
+          is due next month — kept safe in your account and the same on every phone you sign in
+          on, with no tracking and no ads.
         </p>
         <StoreLinks />
       </div>
@@ -159,10 +154,10 @@ const absent = [
           exactly as solid.
         </p>
         <p>
-          Wealth-it treats a rate as something it works out, not something it downloads. It uses
-          a cross-currency transfer you made yourself — you moved money between two wallets, so
-          you set the rate — or the published AED/USD peg. If a figure cannot be converted
-          honestly, it is left out of the total, named, and still shown in its own currency.
+          Wealthit trusts the rate you actually got first: a cross-currency transfer you made
+          yourself. Then a published peg, such as AED to the dollar. Then the day's published
+          market rate. If a figure cannot be converted from one of those, it is left out of the
+          total, named, and still shown in its own currency.
         </p>
         <p class="mu">
           An estimate is always marked as one and never shares a number with a fact.
@@ -175,13 +170,12 @@ const absent = [
   <section class="section--sunk">
     <div class="wrap">
       <p class="eyebrow">Where the data lives</p>
-      <h2>On the phone. That is the whole of it.</h2>
-
+      <h2>In your account, and nowhere else.</h2>
       <ul class="claims" style="margin-top: var(--s-page);">
-        <li><Icon name="check" /><span><strong>No account and no sign-in.</strong> Install it and start; there is nobody to be.</span></li>
-        <li><Icon name="check" /><span><strong>No server.</strong> Nothing to breach, nothing to subpoena, nothing to keep running once you have stopped paying attention.</span></li>
-        <li><Icon name="check" /><span><strong>No analytics and no crash reporting.</strong> Nobody, including whoever wrote it, knows you opened it today.</span></li>
-        <li><Icon name="check" /><span><strong>Nothing leaves except what you export.</strong> A backup file or a CSV, saved where you choose, when you ask for it.</span></li>
+        <li><Icon name="check" /><span><strong>Sign in with Apple, Google or your email.</strong> A lost phone loses nothing, and every phone you sign in on shows the same money.</span></li>
+        <li><Icon name="check" /><span><strong>Kept in the EU.</strong> Your records are on your phone and on Wealthit's server in Frankfurt, over encrypted connections.</span></li>
+        <li><Icon name="check" /><span><strong>No analytics and no crash reporting.</strong> Nobody reads your records, and nothing about you is sold or shared.</span></li>
+        <li><Icon name="check" /><span><strong>Yours to take or close.</strong> Export a backup or a CSV any time, and close your account from the app.</span></li>
       </ul>
 
       <p class="row" style="margin-top: var(--s-block);">
@@ -212,7 +206,7 @@ const absent = [
   <!-- ------------------------------------------------------------------- close -->
   <section class="section--sunk center">
     <div class="wrap wrap--narrow">
-      <h2>One person, one phone, one ledger.</h2>
+      <h2>One person, one ledger, every phone.</h2>
       <p class="lede lede--center" style="margin-top: var(--s-gap);">
         That is the whole design, and everything else follows from it.
       </p>

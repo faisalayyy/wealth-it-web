@@ -7,12 +7,12 @@
  */
 
 export const site = {
-  name: 'Wealth-it',
+  name: 'Wealthit',
   /** One line, used as the <title> suffix and the OG description fallback. */
-  tagline: 'A personal finance app that stays on your phone',
+  tagline: 'Know where you stand',
   description:
-    'Wealth-it tracks wallets, transactions, budgets and scheduled payments in any currency — ' +
-    'on your phone, with no account, no server and nothing sent anywhere.',
+    'Wealthit tracks wallets, transactions, budgets and scheduled payments in any currency, ' +
+    'the same on every phone you sign in on, with no tracking and no ads.',
 } as const;
 
 /** Store links. Both are `null` until the first build is accepted — see README. */
@@ -21,12 +21,8 @@ export const stores: { ios: string | null; android: string | null } = {
   android: null,
 };
 
-/**
- * The address on the support page. The app has no inbox of its own and no password to reset,
- * but App Store Connect insists on somewhere to write to, so this is that somewhere.
- * TODO: replace with the real address before submitting.
- */
-export const contactEmail = 'hello@example.com';
+/** The address on the support and privacy pages, read by Faisal (app repo, A376). */
+export const contactEmail = 'support@wealthit.app';
 
 /**
  * Every internal link on the site goes through here.

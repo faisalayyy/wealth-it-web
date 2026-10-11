@@ -6,34 +6,32 @@ import { contactEmail } from '../site';
 /**
  * The privacy policy, and the URL the App Store asks for.
  *
- * Every claim here is a claim about the app as built: no network calls, no analytics, no
- * account, storage in AsyncStorage, the PIN in the device keychain. If any of that changes in
- * the app, it has to change here on the same day — a privacy page that has drifted is worse
- * than no privacy page.
- *
- * TODO before launch: Faisal to read this end to end, and put a real address in `site.ts`.
+ * Every claim here is a claim about the app as built (app repo, A207 onwards): an account to sign
+ * in with, records kept on the phone and on Wealthit's server in the EU, no analytics, no ads, no
+ * tracking. If any of that changes in the app, it has to change here on the same day — a privacy
+ * page that has drifted is worse than no privacy page.
  */
-const updated = '24 September 2026';
+const updated = '11 October 2026';
 
 const nots = [
-  'No account, no sign-in, no profile on anybody\'s server.',
-  'No analytics, no usage statistics, no crash reporting.',
-  'No advertising identifiers, no ad networks, no trackers.',
-  'No third party receives anything about you, because nothing is sent to one.',
+  'No tracking, no advertising and no analytics.',
+  'Nothing about you is sold, rented or shared with anyone for their own use.',
+  'Nobody reads your records. They are used to keep your phones in step and to work out the figures the app shows you.',
+  'Receipt photos and your profile picture stay on your phone.',
 ];
 ---
 
 <Base
   title="Privacy"
-  description="Wealth-it has no account, no server and no analytics. Everything it knows about your money is stored on your phone. This is the whole policy."
+  description="What Wealthit keeps, where it is kept, and what you can do about it. No tracking, no ads, no analytics."
 >
   <section>
     <div class="wrap wrap--narrow">
       <p class="eyebrow">Privacy</p>
-      <h1 class="hero-title">Nothing leaves your phone.</h1>
+      <h1 class="hero-title">Your money is yours to see.</h1>
       <p class="lede" style="margin-top: var(--s-block);">
-        This is the entire policy, and it is short because the app does very little that a
-        policy needs to explain. Last updated {updated}.
+        Wealthit is a personal finance app. This page says what it keeps, why, where, and what you
+        can do about it. Last updated {updated}.
       </p>
 
       <ul class="ticks" style="margin-top: var(--s-section);">
@@ -44,104 +42,125 @@ const nots = [
 
   <section class="section--ruled">
     <div class="wrap wrap--narrow prose">
-      <h2>What the app stores</h2>
+      <h2>Who is responsible</h2>
       <p>
-        Wealth-it keeps a ledger: your wallets and their opening balances, the transactions you
-        record, the categories and labels you make, your budgets, your scheduled payments, your
-        settings, and a profile name and picture if you set one.
-      </p>
-      <p>
-        All of it is written to storage belonging to the app, on your phone. It is covered by
-        whatever protects the rest of your phone — the lock screen, the device encryption, and
-        the sandbox the operating system puts around every app. If you have set a PIN for
-        Wealth-it, the PIN is held in the device keychain, never in the ledger and never in a
-        backup file.
+        Wealthit is made by Faisal Mukhtar, who is responsible for the data described here. Write
+        to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> about anything on this page.
       </p>
 
-      <h2>What the app sends</h2>
-      <p>
-        Nothing. There is no server in this product. The app makes no network requests of its
-        own, so there is no telemetry to switch off, no consent to give and nothing to opt out
-        of. Nobody — including whoever wrote it — knows that you installed it, opened it, or
-        recorded a single dirham.
-      </p>
-      <p class="mu">
-        Which also means there is nothing to restore from if the phone is lost. That trade is
-        deliberate, and it is the reason the app keeps offering to make you a backup.
-      </p>
-
-      <h2>Permissions, and why each one is asked for</h2>
+      <h2>What Wealthit keeps</h2>
       <ul>
         <li>
-          <strong>Photos</strong> — only if you choose a profile picture. The image you pick is
-          copied into the app and stays on the phone. The app does not read your library
-          otherwise.
+          <strong>Your email address</strong>, to sign you in and to send you sign-in links and
+          codes.
         </li>
         <li>
-          <strong>Face ID, Touch ID or the Android equivalent</strong> — only if you turn on the
-          app lock. The check happens on the device; the app is told yes or no and never sees
-          anything biometric.
+          <strong>Your account's id</strong>, so your records are yours and nobody else's.
         </li>
         <li>
-          <strong>Notifications</strong> — only if you turn reminders on. They are scheduled on
-          the phone, by the phone. There are no push notifications, because pushing one would
-          need a server to push it.
+          <strong>What you record</strong>: your wallets, transactions, categories, labels,
+          budgets, scheduled payments, goals, the people you share costs with, your settings, and
+          the name you give yourself in the app. It is kept so a lost phone loses nothing and
+          every phone you sign in on shows the same money.
         </li>
         <li>
-          <strong>Files</strong> — when you export a backup or a CSV, or pick a backup to
-          restore. The app writes the file where you tell it to and does nothing else with it.
+          <strong>If you sign in with Google or Apple</strong>, they tell Wealthit your email
+          address and an id for that account. Wealthit never sees your Google or Apple password.
+          If you choose Apple's "Hide My Email", Wealthit only ever sees the address Apple gives
+          it.
+        </li>
+        <li>
+          <strong>A password</strong>, only if you set one, stored only as an Argon2 hash — never
+          the password itself. Sign-in codes are stored only as a keyed hash, and expire after ten
+          minutes.
+        </li>
+      </ul>
+
+      <h2>What stays on your phone</h2>
+      <ul>
+        <li><strong>Receipt photos.</strong> Read on the phone and kept with that record on the phone. They are not uploaded.</li>
+        <li><strong>Your profile picture.</strong> Copied into the app and kept on the phone.</li>
+        <li><strong>Your app lock PIN.</strong> Held in the phone's keychain. Face ID is checked by the phone; the app is only told yes or no.</li>
+        <li><strong>Sample data.</strong> If you explore with sample data, it never leaves the phone and is never added to your account.</li>
+        <li><strong>Tap to Record.</strong> If you set up the Wallet shortcut, the amount and merchant of a card payment are handed to the app on the phone, and become a record like any other.</li>
+        <li><strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications.</li>
+      </ul>
+
+      <h2>Where it is kept</h2>
+      <p>
+        On your phone, and on Wealthit's server: an application server run by Render and a
+        database run by Neon, both in Frankfurt, in the EU. Every connection is encrypted. Each
+        account's records are kept apart by the database itself.
+      </p>
+      <p>
+        Sign-in emails are sent through Resend, which receives your address and the message, and
+        nothing else.
+      </p>
+
+      <h2>Other requests the app makes</h2>
+      <ul>
+        <li>
+          <strong>Exchange rates.</strong> To convert between currencies, the app asks
+          open.er-api.com for the day's published rates. The request carries your main currency
+          and nothing else. You can turn it off in Currency &amp; format → Download daily rates.
+        </li>
+        <li>
+          <strong>The app's look.</strong> The app asks Wealthit's own design service for its
+          current colours and text sizes. The request carries nothing about you or your records.
         </li>
       </ul>
       <p>
-        Refuse any of these and the rest of the app carries on. If the phone refuses a
-        permission, the screen says so rather than pretending the thing worked.
+        Like any request on the internet, these come from your phone's IP address. Nothing is kept
+        that links them to you.
       </p>
 
-      <h2>Backups and exports</h2>
-      <p>
-        A backup is a file. Once you have saved or shared it, where it goes is up to you and
-        subject to whatever holds it — your files app, your cloud drive, the message you sent it
-        in. The app has no further say in the matter, and no copy of its own. A backup does not
-        contain your PIN.
-      </p>
+      <h2>Your choices</h2>
+      <ul>
+        <li>
+          <strong>Export</strong> your records at any time, as a backup file or a spreadsheet, from
+          Advanced settings → Your data.
+        </li>
+        <li>
+          <strong>Log out</strong> from the side menu. Your records stay in your account.
+        </li>
+        <li>
+          <strong>Delete your account</strong> from your profile. You are signed out on every
+          phone and this phone is cleared, and 60 days later your account and everything in it are
+          deleted from the server for good. Changed your mind? Sign in before then and everything
+          comes back. If you signed in with Apple, Wealthit also hands that sign-in back to Apple
+          straight away.
+        </li>
+        <li>
+          <strong>Ask</strong> for a copy of what Wealthit holds about you, for a correction, or for
+          your account to be deleted straight away, by writing to
+          <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from the address you sign in with.
+        </li>
+      </ul>
 
-      <h2>Deleting everything</h2>
+      <h2>How long it is kept</h2>
       <p>
-        Delete the app. That removes the ledger with it, and there is no second copy anywhere to
-        chase down, no account to close and nobody to email about it. Any backup files you saved
-        yourself are still wherever you put them.
+        For as long as you have an account. When you delete it, it is removed for good 60 days
+        later, unless you sign in again before then. The database keeps a short recovery
+        history of its own, which expires by itself.
       </p>
 
       <h2>Children</h2>
       <p>
-        Wealth-it is a personal ledger with no accounts, no messaging, no content from anyone
-        else and no data collection. It is not directed at children, and it collects nothing from
-        anybody of any age.
+        Wealthit is a personal finance app for adults. It is not directed at children, and it does
+        not knowingly keep anything about a child.
       </p>
 
       <h2>This website</h2>
       <p>
-        The page you are reading is a static file. It sets no cookies, runs no analytics, embeds
-        nothing from anywhere else, and loads its own fonts from its own server. There is no
-        banner asking your consent for any of that because there is nothing to consent to.
-      </p>
-      <p>
-        Being honest about the one exception: whoever hosts these files can see the ordinary
-        request logs any web server keeps — an IP address, a page, a time. That is the web
-        working as designed, it is not something the site does on purpose, and it is the only
-        record of your visit that exists anywhere.
+        The page you are reading is a static file. It sets no cookies, runs no analytics and embeds
+        nothing from anywhere else. Whoever hosts it can see the ordinary request logs any web
+        server keeps — an IP address, a page, a time — and that is the only record of your visit.
       </p>
 
       <h2>Changes</h2>
       <p>
-        If the app ever starts doing something this page does not describe, this page changes
-        first, and the date at the top changes with it.
-      </p>
-
-      <h2>Asking about any of this</h2>
-      <p>
-        Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a>. There is no account to
-        look up at the other end, so say what you need in the message.
+        If the app starts doing something this page does not describe, this page changes first,
+        and the date at the top changes with it.
       </p>
     </div>
   </section>

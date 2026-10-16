@@ -14,10 +14,10 @@ import s from './Themes.module.css';
  * it, or tapping it puts that screen in the card.
  */
 const VIEWS: { name: string; where: string; screen: ScreenName; alt: string }[] = [
-  { name: 'Light', where: 'Home', screen: 'home-light', alt: 'Home in the light theme' },
   { name: 'Dark', where: 'Home', screen: 'home-dark', alt: 'Home in the dark theme' },
+  { name: 'Light', where: 'Home', screen: 'home-light', alt: 'Home in the light theme' },
   { name: 'Hidden', where: 'Amounts', screen: 'home-hidden-dark', alt: 'Home with every amount hidden' },
-  { name: 'Your order', where: 'Customise', screen: 'customise-light', alt: 'Customise Home: choosing what Home shows, and in what order' },
+  { name: 'Your order', where: 'Customise', screen: 'customise-home-dark', alt: 'Customise Home: choosing what Home shows, and in what order' },
 ];
 
 export function Themes() {

@@ -80,3 +80,18 @@
     top: 56%;
   }
 }
+
+/* an illustration rather than a piece of a screen: no tile, a little taller than the words */
+.chip[data-art] {
+  height: 1.3em;
+  margin: -0.15em 0.04em;
+  vertical-align: -0.28em;
+  border-radius: 0;
+  overflow: visible;
+  background: none;
+  box-shadow: none;
+  filter: drop-shadow(0 0.08em 0.12em rgba(11, 11, 12, 0.18));
+}
+.chip[data-art] img {
+  object-fit: contain;
+}

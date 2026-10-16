@@ -1,5 +1,6 @@
 import { coined } from '@/components/Coin';
 import { Icon } from '@/components/Icon';
+import { Photo } from '@/components/Photo';
 import { webApp } from '@/lib/site';
 import s from './WebApp.module.css';
 
@@ -12,10 +13,13 @@ export function WebApp() {
   return (
     <section className={s.section} aria-labelledby="web-title" data-ground="light">
       <div className={`wrap ${s.card}`}>
-        <span className={s.icon} aria-hidden>
-          <Icon name="globe" size={26} />
-        </span>
+        <div className={s.picture}>
+          <Photo name="laptop-coffee" alt="A woman on a sofa working on a laptop, a coffee beside her" height={1013} className={s.photo} sizes="(max-width: 743px) 100vw, 40vw" focus="60% 50%" />
+        </div>
         <div className={s.copy}>
+          <span className={s.icon} aria-hidden>
+            <Icon name="globe" size={22} />
+          </span>
           <h2 id="web-title" className={s.title}>
             {coined('On your computer, too.')}
           </h2>
@@ -23,15 +27,15 @@ export function WebApp() {
             Sign in on the web with the same account, and your records are there — add one on your laptop and it shows on your phone
             within seconds.
           </p>
+          {webApp ? (
+            <a href={webApp} className={s.go}>
+              Open Wealthit on the web
+              <Icon name="arrow-up-right" size={16} />
+            </a>
+          ) : (
+            <span className={s.soon}>Coming soon</span>
+          )}
         </div>
-        {webApp ? (
-          <a href={webApp} className={s.go}>
-            Open Wealthit on the web
-            <Icon name="arrow-up-right" size={16} />
-          </a>
-        ) : (
-          <span className={s.soon}>Coming soon</span>
-        )}
       </div>
     </section>
   );

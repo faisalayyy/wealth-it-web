@@ -31,29 +31,32 @@ Body 18 px. Radii 10 (small buttons), 16 (pills, cards, CTAs), ≈24 (big panels
 
 ## Wealthit, section by section
 
-Every product image is one of the app's own captures (docs/SCREENSHOTS.md); every fact is the
-app's (App/docs/product.json, its decisions and its privacy text). No client logos, testimonials,
-user numbers or prices exist, so none are shown.
+Every product image is one of the app's own captures or recordings (docs/SCREENSHOTS.md); every
+fact is the app's (App/docs/product.json, its decisions and its privacy text). No client logos,
+testimonials, user numbers or prices exist, so none are shown. Where butter shows its product in
+use, the site shows it in photographs of people with a phone (models, never quoted) and in short
+recordings that play in a phone while on screen.
 
 | # | Reference | Wealthit | Media | Interaction |
 | - | --- | --- | --- | --- |
 | 0 | Header | Wealthit ▾Features (six feature pages, each with a capture, and All features), About, Help, Privacy, and two dots; right pill: Log in (Soon until the web app has an address) and Get the app | the menu's thumbnails: the spending ring, the team, the mark, a lock | as butter: scrolled, the links fade and the pill folds to the name and the dots (pointer or focus widens it again); the dots, at the top or scrolled, widen the pill to "Close ⁚", dim the page and open a panel of four large rows (description on hover, rules drawing across) and the feature pages small beneath — reference timings, cubic-bezier(0.2, 0.715, 0.205, 0.99); phones: the same dots and panel, with Get the app and Log in |
 | 1 | Hero | "Know where you stand." (the App Store subtitle) · accounts, cash and cards in any currency, what's left, due and saved for · Get the app / See how it works | live 3D: a big ring, split rings, link chains, and charms — the mark (mint leaves, gold coin) on a soft black block, the spending chart, an Emerald card, a receipt, a padlock — and a gold carabiner | cannon-es physics: every part a body on ball joints, charms collide, the pointer pushes them, the ring leans after the pointer |
-| 2 | Ticker | the 26 currencies a wallet can be kept in | type | marquee, paused for reduced motion |
-| 3 | Statement | "Wealthit adds up every account, every budget, every bill and every goal — so you always know where you stand." with real crops inline | crops → Home (light) | words darken on scroll; the crops fly into a phone that rises from below |
-| 4 | Story one | Recording: "Write each payment the way you'd say it — no forms, just the blanks" | the composer in a dark panel | blur reveal; panel parallax |
-| 5 | Story two | Scan a receipt: "Snap a receipt and it fills itself in. You just check it." | a scanned receipt as a record | blur reveal |
+| 2 | Ticker | "Made for money that crosses borders": the 26 countries whose money a wallet can be kept in (EU as Eurozone) | round flags (flag-icons, MIT) in pills | two rows drifting opposite ways, paused on hover; still for reduced motion |
+| 3 | Statement | "Wealthit adds up every account, every budget, every bill and every goal — so you always know where you stand." with 3D illustrations inline | a card and coin, the spending chart, a calendar, coins to a flag, the mark (src/three/art.ts, rendered once) → Home (dark) | words darken on scroll; the pieces fly into a phone that rises from below |
+| + | Moments | "Less adding up. More living." — Home on a sofa, recording at a café, budgets at the till | three photographs with the app on the phone | the photos ease in closer as they pass |
+| 4 | Story one | Recording: "Write each payment the way you'd say it…" | the recording of an expense being entered | blur reveal; the video plays while on screen |
+| 5 | Story two | Scan a receipt: "Point your camera at a receipt. It's read on your phone and filled in for you" | the recording of a receipt being scanned | blur reveal; the video plays while on screen |
 | 6 | Story three | the whole picture: budgets, Home and goals | three captures in a dark window | the window grows to fill the screen |
 | 7 | Feature cards | the six feature pages + All features | captures | hover lift |
-| 8 | Three ways | "Three ways to record": Type it / Scan it / Schedule it | the three real screens | tabs (auto-advancing, clickable, arrow keys) |
-| 9 | Gallery | "Every screen here is the real app." — ten captures | captures | drag / wheel / arrow buttons |
+| 8 | Three ways | "Three ways to record": Type it / Scan it / Schedule it | the expense and receipt recordings; scheduled payments | tabs (auto-advancing for as long as the recording runs, clickable, arrow keys) |
+| 9 | Gallery | "Every screen here is the real app." — twelve captures | captures | drag / wheel / arrow buttons |
 | 10 | Faster | "Bills that remember themselves — on the day, and never twice." | scheduled payments, the waiting bill floating over it | rise and float on scroll |
-| 11 | Double block | "Every currency. One total." → /features/accounts/ · "A heads-up before you overspend." → /features/budgets/ | wallet rows; the budget notification | arrow links |
+| 11 | Double block | "Every currency. One total." → /features/accounts/ · "A heads-up before you overspend." → /features/budgets/ | a phone with Wallets in a hand on the street; a supermarket shelf | arrow links |
 | 12 | Get the look | "Make it yours": Light, Dark, Hidden, Your order | the four captures | choosing a name swaps the screen |
-| + | Privacy (the app's poster 10) | "For your eyes only." — Face ID or PIN, hide amounts, no bank login, nothing tracked, delete any time | Home with amounts hidden | reveal |
-| + | Web app | "On your computer, too." — same account, records in step | — | Coming soon until `webApp` is set |
+| + | Privacy (the app's poster 10) | "For your eyes only." — Face ID or PIN, hide amounts, no bank login, nothing tracked, delete any time | the recording of amounts being hidden | reveal |
+| + | Web app | "On your computer, too." — same account, records in step | a laptop and coffee | Coming soon until `webApp` is set |
 | + | FAQ | five answers from Help and the privacy policy | — | expandable |
-| + | Closing | Forest panel: the mark, "Small steps. Big wealth.", Coming soon to the App Store, Google Play later | — | — |
+| + | Closing | Forest panel: the mark, "Small steps. Big wealth.", Coming soon to the App Store, Google Play later | a family at home, melting into the Forest | — |
 | 13 | Footer | the rounded sheet over a warm grey footer: the mark and tagline; Features, Company, Get in touch, Legal; the wordmark ("it" in Emerald) on a green-and-gold glow | — | glyphs rise |
 
 ## The other pages (butter.video's, 16 October 2026)

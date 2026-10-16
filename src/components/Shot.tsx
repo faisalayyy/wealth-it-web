@@ -1,13 +1,22 @@
 import type { Media } from '@/lib/features';
 import { Phone } from './Phone';
+import { PhoneVideo } from './PhoneVideo';
 import { Crop, Cut } from './Screen';
 import s from './Shot.module.css';
 
 /**
- * Whatever a block shows, from the app's captures: one screen or a few in phones, the pieces the
- * app's captures were cut into, or a rectangle cut from a screen — all real, none redrawn.
+ * Whatever a block shows, from the app's captures: one screen or a few in phones, a screen
+ * recording playing in a phone, a piece cut from the app's own artwork, or a rectangle cut from a
+ * screen — all real, none redrawn.
  */
 export function Shot({ media, sizes = '(max-width: 743px) 64vw, 320px', className }: { media: Media; sizes?: string; className?: string }) {
+  if ('video' in media) {
+    return (
+      <div className={`${s.phones} ${className ?? ''}`}>
+        <PhoneVideo name={media.video} label={media.label} className={s.phone} />
+      </div>
+    );
+  }
   if ('screen' in media) {
     return (
       <div className={`${s.phones} ${className ?? ''}`}>

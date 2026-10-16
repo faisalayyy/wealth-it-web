@@ -8,22 +8,22 @@ import { PieceImage, pieceWidth, Words, type Part } from './Story';
 
 /**
  * The idea in one sentence (the reference's statement): the page holds still while the sentence
- * darkens word by word, with pieces of the real app set between the words — the total across every
- * wallet, a budget that is over, a bill waiting, a goal, the month's spending ring. Then a phone
- * rises with Home on it, and the pieces fly down into it: everything the sentence names ends up on
- * one screen.
+ * darkens word by word, with small 3D illustrations set between the words (src/three/art.ts) —
+ * a card for the accounts, the spending chart, a calendar, coins stacked to a goal, the mark. Then
+ * a phone rises with Home on it, and the pieces fly down into it: everything the sentence names
+ * ends up on one screen.
  */
 const PARTS: Part[] = [
   'Wealthit adds up every account',
-  { crop: 'total', label: 'remaining this month across six wallets: AED 97,749.56' },
+  { art: 'account', label: 'a bank card and a coin', ratio: 1.07 },
   ', every budget',
-  { crop: 'over-tile', label: 'Food & Drink, AED 391.88 over budget' },
+  { art: 'budget', label: 'a spending chart', ratio: 0.98 },
   ', every bill',
-  { cut: 'bill-waiting', label: 'Electricity & water, due 11 October, AED 420' },
+  { art: 'bill', label: 'a calendar with a due day marked', ratio: 0.81 },
   ' and every goal',
-  { crop: 'goal-card', label: 'a new car: AED 6,500 saved of AED 20,000' },
+  { art: 'goal', label: 'coins stacked up to a flag', ratio: 1.3 },
   ' — so you always know where you stand',
-  { crop: 'ring', label: 'spent this month: AED 8,302.62, by category' },
+  { art: 'mark', label: 'the Wealthit mark', ratio: 1.25 },
   '.',
 ];
 
@@ -78,7 +78,7 @@ export function Statement() {
           <Words
             parts={PARTS}
             chip={p => (
-              <span className={s.chip} data-chip style={{ width: pieceWidth(p) }}>
+              <span className={s.chip} data-chip data-art={'art' in p ? '' : undefined} style={{ width: pieceWidth(p) }}>
                 <PieceImage p={p} className={s.crop} />
               </span>
             )}
@@ -86,7 +86,7 @@ export function Statement() {
         </p>
         <div className={s.phoneRow}>
           <div data-phone>
-            <Phone screen="home-light" variant="device" className={s.phone} sizes="320px" alt="Wealthit's Home: AED 97,749.56 remaining this month across six wallets" />
+            <Phone screen="home-dark" variant="device" className={s.phone} sizes="320px" alt="Wealthit’s Home: the total across eight wallets, spent today, and this month’s spending ring" />
           </div>
         </div>
       </div>

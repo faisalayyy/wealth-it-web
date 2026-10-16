@@ -1,149 +1,105 @@
 {
-  "$comment": "Every product image on the site, from the app's own captures (App/marketing/app-store/assets/screens, 11 October 2026, iPhone at 1320 x 2868 px = 440 x 956 pt). `screens` are whole screens, shown in a phone. `cuts` are pieces the app's captures were already cut into (sheets, rows, a notification), shown at their own shape. `crops` are rectangles in points cut from a whole screen by scripts/screens.mjs. Nothing is redrawn or retouched. See docs/SCREENSHOTS.md.",
+  "$comment": "Every product image on the site, from the app's own captures: ~/Movies/Wealthit Website/screens, made by the iOS session on 17 October 2026 from the app at commit 5b4b4d4 (TestFlight build 14) on the iPhone 17 Pro Max simulator — 1320 x 2868 px = 440 x 956 pt — with the app's sample data. `screens` are whole screens, shown in a phone. `crops` are rectangles in points cut from a whole screen. `cuts` are pieces cut elsewhere: tap-card from the App Store poster that draws Tap to Record's Lock Screen card from the app's real code (media-src/app). Nothing is redrawn or retouched. See docs/SCREENSHOTS.md.",
   "device": {
     "w": 440,
     "h": 956,
     "scale": 3
   },
   "screens": {
-    "home-light": "Home, light — remaining this month across six wallets, the spending ring, over budget, due now",
-    "home-dark": "Home, dark",
-    "home-dark-budgets": "Home, dark, scrolled to budgets and what is due",
-    "home-hidden-dark": "Home with amounts hidden",
-    "composer-dark": "Recording an expense as a sentence: I spent AED 86.50 on Groceries from Main bank, today",
-    "scan-reading-a": "Scanning a receipt — reading it",
-    "scan-reading-b": "Scanning a receipt — reading it, a moment later",
-    "scan-done-dark": "A scanned receipt, turned into a record to check",
-    "wallets-light": "Wallets — net worth across five wallets in four currencies",
-    "people-light": "Friends & family — who owes you, and whom you owe",
-    "budgets-dark": "Budgets — over budget, running out early, going fast",
-    "budget-goingout-dark": "The Going out budget — what is left, and how much a day",
-    "goals-dark": "Goals — a new car, a safety net, clearing a car loan",
-    "goal-car-dark": "The new-car goal — saved so far, a month to put aside, the target date",
-    "schedules-light": "Scheduled payments, light — waiting for you, later this month",
-    "schedules-dark": "Scheduled payments, dark",
-    "schedule-rent-light": "Rent, every month — and every time it was paid",
-    "schedule-rent-dark": "Rent, dark",
-    "notifications-dark": "Notifications — over budget, a bill due, someone who owes you",
-    "customise-light": "Customise Home — what Home shows, and in what order",
-    "customise-drag-light": "Customise Home, moving a section",
-    "customise-drag-light-b": "Customise Home, a section moved"
+    "home-dark": "Home: total balance across eight wallets, spent today, this month's spending ring",
+    "home-light": "Home, light",
+    "home-budgets-dark": "Home scrolled: budgets, coming up, spending pulse, goals",
+    "home-hidden-dark": "Home with every amount hidden",
+    "record-sheet-dark": "The record sheet: I spent AED 42.50 on Restaurant, fast-food from Main bank, today",
+    "amount-pad-dark": "Typing an amount on Wealthit's own number pad",
+    "categories-dark": "Choosing what it was for: category chips",
+    "scan-reading-dark": "Scanning a receipt — the scan line reading it",
+    "scan-done-dark": "A scanned receipt as a record to check: AED 86.50, Groceries, paid to Harbour Lane",
+    "wallets-dark": "Wallets: net worth, banks in five currencies, cards, savings",
+    "wallets-light": "Wallets, light",
+    "friends-family-dark": "Friends & family: who owes you, and whom you owe",
+    "planning-dark": "Planning: scheduled payments, budgets and goals at a glance",
+    "budgets-dark": "Budgets, grouped: over, running out early, going fast, on pace",
+    "budget-detail-dark": "One budget: what is left, a daily allowance, its settings",
+    "goals-dark": "Goals: a habit, savings goals, a loan to clear",
+    "goal-detail-dark": "One goal: progress, the amount a month, the date it will be reached",
+    "schedules-dark": "Scheduled payments: a bill waiting — Record it or Skip this time",
+    "schedule-detail-dark": "Rent, every month, and each time it was paid",
+    "notifications-dark": "Notifications, with Pay, Got paid and Record",
+    "customise-home-dark": "Customise Home: what Home shows, and in what order",
+    "statistics-dark": "Statistics: balance forecast, spending, cashflow",
+    "statistics-spending-dark": "A month's spending: daily bars, must, need and want",
+    "advanced-settings-dark": "Advanced settings: Security and Your data"
   },
   "cuts": {
-    "composer-sheet": {
-      "file": "composer-dark-sheet",
-      "alt": "Recording an expense: I spent AED 86.50 on Groceries from Main bank, today"
-    },
-    "scan-sentence": {
-      "file": "scan-done-sentence",
-      "alt": "A scanned receipt read back as a sentence: I spent AED 86.50 on Groceries from Main bank, paid to Harbour Lane"
-    },
-    "scan-sheet": {
-      "file": "scan-done-sheet",
-      "alt": "A scanned receipt, ready to check and save"
-    },
-    "scan-reading": {
-      "file": "scan-reading-sheet",
-      "alt": "The app reading a supermarket receipt"
-    },
-    "bill-waiting": {
-      "file": "bill-waiting-light",
-      "alt": "Electricity & water, due 11 October, AED 420 — Record it or Skip this time"
-    },
-    "bill-rent": {
-      "file": "bill-rent-light",
-      "alt": "Rent of AED 6,500 every month, and each month it was paid"
-    },
-    "budget-page": {
-      "file": "budget-goingout-page",
-      "alt": "The Going out budget: AED 1,280.52 left, AED 60.98 a day"
-    },
-    "goal-page": {
-      "file": "goal-car-page",
-      "alt": "Saving for a new car: AED 6,500 of AED 20,000, AED 1,126 a month"
-    },
-    "customise-page": {
-      "file": "customise-page",
-      "alt": "Customise Home: Remaining this month, Spending ring, Budgets, Coming up, Recent"
-    },
-    "hidden-page": {
-      "file": "home-hidden-page",
-      "alt": "Home with every amount hidden"
-    },
-    "notif-budget": {
-      "file": "notif-transport",
-      "alt": "A notification: Transportation nearly used up, 88% used, 180 AED left"
-    },
-    "row-aed": {
-      "file": "row-aed",
-      "alt": "Main bank, AED 24,180.00"
-    },
-    "row-pkr": {
-      "file": "row-pkr",
-      "alt": "Karachi account, Rs 185,000.00"
-    },
-    "row-inr": {
-      "file": "row-inr",
-      "alt": "Mumbai account, ₹42,000.00"
-    },
-    "row-usd": {
-      "file": "row-usd",
-      "alt": "USD account, $2,600.00"
-    },
-    "row-ali": {
-      "file": "row-ali",
-      "alt": "Ali owes you Rs 5,000.00"
+    "tap-card": {
+      "file": "media-src/app/tap-live-activity",
+      "alt": "Tap to Record on the Lock Screen: Harbour Lane Supermarket, AED 86.50, Groceries from Main bank — Cancel or Add"
     }
   },
   "crops": {
-    "total": {
-      "from": "home-light",
-      "x": 20,
-      "y": 150,
-      "w": 240,
-      "h": 115
+    "wallet-rows": {
+      "from": "wallets-dark",
+      "x": 18,
+      "y": 216,
+      "w": 392,
+      "h": 210
     },
-    "ring": {
-      "from": "home-light",
-      "x": 108,
-      "y": 296,
-      "w": 240,
-      "h": 240
-    },
-    "over-tile": {
-      "from": "home-light",
-      "x": 28,
-      "y": 618,
-      "w": 126,
-      "h": 118
+    "net-worth": {
+      "from": "wallets-dark",
+      "x": 14,
+      "y": 118,
+      "w": 340,
+      "h": 96
     },
     "budget-summary": {
       "from": "budgets-dark",
-      "x": 24,
-      "y": 140,
-      "w": 408,
-      "h": 112
+      "x": 18,
+      "y": 125,
+      "w": 404,
+      "h": 105
     },
     "budget-over": {
       "from": "budgets-dark",
-      "x": 24,
-      "y": 272,
-      "w": 408,
-      "h": 116
+      "x": 18,
+      "y": 246,
+      "w": 404,
+      "h": 124
     },
     "goal-card": {
       "from": "goals-dark",
-      "x": 24,
-      "y": 140,
-      "w": 408,
-      "h": 196
+      "x": 18,
+      "y": 310,
+      "w": 404,
+      "h": 175
     },
-    "net-worth": {
-      "from": "wallets-light",
-      "x": 14,
-      "y": 140,
-      "w": 300,
-      "h": 80
+    "bill-waiting": {
+      "from": "schedules-dark",
+      "x": 18,
+      "y": 340,
+      "w": 404,
+      "h": 160
+    },
+    "schedule-summary": {
+      "from": "schedules-dark",
+      "x": 18,
+      "y": 125,
+      "w": 404,
+      "h": 168
+    },
+    "notif-list": {
+      "from": "notifications-dark",
+      "x": 112,
+      "y": 186,
+      "w": 322,
+      "h": 300
+    },
+    "notif-budget": {
+      "from": "notifications-dark",
+      "x": 112,
+      "y": 596,
+      "w": 322,
+      "h": 60
     }
   }
 }

@@ -3,12 +3,13 @@ import type { CropName, CutName, ScreenName } from './screens';
 /**
  * What the app does, one entry per feature page (/features/<slug>/), the same entries on the
  * Features page, in the header's menu and in the footer. Every line describes the app as built —
- * checked against App/docs/product.json, its decisions and its captures on 16 October 2026 — and
+ * checked against App/docs/product.json, its decisions and the iOS session's captures and notes of 17 October 2026 — and
  * every picture is one of its captures (screens.json). Plain words: say what happens, not how
  * clever it is; no "smart", "effortless", "seamless", "all in one" or "take control".
  */
 
 export type Media =
+  | { video: string; label: string; dark?: boolean }
   | { screen: ScreenName; dark?: boolean }
   | { screens: ScreenName[]; dark?: boolean }
   | { cut: CutName; dark?: boolean }
@@ -37,32 +38,32 @@ export const featurePages: FeaturePage[] = [
   {
     slug: 'recording',
     label: 'Recording',
-    summary: 'Write a payment the way you’d say it, or scan the receipt.',
-    thumb: 'composer-dark',
+    summary: 'Write a payment the way you’d say it, scan the receipt, or tap Add after Apple Pay.',
+    thumb: 'record-sheet-dark',
     dark: true,
     hero: {
       title: 'Write it down the way you’d say it.',
-      lead: 'Every record is one short sentence: I spent AED 86.50 on Groceries from Main bank, today. Fill in the blanks yourself, or let a receipt fill them in for you.',
-      screens: ['composer-dark', 'scan-done-dark'],
+      lead: 'Every record is one short sentence: I spent AED 42.50 on Restaurant, fast-food from Main bank, today. Fill in the blanks yourself, or let a receipt fill them in for you.',
+      screens: ['record-sheet-dark', 'scan-done-dark'],
     },
     rows: [
       {
         cap: 'Finish the sentence',
         title: 'No forms. Just the blanks.',
-        text: 'Tap a blank and choose: the amount, what it was for, which wallet it came from, and when. The sentence reads back exactly what will be saved, so there is nothing to double-check.',
-        media: { cut: 'composer-sheet', dark: true },
+        text: 'Tap +, type the amount on Wealthit’s own number pad, pick what it was for, and you’re done. The sentence reads back exactly what will be saved, so there is nothing to double-check.',
+        media: { video: 'record-expense-dark', label: 'Recording an expense: the amount, then the category, then Done', dark: true },
       },
       {
         cap: 'Scan a receipt',
         title: 'Snap it. Check it. Done.',
-        text: 'Point the camera at a receipt. Wealthit reads it on your phone and fills in the amount, the shop, the date and the category. You look it over before it is saved, and the photo stays with the record — on your phone.',
-        media: { screens: ['scan-reading-a', 'scan-done-dark'], dark: true },
+        text: 'Point the camera at a receipt, or pick a photo of one. Wealthit reads it on your phone and fills in the amount, the shop, the date and the category. You look it over before it is saved, and the photo stays with the record — on your phone.',
+        media: { video: 'scan-receipt-dark', label: 'Scanning a receipt: the scan line reads it, the record fills in, Done', dark: true },
       },
       {
-        cap: 'Tap to Record',
+        cap: 'Tap to Record, on iPhone',
         title: 'You paid. It’s already written down.',
-        text: 'On iPhone, set up one Shortcuts automation and every Apple Pay payment shows on your Lock Screen with the amount and the shop. Tap Add and it’s recorded; tap Cancel and it isn’t.',
-        media: { cut: 'scan-sentence', dark: true },
+        text: 'Set it up once: add the shortcut and link each card to a wallet. After an Apple Pay payment, a card appears on your Lock Screen with the amount and the shop. Tap Add and it’s recorded; tap Cancel and it isn’t.',
+        media: { cut: 'tap-card', dark: true },
       },
     ],
     facts: [
@@ -78,31 +79,31 @@ export const featurePages: FeaturePage[] = [
     slug: 'accounts',
     label: 'Accounts & currencies',
     summary: 'Bank accounts, cash, cards and savings in 26 currencies — with one total.',
-    thumb: 'wallets-light',
-    dark: false,
+    thumb: 'wallets-dark',
+    dark: true,
     hero: {
       title: 'Every account. Every currency. One total.',
       lead: 'Add the places your money lives — a bank account in dirhams, savings in rupees, a card in dollars, the cash in your wallet — and see them added up in the currency you choose.',
-      screens: ['wallets-light', 'home-light'],
+      screens: ['wallets-dark', 'home-dark'],
     },
     rows: [
       {
         cap: 'Every kind of wallet',
         title: 'Bank, cash, card, savings, loan.',
         text: 'Each wallet keeps its own currency and its own balance. Balances are worked out from what you record, never typed in and forgotten.',
-        media: { cuts: ['row-aed', 'row-pkr', 'row-inr', 'row-usd'] },
+        media: { crop: 'wallet-rows', dark: true },
       },
       {
         cap: '26 currencies',
         title: 'Added up at the day’s rate.',
         text: 'Totals use the rate you actually got on a transfer, a fixed peg like the dirham’s to the dollar, or the day’s published rate. If there is no rate, the amount is left out of the total — and the app tells you so. It never guesses.',
-        media: { crop: 'net-worth' },
+        media: { crop: 'net-worth', dark: true },
       },
       {
         cap: 'Friends & family',
         title: 'Who owes whom, kept straight.',
-        text: 'Lend to a friend or borrow from family, and it sits in its own wallet: who owes you, and whom you owe.',
-        media: { screen: 'people-light' },
+        text: 'Lend to a friend or borrow from family, and it sits in its own wallet: who owes you, and whom you owe — with a reminder when it is due.',
+        media: { screen: 'friends-family-dark', dark: true },
       },
     ],
     facts: [
@@ -121,7 +122,7 @@ export const featurePages: FeaturePage[] = [
     hero: {
       title: 'A heads-up before you overspend.',
       lead: 'Give a category a limit for the week, the month or the year. Wealthit shows what is left, how much that is a day, and tells you when it is nearly used up.',
-      screens: ['budgets-dark', 'budget-goingout-dark'],
+      screens: ['budgets-dark', 'budget-detail-dark'],
     },
     rows: [
       {
@@ -133,19 +134,19 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Per day',
         title: 'What you can spend today.',
-        text: 'Every budget turns what is left into an amount a day for the days remaining. Money you don’t spend can roll into the next month.',
-        media: { cut: 'budget-page', dark: true },
+        text: 'Open a budget to see what is left, an amount a day for the days remaining, and every record that counted towards it.',
+        media: { video: 'budget-dark', label: 'Opening the Housing budget: what is left, a day’s allowance, its records', dark: true },
       },
       {
         cap: 'Alerts',
         title: 'Told in time, not too late.',
         text: 'When a budget is nearly used up, a notification says how much is left — before the month is over, not after.',
-        media: { cut: 'notif-budget', dark: true },
+        media: { crop: 'notif-budget', dark: true },
       },
     ],
     facts: [
       { title: 'Any period', text: 'Weekly, monthly, yearly, or once for a trip or an event.' },
-      { title: 'Roll it over', text: 'Choose whether unspent money carries into the next period.' },
+      { title: 'Roll it over, or not', text: 'Choose whether unspent money carries into the next period.' },
       { title: 'History', text: 'See how each budget went, month after month.' },
       { title: 'On Home', text: 'Budgets that are over show on Home, so you never have to go looking.' },
     ],
@@ -159,7 +160,7 @@ export const featurePages: FeaturePage[] = [
     hero: {
       title: 'Every step counts.',
       lead: 'Name what you are saving for, the amount and the date. Wealthit works out what to put aside each month and tells you whether you are on track.',
-      screens: ['goals-dark', 'goal-car-dark'],
+      screens: ['goals-dark', 'goal-detail-dark'],
     },
     rows: [
       {
@@ -172,11 +173,12 @@ export const featurePages: FeaturePage[] = [
         cap: 'A month at a time',
         title: 'The amount, worked out for you.',
         text: 'Set a target and a date, and the goal tells you how much to save each month to get there — and when you will get there at the pace you are going.',
-        media: { cut: 'goal-page', dark: true },
+        media: { video: 'goal-dark', label: 'Opening the Trip goal: its progress, the monthly amount and its history', dark: true },
       },
     ],
     facts: [
       { title: 'Saving or paying off', text: 'A goal can be money to save, or a loan to clear.' },
+      { title: 'Habits, too', text: 'A goal can be a streak — thirty days without something — counted day by day.' },
       { title: 'Counted for you', text: 'Money you label for a goal counts towards it, without adding it up yourself.' },
       { title: 'A widget', text: 'Keep a goal on your Home Screen, and watch it move.' },
     ],
@@ -185,74 +187,76 @@ export const featurePages: FeaturePage[] = [
     slug: 'bills',
     label: 'Bills & schedules',
     summary: 'Rent, salary and subscriptions that record themselves on the day.',
-    thumb: 'schedules-light',
-    dark: false,
+    thumb: 'schedules-dark',
+    dark: true,
     hero: {
       title: 'Bills that remember themselves.',
       lead: 'Set up rent, salary or a subscription once. On the day, it records itself — or asks you first, if you’d rather check the amount.',
-      screens: ['schedules-light', 'schedule-rent-light'],
+      screens: ['schedules-dark', 'schedule-detail-dark'],
     },
     rows: [
       {
         cap: 'Waiting for you',
         title: 'Record it, or skip this time.',
         text: 'A bill that asks first waits at the top of the list until you choose — useful for the ones that change every month, like electricity.',
-        media: { cut: 'bill-waiting' },
+        media: { crop: 'bill-waiting', dark: true },
       },
       {
         cap: 'History',
         title: 'Every time it was paid.',
         text: 'Open a schedule to see when it is next due and every payment it has made.',
-        media: { cut: 'bill-rent' },
+        media: { screen: 'schedule-detail-dark', dark: true },
       },
       {
         cap: 'Never twice',
         title: 'Recorded once, on every phone.',
         text: 'Each payment is tied to its schedule and its date, so the same rent on the same day is the same record — however many times the app is opened, on however many phones.',
-        media: { screen: 'schedule-rent-dark', dark: true },
+        media: { screen: 'planning-dark', dark: true },
       },
     ],
     facts: [
-            { title: 'Coming up', text: 'The next 30 days are on the Scheduled payments screen and on Home.' },
+      { title: 'Coming up', text: 'The next 30 days are on the Scheduled payments screen, and what is due soon is on Home.' },
       { title: 'Reminders', text: 'A reminder on the day, scheduled by your phone.' },
+      { title: 'Planning', text: 'Scheduled payments, budgets and goals side by side on one screen.' },
     ],
   },
   {
     slug: 'home',
     label: 'Home & widgets',
     summary: 'Put what matters first, hide the amounts, and keep it on your Home Screen.',
-    thumb: 'home-light',
-    dark: false,
+    thumb: 'home-dark',
+    dark: true,
     hero: {
       title: 'Put what matters first.',
-      lead: 'Home shows what is left this month, what you spent and what is due. Choose what it shows and in what order, in light or dark.',
-      screens: ['home-light', 'home-dark'],
+      lead: 'Home shows your total, what you spent today, the month’s spending and what is due. Choose what it shows and in what order, in light or dark.',
+      screens: ['home-dark', 'home-budgets-dark'],
     },
     rows: [
       {
         cap: 'Customise Home',
         title: 'Your sections, your order.',
-        text: 'Hold and drag to reorder. Add wallets, goals, friends & family or your top categories; take away anything you don’t need.',
-        media: { screens: ['customise-light', 'customise-drag-light'] },
+        text: 'Hold a section and drag it where you want it — budgets, goals, coming up, the spending pulse — then Save, and Home follows.',
+        media: { video: 'customise-home-dark', label: 'Customise Home: Goals dragged above Budgets, saved, and Home in the new order', dark: true },
       },
       {
         cap: 'Hide amounts',
         title: 'For your eyes only.',
-        text: 'One tap scrambles every amount on screen, so the person next to you can’t read them. Lock the app with Face ID or a PIN as well.',
-        media: { screen: 'home-hidden-dark', dark: true },
+        text: 'One tap on the eye and every amount turns to drifting dots, so the person next to you can’t read them. Lock the app with Face ID or a PIN as well.',
+        media: { video: 'hide-amounts-dark', label: 'Hiding amounts on Home with a tap on the eye, and showing them again', dark: true },
       },
       {
         cap: 'Notifications',
         title: 'What needs you, in one list.',
         text: 'Budgets nearly used up, bills due today and money owed to you — each with the button to deal with it.',
-        media: { screen: 'notifications-dark', dark: true },
+        media: { crop: 'notif-list', dark: true },
       },
     ],
     facts: [
       { title: 'Seven widgets', text: 'Remaining, Spending, Coming up, Budgets, Wallets, Quick add and Goals.' },
-      { title: 'Light or dark', text: 'Whichever you like, on every screen.' },
+      { title: 'Spending pulse', text: 'Today and this week, against what is usual for you.' },
       { title: 'Spent today', text: 'What today has cost so far, at a glance.' },
-      { title: 'Statistics', text: 'Spending by category for any range of dates.' },
+      { title: 'Statistics', text: 'A balance forecast, spending and cashflow for any range of dates.' },
+      { title: 'Light or dark', text: 'Whichever you like, on every screen.' },
     ],
   },
 ];

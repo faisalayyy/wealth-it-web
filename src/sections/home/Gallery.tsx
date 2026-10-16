@@ -15,16 +15,18 @@ import s from './Gallery.module.css';
  * which grey out at either end.
  */
 const SHOTS: { screen: ScreenName; name: string; area: string }[] = [
-  { screen: 'home-light', name: 'Home', area: 'Where you stand' },
-  { screen: 'wallets-light', name: 'Wallets', area: 'Every account' },
-  { screen: 'composer-dark', name: 'Recording', area: 'Finish the sentence' },
-  { screen: 'scan-done-dark', name: 'Scan a receipt', area: 'Snap, check, done' },
+  { screen: 'home-dark', name: 'Home', area: 'Where you stand' },
+  { screen: 'wallets-dark', name: 'Wallets', area: 'Every account' },
+  { screen: 'record-sheet-dark', name: 'Recording', area: 'Finish the sentence' },
+  { screen: 'scan-reading-dark', name: 'Scan a receipt', area: 'Read on your phone' },
   { screen: 'budgets-dark', name: 'Budgets', area: 'Before you overspend' },
   { screen: 'goals-dark', name: 'Goals', area: 'Every step counts' },
-  { screen: 'schedules-light', name: 'Scheduled payments', area: 'Bills that remember' },
-  { screen: 'people-light', name: 'Friends & family', area: 'Who owes whom' },
+  { screen: 'planning-dark', name: 'Planning', area: 'What is coming' },
+  { screen: 'schedules-dark', name: 'Scheduled payments', area: 'Bills that remember' },
+  { screen: 'friends-family-dark', name: 'Friends & family', area: 'Who owes whom' },
+  { screen: 'statistics-dark', name: 'Statistics', area: 'Where it went' },
   { screen: 'notifications-dark', name: 'Notifications', area: 'What needs you' },
-  { screen: 'customise-light', name: 'Customise Home', area: 'Your order' },
+  { screen: 'customise-home-dark', name: 'Customise Home', area: 'Your order' },
 ];
 
 export function Gallery() {

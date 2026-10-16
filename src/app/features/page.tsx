@@ -33,7 +33,7 @@ export default function Features() {
               <Button label="Start with recording" href="/features/recording/" tone="ink" variant="secondary" />
             </>
           }
-          media={<Shot media={{ screens: ['composer-dark', 'home-dark', 'budgets-dark'] }} sizes="(max-width: 743px) 64vw, 300px" />}
+          media={<Shot media={{ screens: ['record-sheet-dark', 'home-dark', 'budgets-dark'] }} sizes="(max-width: 743px) 64vw, 300px" />}
         />
         <Bands features={featurePages} />
         <Facts

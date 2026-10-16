@@ -34,7 +34,9 @@ for the hero keyring, Three.js for the About slabs.
 npm run dev       # http://localhost:4321
 npm run check     # tsc
 npm run build     # → out/, for https://wealthit.app (the domain's root)
-npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREENSHOTS.md)
+npm run screens   # the iOS session's captures → public/screens (docs/SCREENSHOTS.md)
+scripts/videos.sh # its recordings → public/videos
+node scripts/compose.mjs   # photographs, with the app on the phones → public/people
 ```
 
 - `src/app/` — `/`, `/features/` and `/features/<slug>/` (six, from `src/lib/features.ts`),
@@ -64,9 +66,14 @@ npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREEN
 
 ## Rules that are easy to break
 
-- **Real app UI only.** Every product image is one of the app's own captures
-  (`App/marketing/app-store/assets/screens`), a piece it was cut into, or a rectangle cut from one.
-  Never draw app UI in HTML, never retouch a capture. New screens: `docs/SCREENSHOTS.md`.
+- **Real app UI only.** Every product image is one of the iOS session's captures or recordings
+  (`~/Movies/Wealthit Website`, from TestFlight build 14), or a rectangle cut from one — or, where a
+  simulator can't show it (Tap to Record), a rectangle cut from the App Store poster drawn from the
+  app's real code. Never draw app UI in HTML, never retouch a capture. The app is shown mostly in
+  dark. New screens or recordings: ask the iOS session; `docs/SCREENSHOTS.md`.
+- **Photographs** (`media-src/people`, credited in `CREDITS.md`) are models, not users: the app
+  may be composited onto a phone in a hand or over a shoulder, never into a smiling face's hands,
+  and no caption makes anyone say anything (the Pexels licence: don't imply endorsement).
 - **The brand is the app's** (`App/brand/README.md`, `App/src/ui/brandMark.ts`). The mark is two
   leaves and a gold coin: leaves Emerald `#0D7443` on light, Mint `#4CC38A` on dark; the coin is
   always Gold `#F2C66D`. In the name, "Wealth" is Night (Ivory on dark) and "it" is Emerald (Mint
@@ -77,7 +84,8 @@ npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREEN
   never leaves your phone" — records sync to the account.
 - **No invented facts.** No user counts, reviews, partners, certifications, prices or social
   links (the Instagram is not posted yet). Where butter shows client logos the homepage shows the
-  26 currencies the app keeps. No Pricing or Blog page until there is a price or a post.
+  26 countries whose money the app keeps (flags from flag-icons, MIT). No Pricing or Blog page until
+  there is a price or a post.
 - **Not in the stores yet.** The iPhone app is in TestFlight; Android is planned. `stores` stays
   `null`; AppButtons say "Coming soon" / "Later on" and are not links.
 - **The web app is not deployed.** `webApp` stays `null`; "Log in" says "Soon" until then. One URL

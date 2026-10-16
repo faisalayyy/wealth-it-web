@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useId, useRef, useState, type FocusEvent, type MouseEvent } from 'react';
 import { scrollToTarget, useLenis } from '@/animation/SmoothScroll';
 import { featurePages } from '@/lib/features';
-import { crop, screenSources } from '@/lib/screens';
+import { screenSources } from '@/lib/screens';
 import { asset, webApp } from '@/lib/site';
 import { Button } from './Button';
 import { Icon } from './Icon';
@@ -43,7 +43,7 @@ const ROWS = [
 ] as const;
 
 function Thumb({ kind }: { kind: (typeof ROWS)[number]['thumb'] }) {
-  if (kind === 'features') return <img src={crop('ring').webp} alt="" loading="lazy" decoding="async" />;
+  if (kind === 'features') return <img src={asset('/art/budget.webp')} alt="" loading="lazy" decoding="async" />;
   if (kind === 'app') return <img src={asset('/apple-touch-icon.png')} alt="" loading="lazy" decoding="async" />;
   if (kind === 'help') return <Mark className={s.thumbMark} tone="dark" />;
   return <Icon name="lock" size={24} />;

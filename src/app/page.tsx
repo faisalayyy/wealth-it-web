@@ -1,11 +1,12 @@
 import { SiteFooter } from '@/components/SiteFooter';
 import { Closing } from '@/sections/home/Closing';
-import { CurrencyTicker } from '@/sections/home/CurrencyTicker';
+import { Countries } from '@/sections/home/Countries';
 import { DoubleBlock } from '@/sections/home/DoubleBlock';
 import { Faq } from '@/sections/home/Faq';
 import { FeatureCards } from '@/sections/home/FeatureCards';
 import { Gallery } from '@/sections/home/Gallery';
 import { HomeHero } from '@/sections/home/HomeHero';
+import { Moments } from '@/sections/home/Moments';
 import { Planning } from '@/sections/home/Planning';
 import { Privacy } from '@/sections/home/Privacy';
 import { RecordTabs } from '@/sections/home/RecordTabs';
@@ -26,28 +27,21 @@ export default function Home() {
     <div className="page">
       <HomeHero />
       <main id="main">
-        <CurrencyTicker />
+        <Countries />
         <Statement />
+        <Moments />
         <Story
           caption="Recording"
-          parts={[
-            'Write each payment the way you’d say it',
-            { cut: 'composer-sheet', label: 'I spent AED 86.50 on Groceries from Main bank, today' },
-            '— no forms, just the blanks to fill in.',
-          ]}
-          screen="composer-dark"
-          alt="Recording an expense in Wealthit as a sentence"
+          parts={['Write each payment the way you’d say it — tap +, type the amount, pick what it was for. No forms, just the blanks.']}
+          video="record-expense-dark"
+          alt="Recording an expense in Wealthit: the amount, then the category, then Done"
         />
         <Story
           caption="Scan a receipt"
           side="left"
-          parts={[
-            'Snap a receipt',
-            { cut: 'scan-reading', label: 'the app reading a supermarket receipt' },
-            'and it fills itself in. You just check it.',
-          ]}
-          screen="scan-done-dark"
-          alt="A scanned receipt, turned into a record to check"
+          parts={['Point your camera at a receipt. It’s read on your phone and filled in for you — you just check it.']}
+          video="scan-receipt-dark"
+          alt="Wealthit reading a Harbour Lane Supermarket receipt: the scan line, then the record filled in, AED 86.50"
         />
         <Whole />
         <FeatureCards />

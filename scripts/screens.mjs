@@ -2,8 +2,8 @@
 //
 //   node scripts/screens.mjs [raw-dir] [--sheet out.png]
 //
-// Input: the PNGs in App/marketing/app-store/assets/screens (whole screens 1320x2868, and the
-// pieces they were cut into), copied into screens-raw.nosync/ (default; iCloud skips *.nosync).
+// Input: the iOS session's captures in ~/Movies/Wealthit Website/screens (default; outside iCloud,
+// which evicts files), whole screens 1320x2868; and any cut whose name has a slash, from this repo.
 // Output, in public/screens/:
 //   {name}-{420,840,1320}.{avif,webp}   whole screens
 //   cuts/{name}-{640,1280}.{avif,webp}  the app's own pieces, at their own shape
@@ -22,7 +22,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/lib/screens.jso
 const args = process.argv.slice(2);
 const sheetAt = args.indexOf('--sheet');
 const sheetOut = sheetAt >= 0 ? args[sheetAt + 1] : null;
-const rawDir = path.resolve(root, args.find((a, i) => !a.startsWith('--') && i !== sheetAt + 1) ?? 'screens-raw.nosync');
+const rawDir = path.resolve(root, args.find((a, i) => !a.startsWith('--') && i !== sheetAt + 1) ?? path.join(process.env.HOME, 'Movies/Wealthit Website/screens'));
 const out = path.join(root, 'public/screens');
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(path.join(out, 'crops'), { recursive: true });
@@ -32,7 +32,8 @@ const { scale } = manifest.device;
 const WEBP = { quality: 86, effort: 5, smartSubsample: true };
 const AVIF = { quality: 58, effort: 5 };
 const raw = name => {
-  const file = path.join(rawDir, `${name}.png`);
+  // a name with a slash is a file in this repo (media-src/…); anything else is a capture
+  const file = name.includes('/') ? path.join(root, `${name}.png`) : path.join(rawDir, `${name}.png`);
   if (!fs.existsSync(file)) throw new Error(`missing capture: ${file}`);
   return file;
 };

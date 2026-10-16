@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { gsap, reducedMotion, useGSAP } from '@/animation/gsap';
 import { Phone } from '@/components/Phone';
-import { Cut } from '@/components/Screen';
+import { Crop } from '@/components/Screen';
 import { Words } from './Story';
 import s from './Planning.module.css';
 
@@ -45,10 +45,10 @@ export function Planning() {
         </div>
         <div className={s.panel}>
           <div className={s.phoneWrap} data-rise>
-            <Phone screen="schedules-light" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Scheduled payments in Wealthit: the next 30 days" />
+            <Phone screen="schedules-dark" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Scheduled payments in Wealthit: the next 30 days" />
           </div>
           <div className={s.float} data-float>
-            <Cut name="bill-waiting" className={s.bill} sizes="(max-width: 743px) 80vw, 400px" />
+            <Crop name="bill-waiting" className={s.bill} alt="Waiting for you: Metro card top-up, due 17 October — Record it, or Skip this time" />
           </div>
         </div>
       </div>

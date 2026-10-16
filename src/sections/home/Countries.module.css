@@ -1,0 +1,123 @@
+.section {
+  padding: clamp(56px, 7vw, 104px) 0 clamp(72px, 8vw, 120px);
+  background: var(--n-50);
+  color: var(--n-ink);
+  overflow: hidden;
+}
+
+.head {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.head :global(.cap) {
+  margin-bottom: 14px;
+}
+
+.title {
+  max-width: 30em;
+  font-size: clamp(18px, 1.6vw, 22px);
+  line-height: 1.45;
+  font-weight: 550;
+  letter-spacing: -0.015em;
+  color: rgba(11, 11, 12, 0.72);
+  text-wrap: balance;
+}
+
+.rows {
+  display: grid;
+  gap: 12px;
+  margin-top: clamp(32px, 4vw, 48px);
+  /* the rows fade in and out at the edges rather than being cut */
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: drift 70s linear infinite;
+}
+
+.track[data-dir='right'] {
+  animation-direction: reverse;
+  animation-duration: 80s;
+}
+
+.rows:hover .track {
+  animation-play-state: paused;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.pill {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  height: 60px;
+  padding: 0 24px 0 14px;
+  border-radius: 999px;
+  background: var(--white);
+  box-shadow:
+    inset 0 0 0 1px var(--n-line),
+    0 6px 16px -10px rgba(11, 11, 12, 0.18);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+}
+
+.flag {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(11, 11, 12, 0.08);
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 743px) {
+  .pill {
+    height: 46px;
+    font-size: 15px;
+  }
+  .flag {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* without motion: the countries sit still, wrapped and centred */
+@media (prefers-reduced-motion: reduce) {
+  .rows {
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding-inline: var(--gutter);
+  }
+  .track {
+    width: auto;
+    animation: none;
+  }
+  .row {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+  }
+  .row + .row {
+    display: none;
+  }
+}

@@ -1,17 +1,33 @@
 {
   "name": "wealth-it-web",
-  "type": "module",
-  "version": "0.1.0",
+  "version": "3.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "check": "astro check"
+    "dev": "next dev --port 4321",
+    "build": "next build",
+    "check": "tsc --noEmit",
+    "screens": "node scripts/screens.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "5.2.8",
+    "@gsap/react": "2.1.2",
+    "cannon-es": "0.20.0",
+    "gsap": "3.15.0",
+    "lenis": "1.3.26",
+    "matter-js": "0.20.0",
+    "next": "16.3.6",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "three": "0.186.1"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.4",
-    "astro": "^5.14.1",
-    "typescript": "^5.9.2"
+    "@types/matter-js": "0.20.2",
+    "@types/node": "22.20.4",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@types/three": "0.186.0",
+    "sharp": "0.35.4",
+    "typescript": "6.0.3"
   }
 }

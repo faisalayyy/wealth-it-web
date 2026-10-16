@@ -1,0 +1,104 @@
+.values {
+  overflow: hidden;
+  background: var(--brand-deep);
+  color: var(--on-deep);
+}
+
+.head {
+  justify-content: flex-end;
+  padding-top: var(--108-64);
+  margin-bottom: var(--144-32);
+}
+
+.head h2 {
+  margin-top: 16px;
+}
+
+.article {
+  position: relative;
+  padding-top: 32px;
+  padding-bottom: 32px;
+}
+
+.divider {
+  position: absolute;
+  top: 0;
+  left: var(--grid-margin);
+  width: var(--grid-width);
+  height: 1px;
+  background: currentColor;
+  opacity: 0.2;
+}
+
+.article > :not(.divider) {
+  transition: opacity 0.3s;
+}
+
+.article:not([data-active='true']) > :not(.divider) {
+  opacity: 0.5;
+}
+
+.article h3 {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 8px;
+}
+
+.article h3 > span:first-child {
+  --cols: 2;
+  flex: none;
+  width: calc(var(--cols) * (var(--100vw) - 2 * var(--grid-padding)) / 16);
+}
+
+.quoteRow {
+  justify-content: flex-end;
+  padding-top: var(--108-64);
+  padding-bottom: var(--60-16);
+}
+
+.quote {
+  margin: 0;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(247, 246, 241, 0.08);
+}
+
+.quote blockquote {
+  margin: 0;
+  opacity: 0.7;
+}
+
+.endorser {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--forest);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.name,
+.role {
+  display: block;
+}
+
+.role {
+  opacity: 0.65;
+}
+
+@media (max-width: 1023px) {
+  .article h3 > span:first-child {
+    --cols: 4;
+  }
+}

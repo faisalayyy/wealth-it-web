@@ -1,0 +1,77 @@
+.glass {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  background: var(--brand-deep);
+}
+
+.panel {
+  position: relative;
+  flex: 0 0 var(--w);
+  overflow: hidden;
+  /* a tall wash of the brand's greens, sliding through the panel */
+  background: linear-gradient(
+    180deg,
+    #0e3b30 0%,
+    #12865a 22%,
+    #0d7443 40%,
+    #0e3b30 58%,
+    #4cc38a 78%,
+    #0e3b30 100%
+  );
+  background-size: 100% 320%;
+  animation: drift 9s ease-in-out var(--d) infinite alternate;
+}
+
+/* the flute: each panel is a rounded rib, bright along one edge and shaded along the other */
+.panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.28) 0%,
+    rgba(255, 255, 255, 0.06) 14%,
+    rgba(255, 255, 255, 0) 45%,
+    rgba(11, 13, 12, 0.04) 78%,
+    rgba(11, 13, 12, 0.1) 97%,
+    rgba(255, 255, 255, 0.35) 100%
+  );
+}
+
+/* a soft band of light, travelling slower than the wash so the two never line up the same way */
+.panel::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60%;
+  top: -30%;
+  background: radial-gradient(60% 50% at 50% 50%, rgba(242, 198, 109, 0.35), rgba(242, 198, 109, 0));
+  animation: band 13.5s ease-in-out var(--d) infinite alternate;
+}
+
+@keyframes drift {
+  from {
+    background-position: 50% 0%;
+  }
+  to {
+    background-position: 50% 100%;
+  }
+}
+
+@keyframes band {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(150%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panel::after {
+    animation: none;
+  }
+}

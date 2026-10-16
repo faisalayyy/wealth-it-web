@@ -1,0 +1,151 @@
+.button {
+  --height: 48px;
+  --color: var(--ink);
+  --bg-color: var(--brand);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: max-content;
+  height: var(--height);
+  padding: 0 24px;
+  border-radius: 12px;
+  color: var(--color);
+  font-size: 15.5px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  white-space: nowrap;
+  isolation: isolate;
+}
+
+/* tones: neutral sits on dark and Forest grounds (an ivory fill), brand on light ones (Emerald) */
+.button[data-tone='neutral'] {
+  --color: var(--forest);
+  --bg-color: var(--ivory);
+}
+.button[data-tone='neutral'][data-variant='outline'],
+.button[data-tone='neutral'][data-variant='secondary'] {
+  --color: var(--ivory);
+}
+.button[data-tone='brand'] {
+  --color: var(--on-brand);
+  --bg-color: var(--brand);
+}
+.button[data-tone='brand'][data-variant='outline'],
+.button[data-tone='brand'][data-variant='secondary'] {
+  --color: var(--brand-text);
+}
+
+/* ink: the dark button of the homepage's second design, on light grounds */
+.button[data-tone='ink'] {
+  --color: var(--white);
+  --bg-color: var(--n-ink);
+}
+.button[data-tone='ink'][data-variant='outline'],
+.button[data-tone='ink'][data-variant='secondary'] {
+  --color: var(--n-ink);
+}
+.button[data-variant='secondary'][data-tone='ink'] .bg::before {
+  background: var(--n-ink);
+  opacity: 0.07;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button[data-variant='secondary'][data-tone='ink']:hover .bg::before {
+    opacity: 0.13;
+  }
+}
+
+.button[data-size='sm'] {
+  --height: 40px;
+  padding: 0 16px;
+  border-radius: var(--r-sm);
+  font-size: 15px;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+  transition: transform 0.3s var(--ease-out-cubic);
+}
+.bg::before,
+.bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+.bg::before {
+  transition: opacity 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.button[data-variant='primary'] .bg::before {
+  background: var(--bg-color);
+}
+.button[data-variant='secondary'][data-tone='neutral'] .bg::before {
+  background: var(--ivory);
+  opacity: 0.12;
+}
+.button[data-variant='secondary'][data-tone='brand'] .bg::before {
+  background: var(--brand-text);
+  opacity: 0.09;
+}
+.button[data-variant='outline'] .bg::after {
+  box-shadow: inset 0 0 0 1px var(--color);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .button[data-variant='primary']:hover .bg::before {
+    opacity: 0.88;
+  }
+  .button[data-variant='secondary'][data-tone='neutral']:hover .bg::before {
+    opacity: 0.16;
+  }
+  .button:hover .bg {
+    transform: scale(0.98);
+    transition: transform 0.3s var(--ease-in-out-cubic);
+  }
+  .button:active .bg {
+    transform: scale(0.95);
+  }
+  .button:hover .c {
+    transform: translateY(-110%);
+    transition: transform 0.25s var(--ease-in-quad) calc(7ms * var(--i));
+  }
+  .button:hover .clone .c {
+    transform: translate(0, 0) rotate(0deg);
+    transition: transform 0.5s var(--ease-out-quart) calc(0.12s + 7ms * var(--i));
+  }
+}
+
+.icon {
+  flex-shrink: 0;
+  margin-left: -4px;
+}
+
+.label {
+  position: relative;
+  overflow: hidden;
+  line-height: 1.25;
+}
+
+.row {
+  display: block;
+}
+
+.c {
+  display: inline-block;
+  will-change: transform;
+}
+
+.clone {
+  position: absolute;
+  inset: 0;
+}
+.clone .c {
+  transform: translateY(110%) rotate(20deg);
+}

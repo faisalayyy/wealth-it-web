@@ -1,0 +1,82 @@
+.section {
+  position: relative;
+  height: 320vh;
+  background: var(--n-50);
+  color: var(--n-ink);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.text {
+  width: min(1040px, var(--wrap));
+  text-align: center;
+  text-wrap: balance;
+}
+
+.chip {
+  display: inline-block;
+  width: 1.3em;
+  height: 1em;
+  margin: 0 0.06em;
+  vertical-align: -0.12em;
+  border-radius: 0.24em;
+  overflow: hidden;
+  background: var(--panel);
+  box-shadow: 0 0.12em 0.3em -0.08em rgba(15, 15, 15, 0.35);
+}
+
+.crop,
+.crop img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.phoneRow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 52%;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.phone {
+  --w: clamp(220px, 22vw, 320px);
+  filter: drop-shadow(0 40px 60px rgba(15, 15, 15, 0.25));
+}
+
+/* without motion: the sentence, and the phone under it */
+.section[data-static] {
+  height: auto;
+}
+.section[data-static] .stage {
+  position: relative;
+  height: auto;
+  padding: var(--sec) 0 0;
+  row-gap: 64px;
+}
+.section[data-static] .phoneRow {
+  position: relative;
+  top: auto;
+  height: 46vh;
+  overflow: hidden;
+}
+
+@media (max-width: 743px) {
+  .chip {
+    width: 1.2em;
+  }
+  .phoneRow {
+    top: 56%;
+  }
+}

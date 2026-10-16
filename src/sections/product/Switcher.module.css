@@ -1,0 +1,47 @@
+.bar {
+  position: fixed;
+  z-index: 50;
+  left: 50%;
+  bottom: 20px;
+  display: flex;
+  gap: 2px;
+  max-width: calc(100vw - 32px);
+  padding: 5px;
+  border-radius: 14px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  background: rgba(232, 231, 224, 0.86);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  backdrop-filter: blur(16px) saturate(1.4);
+  box-shadow: 0 10px 30px -12px rgba(11, 11, 12, 0.25);
+  transform: translate(-50%, 140%);
+  transition: transform 0.6s var(--ease-quint);
+}
+
+.bar[data-shown] {
+  transform: translate(-50%, 0);
+}
+
+.item {
+  flex: none;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 550;
+  color: rgba(11, 11, 12, 0.6);
+  white-space: nowrap;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+}
+
+.item[aria-current='true'] {
+  background: var(--white);
+  color: var(--n-ink);
+  box-shadow: 0 1px 2px rgba(11, 11, 12, 0.08);
+}
+
+.item:focus-visible {
+  outline: 2px solid var(--n-ink);
+  outline-offset: -2px;
+}

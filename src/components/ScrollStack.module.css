@@ -1,0 +1,96 @@
+.stack {
+  --radius: 20px;
+  --margin: clamp(8px, 7.415px + 100vw * 0.0015, 10px);
+  --neg-margin: calc(var(--margin) * -1);
+}
+
+/* the cards alternate between two lighter tones of the ground they sit on */
+.view {
+  --view-bg: #134a3c;
+  --name-em: 12px;
+  --name-padding: 1.33em;
+  position: relative;
+  width: var(--100vw);
+  height: var(--view-height, auto);
+  padding: var(--margin);
+  color: var(--on-deep);
+}
+.view:nth-child(2n) {
+  --view-bg: #175546;
+}
+
+.stack[data-method='transform'] {
+  --view-height: 100vh;
+  height: calc(var(--length) * var(--view-height));
+}
+
+.stack[data-method='transform'] .slot {
+  position: sticky;
+  top: var(--margin);
+  left: var(--margin);
+  width: calc(var(--100vw) - var(--margin) * 2);
+  height: calc(100vh - var(--margin) * 2);
+  margin-left: var(--margin);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.stack[data-method='transform'] .view {
+  position: absolute;
+  top: var(--neg-margin);
+  left: var(--neg-margin);
+  z-index: calc(var(--length) - var(--index, 0));
+  will-change: transform;
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.bg {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius);
+  background: var(--view-bg);
+}
+
+.content {
+  position: relative;
+  left: var(--neg-margin);
+  flex-grow: 1;
+  width: calc(100% + var(--margin) * 2);
+  height: 100%;
+}
+
+.name {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--grid-gap);
+  padding: var(--name-padding);
+  font-size: var(--name-em);
+  opacity: 0.65;
+}
+
+.index {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 2em;
+  height: 2em;
+  margin-right: calc(var(--grid-margin) - 2em + (var(--100vw) - 2 * var(--grid-padding)) / 8 - var(--grid-gap) - var(--name-padding) - var(--margin));
+  border: 1px solid currentColor;
+  border-radius: 2em;
+}
+
+.stack[data-method='none'] .view:not(:last-child) {
+  padding-bottom: 0;
+}
+.stack[data-method='none'] .name {
+  display: none;
+}

@@ -1,0 +1,58 @@
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: max(100svh, 640px);
+  padding-bottom: clamp(72px, 13vh, 140px);
+  overflow: hidden;
+  background: linear-gradient(180deg, #e1e0d8 0%, var(--n-50) 92%);
+  color: var(--n-ink);
+}
+
+.canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-out;
+  pointer-events: none;
+}
+
+.hero[data-ready] .canvas {
+  opacity: 1;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lead {
+  max-width: 36ch;
+  margin-top: 22px;
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+@media (max-width: 743px) {
+  .hero {
+    padding-bottom: 56px;
+  }
+  .content {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .ctas {
+    justify-content: flex-start;
+  }
+}

@@ -1,0 +1,80 @@
+.section {
+  padding: calc(var(--sec) * 0.5) 0;
+  background: var(--n-50);
+  color: var(--n-ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+}
+
+.title {
+  max-width: 15em;
+  margin-top: 20px;
+}
+
+.lead {
+  max-width: 38ch;
+  margin-top: 24px;
+  color: rgba(15, 15, 15, 0.7);
+}
+
+.panel {
+  position: relative;
+  aspect-ratio: 6 / 5;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 1px 0 var(--n-line);
+}
+
+.phoneWrap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+.phone {
+  --w: min(44%, 320px);
+  filter: drop-shadow(0 30px 50px rgba(15, 15, 15, 0.22));
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    aspect-ratio: 4 / 5;
+  }
+  .phone {
+    --w: min(64%, 320px);
+  }
+}
+
+/* the bill that is waiting, floating over the phone */
+.float {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: min(84%, 400px);
+  transform: translateX(-50%);
+}
+
+.bill,
+.bill img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.bill {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(11, 11, 12, 0.35);
+}

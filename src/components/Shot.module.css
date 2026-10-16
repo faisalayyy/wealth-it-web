@@ -1,0 +1,73 @@
+.phones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(14px, 2.4vw, 32px);
+}
+
+.phone {
+  --w: clamp(190px, 21vw, 300px);
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.28));
+}
+
+/* two phones: the second a little smaller and lower, the way a pair is laid on a table */
+.phones[data-count='2'] .phone + .phone {
+  --w: clamp(168px, 18vw, 262px);
+  transform: translateY(8%);
+}
+
+.cuts {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 0 clamp(16px, 4vw, 48px);
+}
+
+.cut,
+.cut img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cut {
+  max-width: 480px;
+  border-radius: clamp(14px, 1.6vw, 22px);
+  overflow: hidden;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.06) inset,
+    0 30px 60px -24px rgba(0, 0, 0, 0.4);
+}
+
+.stack {
+  gap: 10px;
+}
+.stack .cut {
+  border-radius: 14px;
+  box-shadow: 0 14px 30px -18px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 743px) {
+  .phone {
+    --w: min(58vw, 260px);
+  }
+  .phones[data-count='2'] .phone + .phone {
+    display: none;
+  }
+}
+
+/* three phones: the middle one forward, the others smaller behind it */
+.phones[data-count='3'] .phone {
+  --w: clamp(150px, 15vw, 230px);
+  opacity: 0.94;
+}
+.phones[data-count='3'] .phone:nth-child(2) {
+  --w: clamp(180px, 19vw, 290px);
+  opacity: 1;
+  z-index: 1;
+}
+@media (max-width: 743px) {
+  .phones[data-count='3'] .phone:not(:nth-child(2)) {
+    display: none;
+  }
+}

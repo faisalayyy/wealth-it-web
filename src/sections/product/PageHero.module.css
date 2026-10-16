@@ -1,0 +1,75 @@
+.hero {
+  padding: clamp(132px, 15vw, 196px) 0 clamp(56px, 7vw, 96px);
+  background: linear-gradient(180deg, #e3e2db 0%, var(--n-50) 62%);
+  color: var(--n-ink);
+}
+
+.head {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.head :global(.cap) {
+  margin-bottom: 18px;
+}
+
+.title {
+  max-width: 13em;
+  text-wrap: balance;
+}
+
+.word {
+  display: inline-block;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.lead {
+  max-width: 34em;
+  margin-top: 24px;
+  text-wrap: pretty;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 32px;
+}
+
+.panel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin-top: clamp(48px, 6vw, 80px);
+  padding: clamp(40px, 6vw, 88px) 0 0;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background:
+    radial-gradient(60% 70% at 50% 100%, rgba(13, 116, 67, 0.12), rgba(13, 116, 67, 0) 70%),
+    var(--n-150);
+  height: clamp(420px, 52vw, 700px);
+  align-items: start;
+  transform-origin: 50% 0;
+}
+
+.panel[data-dark] {
+  background:
+    radial-gradient(60% 70% at 50% 100%, rgba(76, 195, 138, 0.16), rgba(76, 195, 138, 0) 70%),
+    var(--panel);
+}
+
+@media (max-width: 743px) {
+  .panel {
+    height: 460px;
+    border-radius: var(--r-lg);
+  }
+}
+
+/* no picture under it (Privacy, 404): the text that follows starts close */
+.hero[data-bare] {
+  padding-bottom: clamp(24px, 3vw, 40px);
+}

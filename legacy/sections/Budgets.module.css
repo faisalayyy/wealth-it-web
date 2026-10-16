@@ -1,0 +1,98 @@
+.section {
+  position: relative;
+  margin: var(--180-64) 0;
+  color: var(--brand-text);
+}
+
+.center {
+  justify-content: center;
+  text-align: center;
+}
+
+.top {
+  --span: 8;
+}
+
+.title {
+  margin-top: 16px;
+  white-space: pre-line;
+}
+
+.mediaRow {
+  margin: var(--96-48) 0;
+}
+
+.mediaCol {
+  --span: 10;
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 1280 / 810;
+  border-radius: clamp(8px, 4.4px + 0.92vw, 20px);
+  overflow: hidden;
+  background:
+    radial-gradient(80% 90% at 30% 20%, #f5fbdd, rgba(245, 251, 221, 0) 70%),
+    linear-gradient(160deg, #e3f5a5, #c8e86a);
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.bottom {
+  --span: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--32-24);
+}
+
+.lead {
+  width: var(--cols-6);
+}
+
+.ctas {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (max-width: 1290px) {
+  .top {
+    --span: 10;
+  }
+  .mediaCol {
+    --span: 12;
+  }
+  .lead {
+    width: var(--cols-8);
+  }
+}
+
+@media (max-width: 1023px) {
+  .top {
+    --span: 12;
+  }
+  .mediaCol {
+    --span: 14;
+  }
+  .bottom {
+    --span: 12;
+  }
+  .lead {
+    width: var(--cols-10);
+  }
+}
+
+@media (max-width: 743px) {
+  .top,
+  .mediaCol,
+  .bottom {
+    --span: 16;
+  }
+  .lead {
+    width: var(--cols-16);
+  }
+}

@@ -1,22 +1,19 @@
 import type { NextConfig } from 'next';
 
 /**
- * Static export, because the host is GitHub Pages and there is no server in this product's
- * world — not for the app, and not for the site that argues for it.
- *
- * `basePath` is the project-site subdirectory. Next rewrites its own asset and <Link> URLs
- * through it automatically; anything written by hand (a font URL in CSS, an <img src>) has to
- * go through `asset()` in `src/lib/asset.ts` instead. On the day there is a real domain, both
- * lines below come out and `asset()` becomes the identity function.
+ * A static export, served by GitHub Pages at https://wealthit.app — the domain's root, so there is
+ * no base path. `PAGES_BASE_PATH` is still read, for building a copy that lives in a subdirectory.
  */
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '/wealth-it-web';
+const base = process.env.PAGES_BASE_PATH ?? '';
 
-const nextConfig: NextConfig = {
+const config: NextConfig = {
   output: 'export',
-  basePath,
+  basePath: base,
   trailingSlash: true,
   images: { unoptimized: true },
-  env: { NEXT_PUBLIC_BASE_PATH: basePath },
+  env: { NEXT_PUBLIC_BASE_PATH: base },
+  reactStrictMode: true,
+  poweredByHeader: false,
 };
 
-export default nextConfig;
+export default config;

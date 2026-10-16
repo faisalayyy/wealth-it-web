@@ -1,0 +1,51 @@
+.header {
+  position: relative;
+  background: var(--brand);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+.row {
+  min-height: 66svh;
+  padding-top: var(--280);
+  padding-bottom: var(--60-24);
+}
+
+.left {
+  --span: 8;
+  display: flex;
+  align-items: flex-end;
+}
+
+.right {
+  --span: 4;
+  --off: 3;
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 1290px) {
+  .left {
+    --span: 9;
+  }
+  .right {
+    --span: 6;
+    --off: 1;
+  }
+}
+
+@media (max-width: 1023px) {
+  .row {
+    align-content: space-between;
+    padding-top: 116px;
+  }
+  .left,
+  .right {
+    --span: 16;
+    --off: 0;
+  }
+  .right {
+    margin-top: 32px;
+  }
+}

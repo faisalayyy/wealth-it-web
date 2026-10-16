@@ -1,0 +1,233 @@
+.intro {
+  position: relative;
+  background: var(--white);
+}
+
+.header {
+  position: relative;
+  height: 200vh;
+  margin-bottom: -40vh;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.title {
+  --size: clamp(72px, 57.726px + 3.66vw, 120px);
+  position: relative;
+  padding-bottom: 0.5em;
+  font-size: var(--size);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: pre-line;
+  color: var(--brand-text);
+}
+
+/* On a wide screen the statement starts at twice its size and shrinks away. It is set at that
+   largest size and only ever scaled down, so the browser always draws the letters themselves,
+   never an enlarged picture of them — and no will-change, which would freeze them as one. */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .title {
+    font-size: calc(var(--size) * 2);
+    white-space: pre;
+  }
+}
+
+.snippets {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.snippets li {
+  position: absolute;
+}
+
+.snippet {
+  width: 100%;
+  opacity: 0;
+  padding: clamp(5px, 0.6vw, 8px);
+  border-radius: clamp(14px, 1.6vw, 22px);
+  background: var(--frame);
+  box-shadow: 0 30px 60px -30px rgba(11, 13, 12, 0.35);
+  will-change: transform;
+}
+
+.crop,
+.crop img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.crop img {
+  border-radius: clamp(10px, 1.2vw, 16px);
+}
+
+/* resting places around the statement (the reference's, per breakpoint) */
+.snippets li:nth-child(1) {
+  left: 19%;
+  top: 6.25%;
+  width: clamp(140px, 122.138px + 4.58vw, 200px);
+  transform: translate(-6%, -40%);
+}
+.snippets li:nth-child(2) {
+  right: 16.75%;
+  top: 3.125%;
+  width: clamp(154px, 134.344px + 5.04vw, 220px);
+  transform: translate(5%, -2%);
+  z-index: 4;
+}
+.snippets li:nth-child(3) {
+  right: 13.75%;
+  bottom: 20%;
+  width: clamp(168px, 146.55px + 5.5vw, 240px);
+  transform: translate(4%, -10%);
+  z-index: 2;
+}
+.snippets li:nth-child(4) {
+  left: 31.25%;
+  bottom: 8.25%;
+  width: clamp(154px, 134.344px + 5.04vw, 220px);
+  z-index: 5;
+}
+.snippets li:nth-child(5) {
+  left: 1.75%;
+  top: 37.25%;
+  width: clamp(154px, 134.344px + 5.04vw, 220px);
+  transform: translate(-6%, -10%);
+  z-index: 3;
+}
+
+@media (max-width: 1290px) {
+  .snippets li:nth-child(1) {
+    top: 5%;
+  }
+  .snippets li:nth-child(3) {
+    bottom: 20%;
+    right: 5%;
+  }
+  .snippets li:nth-child(4) {
+    bottom: 4%;
+  }
+}
+
+@media (max-width: 1023px) {
+  .snippets li:nth-child(1) {
+    left: 75%;
+    top: 14%;
+  }
+  .snippets li:nth-child(2) {
+    right: 38%;
+    top: 10%;
+  }
+  .snippets li:nth-child(3) {
+    bottom: 10%;
+    right: 20%;
+  }
+  .snippets li:nth-child(4) {
+    bottom: 12%;
+    left: 20%;
+  }
+  .snippets li:nth-child(5) {
+    left: 5%;
+    top: 14%;
+  }
+}
+
+@media (max-width: 743px) {
+  .snippets li:nth-child(1) {
+    left: 82%;
+    top: 4.75%;
+  }
+  .snippets li:nth-child(2) {
+    right: 38%;
+    top: 4.75%;
+  }
+  .snippets li:nth-child(3) {
+    bottom: 4.75%;
+    right: 3.5%;
+  }
+  .snippets li:nth-child(4) {
+    bottom: 4.75%;
+    left: 3.5%;
+  }
+  .snippets li:nth-child(5) {
+    left: unset;
+    right: 78%;
+    top: 4.75%;
+  }
+}
+
+/* without motion the pieces simply sit in their places */
+@media (prefers-reduced-motion: reduce) {
+  .snippet {
+    opacity: 1;
+  }
+}
+
+/* ─── the three kinds of record ─────────────────────────────────────────────────────── */
+.taglines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+
+.taglines li {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  margin-top: calc(1.1em - 80vh);
+  padding-top: 50vh;
+  transform: translateY(calc((var(--index) - var(--items) * 0.5) * 1.1em));
+}
+
+.taglines li:first-child {
+  margin-top: 0;
+}
+
+.taglines li:last-child {
+  height: 20vh;
+  margin-top: 0;
+  padding-top: 0;
+  transform: none;
+}
+
+.tagline {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.iconCard {
+  display: grid;
+  place-items: center;
+  width: var(--80-40);
+  height: var(--80-40);
+  border-radius: var(--24-12);
+  background: var(--fill);
+  color: var(--white);
+  flex: none;
+}
+
+.icon {
+  width: var(--48-24);
+  height: var(--48-24);
+}
+
+.tagline h3 {
+  color: var(--text);
+}

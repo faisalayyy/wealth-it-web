@@ -1,0 +1,64 @@
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4cqw;
+  container-type: size;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--brand-25);
+}
+
+.panel[data-ground='lime'] {
+  background:
+    radial-gradient(70% 90% at 30% 10%, rgba(76, 195, 138, 0.35), rgba(76, 195, 138, 0) 70%),
+    var(--brand-deep);
+}
+
+.panel[data-ground='ink'] {
+  background:
+    radial-gradient(60% 80% at 70% 40%, rgba(76, 195, 138, 0.16), rgba(76, 195, 138, 0) 70%),
+    var(--media);
+}
+
+.panel[data-ground='pale'] {
+  background: linear-gradient(160deg, #f7f6f1, #dcefe3);
+}
+
+/* as tall as the frame allows, as wide as the row allows, whichever is smaller */
+.phone {
+  --w: min(calc(82cqh / 2.1), calc(84cqw / var(--n) - 4cqw));
+  flex: none;
+}
+
+.crop,
+.crop img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.mark {
+  width: min(34cqw, 46cqh);
+  height: auto;
+}
+
+.initials {
+  font-size: min(34cqw, 40cqh);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  opacity: 0.85;
+}
+
+.panel[data-ground='ink'] .initials,
+.panel[data-ground='lime'] .initials {
+  color: var(--mint);
+}

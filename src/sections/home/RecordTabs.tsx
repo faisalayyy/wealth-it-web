@@ -1,0 +1,112 @@
+'use client';
+
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from 'react';
+import { reducedMotion } from '@/animation/gsap';
+import { Phone } from '@/components/Phone';
+import { Screen } from '@/components/Screen';
+import type { ScreenName } from '@/lib/screens';
+import s from './RecordTabs.module.css';
+
+/**
+ * Three ways in (the reference's "Create in 3 ways"): a large card holding the real screen for
+ * each, and the three as tabs beside it. They advance by themselves — a line fills under the one
+ * showing — and stop for a pointer resting on them, for keyboard focus, and while the section is
+ * off screen. Click or use the arrow keys to choose.
+ */
+const STEPS: { title: string; text: string; screen: ScreenName; alt: string }[] = [
+  {
+    title: 'Type it',
+    text: 'Finish the sentence — I spent AED 86.50 on Groceries from Main bank, today. Tap a blank to fill it in.',
+    screen: 'composer-dark',
+    alt: 'Recording an expense as a sentence in Wealthit',
+  },
+  {
+    title: 'Scan it',
+    text: 'Snap the receipt. It’s read on your phone, and the amount, shop, date and category are filled in for you to check.',
+    screen: 'scan-done-dark',
+    alt: 'A scanned receipt turned into a record, ready to check',
+  },
+  {
+    title: 'Schedule it',
+    text: 'Rent, salary, subscriptions: set them up once and they record themselves on the day — or ask you first.',
+    screen: 'schedules-dark',
+    alt: 'Scheduled payments: what is waiting, and what is due later this month',
+  },
+];
+const DWELL = 5200;
+
+export function RecordTabs() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [visible, setVisible] = useState(false);
+  const root = useRef<HTMLElement>(null);
+  const tabs = useRef<(HTMLButtonElement | null)[]>([]);
+  const id = useId();
+  const running = visible && !paused && !reducedMotion();
+
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => setVisible(e.isIntersecting), { threshold: 0.35 });
+    io.observe(root.current!);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!running) return;
+    const t = setTimeout(() => setActive(a => (a + 1) % STEPS.length), DWELL);
+    return () => clearTimeout(t);
+  }, [running, active]);
+
+  const onKey = (e: KeyboardEvent) => {
+    const d = e.key === 'ArrowDown' || e.key === 'ArrowRight' ? 1 : e.key === 'ArrowUp' || e.key === 'ArrowLeft' ? -1 : 0;
+    if (!d) return;
+    e.preventDefault();
+    const next = (active + d + STEPS.length) % STEPS.length;
+    setActive(next);
+    tabs.current[next]?.focus();
+  };
+
+  return (
+    <section ref={root} className={s.section} aria-labelledby={`${id}-title`}>
+      <div className={`wrap ${s.grid}`}>
+        <div className={s.media}>
+          <Phone variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 340px">
+            {STEPS.map((st, i) => (
+              <Screen key={st.screen} name={st.screen} alt={i === active ? st.alt : ''} sizes="(max-width: 743px) 60vw, 340px" className={s.shot} data-on={i === active ? '' : undefined} />
+            ))}
+          </Phone>
+        </div>
+        <div className={s.copy} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
+          <p id={`${id}-title`} className="cap">
+            Three ways to record
+          </p>
+          <div role="tablist" aria-orientation="vertical" aria-labelledby={`${id}-title`} className={s.tabs} onKeyDown={onKey}>
+            {STEPS.map((st, i) => (
+              <button
+                key={st.title}
+                ref={el => {
+                  tabs.current[i] = el;
+                }}
+                type="button"
+                role="tab"
+                id={`${id}-tab-${i}`}
+                aria-selected={i === active}
+                aria-controls={`${id}-panel`}
+                tabIndex={i === active ? 0 : -1}
+                className={s.tab}
+                onClick={() => setActive(i)}
+              >
+                <span className="display-2">{st.title}</span>
+                <span className={s.track} aria-hidden>
+                  <span className={s.fill} data-running={i === active && running ? '' : undefined} key={`${active}-${running}`} style={{ animationDuration: `${DWELL}ms` }} />
+                </span>
+              </button>
+            ))}
+          </div>
+          <p id={`${id}-panel`} role="tabpanel" aria-labelledby={`${id}-tab-${active}`} className={`lead ${s.text}`} key={active}>
+            {STEPS[active].text}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}

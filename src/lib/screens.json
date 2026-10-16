@@ -1,0 +1,149 @@
+{
+  "$comment": "Every product image on the site, from the app's own captures (App/marketing/app-store/assets/screens, 11 October 2026, iPhone at 1320 x 2868 px = 440 x 956 pt). `screens` are whole screens, shown in a phone. `cuts` are pieces the app's captures were already cut into (sheets, rows, a notification), shown at their own shape. `crops` are rectangles in points cut from a whole screen by scripts/screens.mjs. Nothing is redrawn or retouched. See docs/SCREENSHOTS.md.",
+  "device": {
+    "w": 440,
+    "h": 956,
+    "scale": 3
+  },
+  "screens": {
+    "home-light": "Home, light — remaining this month across six wallets, the spending ring, over budget, due now",
+    "home-dark": "Home, dark",
+    "home-dark-budgets": "Home, dark, scrolled to budgets and what is due",
+    "home-hidden-dark": "Home with amounts hidden",
+    "composer-dark": "Recording an expense as a sentence: I spent AED 86.50 on Groceries from Main bank, today",
+    "scan-reading-a": "Scanning a receipt — reading it",
+    "scan-reading-b": "Scanning a receipt — reading it, a moment later",
+    "scan-done-dark": "A scanned receipt, turned into a record to check",
+    "wallets-light": "Wallets — net worth across five wallets in four currencies",
+    "people-light": "Friends & family — who owes you, and whom you owe",
+    "budgets-dark": "Budgets — over budget, running out early, going fast",
+    "budget-goingout-dark": "The Going out budget — what is left, and how much a day",
+    "goals-dark": "Goals — a new car, a safety net, clearing a car loan",
+    "goal-car-dark": "The new-car goal — saved so far, a month to put aside, the target date",
+    "schedules-light": "Scheduled payments, light — waiting for you, later this month",
+    "schedules-dark": "Scheduled payments, dark",
+    "schedule-rent-light": "Rent, every month — and every time it was paid",
+    "schedule-rent-dark": "Rent, dark",
+    "notifications-dark": "Notifications — over budget, a bill due, someone who owes you",
+    "customise-light": "Customise Home — what Home shows, and in what order",
+    "customise-drag-light": "Customise Home, moving a section",
+    "customise-drag-light-b": "Customise Home, a section moved"
+  },
+  "cuts": {
+    "composer-sheet": {
+      "file": "composer-dark-sheet",
+      "alt": "Recording an expense: I spent AED 86.50 on Groceries from Main bank, today"
+    },
+    "scan-sentence": {
+      "file": "scan-done-sentence",
+      "alt": "A scanned receipt read back as a sentence: I spent AED 86.50 on Groceries from Main bank, paid to Harbour Lane"
+    },
+    "scan-sheet": {
+      "file": "scan-done-sheet",
+      "alt": "A scanned receipt, ready to check and save"
+    },
+    "scan-reading": {
+      "file": "scan-reading-sheet",
+      "alt": "The app reading a supermarket receipt"
+    },
+    "bill-waiting": {
+      "file": "bill-waiting-light",
+      "alt": "Electricity & water, due 11 October, AED 420 — Record it or Skip this time"
+    },
+    "bill-rent": {
+      "file": "bill-rent-light",
+      "alt": "Rent of AED 6,500 every month, and each month it was paid"
+    },
+    "budget-page": {
+      "file": "budget-goingout-page",
+      "alt": "The Going out budget: AED 1,280.52 left, AED 60.98 a day"
+    },
+    "goal-page": {
+      "file": "goal-car-page",
+      "alt": "Saving for a new car: AED 6,500 of AED 20,000, AED 1,126 a month"
+    },
+    "customise-page": {
+      "file": "customise-page",
+      "alt": "Customise Home: Remaining this month, Spending ring, Budgets, Coming up, Recent"
+    },
+    "hidden-page": {
+      "file": "home-hidden-page",
+      "alt": "Home with every amount hidden"
+    },
+    "notif-budget": {
+      "file": "notif-transport",
+      "alt": "A notification: Transportation nearly used up, 88% used, 180 AED left"
+    },
+    "row-aed": {
+      "file": "row-aed",
+      "alt": "Main bank, AED 24,180.00"
+    },
+    "row-pkr": {
+      "file": "row-pkr",
+      "alt": "Karachi account, Rs 185,000.00"
+    },
+    "row-inr": {
+      "file": "row-inr",
+      "alt": "Mumbai account, ₹42,000.00"
+    },
+    "row-usd": {
+      "file": "row-usd",
+      "alt": "USD account, $2,600.00"
+    },
+    "row-ali": {
+      "file": "row-ali",
+      "alt": "Ali owes you Rs 5,000.00"
+    }
+  },
+  "crops": {
+    "total": {
+      "from": "home-light",
+      "x": 20,
+      "y": 150,
+      "w": 240,
+      "h": 115
+    },
+    "ring": {
+      "from": "home-light",
+      "x": 108,
+      "y": 296,
+      "w": 240,
+      "h": 240
+    },
+    "over-tile": {
+      "from": "home-light",
+      "x": 28,
+      "y": 618,
+      "w": 126,
+      "h": 118
+    },
+    "budget-summary": {
+      "from": "budgets-dark",
+      "x": 24,
+      "y": 140,
+      "w": 408,
+      "h": 112
+    },
+    "budget-over": {
+      "from": "budgets-dark",
+      "x": 24,
+      "y": 272,
+      "w": 408,
+      "h": 116
+    },
+    "goal-card": {
+      "from": "goals-dark",
+      "x": 24,
+      "y": 140,
+      "w": 408,
+      "h": 196
+    },
+    "net-worth": {
+      "from": "wallets-light",
+      "x": 14,
+      "y": 140,
+      "w": 300,
+      "h": 80
+    }
+  }
+}

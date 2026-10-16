@@ -1,0 +1,88 @@
+.section {
+  padding: 0 0 clamp(96px, 11vw, 168px);
+  background: var(--n-50);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.8fr);
+  min-height: 340px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--n-150);
+  color: var(--n-ink);
+}
+
+.card[data-dark] {
+  background: var(--panel);
+  color: var(--ivory);
+}
+
+.copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 14px;
+  padding: clamp(28px, 4vw, 56px);
+}
+
+.card[data-dark] .cap {
+  color: rgba(247, 246, 241, 0.55);
+}
+
+.summary {
+  max-width: 26em;
+  font-size: 17px;
+  line-height: 1.5;
+  opacity: 0.7;
+}
+
+.arrow {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-top: 12px;
+  border-radius: 50%;
+  background: var(--brand);
+  color: var(--on-brand);
+  transition: transform 0.5s var(--ease-quint);
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+}
+
+.phone {
+  --w: 230px;
+  position: absolute;
+  left: 50%;
+  top: 40px;
+  transform: translateX(-50%);
+  transition: transform 0.8s var(--ease-quint);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .arrow {
+    transform: translateX(6px);
+  }
+  .card:hover .phone {
+    transform: translateX(-50%) translateY(-14px);
+  }
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--n-ink);
+  outline-offset: 4px;
+}
+
+@media (max-width: 743px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+  .media {
+    height: 260px;
+  }
+}

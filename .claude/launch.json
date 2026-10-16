@@ -1,15 +1,8 @@
 {
   "version": "0.0.1",
   "configurations": [
-    {
-      "name": "site",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": [
-        "run",
-        "dev"
-      ],
-      "port": 3000,
-      "autoPort": true
-    }
+    { "name": "web", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 4321 },
+    { "name": "webapp", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "../WebApp", "run", "dev"], "port": 4322 },
+    { "name": "webapp-alt", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "../WebApp", "run", "dev", "--", "--port", "4323", "--strictPort"], "port": 4323 }
   ]
 }

@@ -1,0 +1,42 @@
+.section {
+  padding: calc(var(--sec) * 0.5) 0 var(--sec);
+  background: var(--n-50);
+}
+
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(64px, 9vw, 128px) clamp(24px, 4vw, 56px);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  background:
+    radial-gradient(70% 80% at 50% 0%, rgba(76, 195, 138, 0.28), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(40% 50% at 50% 110%, rgba(242, 198, 109, 0.18), rgba(242, 198, 109, 0) 70%),
+    var(--forest);
+  color: var(--ivory);
+  text-align: center;
+}
+
+.mark {
+  width: clamp(64px, 7vw, 96px);
+  height: clamp(64px, 7vw, 96px);
+  margin-bottom: clamp(24px, 3vw, 40px);
+}
+
+.title {
+  max-width: 10em;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 32em;
+  margin-top: 24px;
+  color: rgba(247, 246, 241, 0.74);
+}
+
+.buttons {
+  justify-content: center;
+  margin-top: 36px;
+}

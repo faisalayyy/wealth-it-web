@@ -1,0 +1,73 @@
+.phone {
+  --w: 300px;
+  width: var(--w);
+  container-type: inline-size;
+  position: relative;
+  flex: none;
+}
+
+.frame {
+  position: relative;
+  padding: 3.6cqi;
+  border-radius: 16.5cqi;
+}
+
+/* the frosted frame the walkthrough phone wears on the brand ground */
+.phone[data-variant='glass'] .frame {
+  background: rgba(255, 255, 255, 0.36);
+  -webkit-backdrop-filter: blur(24px) saturate(1.2);
+  backdrop-filter: blur(24px) saturate(1.2);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45),
+    0 30px 80px -30px rgba(11, 13, 12, 0.35);
+}
+
+.phone[data-variant='device'] .frame {
+  padding: 3cqi;
+  background: linear-gradient(145deg, #3d413e, #151816 45%, #2b2e2c);
+  box-shadow:
+    inset 0 0 0 0.35cqi rgba(255, 255, 255, 0.12),
+    0 40px 90px -30px rgba(0, 0, 0, 0.55);
+}
+
+.screen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 440 / 956;
+  border-radius: 13cqi;
+  background: #0b0d0c;
+  transform: translateZ(0);
+}
+
+.shot,
+.shot img,
+.layer,
+.layer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.shot img,
+.layer img {
+  object-fit: cover;
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.island {
+  position: absolute;
+  z-index: 5;
+  left: 34.33%;
+  top: 1.26%;
+  width: 31.34%;
+  height: 4.23%;
+  border-radius: 999px;
+  background: #000;
+  pointer-events: none;
+}

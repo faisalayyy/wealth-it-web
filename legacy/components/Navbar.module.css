@@ -1,0 +1,30 @@
+.navbar {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: var(--100vw);
+  padding: var(--32-24) 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.home {
+  display: inline-flex;
+  padding: 4px 0;
+}
+
+.ctas {
+  display: flex;
+  gap: clamp(8px, 6.791px + 0.31vw, 12px);
+}
+
+@media (max-width: 1023px) {
+  .last {
+    display: none;
+  }
+}

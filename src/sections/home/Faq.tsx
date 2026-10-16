@@ -1,0 +1,90 @@
+'use client';
+
+import Link from 'next/link';
+import { useId, useState } from 'react';
+import { coined } from '@/components/Coin';
+import { Icon } from '@/components/Icon';
+import s from './Faq.module.css';
+
+/**
+ * Questions (not in the reference; asked for in the brief): five answers drawn from the Help page
+ * and the privacy policy, one open at a time, each opening smoothly. The rest are on /support/.
+ */
+export type QA = { q: string; a: string | string[] };
+
+const HOME: QA[] = [
+  {
+    q: 'Is Wealthit in the App Store yet?',
+    a: 'Not yet. The iPhone app is being tested now and is coming soon to the App Store; Android is planned. The buttons on this page become real links the day it is listed.',
+  },
+  {
+    q: 'Do I need an account?',
+    a: 'Yes — sign in with Apple, Google or your email. Your records are kept in your account, so they are the same on every phone you sign in on, and a lost or new phone loses nothing.',
+  },
+  {
+    q: 'Does it connect to my bank?',
+    a: 'No. Wealthit never asks for your bank login. You record what you spend yourself — as a sentence, from a receipt, or with Tap to Record when you pay with Apple Pay.',
+  },
+  {
+    q: 'How does it handle different currencies?',
+    a: 'Every wallet keeps its own currency. Totals use a rate you actually got on a transfer, a fixed peg such as the dirham’s to the dollar, or the day’s published rate. Anything none of those can reach is left out of the total and named, and still shown in its own currency.',
+  },
+  {
+    q: 'Who can see my records?',
+    a: 'You. They are kept on your phone and in your account on Wealthit’s server in Frankfurt, in the EU, and nobody reads them. There is no tracking, no advertising and no analytics, and receipt photos never leave your phone.',
+  },
+];
+
+export function Faq({
+  items = HOME,
+  cap = 'Questions',
+  title = 'Asked, and answered.',
+  more = true,
+  sectionId,
+}: {
+  items?: QA[];
+  cap?: string;
+  title?: string;
+  more?: boolean;
+  sectionId?: string;
+}) {
+  const [open, setOpen] = useState<number | null>(0);
+  const id = useId();
+  return (
+    <section className={s.section} aria-labelledby={`${id}-title`} id={sectionId} data-ground="light">
+      <div className={`wrap ${s.grid}`}>
+        <div>
+          <p className="cap">{cap}</p>
+          <h2 id={`${id}-title`} className={`display-2 ${s.title}`}>
+            {coined(title)}
+          </h2>
+          {more && (
+            <Link href="/support/" className={s.more}>
+              More answers on the Help page
+              <Icon name="arrow-up-right" size={16} />
+            </Link>
+          )}
+        </div>
+        <ul className={s.list}>
+          {items.map((item, i) => (
+            <li key={item.q} className={s.item} data-open={open === i ? '' : undefined}>
+              <h3>
+                <button type="button" className={s.q} aria-expanded={open === i} aria-controls={`${id}-a${i}`} id={`${id}-q${i}`} onClick={() => setOpen(open === i ? null : i)}>
+                  <span>{item.q}</span>
+                  <Icon name="plus" size={20} className={s.plus} />
+                </button>
+              </h3>
+              <div id={`${id}-a${i}`} role="region" aria-labelledby={`${id}-q${i}`} className={s.a} inert={open !== i}>
+                <div>
+                  {(Array.isArray(item.a) ? item.a : [item.a]).map(p => (
+                    <p key={p}>{p}</p>
+                  ))}
+                </div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  );
+}

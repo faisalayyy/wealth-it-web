@@ -1,0 +1,229 @@
+.footer {
+  color: var(--brand-text);
+  padding-bottom: 120px;
+}
+
+/* ─── links ──────────────────────────────────────────────────────────────────────────── */
+.links {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--grid-gap);
+  margin-top: var(--80-32);
+}
+
+.groupHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 4px;
+  opacity: 0.5;
+  pointer-events: none;
+  text-align: left;
+}
+
+.plus {
+  display: none;
+}
+
+.groupItems li {
+  padding: 2px 0;
+}
+
+.link {
+  position: relative;
+  display: inline-block;
+}
+
+.link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-out-quart);
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* ─── store buttons, hairline, meta ──────────────────────────────────────────────────── */
+.externals {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: var(--80-32);
+}
+
+.note {
+  opacity: 0.6;
+}
+
+.divider {
+  height: 1px;
+  margin-top: var(--24-16);
+  background: var(--brand-text);
+  opacity: 0.12;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--24-16);
+}
+
+.lang {
+  padding: 12px 16px;
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px rgba(76, 106, 8, 0.2);
+  font-size: 14px;
+}
+
+/* ─── the name, as wide as the page ──────────────────────────────────────────────────── */
+.wordmark {
+  position: relative;
+  margin-top: 32px;
+  overflow: hidden;
+}
+
+.glyphs {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  font-size: calc(var(--grid-width) / 4.95);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.05em;
+  padding-bottom: 0.06em;
+}
+
+.glyph {
+  display: inline-block;
+  will-change: transform;
+}
+
+.markGlyph {
+  display: inline-block;
+  width: 0.78em;
+  height: 0.78em;
+  margin-right: 0.08em;
+  margin-bottom: 0.03em;
+  align-self: flex-end;
+  will-change: transform;
+}
+
+.mark {
+  width: 100%;
+  height: 100%;
+}
+
+.legal {
+  margin-top: var(--96-32);
+  opacity: 0.6;
+  max-width: 1100px;
+}
+
+/* ─── in place of partnerships: the app itself ───────────────────────────────────────── */
+.cards {
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: min(658px, 100%);
+  min-height: clamp(200px, 176.171px + 6.11vw, 280px);
+  padding: 0 var(--32-16);
+  border-radius: var(--20-16);
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.strip {
+  position: absolute;
+  inset: 16px 16px auto;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.stripShot {
+  width: 18%;
+  flex: none;
+  border-radius: 10px;
+  overflow: hidden;
+  transform: translateY(8%);
+}
+
+.stripShot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.cardGradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 13, 12, 0) 15%, var(--ink) 72%);
+}
+
+.cardText {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 460px;
+  margin-bottom: 22px;
+  text-align: center;
+  color: var(--white);
+}
+
+.cardText span {
+  opacity: 0.6;
+}
+
+@media (max-width: 743px) {
+  .links {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .links > li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(76, 106, 8, 0.12);
+  }
+  .groupHead {
+    pointer-events: auto;
+    margin: 0;
+  }
+  .plus {
+    display: block;
+    transition: transform 0.3s var(--ease-out-cubic);
+  }
+  li[data-open] .plus {
+    transform: rotate(45deg);
+  }
+  .groupItems {
+    display: none;
+    padding-top: 8px;
+  }
+  li[data-open] .groupItems {
+    display: block;
+  }
+  .externals {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

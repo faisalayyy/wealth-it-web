@@ -1,0 +1,107 @@
+.whole {
+  position: relative;
+  height: 280vh;
+  background: var(--n-50);
+  color: var(--n-ink);
+}
+
+.stage {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.copyRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.copy {
+  width: 44%;
+}
+
+.copy .cap {
+  margin-bottom: 20px;
+}
+
+.window {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(60% 60% at 50% 40%, rgba(76, 195, 138, 0.15), rgba(76, 195, 138, 0) 70%),
+    var(--panel);
+  clip-path: inset(18vh 4vw 18vh 52vw round 24px);
+}
+
+.phones {
+  display: flex;
+  align-items: center;
+  gap: clamp(20px, 3vw, 48px);
+}
+
+.phone {
+  --w: clamp(200px, 21vw, 330px);
+  filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.5));
+}
+
+.side {
+  --w: clamp(170px, 17vw, 280px);
+  opacity: 0.92;
+}
+
+/* phones and reduced motion: the sentence, then the window as a plain card */
+@media (max-width: 899px) {
+  .whole {
+    height: auto;
+    padding: calc(var(--sec) * 0.5) 0;
+  }
+  .stage {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+  .copyRow {
+    height: auto;
+  }
+  .copy {
+    width: 100%;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .window {
+    position: relative;
+    margin: 40px var(--gutter) 0;
+    padding: 48px 0;
+    border-radius: var(--r-lg);
+    clip-path: none !important;
+    overflow: hidden;
+  }
+  .side {
+    display: none;
+  }
+  .phone {
+    --w: min(62vw, 300px);
+  }
+}
+
+.whole[data-static] {
+  height: auto;
+}
+.whole[data-static] .stage {
+  position: relative;
+  height: auto;
+}
+.whole[data-static] .window {
+  position: relative;
+  height: 80vh;
+  margin: 40px var(--gutter) 0;
+  border-radius: var(--r-lg);
+  clip-path: none;
+}

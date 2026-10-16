@@ -1,14 +1,12 @@
-# Build the site and publish it to GitHub Pages on every push to main.
-#
-# Nothing here is a third-party action: all five are GitHub's own. The site is static, so the
-# job is `npm ci && npm run build` and then handing `dist/` to Pages — there is no server to
-# run, nothing to warm up and nothing to keep alive.
+# Build the static site and publish it to GitHub Pages on every push to main. Pages serves it at
+# https://wealthit.app (the custom domain is set in the repo's Pages settings), so it is built for
+# the domain's root — no base path. Everything here is GitHub's own action: `npm ci`, a type
+# check, `next build`, and handing `out/` to Pages.
 name: Deploy to Pages
 
 on:
   push:
     branches: [main]
-  # so a deploy can be re-run by hand without an empty commit
   workflow_dispatch:
 
 permissions:
@@ -16,7 +14,6 @@ permissions:
   pages: write
   id-token: write
 
-# One deploy at a time, and a newer push waits rather than racing the one in front of it.
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -26,20 +23,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-
       - run: npm ci
       - run: npm run check
       - run: npm run build
-
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist
+          path: ./out
 
   deploy:
     needs: build

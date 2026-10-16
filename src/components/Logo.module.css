@@ -1,0 +1,32 @@
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.22em;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1;
+  color: var(--night);
+}
+
+.logo[data-tone='dark'] {
+  color: var(--ivory);
+}
+
+.mark {
+  width: 1.18em;
+  height: 1.18em;
+  flex: none;
+  margin: -0.1em 0;
+}
+
+.name {
+  white-space: nowrap;
+}
+
+.it {
+  color: var(--emerald);
+}
+.logo[data-tone='dark'] .it {
+  color: var(--mint);
+}

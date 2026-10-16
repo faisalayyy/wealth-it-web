@@ -1,0 +1,466 @@
+/* The design system — measured grid, spacing and type scale (docs/REFERENCE_SPEC.md,
+   docs/BUTTER_REFERENCE.md), carrying Wealthit's brand (App/brand/README.md): Forest, Gold,
+   Emerald, Mint, Ivory and Night, set in Plus Jakarta Sans. */
+
+:root {
+  /* ─── colour: the brand (App/brand/README.md, App/src/ui/brandMark.ts) ──────────────── */
+  --forest: #0e3b30; /* the icon's ground: the brand's big panels */
+  --gold: #f2c66d; /* the coin: the full stop at the end of a headline, small highlights */
+  --emerald: #0d7443; /* the leaves on light: buttons, and brand text on light grounds */
+  --mint: #4cc38a; /* the leaves on dark: brand text on dark grounds */
+  --ivory: #f7f6f1;
+  --night: #0b0b0c;
+
+  /* roles */
+  --brand: var(--emerald); /* a brand fill — text on it is white */
+  --on-brand: #ffffff;
+  --brand-deep: var(--forest); /* a brand ground — text on it is ivory */
+  --on-deep: var(--ivory);
+  --brand-bar: #12865a; /* a step lighter than emerald, for hovers */
+  --brand-25: #e8f2ec; /* the lightest tint */
+  --brand-text: var(--emerald); /* brand text on light grounds (the app's accent text) */
+  --ink: #0b0b0c; /* text, and the darkest tone */
+  --ink-soft: rgba(11, 11, 12, 0.62);
+  --white: #ffffff;
+  --media: #0b0b0c; /* the dark ground behind phones (the app's dark background) */
+  --sf: #161617; /* the app's dark surface */
+  --mu: #9c9c98; /* the app's muted text on dark */
+
+  /* category hues and meanings, from the app */
+  --c-housing: #8e9bc4;
+  --c-food: #d9a066;
+  --c-financial: #c98a8a;
+  --c-shopping: #c4b36a;
+  --c-comms: #6fbfa0;
+  --c-life: #b889b0;
+  --c-transport: #6fa8b8;
+  --inc: #5bc98c;
+  --exp: #e2664f;
+
+  /* ─── grid: 16 columns, fluid gap and margin ───────────────────────────────────────── */
+  --100vw: calc(100vw - var(--sbw, 0px));
+  --grid-gap: clamp(4px, -1.967px + 100vw * 0.0153, 24px);
+  --grid-half-gap: calc(var(--grid-gap) * 0.5);
+  --grid-margin: clamp(16px, 2.896px + 100vw * 0.0336, 60px);
+  --grid-padding: calc(var(--grid-margin) - var(--grid-gap) * 0.5);
+  --grid-width: calc(var(--100vw) - var(--grid-margin) * 2);
+  --cols-1: calc((var(--100vw) - 2 * var(--grid-padding)) / 16 - var(--grid-gap));
+  --cols-4: calc((var(--100vw) - 2 * var(--grid-padding)) / 4 - var(--grid-gap));
+  --cols-5: calc((var(--100vw) - 2 * var(--grid-padding)) / 3.2 - var(--grid-gap));
+  --cols-6: calc((var(--100vw) - 2 * var(--grid-padding)) / 2.6667 - var(--grid-gap));
+  --cols-7: calc((var(--100vw) - 2 * var(--grid-padding)) / 2.2857 - var(--grid-gap));
+  --cols-8: calc((var(--100vw) - 2 * var(--grid-padding)) / 2 - var(--grid-gap));
+  --cols-10: calc((var(--100vw) - 2 * var(--grid-padding)) / 1.6 - var(--grid-gap));
+  --cols-12: calc((var(--100vw) - 2 * var(--grid-padding)) / 1.3333 - var(--grid-gap));
+  --cols-14: calc((var(--100vw) - 2 * var(--grid-padding)) / 1.1429 - var(--grid-gap));
+  --cols-15: calc((var(--100vw) - 2 * var(--grid-padding)) / 1.0667 - var(--grid-gap));
+  --cols-16: var(--grid-width);
+
+  /* ─── fluid spacing (min–max at 390–1700px) ─────────────────────────────────────────── */
+  --8: 8px;
+  --10: 10px;
+  --12: 12px;
+  --16: 16px;
+  --20: 20px;
+  --24: 24px;
+  --32: 32px;
+  --44: 44px;
+  --48: 48px;
+  --80: 80px;
+  --120: 120px;
+  --280: 280px;
+  --16-12: clamp(12px, 10.791px + 100vw * 0.0031, 16px);
+  --20-16: clamp(16px, 14.791px + 100vw * 0.0031, 20px);
+  --24-12: clamp(12px, 8.412px + 100vw * 0.0092, 24px);
+  --24-16: clamp(16px, 13.621px + 100vw * 0.0061, 24px);
+  --32-16: clamp(16px, 11.242px + 100vw * 0.0122, 32px);
+  --32-24: clamp(24px, 21.621px + 100vw * 0.0061, 32px);
+  --48-24: clamp(24px, 16.863px + 100vw * 0.0183, 48px);
+  --60-24: clamp(24px, 13.275px + 100vw * 0.0275, 60px);
+  --64-24: clamp(24px, 12.105px + 100vw * 0.0305, 64px);
+  --64-48: clamp(48px, 43.242px + 100vw * 0.0122, 64px);
+  --80-32: clamp(32px, 17.726px + 100vw * 0.0366, 80px);
+  --80-40: clamp(40px, 28.105px + 100vw * 0.0305, 80px);
+  --96-32: clamp(32px, 12.929px + 100vw * 0.0489, 96px);
+  --96-48: clamp(48px, 33.726px + 100vw * 0.0366, 96px);
+  --120-64: clamp(64px, 47.347px + 100vw * 0.0427, 120px);
+  --180-64: clamp(64px, 29.485px + 100vw * 0.0885, 180px);
+  --216-140: clamp(140px, 117.38px + 100vw * 0.058, 216px);
+  /* the About page's pairs, on the same line: max at 1700 wide, min at 390 */
+  --64: 64px;
+  --12-8: clamp(8px, 6.809px + 100vw * 0.0031, 12px);
+  --16-8: clamp(8px, 5.618px + 100vw * 0.0061, 16px);
+  --40-20: clamp(20px, 14.046px + 100vw * 0.0153, 40px);
+  --60-16: clamp(16px, 2.901px + 100vw * 0.0336, 60px);
+  --80-64: clamp(64px, 59.237px + 100vw * 0.0122, 80px);
+  --108-64: clamp(64px, 50.901px + 100vw * 0.0336, 108px);
+  --136-64: clamp(64px, 42.565px + 100vw * 0.055, 136px);
+  --144-32: clamp(32px, -1.344px + 100vw * 0.0855, 144px);
+  --180-48: clamp(48px, 8.702px + 100vw * 0.1008, 180px);
+  --186-64: clamp(64px, 27.679px + 100vw * 0.0931, 186px);
+
+  /* ─── motion ─────────────────────────────────────────────────────────────────────────── */
+  --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+  --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ─── base ─────────────────────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font), ui-sans-serif, system-ui, sans-serif;
+  font-optical-sizing: auto;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 450;
+  letter-spacing: -0.003em;
+  color: var(--ink);
+  background: var(--n-50);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+  font-weight: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+img,
+svg,
+video,
+canvas,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ─── type ─────────────────────────────────────────────────────────────────────────────── */
+.title-1 {
+  font-size: clamp(56px, 19.067px + 9.47vw, 180px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.title-2 {
+  font-size: clamp(48px, 26.55px + 5.5vw, 120px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.title-3 {
+  font-size: clamp(40px, 28.105px + 3.05vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+.title-4 {
+  font-size: clamp(32px, 22.484px + 2.44vw, 64px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.title-5 {
+  font-size: clamp(27px, 20.76px + 1.6vw, 48px);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.subhead-1 {
+  font-size: clamp(23px, 19.139px + 0.99vw, 36px);
+  line-height: 1.2;
+  letter-spacing: -0.005em;
+}
+.subhead-2 {
+  font-size: clamp(19px, 17.518px + 0.38vw, 24px);
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+.subhead-3 {
+  font-size: clamp(18px, 17.415px + 0.15vw, 20px);
+  line-height: 1.2;
+}
+.body {
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+.body-small {
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+}
+.caption {
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 743px) {
+  .xs-title-4 {
+    font-size: clamp(32px, 22.484px + 2.44vw, 64px);
+    line-height: 1.1;
+  }
+  .xs-title-5 {
+    font-size: clamp(27px, 20.76px + 1.6vw, 48px);
+    line-height: 1.2;
+  }
+  .xs-subhead-1 {
+    font-size: clamp(23px, 19.139px + 0.99vw, 36px);
+    line-height: 1.2;
+  }
+  .xs-subhead-2 {
+    font-size: clamp(19px, 17.518px + 0.38vw, 24px);
+    line-height: 1.2;
+  }
+  .xs-body {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+}
+
+.-book {
+  font-weight: 450;
+}
+.-medium {
+  font-weight: 500;
+}
+
+.color-brand-text {
+  color: var(--brand-text);
+}
+.color-ink {
+  color: var(--ink);
+}
+.color-white {
+  color: var(--white);
+}
+.background-brand {
+  background-color: var(--brand);
+}
+.background-white {
+  background-color: var(--white);
+}
+.whitespace-pre-line {
+  white-space: pre-line;
+}
+.text-center {
+  text-align: center;
+}
+
+/* SplitText masks: characters rise out of their own clip */
+.split-mask {
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+  vertical-align: bottom;
+}
+
+/* ─── grid ─────────────────────────────────────────────────────────────────────────────── */
+.g-row {
+  display: flex;
+  flex-flow: wrap;
+  width: 100%;
+  padding-left: var(--grid-padding);
+  padding-right: var(--grid-padding);
+}
+.g-row-full {
+  width: var(--grid-width);
+  margin: 0 auto;
+}
+.g-col {
+  flex: 0 0 auto;
+  padding-left: var(--grid-half-gap);
+  padding-right: var(--grid-half-gap);
+  width: calc(var(--span, 16) / 16 * 100%);
+  margin-left: calc(var(--off, 0) / 16 * 100%);
+}
+
+/* A column that changes span and offset by breakpoint, the way the reference's
+   `xxl-9 md-12 sm-14 xs-16 xxl-offset-3 md-offset-1` classes do: each size falls back to the one
+   above it. Set with `col()` from src/lib/grid.ts. */
+.gc {
+  flex: 0 0 auto;
+  padding-left: var(--grid-half-gap);
+  padding-right: var(--grid-half-gap);
+  width: calc(var(--w-xxl, 16) / 16 * 100%);
+  margin-left: calc(var(--o-xxl, 0) / 16 * 100%);
+}
+@media (max-width: 1290px) {
+  .gc {
+    width: calc(var(--w-md, var(--w-xxl, 16)) / 16 * 100%);
+    margin-left: calc(var(--o-md, var(--o-xxl, 0)) / 16 * 100%);
+  }
+}
+@media (max-width: 1023px) {
+  .gc {
+    width: calc(var(--w-sm, var(--w-md, var(--w-xxl, 16))) / 16 * 100%);
+    margin-left: calc(var(--o-sm, var(--o-md, var(--o-xxl, 0))) / 16 * 100%);
+  }
+}
+@media (max-width: 743px) {
+  .gc {
+    width: calc(var(--w-xs, var(--w-sm, var(--w-md, var(--w-xxl, 16)))) / 16 * 100%);
+    margin-left: calc(var(--o-xs, var(--o-sm, var(--o-md, var(--o-xxl, 0)))) / 16 * 100%);
+  }
+}
+
+/* sixteen columns as a CSS grid, for layouts that place things by grid-area */
+.g-table {
+  display: grid;
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+  column-gap: var(--grid-gap);
+  padding-left: var(--grid-padding);
+  padding-right: var(--grid-padding);
+}
+
+/* SplitText character masks for display lines */
+.hc-mask {
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
+  vertical-align: bottom;
+}
+
+.page {
+  position: relative;
+}
+
+/* ─── the second design (docs/BUTTER_REFERENCE.md) ─────────────────────────────────────────
+   Warm neutral surfaces from the app's own light theme, Night panels that sit with its dark
+   screens, Forest for the brand's own moments, Emerald for what to press, Gold for the coin. */
+:root {
+  --n-50: #f7f6f1; /* ivory: the page */
+  --n-100: #f0efe9;
+  --n-150: #e8e7e0;
+  --n-200: #dcdbd3;
+  --n-ink: #0b0b0c;
+  --n-cap: rgba(11, 11, 12, 0.52);
+  --n-line: rgba(11, 11, 12, 0.11);
+  --panel: #0b0b0c;
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 28px;
+  --r-xl: 36px;
+  --gutter: clamp(16px, 3.9vw, 56px);
+  --wrap: min(1328px, calc(var(--100vw) - var(--gutter) * 2));
+  --sec: clamp(96px, 11vw, 168px);
+  --ease-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* the coin: a headline's full stop, drawn as the logo's gold coin */
+.coin {
+  display: inline-block;
+  width: 0.2em;
+  height: 0.2em;
+  margin-left: 0.05em;
+  border-radius: 50%;
+  background: var(--gold);
+  color: transparent;
+  overflow: hidden;
+  vertical-align: baseline;
+  box-shadow: inset 0 -0.02em 0 rgba(120, 80, 10, 0.18);
+}
+
+.wrap {
+  width: var(--wrap);
+  margin-inline: auto;
+}
+
+.display-1 {
+  font-size: clamp(46px, 7vw, 104px);
+  line-height: 1;
+  letter-spacing: -0.05em;
+  font-weight: 560;
+}
+.display-2 {
+  font-size: clamp(34px, 4.4vw, 66px);
+  line-height: 1.04;
+  letter-spacing: -0.045em;
+  font-weight: 560;
+}
+.statement {
+  font-size: clamp(28px, calc(16px + 2.3vw), 50px);
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+  font-weight: 540;
+}
+.story {
+  font-size: clamp(26px, calc(15px + 1.9vw), 40px);
+  line-height: 1.16;
+  letter-spacing: -0.032em;
+  font-weight: 540;
+}
+.lead {
+  font-size: clamp(16px, 1.2vw, 18px);
+  line-height: 1.55;
+  letter-spacing: -0.006em;
+  color: rgba(11, 11, 12, 0.68);
+}
+.cap {
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+  color: var(--n-cap);
+}

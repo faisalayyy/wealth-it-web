@@ -59,8 +59,8 @@ npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREEN
 - `src/lib/site.ts` — facts, `stores` and `webApp` (both `null`), contact address.
   `src/lib/features.ts` — every feature page's copy. `src/lib/brand.ts` — the mark's geometry and
   the chart colours. `src/lib/screens.json` — every capture, cut and crop.
-- `legacy/` — the first (Jeton) homepage and its chrome, never committed, not built. Delete when
-  no longer wanted.
+- The first (Jeton) homepage and its chrome were removed on 16 October 2026; they are in commit
+  `f7b07f0` under `legacy/` if ever wanted.
 
 ## Rules that are easy to break
 

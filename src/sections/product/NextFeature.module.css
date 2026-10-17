@@ -35,7 +35,11 @@
   max-width: 26em;
   font-size: 17px;
   line-height: 1.5;
-  opacity: 0.7;
+  color: var(--n-text);
+}
+
+.card[data-dark] .summary {
+  color: rgba(247, 246, 241, 0.78);
 }
 
 .arrow {

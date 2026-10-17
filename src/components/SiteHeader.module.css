@@ -23,7 +23,7 @@
   padding: 12px 16px;
   border-radius: var(--r-sm);
   background: var(--n-ink);
-  color: var(--white);
+  color: var(--n-50);
   pointer-events: auto;
 }
 .skip:focus-visible {
@@ -60,10 +60,10 @@
   height: 60px;
   padding: 0 10px 0 18px;
   border-radius: var(--r-md);
-  background: rgba(233, 232, 225, 0.86);
+  background: var(--n-pill);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
   backdrop-filter: blur(18px) saturate(1.5);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 0 0 1px var(--n-pill-edge);
   transition: min-width 0.6s var(--ease-b);
 }
 
@@ -120,12 +120,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .link:hover {
-    background: rgba(15, 15, 15, 0.06);
+    background: var(--n-tint);
   }
 }
 
 .link[data-active] {
-  background: rgba(15, 15, 15, 0.08);
+  background: var(--n-tint);
 }
 
 .link:focus-visible,
@@ -166,7 +166,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .dots:hover {
-    background: rgba(15, 15, 15, 0.07);
+    background: var(--n-tint);
   }
 }
 
@@ -200,7 +200,7 @@
   width: min(660px, calc(var(--100vw) - var(--gutter) * 2));
   padding: 24px 16px 16px;
   border-radius: 0 0 var(--r-md) var(--r-md);
-  background: #e9e8e1;
+  background: var(--n-menu);
   box-shadow: 0 30px 60px -30px rgba(11, 11, 12, 0.28);
   opacity: 0;
   transform: translateY(-12px);
@@ -231,7 +231,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .row:hover {
-    background: rgba(15, 15, 15, 0.05);
+    background: var(--n-tint);
   }
 }
 
@@ -259,7 +259,7 @@
   height: 40px;
   border-radius: var(--r-sm);
   background: var(--n-ink);
-  color: var(--white);
+  color: var(--n-50);
   font-size: 14px;
   font-weight: 600;
 }
@@ -278,13 +278,9 @@
   background: var(--panel);
 }
 
-.preview img {
+.previewItem {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 50% 0;
   opacity: 0;
   transform: scale(1.06);
   transition:
@@ -292,7 +288,25 @@
     transform 0.6s var(--ease-quint);
 }
 
-.preview img[data-on] {
+.previewItem img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+
+/* Tap to Record's card, on its Lock Screen */
+.previewItem .previewCard {
+  inset: auto 4% 14%;
+  width: 92%;
+  height: auto;
+  border-radius: 9px;
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.6);
+}
+
+.previewItem[data-on] {
   opacity: 1;
   transform: none;
 }
@@ -308,7 +322,7 @@
   padding: 14px 14px 22px;
   overflow-y: auto;
   border-radius: var(--r-md);
-  background: #e9e8e1;
+  background: var(--n-menu);
   box-shadow: 0 30px 60px -30px rgba(11, 11, 12, 0.3);
   opacity: 0;
   transform: scale(0.98);
@@ -351,16 +365,18 @@
   gap: 14px;
 }
 
+/* every row's 3D piece on the same soft tile, so the five read as one set */
 .thumb {
   display: grid;
   place-items: center;
   flex: none;
-  width: 58px;
-  height: 58px;
-  border-radius: 14px;
-  overflow: hidden;
-  background: var(--white);
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset;
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  background:
+    radial-gradient(80% 80% at 30% 20%, color-mix(in srgb, var(--surface) 90%, transparent), transparent 70%),
+    var(--n-150);
+  box-shadow: inset 0 0 0 1px var(--n-line);
   opacity: 0;
   transform: scale(0.86);
   transition:
@@ -368,31 +384,20 @@
     transform 0.4s var(--ease-b);
 }
 
+.thumb picture,
 .thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.thumb[data-kind='features'] img {
+  display: block;
+  width: 44px;
+  height: 44px;
   object-fit: contain;
-  padding: 4px;
+  filter: drop-shadow(0 4px 6px rgba(11, 11, 12, 0.22));
+  transition: transform 0.5s var(--ease-quint);
 }
 
-.thumb[data-kind='help'] {
-  background:
-    radial-gradient(70% 70% at 50% 30%, rgba(76, 195, 138, 0.3), rgba(76, 195, 138, 0) 70%),
-    var(--forest);
-}
-
-.thumbMark {
-  width: 38px;
-  height: 38px;
-}
-
-.thumb[data-kind='privacy'] {
-  background: var(--night);
-  color: var(--mint);
+@media (hover: hover) and (pointer: fine) {
+  .menuRow:hover .thumb img {
+    transform: scale(1.1) rotate(-4deg);
+  }
 }
 
 .menuLabel {
@@ -414,7 +419,7 @@
 /* each row's line, shown on hover at the right, as the reference does */
 .menuHint {
   font-size: 15px;
-  color: rgba(15, 15, 15, 0.42);
+  color: var(--n-cap);
   text-align: right;
   opacity: 0;
   transition: opacity 0.3s;
@@ -433,7 +438,7 @@
 .rule {
   display: block;
   height: 1px;
-  background: rgba(15, 15, 15, 0.15);
+  background: var(--n-tint-2);
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition: transform 0.3s var(--ease-b);
@@ -467,7 +472,7 @@
   font-size: 13px;
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: rgba(15, 15, 15, 0.5);
+  color: var(--n-cap);
   opacity: 0;
   transform: translateY(6px);
   transition:
@@ -491,6 +496,76 @@
   }
 }
 
+/* where to follow Wealthit, under the feature pages */
+.follow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid var(--n-line);
+  opacity: 0;
+  transition: opacity 0.3s var(--ease-b);
+}
+
+.menu[data-open] .follow {
+  opacity: 1;
+  transition: opacity 0.8s var(--ease-b) 0.5s;
+}
+
+.followLabel {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--n-cap);
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 0 14px 0 10px;
+  border-radius: 999px;
+  background: var(--n-tint);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .social:hover {
+    background: var(--n-tint-2);
+  }
+}
+
+.social:focus-visible {
+  outline: 2px solid var(--n-ink);
+  outline-offset: 2px;
+}
+
+/* dark or light */
+.theme {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--r-sm);
+  color: var(--n-ink);
+  transition: background-color 0.2s;
+}
+
+.theme > span {
+  display: grid;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .theme:hover {
+    background: var(--n-tint);
+  }
+}
+
 /* on phones the right pill is gone, so the menu carries the ways in */
 .menuCta {
   display: none;
@@ -506,10 +581,10 @@
   height: 60px;
   padding: 0 10px;
   border-radius: var(--r-md);
-  background: rgba(233, 232, 225, 0.86);
+  background: var(--n-pill);
   -webkit-backdrop-filter: blur(18px) saturate(1.5);
   backdrop-filter: blur(18px) saturate(1.5);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 0 0 1px var(--n-pill-edge);
   pointer-events: auto;
 }
 
@@ -527,19 +602,19 @@
 }
 
 a.login:hover {
-  background: rgba(11, 11, 12, 0.06);
+  background: var(--n-tint);
 }
 
 .login[data-soon] {
-  color: rgba(11, 11, 12, 0.5);
+  color: var(--n-cap);
   cursor: default;
 }
 
 .soon {
   padding: 2px 6px;
   border-radius: 6px;
-  background: rgba(242, 198, 109, 0.35);
-  color: #6b4f12;
+  background: var(--soon-bg);
+  color: var(--soon-fg);
   font-size: 11px;
   font-weight: 650;
   letter-spacing: 0.02em;
@@ -578,6 +653,12 @@ a.login:hover {
   .menuButton {
     width: 100%;
   }
+  .menuRow2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
   .menuLogin {
     display: inline-flex;
     align-items: center;
@@ -585,6 +666,6 @@ a.login:hover {
     padding: 6px;
     font-size: 15px;
     font-weight: 550;
-    color: rgba(11, 11, 12, 0.55);
+    color: var(--n-cap);
   }
 }

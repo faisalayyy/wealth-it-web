@@ -8,7 +8,7 @@ import type { Fact } from '@/lib/features';
 import s from './Facts.module.css';
 
 /** The smaller things, as a grid of cards: a title and a line or two each. */
-export function Facts({ title = 'And the smaller things.', facts }: { title?: string; facts: Fact[] }) {
+export function Facts({ title = 'The little things, too.', facts }: { title?: string; facts: Fact[] }) {
   const root = useRef<HTMLElement>(null);
   useGSAP(() => reveal(root.current), { scope: root });
   return (

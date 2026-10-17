@@ -19,3 +19,7 @@ node_modules
 src/app/_about/
 src/lib/about.ts
 unpublished/
+
+# the photographs as downloaded stay on this machine (the repo is public; the licences allow use
+# on the site, not handing out the originals) — re-download from media-src/people/CREDITS.md
+media-src/people/*.jpg

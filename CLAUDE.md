@@ -34,7 +34,11 @@ for the hero keyring, Three.js for the About slabs.
 npm run dev       # http://localhost:4321
 npm run check     # tsc
 npm run build     # → out/, for https://wealthit.app (the domain's root)
-npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREENSHOTS.md)
+npm run screens   # the iOS session's captures → public/screens (docs/SCREENSHOTS.md)
+scripts/videos.sh # its recordings → public/videos
+node scripts/compose.mjs   # photographs, with the app on the iPhones → public/people
+node scripts/tap.mjs       # Tap to Record's Lock Screen card, from the App Store poster's source
+node scripts/og.mjs        # the link preview, public/og.png
 ```
 
 - `src/app/` — `/`, `/features/` and `/features/<slug>/` (six, from `src/lib/features.ts`),
@@ -47,7 +51,10 @@ npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREEN
   `NextFeature`, `Switcher` (the floating section pill).
 - `src/sections/help/`, `src/sections/about/` — Help's hero and form; the Jeton About parts.
 - `src/components/` — SiteHeader (Features menu with captures; butter's two dots: the pill folds to
-  name + dots on scroll, the dots open the large menu at any scroll; Log in, Get the app), SiteFooter,
+  name + dots on scroll, the dots open the large menu at any scroll, its rows with 3D pieces from
+  `src/three/art.ts`, and Instagram; the theme switch, Log in, Get the app), PageTransition (a soft
+  fade and lift between pages, with a thin line along the top), SiteFooter (with
+  Socials), ThemeSwitch, TapPhone (the Lock Screen with Tap to Record's card arriving),
   Button (character roll; tones `brand` Emerald, `ink`, `neutral` Ivory on dark), AppButtons, Logo
   and Mark, Coin (`coined()`), Phone, Screen/Cut/Crop, Shot (renders any `Media`), Icon, and the
   Jeton blocks About uses.
@@ -56,6 +63,15 @@ npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREEN
 - `src/styles/system.css` — the grid, spacing and type scale, then the brand tokens (`--forest`,
   `--gold`, `--emerald`, `--mint`, `--ivory`, `--night`, roles `--brand`/`--brand-deep`), the
   neutrals and classes (`.wrap`, `.display-1/2`, `.statement`, `.story`, `.lead`, `.cap`, `.coin`).
+- **Two themes.** Dark is the default (the owner wants the site mostly dark), light is a switch in
+  the header, kept per visitor and set before the first paint (`layout.tsx`). Colours on the page go
+  through the neutral tokens (`--n-50`… `--n-ink`, `--n-text`, `--n-cap`, `--n-line`, `--n-tint`,
+  `--surface`, `--panel`), redefined under `[data-theme='dark']`; never a literal ink or white. Every
+  `-dark` capture and crop has a `-light` twin that `Screen`/`Crop` show in the light theme
+  (`exact` keeps one fixed); the two recordings with a light version follow too (`src/lib/theme.ts`).
+- **SEO**: `src/lib/seo.tsx` (`pageMeta` for every page's title, description, canonical and
+  preview; JSON-LD for the organisation, the app, FAQs and breadcrumbs), `sitemap.ts`, `robots.ts`,
+  `manifest.ts`, `public/og.png`.
 - `src/lib/site.ts` — facts, `stores` and `webApp` (both `null`), contact address.
   `src/lib/features.ts` — every feature page's copy. `src/lib/brand.ts` — the mark's geometry and
   the chart colours. `src/lib/screens.json` — every capture, cut and crop.
@@ -64,9 +80,16 @@ npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREEN
 
 ## Rules that are easy to break
 
-- **Real app UI only.** Every product image is one of the app's own captures
-  (`App/marketing/app-store/assets/screens`), a piece it was cut into, or a rectangle cut from one.
-  Never draw app UI in HTML, never retouch a capture. New screens: `docs/SCREENSHOTS.md`.
+- **Real app UI only.** Every product image is one of the iOS session's captures or recordings
+  (`~/Movies/Wealthit Website`, from TestFlight build 14), or a rectangle cut from one — or, where a
+  simulator can't show it (Tap to Record), a rectangle cut from the App Store poster drawn from the
+  app's real code. Never draw app UI in HTML, never retouch a capture. The app is shown mostly in
+  dark. New screens or recordings: ask the iOS session; `docs/SCREENSHOTS.md`.
+- **Photographs** (`media-src/people`, credited in `CREDITS.md`) are models, not users: the app
+  may be composited onto a phone in a hand or over a shoulder, never into a smiling face's hands,
+  and no caption makes anyone say anything (the Pexels licence: don't imply endorsement). The owner's
+  rules (17 October 2026): people from many places, not only the Gulf; every woman shown wears a
+  hijab; and new photographs are shown to the owner, composited, before they go on the site.
 - **The brand is the app's** (`App/brand/README.md`, `App/src/ui/brandMark.ts`). The mark is two
   leaves and a gold coin: leaves Emerald `#0D7443` on light, Mint `#4CC38A` on dark; the coin is
   always Gold `#F2C66D`. In the name, "Wealth" is Night (Ivory on dark) and "it" is Emerald (Mint
@@ -74,10 +97,20 @@ npm run screens   # screens-raw.nosync/*.png → public/screens (see docs/SCREEN
   text. Headlines end on the gold-coin full stop — `coined('…')`.
 - **Words** (`App/docs/marketing/app-store-campaign.md`): plain and specific. Never "smart",
   "effortless", "seamless", "all in one" or "take control", no exclamation marks, and never "it
-  never leaves your phone" — records sync to the account.
-- **No invented facts.** No user counts, reviews, partners, certifications, prices or social
-  links (the Instagram is not posted yet). Where butter shows client logos the homepage shows the
-  26 currencies the app keeps. No Pricing or Blog page until there is a price or a post.
+  never leaves your phone" (records sync to the account). The owner wants nothing that reads as
+  machine-written: no em or en dashes in anything visible, no "not X, but Y", no rhythm-for-its-own-
+  sake triads or stacked fragments. The voice (17 October 2026): professional and warm, about small
+  habits for a better future, with a light Gen Z touch at most once a section ("minus the
+  spreadsheet energy", "future you will thank you"); never in legal or help answers.
+- **No invented facts.** No user counts, reviews, partners, certifications or prices. Social links
+  only for accounts that exist (`socials` in `src/lib/site.ts`: Instagram @wealthitapp, the app's
+  own, App/docs/marketing/instagram). Where butter shows client logos the homepage shows the
+  26 countries whose money the app keeps (flags from flag-icons, MIT). No Pricing or Blog page until
+  there is a price or a post.
+- **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: its own page, a homepage
+  section and one of the two large tiles in the features bento. iPhone only, with Apple Pay, set up once; never promise it
+  on Android. Its Lock Screen card can't be captured on a simulator: `scripts/tap.mjs` renders the
+  App Store poster 03's own HTML, card only (`media-src/app`).
 - **Not in the stores yet.** The iPhone app is in TestFlight; Android is planned. `stores` stays
   `null`; AppButtons say "Coming soon" / "Later on" and are not links.
 - **The web app is not deployed.** `webApp` stays `null`; "Log in" says "Soon" until then. One URL

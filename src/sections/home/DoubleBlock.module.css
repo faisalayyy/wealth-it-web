@@ -41,7 +41,7 @@
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  background: var(--white);
+  background: var(--surface);
   transition:
     background-color 0.3s,
     transform 0.4s var(--ease-quint);
@@ -106,5 +106,33 @@
 @media (max-width: 899px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+}
+
+/* a photograph fills the middle of the card */
+.media[data-photo] {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: var(--n-200);
+}
+
+.photo,
+.photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.photo img {
+  object-fit: cover;
+  transition: transform 1.2s var(--ease-quint);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .photo img {
+    transform: scale(1.04);
   }
 }

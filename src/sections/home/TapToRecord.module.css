@@ -1,0 +1,131 @@
+.section {
+  padding: calc(var(--sec) * 0.6) 0;
+  background: var(--n-50);
+  color: var(--n-ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 6vw, 96px);
+}
+
+.cap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--brand-text);
+}
+
+.title {
+  max-width: 11em;
+  margin-top: 18px;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 34em;
+  margin-top: 22px;
+}
+
+.steps {
+  display: grid;
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.num {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--n-tint);
+  font-size: 14px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepTitle {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  line-height: 34px;
+}
+
+.stepText {
+  max-width: 40ch;
+  font-size: 15px;
+  color: var(--n-text);
+}
+
+.fine {
+  margin-top: 26px;
+  font-size: 13px;
+  color: var(--n-cap);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--brand-text);
+}
+
+.more svg {
+  transition: transform 0.3s var(--ease-quint);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .more:hover svg {
+    transform: translateX(4px);
+  }
+}
+
+/* the Lock Screen's own blues, so the card lands on a ground that belongs to it */
+.panel {
+  position: relative;
+  aspect-ratio: 5 / 6;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(70% 55% at 50% 100%, rgba(76, 195, 138, 0.28), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(80% 60% at 80% 0%, rgba(64, 108, 214, 0.35), rgba(64, 108, 214, 0) 70%),
+    #0b1220;
+}
+
+.rise {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 12%;
+  display: flex;
+  justify-content: center;
+}
+
+.phone {
+  --w: min(54%, 340px);
+}
+
+@media (max-width: 899px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .panel {
+    aspect-ratio: 4 / 5;
+  }
+  .phone {
+    --w: min(62%, 320px);
+  }
+}

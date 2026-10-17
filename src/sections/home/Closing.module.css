@@ -5,38 +5,89 @@
 
 .panel {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: clamp(64px, 9vw, 128px) clamp(24px, 4vw, 56px);
   border-radius: var(--r-xl);
   overflow: hidden;
   background:
-    radial-gradient(70% 80% at 50% 0%, rgba(76, 195, 138, 0.28), rgba(76, 195, 138, 0) 70%),
-    radial-gradient(40% 50% at 50% 110%, rgba(242, 198, 109, 0.18), rgba(242, 198, 109, 0) 70%),
+    radial-gradient(60% 50% at 50% 100%, rgba(76, 195, 138, 0.32), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(45% 40% at 15% 0%, rgba(242, 198, 109, 0.14), rgba(242, 198, 109, 0) 70%),
+    radial-gradient(45% 40% at 85% 0%, rgba(76, 195, 138, 0.16), rgba(76, 195, 138, 0) 70%),
     var(--forest);
   color: var(--ivory);
   text-align: center;
 }
 
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: clamp(56px, 7vw, 104px) clamp(24px, 5vw, 80px) 0;
+}
+
 .mark {
-  width: clamp(64px, 7vw, 96px);
-  height: clamp(64px, 7vw, 96px);
-  margin-bottom: clamp(24px, 3vw, 40px);
+  width: clamp(52px, 5vw, 72px);
+  height: clamp(52px, 5vw, 72px);
+  margin-bottom: clamp(18px, 2vw, 28px);
 }
 
 .title {
-  max-width: 10em;
-  text-wrap: balance;
+  font-size: clamp(42px, 6.4vw, 96px);
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
 }
 
 .lead {
-  max-width: 32em;
-  margin-top: 24px;
+  max-width: 30em;
+  margin-top: 20px;
   color: rgba(247, 246, 241, 0.74);
 }
 
 .buttons {
+  margin-top: 30px;
   justify-content: center;
-  margin-top: 36px;
+}
+
+/* three phones rising out of the lower edge, the middle one a little ahead */
+.phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(12px, 2.4vw, 36px);
+  height: clamp(240px, 27vw, 380px);
+  margin-top: clamp(40px, 5vw, 72px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
+  mask-image: linear-gradient(180deg, #000 70%, transparent);
+}
+
+.middle .phone {
+  --w: clamp(200px, 22vw, 300px);
+}
+
+.side {
+  margin-top: clamp(40px, 5vw, 72px);
+}
+
+.side .phone {
+  --w: clamp(160px, 18vw, 250px);
+  opacity: 0.92;
+}
+
+.side:first-child {
+  rotate: -5deg;
+}
+
+.side:last-child {
+  rotate: 5deg;
+}
+
+@media (max-width: 599px) {
+  .side .phone {
+    --w: 30vw;
+  }
+  .middle .phone {
+    --w: 40vw;
+  }
 }

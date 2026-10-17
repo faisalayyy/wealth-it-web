@@ -23,8 +23,8 @@ export function HelpHero() {
   useGSAP(
     () => {
       if (reducedMotion()) return;
-      const split = SplitText.create(root.current!.querySelector('h1')!, { type: 'chars,words', mask: 'chars' });
-      gsap.from(split.chars, { yPercent: 110, duration: 1.1, stagger: 0.018, ease: 'expo.out', delay: 0.2 });
+      const split = SplitText.create(root.current!.querySelector('h1')!, { type: 'chars,words', mask: 'chars', charsClass: 'hc' });
+      gsap.from(split.chars, { yPercent: 110, duration: 1.1, stagger: 0.018, ease: 'expo.out', delay: 0.2, onComplete: () => split.revert() });
       gsap.from(root.current!.querySelectorAll('[data-in]'), { opacity: 0, y: 24, duration: 1.1, stagger: 0.08, ease: 'expo.out', delay: 0.4 });
     },
     { scope: root },
@@ -40,7 +40,7 @@ export function HelpHero() {
     if (!get('message')) wrong.push('message');
     setInvalid(wrong);
     if (wrong.length) return;
-    const body = `${get('message')}\n\n— ${get('name')}\n${get('email')}`;
+    const body = `${get('message')}\n\n${get('name')}\n${get('email')}`;
     window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(`Wealthit: a note from ${get('name')}`)}&body=${encodeURIComponent(body)}`;
   };
 
@@ -52,7 +52,7 @@ export function HelpHero() {
       ) : (
         <input name={name} type={type} autoComplete={name} aria-invalid={invalid.includes(name) || undefined} />
       )}
-      {invalid.includes(name) && <span className={s.hint}>{name === 'email' ? 'An address we can reply to' : 'This one is needed'}</span>}
+      {invalid.includes(name) && <span className={s.hint}>{name === 'email' ? 'An address we can reply to' : 'We need this one'}</span>}
     </label>
   );
 
@@ -69,7 +69,7 @@ export function HelpHero() {
           </p>
           <h1 className={`display-2 ${s.title}`}>{coined('How can we help?')}</h1>
           <p className={`lead ${s.lead}`} data-in>
-            Most questions have an answer further down this page. If yours doesn’t, write — a person reads every message.
+            Most questions are answered just below. If yours isn’t, write to us. A real person reads every message.
           </p>
           <form className={s.form} onSubmit={send} noValidate data-in>
             <div className={s.row}>

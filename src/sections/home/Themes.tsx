@@ -11,13 +11,14 @@ import s from './Themes.module.css';
 /**
  * Make it yours (the reference's "Get the look"): a dark card at the left showing one real screen,
  * and the ways Home can look, listed large at the right in two tones. Pointing at a name, focusing
- * it, or tapping it puts that screen in the card.
+ * it, or tapping it puts that screen in the card. Dark and Light always show those themes; the
+ * other two follow the site's theme like every other capture.
  */
 const VIEWS: { name: string; where: string; screen: ScreenName; alt: string }[] = [
-  { name: 'Light', where: 'Home', screen: 'home-light', alt: 'Home in the light theme' },
-  { name: 'Dark', where: 'Home', screen: 'home-dark', alt: 'Home in the dark theme' },
-  { name: 'Hidden', where: 'Amounts', screen: 'home-hidden-dark', alt: 'Home with every amount hidden' },
-  { name: 'Your order', where: 'Customise', screen: 'customise-light', alt: 'Customise Home: choosing what Home shows, and in what order' },
+  { name: 'Dark', where: 'Home', screen: 'home-dark', alt: 'Wealthit’s Home screen in the dark theme' },
+  { name: 'Light', where: 'Home', screen: 'home-light', alt: 'Wealthit’s Home screen in the light theme' },
+  { name: 'Hidden', where: 'Amounts', screen: 'home-hidden-dark', alt: 'Wealthit’s Home screen with every amount hidden' },
+  { name: 'Your order', where: 'Customise', screen: 'customise-home-dark', alt: 'Customise Home: choosing what Home shows, and in what order' },
 ];
 
 export function Themes() {
@@ -28,7 +29,7 @@ export function Themes() {
         <div className={s.media}>
           <Phone variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px">
             {VIEWS.map((v, i) => (
-              <Screen key={v.screen} name={v.screen} alt={i === on ? v.alt : ''} sizes="(max-width: 743px) 60vw, 320px" className={s.shot} data-on={i === on ? '' : undefined} />
+              <Screen key={v.screen} name={v.screen} exact={v.name === 'Dark' || v.name === 'Light'} alt={i === on ? v.alt : ''} sizes="(max-width: 743px) 60vw, 320px" className={s.shot} data-on={i === on ? '' : undefined} />
             ))}
           </Phone>
         </div>
@@ -45,7 +46,7 @@ export function Themes() {
               </li>
             ))}
           </ul>
-          <p className={`lead ${s.note}`}>Light or dark, amounts on show or hidden from the person next to you, and Home in the order you choose.</p>
+          <p className={`lead ${s.note}`}>Light or dark, amounts on show or hidden from whoever’s sitting next to you, and Home in the order you choose.</p>
           <Link href="/features/home/" className={s.more}>
             More about Home & widgets
             <Icon name="arrow-up-right" size={16} />

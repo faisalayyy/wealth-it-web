@@ -1,110 +1,58 @@
 {
   "cuts": {
-    "composer-sheet": {
-      "w": 1246,
-      "h": 1049
-    },
-    "scan-sentence": {
-      "w": 1246,
-      "h": 1085
-    },
-    "scan-sheet": {
-      "w": 1246,
-      "h": 1281
-    },
-    "scan-reading": {
-      "w": 1246,
-      "h": 1510
-    },
-    "bill-waiting": {
-      "w": 1200,
-      "h": 354
-    },
-    "bill-rent": {
-      "w": 1320,
-      "h": 2327
-    },
-    "budget-page": {
-      "w": 1320,
-      "h": 2020
-    },
-    "goal-page": {
-      "w": 1320,
-      "h": 2522
-    },
-    "customise-page": {
-      "w": 1320,
-      "h": 2000
-    },
-    "hidden-page": {
-      "w": 1320,
-      "h": 2240
-    },
-    "notif-budget": {
-      "w": 922,
-      "h": 194
-    },
-    "row-aed": {
-      "w": 1200,
-      "h": 192
-    },
-    "row-pkr": {
-      "w": 1200,
-      "h": 192
-    },
-    "row-inr": {
-      "w": 1200,
-      "h": 192
-    },
-    "row-usd": {
-      "w": 1200,
-      "h": 192
-    },
-    "row-ali": {
-      "w": 1200,
-      "h": 192
+    "tap-card": {
+      "w": 1116,
+      "h": 430
     }
   },
   "crops": {
-    "total": {
-      "w": 480,
-      "h": 230
-    },
-    "ring": {
-      "w": 480,
-      "h": 480
-    },
-    "over-tile": {
-      "w": 260,
-      "h": 236
-    },
-    "due-tiles": {
-      "w": 824,
-      "h": 180
-    },
-    "budget-summary": {
-      "w": 816,
-      "h": 224
-    },
-    "budget-over": {
-      "w": 816,
-      "h": 216
-    },
-    "budget-chip": {
-      "w": 300,
-      "h": 156
-    },
-    "goal-card": {
-      "w": 816,
-      "h": 392
-    },
-    "goal-chip": {
-      "w": 320,
-      "h": 220
+    "wallet-rows": {
+      "w": 784,
+      "h": 420
     },
     "net-worth": {
-      "w": 600,
-      "h": 160
+      "w": 680,
+      "h": 192
+    },
+    "budget-summary": {
+      "w": 808,
+      "h": 210
+    },
+    "budget-over": {
+      "w": 808,
+      "h": 248
+    },
+    "goal-card": {
+      "w": 808,
+      "h": 350
+    },
+    "bill-waiting": {
+      "w": 850,
+      "h": 330
+    },
+    "schedule-summary": {
+      "w": 808,
+      "h": 336
+    },
+    "notif-list": {
+      "w": 644,
+      "h": 600
+    },
+    "notif-budget": {
+      "w": 644,
+      "h": 120
+    },
+    "record-sentence": {
+      "w": 832,
+      "h": 704
+    },
+    "home-ring": {
+      "w": 568,
+      "h": 544
+    },
+    "goal-hero": {
+      "w": 800,
+      "h": 656
     }
   }
 }

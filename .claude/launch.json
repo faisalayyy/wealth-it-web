@@ -3,6 +3,7 @@
   "configurations": [
     { "name": "web", "runtimeExecutable": "npm", "runtimeArgs": ["run", "dev"], "port": 4321 },
     { "name": "webapp", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "../WebApp", "run", "dev"], "port": 4322 },
-    { "name": "webapp-alt", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "../WebApp", "run", "dev", "--", "--port", "4323", "--strictPort"], "port": 4323 }
+    { "name": "webapp-alt", "runtimeExecutable": "npm", "runtimeArgs": ["--prefix", "../WebApp", "run", "dev", "--", "--port", "4323", "--strictPort"], "port": 4323 },
+    { "name": "webapp-local-api", "runtimeExecutable": "sh", "runtimeArgs": ["-c", "cd ../WebApp && WEALTHIT_API=http://127.0.0.1:8100 npx vite --port 4324 --strictPort"], "port": 4324 }
   ]
 }

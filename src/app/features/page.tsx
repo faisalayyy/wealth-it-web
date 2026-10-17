@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import { Button } from '@/components/Button';
 import { Shot } from '@/components/Shot';
 import { SiteFooter } from '@/components/SiteFooter';
@@ -9,10 +10,11 @@ import { Facts } from '@/sections/product/Facts';
 import { PageHero } from '@/sections/product/PageHero';
 import { Switcher } from '@/sections/product/Switcher';
 
-export const metadata: Metadata = {
-  title: 'Features',
-  description: 'Record a payment in a sentence or a photo, see every account in one total, and plan budgets, bills and goals — what Wealthit does, feature by feature.',
-};
+export const metadata: Metadata = pageMeta({
+  title: 'Features: spending, budgets, bills and goals',
+  description: 'What Wealthit does: log spending in a sentence, scan receipts, record Apple Pay payments, add up 26 currencies, and plan budgets, bills and savings goals.',
+  path: '/features/',
+});
 
 /**
  * What the app does, after the reference's product page: the headline and the app, then every
@@ -25,25 +27,25 @@ export default function Features() {
       <main id="main">
         <PageHero
           cap="Features"
-          title="Everything you need to know where you stand."
-          lead="Write down what you spend in a sentence or a photo. See every account, in every currency, added up. Plan what is coming — budgets, bills and goals."
+          title="Everything you need for better money habits."
+          lead="Log what you spend in a sentence or a photo and see every account added up, whatever the currency. Then plan ahead with budgets, bill reminders and savings goals."
           actions={
             <>
               <Button label="Get the app" href="/#get" tone="brand" />
               <Button label="Start with recording" href="/features/recording/" tone="ink" variant="secondary" />
             </>
           }
-          media={<Shot media={{ screens: ['composer-dark', 'home-dark', 'budgets-dark'] }} sizes="(max-width: 743px) 64vw, 300px" />}
+          media={<Shot media={{ screens: ['record-sheet-dark', 'home-dark', 'budgets-dark'] }} sizes="(max-width: 743px) 64vw, 300px" />}
         />
         <Bands features={featurePages} />
         <Facts
           title="And the rest, too."
           facts={[
-            { title: 'The same on every phone', text: 'Sign in on another phone and your records are there. A record made offline goes up when you are back online.' },
-            { title: 'Your data, to take', text: 'Export everything at any time, as a backup file or a spreadsheet.' },
+            { title: 'The same on every phone', text: 'Sign in on another phone and your records are there. A record made offline goes up when you’re back online.' },
+            { title: 'Your data, yours to take', text: 'Export everything at any time, as a backup file or a spreadsheet.' },
             { title: 'App lock', text: 'Face ID or a PIN keeps the app closed. The PIN never leaves your phone.' },
             { title: 'Reminders', text: 'For bills due and budgets running low, scheduled on your phone.' },
-            { title: 'No bank login', text: 'Wealthit never asks for your bank password. You record what you spend; it adds it up.' },
+            { title: 'No bank login', text: 'Wealthit never asks for your bank password. You record what you spend, and it does the adding up.' },
             { title: 'No ads, no tracking', text: 'No advertising and no analytics, in the app or on this site.' },
           ]}
         />

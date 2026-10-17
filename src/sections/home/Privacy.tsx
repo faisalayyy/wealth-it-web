@@ -6,12 +6,12 @@ import { useGSAP } from '@/animation/gsap';
 import { reveal } from '@/animation/reveal';
 import { coined } from '@/components/Coin';
 import { Icon } from '@/components/Icon';
-import { Phone } from '@/components/Phone';
+import { PhoneVideo } from '@/components/PhoneVideo';
 import s from './Privacy.module.css';
 
 /**
  * Private by design (the app's tenth poster): a Forest panel with what keeps your money yours —
- * every line is in the privacy policy (src/app/privacy) — and Home with its amounts hidden.
+ * every line is in the privacy policy (src/app/privacy) — and a recording of hiding the amounts.
  */
 const POINTS = [
   { icon: 'lock', title: 'Face ID or a PIN', text: 'Lock the app. The PIN stays in your phone’s keychain.' },
@@ -53,7 +53,7 @@ export function Privacy() {
           </Link>
         </div>
         <div className={s.media} data-reveal="scale">
-          <Phone screen="home-hidden-dark" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Home with every amount hidden" />
+          <PhoneVideo name="hide-amounts-dark" label="Hiding every amount on Home with a tap on the eye, and showing them again" className={s.phone} />
         </div>
       </div>
     </section>

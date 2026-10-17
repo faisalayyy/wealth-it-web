@@ -5,11 +5,12 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useId, useRef, useState, type FocusEvent, type MouseEvent } from 'react';
 import { scrollToTarget, useLenis } from '@/animation/SmoothScroll';
 import { featurePages } from '@/lib/features';
-import { crop, screenSources } from '@/lib/screens';
-import { asset, webApp } from '@/lib/site';
+import { screenSources } from '@/lib/screens';
+import { asset, socials, webApp } from '@/lib/site';
 import { Button } from './Button';
 import { Icon } from './Icon';
-import { Logo, Mark } from './Logo';
+import { Logo } from './Logo';
+import { ThemeSwitch } from './ThemeSwitch';
 import s from './SiteHeader.module.css';
 
 /**
@@ -19,13 +20,14 @@ import s from './SiteHeader.module.css';
  * each with a real capture beside it — and two dots at its end. Once the page has scrolled, the
  * links fade and the pill folds to the name and the dots; pointing at it or tabbing into it opens
  * it again. The dots open the menu at any time: the pill widens, "Close" appears beside the dots,
- * the page behind dims, and a panel opens under the pill — four large rows, each with a picture
- * and a line that shows on hover, their rules drawing across, and the feature pages listed small
- * beneath. The dots, "Close", Escape, the dimmed page and following a link all close it.
+ * the page behind dims, and a panel opens under the pill: five large rows, each with a small 3D
+ * piece in the hero keyring's materials (src/three/art.ts) and a line that shows on hover, their
+ * rules drawing across; the feature pages listed small beneath, and where to follow Wealthit. The
+ * dots, "Close", Escape, the dimmed page and following a link all close it.
  *
- * The right pill holds the ways in: Log in, for the web app (which says "Soon" until it has an
- * address, src/lib/site.ts), and the app itself. On phones the left pill is the whole header and
- * the menu carries both.
+ * The right pill holds the theme switch and the ways in: Log in, for the web app (which says "Soon"
+ * until it has an address, src/lib/site.ts), and the app itself. On phones the left pill is the
+ * whole header and the menu carries all three.
  */
 
 // About is not published until its content is real (src/app/_about)
@@ -34,19 +36,32 @@ const LINKS = [
   { label: 'Privacy', href: '/privacy/' },
 ];
 
-/** The menu's four large rows. */
+/** The menu's large rows, each with its 3D piece (public/art). */
 const ROWS = [
-  { label: 'Features', hint: 'Everything the app does', href: '/features/', thumb: 'features' },
-  { label: 'Help', hint: 'Answers, and a way to write to us', href: '/support/', thumb: 'help' },
-  { label: 'Privacy', hint: 'What is kept, and why', href: '/privacy/', thumb: 'privacy' },
-  { label: 'Get the app', hint: 'Coming soon to iPhone', href: '/#get', thumb: 'app' },
+  { label: 'Features', hint: 'Every feature, up close', href: '/features/', art: 'budget' },
+  { label: 'Tap to Record', hint: 'Pay with Apple Pay, tap Add', href: '/features/tap-to-record/', art: 'tap' },
+  { label: 'Help', hint: 'Quick answers, or write to us', href: '/support/', art: 'help' },
+  { label: 'Privacy', hint: 'What we keep, and why', href: '/privacy/', art: 'privacy' },
+  { label: 'Get the app', hint: 'Coming soon to iPhone', href: '/#get', art: 'app' },
 ] as const;
 
-function Thumb({ kind }: { kind: (typeof ROWS)[number]['thumb'] }) {
-  if (kind === 'features') return <img src={crop('ring').webp} alt="" loading="lazy" decoding="async" />;
-  if (kind === 'app') return <img src={asset('/apple-touch-icon.png')} alt="" loading="lazy" decoding="async" />;
-  if (kind === 'help') return <Mark className={s.thumbMark} tone="dark" />;
-  return <Icon name="lock" size={24} />;
+function Thumb({ art }: { art: string }) {
+  return (
+    <picture>
+      <source type="image/avif" srcSet={asset(`/art/${art}.avif`)} />
+      <img src={asset(`/art/${art}.webp`)} alt="" loading="lazy" decoding="async" />
+    </picture>
+  );
+}
+
+/** The features panel's picture of a page: its screen, or for Tap to Record the card on the Lock Screen. */
+function Preview({ thumb, on, tap }: { thumb: Parameters<typeof screenSources>[0]; on: boolean; tap: boolean }) {
+  return (
+    <span className={s.previewItem} data-on={on ? '' : undefined}>
+      <img src={screenSources(thumb).thumb} alt="" loading="lazy" decoding="async" />
+      {tap && <img className={s.previewCard} src={asset('/screens/cuts/tap-card-640.webp')} alt="" loading="lazy" decoding="async" />}
+    </span>
+  );
 }
 
 /** Log in: a link to the web app once it has an address; until then it says so. */
@@ -58,7 +73,7 @@ function LogIn({ className }: { className: string }) {
       </a>
     );
   return (
-    <span className={className} data-soon title="The web app is on its way — the same account as the phone app.">
+    <span className={className} data-soon title="The web app is on its way. It uses the same account as the phone app.">
       Log in <span className={s.soon}>Soon</span>
     </span>
   );
@@ -86,6 +101,8 @@ export function SiteHeader() {
   const [features, setFeatures] = useState(false);
   const [menu, setMenu] = useState(false);
   const [hover, setHover] = useState(0);
+  // the menu's and the panel's pictures load once someone heads for them, not with the page
+  const [armed, setArmed] = useState(false);
   const root = useRef<HTMLElement>(null);
   const dots = useRef<HTMLButtonElement>(null);
   const panelId = useId();
@@ -140,6 +157,7 @@ export function SiteHeader() {
     setMenu(false);
   };
   const toggle = () => {
+    setArmed(true);
     setFeatures(false);
     setMenu(m => !m);
   };
@@ -162,12 +180,19 @@ export function SiteHeader() {
       <div className={s.shade} onClick={close} aria-hidden />
       <div
         className={s.left}
-        onMouseEnter={() => setPointer(true)}
+        onMouseEnter={() => {
+          setPointer(true);
+          setArmed(true);
+        }}
+        onTouchStart={() => setArmed(true)}
         onMouseLeave={() => {
           setPointer(false);
           setFeatures(false);
         }}
-        onFocus={() => setFocusIn(true)}
+        onFocus={() => {
+          setFocusIn(true);
+          setArmed(true);
+        }}
         onBlur={blur}
       >
         <div className={s.bar}>
@@ -223,9 +248,7 @@ export function SiteHeader() {
           </ul>
           <div className={s.side}>
             <div className={s.preview} aria-hidden>
-              {featurePages.map((f, i) => (
-                <img key={f.slug} src={screenSources(f.thumb).thumb} alt="" data-on={hover === i ? '' : undefined} loading="lazy" decoding="async" />
-              ))}
+              {armed && featurePages.map((f, i) => <Preview key={f.slug} thumb={f.thumb} on={hover === i} tap={f.slug === 'tap-to-record'} />)}
             </div>
             <Link href="/features/" className={s.all} onClick={close}>
               All features
@@ -241,8 +264,8 @@ export function SiteHeader() {
                 <li key={r.href} className={s.menuItem} style={{ '--i': i } as React.CSSProperties}>
                   <Link href={r.href} className={s.menuRow} data-active={active(r.href) ? '' : undefined} onClick={r.href === '/#get' ? getApp(close) : close}>
                     <span className={s.menuMain}>
-                      <span className={s.thumb} data-kind={r.thumb}>
-                        <Thumb kind={r.thumb} />
+                      <span className={s.thumb}>
+                        {armed && <Thumb art={r.art} />}
                       </span>
                       <span className={s.menuLabel}>{r.label}</span>
                     </span>
@@ -261,15 +284,29 @@ export function SiteHeader() {
                 </li>
               ))}
             </ul>
+            <div className={s.follow}>
+              <span className={s.followLabel}>Follow Wealthit</span>
+              {socials.map(so => (
+                <a key={so.href} href={so.href} className={s.social} target="_blank" rel="noopener me" onClick={close}>
+                  <Icon name={so.icon} size={18} />
+                  <span>{so.handle}</span>
+                  <span className="sr-only">on {so.label}</span>
+                </a>
+              ))}
+            </div>
           </nav>
           <div className={s.menuCta}>
             <Button label="Get the app" href="/#get" tone="brand" onClick={getApp(close)} className={s.menuButton} />
-            <LogIn className={s.menuLogin} />
+            <div className={s.menuRow2}>
+              <LogIn className={s.menuLogin} />
+              <ThemeSwitch className={s.theme} />
+            </div>
           </div>
         </div>
       </div>
 
       <div className={s.right}>
+        <ThemeSwitch className={s.theme} />
         <LogIn className={s.login} />
         <Button label="Get the app" href="/#get" tone="ink" size="sm" onClick={getApp()} />
       </div>

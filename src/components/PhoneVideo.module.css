@@ -1,0 +1,46 @@
+.video {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #0b0b0c;
+}
+
+/* play / pause: small, out of the way, plain to see when the recording is still */
+.toggle {
+  position: absolute;
+  z-index: 6;
+  right: 6%;
+  bottom: 3.2%;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--n-ink) 55%, transparent);
+  color: #fff;
+  fill: currentColor;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  opacity: 0.85;
+  transition: opacity 0.3s;
+}
+
+.toggle[data-playing] {
+  opacity: 0;
+}
+
+.toggle:focus-visible,
+.toggle[data-playing]:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--mint);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :global(*):hover > .toggle[data-playing] {
+    opacity: 0.85;
+  }
+}

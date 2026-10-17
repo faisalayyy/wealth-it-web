@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useId, useState } from 'react';
 import { coined } from '@/components/Coin';
 import { Icon } from '@/components/Icon';
+import { faqSchema, JsonLd } from '@/lib/seo';
 import s from './Faq.module.css';
 
 /**
@@ -14,20 +15,20 @@ export type QA = { q: string; a: string | string[] };
 
 const HOME: QA[] = [
   {
-    q: 'Is Wealthit in the App Store yet?',
-    a: 'Not yet. The iPhone app is being tested now and is coming soon to the App Store; Android is planned. The buttons on this page become real links the day it is listed.',
+    q: 'Is Wealthit on the App Store yet?',
+    a: 'Not yet. The iPhone app is in testing now and coming soon to the App Store, and Android is planned. The buttons on this page turn into real links the day it’s listed.',
   },
   {
     q: 'Do I need an account?',
-    a: 'Yes — sign in with Apple, Google or your email. Your records are kept in your account, so they are the same on every phone you sign in on, and a lost or new phone loses nothing.',
+    a: 'Yes. You sign in with Apple, Google or your email. Your records are kept in your account, so they’re the same on every phone you sign in on, and a lost or new phone loses nothing.',
   },
   {
     q: 'Does it connect to my bank?',
-    a: 'No. Wealthit never asks for your bank login. You record what you spend yourself — as a sentence, from a receipt, or with Tap to Record when you pay with Apple Pay.',
+    a: 'No. Wealthit never asks for your bank login. You record what you spend yourself: as a sentence, from a receipt, or with Tap to Record when you pay with Apple Pay.',
   },
   {
-    q: 'How does it handle different currencies?',
-    a: 'Every wallet keeps its own currency. Totals use a rate you actually got on a transfer, a fixed peg such as the dirham’s to the dollar, or the day’s published rate. Anything none of those can reach is left out of the total and named, and still shown in its own currency.',
+    q: 'Can I track money in different currencies?',
+    a: 'Yes, in 26 of them. Every wallet keeps its own currency. Totals use a rate you actually got on a transfer, a fixed peg such as the dirham’s to the dollar, or the day’s published rate. Anything none of those can reach is left out of the total and named, and still shown in its own currency.',
   },
   {
     q: 'Who can see my records?',
@@ -38,20 +39,24 @@ const HOME: QA[] = [
 export function Faq({
   items = HOME,
   cap = 'Questions',
-  title = 'Asked, and answered.',
+  title = 'Good questions, answered.',
   more = true,
   sectionId,
+  schema = items === HOME,
 }: {
   items?: QA[];
   cap?: string;
   title?: string;
   more?: boolean;
   sectionId?: string;
+  /** add the questions as schema.org FAQPage (once per page) */
+  schema?: boolean;
 }) {
   const [open, setOpen] = useState<number | null>(0);
   const id = useId();
   return (
     <section className={s.section} aria-labelledby={`${id}-title`} id={sectionId} data-ground="light">
+      {schema && <JsonLd data={faqSchema(items)} />}
       <div className={`wrap ${s.grid}`}>
         <div>
           <p className="cap">{cap}</p>

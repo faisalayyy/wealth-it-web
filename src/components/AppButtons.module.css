@@ -5,7 +5,7 @@
 }
 
 .btn {
-  --color: var(--ink);
+  --color: var(--n-ink);
   position: relative;
   display: inline-flex;
   flex-direction: column;

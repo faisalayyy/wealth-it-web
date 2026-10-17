@@ -18,7 +18,8 @@ export type Scene = {
 
 export function mount(canvas: HTMLCanvasElement, build: (ctx: { renderer: THREE.WebGLRenderer; env: THREE.Texture }) => Scene, opts: { still?: boolean } = {}) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' });
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+  // phones draw at a lower ratio: the charms stay sharp enough and the GPU does far less
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth < 744 ? 1.25 : 1.75));
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NeutralToneMapping;
   renderer.toneMappingExposure = 1.0;

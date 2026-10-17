@@ -1,30 +1,50 @@
-# The app's screens on the site
+# The app on the site: screens, recordings, photographs, illustrations
 
-Every product image on the site is a real capture of the Wealthit app. Since 16 October 2026 they
-come from the app's own marketing captures rather than from this site's simulator sessions.
+Every picture of the product is real. Four kinds of image, four scripts.
 
-## Where they come from
+## Screens — `npm run screens`
 
-`../App/marketing/app-store/assets/screens/` — made by the app session for the App Store (11
-October 2026, current branding): whole screens at 1320 × 2868 (440 × 956 pt, 3×), and pieces the
-app session cut from them — sheets, rows, a notification, page crops — at their own sizes. Read
-them; never edit that folder.
+Source: `~/Movies/Wealthit Website/screens/` — made by the **Wealthit · iOS** session on 17 October
+2026 from the app at commit `5b4b4d4` (TestFlight build 14), iPhone 17 Pro Max simulator, sample
+data, 1320 × 2868 PNG, every screen in `-dark` and `-light`. Its `README.md` says what each shows
+and what the site must not claim. The folder is outside iCloud on purpose (iCloud evicts files).
 
-## Updating them
+`src/lib/screens.json` names the screens the site uses, the crops cut from them (rectangles in
+points), and cuts taken from elsewhere. Every `-dark` screen and crop also gets its `-light` twin,
+which the site shows in its light theme. `scripts/screens.mjs` writes `public/screens/` and
+`src/lib/screens.sizes.json`. New screens: ask the iOS session for them in the same folder.
 
-1. Copy the PNGs into `screens-raw.nosync/` (iCloud skips `*.nosync`; the folder is ignored):
-   `cp ../App/marketing/app-store/assets/screens/*.png ../App/marketing/app-store/assets/screens/rows/*.png screens-raw.nosync/`
-   If a copy hangs, the file was evicted by iCloud — `brctl download <file>` and try again.
-2. Name them in `src/lib/screens.json`: `screens` (whole screens, shown in a phone), `cuts` (the
-   app's pieces, `file` = the PNG's name, with alt text), `crops` (rectangles in points cut from a
-   whole screen).
-3. `npm run screens` — or `node scripts/screens.mjs --sheet /tmp/crops.png` to check crops by eye.
-   It writes `public/screens/` (whole screens at 420/840/1320, cuts at 640/1280, crops at 2×, AVIF
-   and WebP) and `src/lib/screens.sizes.json`.
+Tap to Record can't be captured on a simulator (no Apple Pay, no Shortcuts). `node scripts/tap.mjs`
+renders the App Store poster 03's own HTML with only its Lock Screen card showing, on a transparent
+ground, and copies the Lock Screen capture the poster uses (`media-src/app`; `files` in
+screens.json). `TapPhone` lays the card over the Lock Screen.
 
-Nothing is retouched: images are resized, and crops are cut from the same pixels.
+## Recordings — `scripts/videos.sh`
 
-## No capture yet
+Source: `~/Movies/Wealthit Website/videos/`, the iOS session's screen recordings (H.264, native
+size). `scripts/videos.sh` keeps the ones the site uses, each with the moment its poster is taken
+from, and writes `public/videos/<name>.mp4` (660 px wide, no sound, starts at once) and `.jpg`
+through `scripts/video.swift` (AVFoundation; frames only resized). `PhoneVideo` plays them in a
+phone, only while on screen; with reduced motion they wait on the poster.
 
-The new branding has no capture of Activity, Statistics, Tap to Record's Lock Screen card or the
-widgets on a Home Screen. Those features are described in words until there is one.
+## Photographs: `node scripts/compose.mjs`
+
+Source: `media-src/people/` (Pexels, credited in `CREDITS.md`; the originals aren't committed).
+Every phone is a real iPhone. A plain white or green screen is found by its colour; a screen showing
+something else (a camera, Apple Pay) is fitted by hand from what it shows: the camera's viewfinder
+spans the display's width, and Apple Pay's card, clock and home bar sit at known places. The capture
+is mapped onto the four corners in perspective, never stretched, and shows only through the screen's
+own rounded shape, with the notch, the island, fingers and skin left in front. The simulator's own
+Dynamic Island in a capture is filled with the status bar's colour, since the phone in the photo has
+its own. `--src`, `--out` and `--debug` make a preview elsewhere; a new photograph is shown to the
+owner composited before it goes on the site. The people are models, not users: never caption them as
+saying anything.
+
+## Illustrations: `scripts/art.mjs`
+
+The statement's and the menu's 3D pieces (`src/three/art.ts`), rendered once to transparent images
+in `public/art/`; steps in the script's header.
+
+## The link preview: `scripts/og.mjs`
+
+`public/og.png`, 1200 x 630: the mark, "Know where you stand." and Home and Budgets in two phones.

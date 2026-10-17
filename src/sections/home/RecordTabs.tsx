@@ -5,6 +5,8 @@ import { reducedMotion } from '@/animation/gsap';
 import { Phone } from '@/components/Phone';
 import { Screen } from '@/components/Screen';
 import type { ScreenName } from '@/lib/screens';
+import { asset } from '@/lib/site';
+import { themedVideo, useTheme } from '@/lib/theme';
 import s from './RecordTabs.module.css';
 
 /**
@@ -13,24 +15,29 @@ import s from './RecordTabs.module.css';
  * showing — and stop for a pointer resting on them, for keyboard focus, and while the section is
  * off screen. Click or use the arrow keys to choose.
  */
-const STEPS: { title: string; text: string; screen: ScreenName; alt: string }[] = [
+type Step = { title: string; text: string; screen: ScreenName; alt: string; /** a recording of it (public/videos/<name>.mp4), played while the tab is showing */ video?: string; /** how long the tab shows, ms: a recording's length */ dwell?: number };
+const STEPS: Step[] = [
   {
     title: 'Type it',
-    text: 'Finish the sentence — I spent AED 86.50 on Groceries from Main bank, today. Tap a blank to fill it in.',
-    screen: 'composer-dark',
-    alt: 'Recording an expense as a sentence in Wealthit',
+    text: 'Tap +, type the amount on Wealthit’s own number pad and pick what it was for. The sentence reads back what will be saved.',
+    screen: 'record-sheet-dark',
+    video: 'record-expense-dark',
+    dwell: 13600,
+    alt: 'Recording an expense in Wealthit: typing the amount, choosing the category, then Done',
   },
   {
     title: 'Scan it',
-    text: 'Snap the receipt. It’s read on your phone, and the amount, shop, date and category are filled in for you to check.',
+    text: 'Snap the receipt or pick a photo of one. It’s read on your phone, and the amount, shop, date and category are filled in for you to check.',
     screen: 'scan-done-dark',
-    alt: 'A scanned receipt turned into a record, ready to check',
+    video: 'scan-receipt-dark',
+    dwell: 8300,
+    alt: 'Scanning a receipt in Wealthit: the receipt is read, the record filled in, then saved',
   },
   {
     title: 'Schedule it',
-    text: 'Rent, salary, subscriptions: set them up once and they record themselves on the day — or ask you first.',
+    text: 'Rent, salary, subscriptions: set them up once and they record themselves on the day, or ask you first.',
     screen: 'schedules-dark',
-    alt: 'Scheduled payments: what is waiting, and what is due later this month',
+    alt: 'Wealthit’s Scheduled payments screen: a bill waiting for you, and what’s due in the next 7 days and later this month',
   },
 ];
 const DWELL = 5200;
@@ -52,7 +59,7 @@ export function RecordTabs() {
 
   useEffect(() => {
     if (!running) return;
-    const t = setTimeout(() => setActive(a => (a + 1) % STEPS.length), DWELL);
+    const t = setTimeout(() => setActive(a => (a + 1) % STEPS.length), STEPS[active].dwell ?? DWELL);
     return () => clearTimeout(t);
   }, [running, active]);
 
@@ -70,9 +77,13 @@ export function RecordTabs() {
       <div className={`wrap ${s.grid}`}>
         <div className={s.media}>
           <Phone variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 340px">
-            {STEPS.map((st, i) => (
-              <Screen key={st.screen} name={st.screen} alt={i === active ? st.alt : ''} sizes="(max-width: 743px) 60vw, 340px" className={s.shot} data-on={i === active ? '' : undefined} />
-            ))}
+            {STEPS.map((st, i) =>
+              st.video ? (
+                <StepVideo key={st.title} name={st.video} label={st.alt} on={i === active && visible} className={s.shot} />
+              ) : (
+                <Screen key={st.title} name={st.screen} alt={i === active ? st.alt : ''} sizes="(max-width: 743px) 60vw, 340px" className={s.shot} data-on={i === active ? '' : undefined} />
+              ),
+            )}
           </Phone>
         </div>
         <div className={s.copy} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocus={() => setPaused(true)} onBlur={() => setPaused(false)}>
@@ -97,7 +108,7 @@ export function RecordTabs() {
               >
                 <span className="display-2">{st.title}</span>
                 <span className={s.track} aria-hidden>
-                  <span className={s.fill} data-running={i === active && running ? '' : undefined} key={`${active}-${running}`} style={{ animationDuration: `${DWELL}ms` }} />
+                  <span className={s.fill} data-running={i === active && running ? '' : undefined} key={`${active}-${running}`} style={{ animationDuration: `${st.dwell ?? DWELL}ms` }} />
                 </span>
               </button>
             ))}
@@ -108,5 +119,43 @@ export function RecordTabs() {
         </div>
       </div>
     </section>
+  );
+}
+
+/** A tab's recording: plays from the start while its tab is showing, waits on its first frame otherwise. */
+function StepVideo({ name, label, on, className }: { name: string; label: string; on: boolean; className: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  const [load, setLoad] = useState(false);
+  const [near, setNear] = useState(false);
+  const file = themedVideo(name, useTheme());
+  // its first frame loads only once the section is near
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setNear(true), io.disconnect()), { rootMargin: '60% 0px' });
+    io.observe(ref.current!);
+    return () => io.disconnect();
+  }, []);
+  useEffect(() => {
+    const el = ref.current!;
+    if (on) {
+      setLoad(true);
+      if (reducedMotion()) return;
+      el.currentTime = 0;
+      el.play().catch(() => {});
+    } else el.pause();
+  }, [on]);
+  return (
+    <video
+      ref={ref}
+      className={`${className} ${s.video}`}
+      data-on={on ? '' : undefined}
+      src={load ? asset(`/videos/${file}.mp4`) : undefined}
+      poster={near ? asset(`/videos/${file}.webp`) : undefined}
+      muted
+      loop
+      playsInline
+      preload="none"
+      aria-label={label}
+      aria-hidden={!on}
+    />
   );
 }

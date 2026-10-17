@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { gsap, reducedMotion, useGSAP } from '@/animation/gsap';
 import { Phone } from '@/components/Phone';
-import { Cut } from '@/components/Screen';
+import { Crop } from '@/components/Screen';
 import { Words } from './Story';
 import s from './Planning.module.css';
 
@@ -36,19 +36,19 @@ export function Planning() {
         <div>
           <p className="cap">Bills & schedules</p>
           <h2 id="planning-title" className={`story ${s.title}`}>
-            <Words parts={['Bills that remember themselves — on the day, and never twice.']} />
+            <Words parts={['Bills that remember themselves on the day, and never twice.']} />
           </h2>
           <p className={`lead ${s.lead}`}>
             Set up rent, salary or a subscription once. On the day it records itself, or waits for you to say Record it or Skip this
-            time. The next 30 days are always one screen away.
+            time. The next 30 days are always one screen away, so rent day doesn’t sneak up on you.
           </p>
         </div>
         <div className={s.panel}>
           <div className={s.phoneWrap} data-rise>
-            <Phone screen="schedules-light" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Scheduled payments in Wealthit: the next 30 days" />
+            <Phone screen="schedules-dark" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Wealthit’s Scheduled payments screen: what’s coming in and going out over the next 30 days" />
           </div>
           <div className={s.float} data-float>
-            <Cut name="bill-waiting" className={s.bill} sizes="(max-width: 743px) 80vw, 400px" />
+            <Crop name="bill-waiting" className={s.bill} alt="Waiting for you: Metro card top-up, due 17 October, with Record it and Skip this time" />
           </div>
         </div>
       </div>

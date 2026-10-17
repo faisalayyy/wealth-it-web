@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { faqSchema, JsonLd, pageMeta } from '@/lib/seo';
 import { SiteFooter } from '@/components/SiteFooter';
 import { HelpHero } from '@/sections/help/HelpHero';
 import { Closing } from '@/sections/home/Closing';
@@ -10,16 +11,17 @@ import { Faq, type QA } from '@/sections/home/Faq';
  * faster than a reply could. The answers are the app session's (branch privacy-accounts of this
  * site, 11 October 2026), checked against the app as built.
  */
-export const metadata: Metadata = {
-  title: 'Help',
-  description: 'New phones, sign-in, currencies that will not convert, and the rest of the questions Wealthit gets — answered on one page, with a way to write to us.',
-};
+export const metadata: Metadata = pageMeta({
+  title: 'Help and FAQs',
+  description: 'Answers to common Wealthit questions: moving to a new phone, signing in, currencies that won’t convert, app lock and deleting your account. Or write to us.',
+  path: '/support/',
+});
 
 const ACCOUNT: QA[] = [
   {
     q: 'I got a new phone. How do I move my records across?',
     a: [
-      'Install Wealthit on the new phone and sign in the way you signed in before — Apple, Google, or your email. Everything you recorded comes down from your account.',
+      'Install Wealthit on the new phone and sign in the way you signed in before: Apple, Google, or your email. Everything you recorded comes down from your account.',
       'Receipt photos and your profile picture stay on the old phone, because they are never uploaded.',
     ],
   },
@@ -75,7 +77,7 @@ const MONEY: QA[] = [
   },
   {
     q: 'Reminders are not arriving.',
-    a: ['Check the phone’s own notification settings for Wealthit. Reminders are scheduled on the phone and the app can only ask — if the system refuses, the screen in the app says so rather than claiming it worked.'],
+    a: ['Check the phone’s own notification settings for Wealthit. Reminders are scheduled on the phone and the app can only ask. If the system refuses, the screen in the app says so rather than claiming it worked.'],
   },
 ];
 
@@ -101,6 +103,7 @@ export default function Support() {
     <div className="page">
       <main id="main">
         <HelpHero />
+        <JsonLd data={faqSchema([...ACCOUNT, ...MONEY, ...PRIVACY])} />
         <Faq sectionId="account" cap="Your account and your phones" title="Signing in, new phones, and leaving." items={ACCOUNT} more={false} />
         <Faq sectionId="money" cap="Money and records" title="When a number looks wrong." items={MONEY} more={false} />
         <Faq sectionId="privacy" cap="Privacy" title="Yours, and only yours." items={PRIVACY} more={false} />

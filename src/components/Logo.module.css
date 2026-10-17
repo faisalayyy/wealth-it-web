@@ -6,6 +6,10 @@
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1;
+  color: var(--n-ink);
+}
+
+.logo[data-tone='light'] {
   color: var(--night);
 }
 
@@ -25,6 +29,9 @@
 }
 
 .it {
+  color: var(--brand-text);
+}
+.logo[data-tone='light'] .it {
   color: var(--emerald);
 }
 .logo[data-tone='dark'] .it {

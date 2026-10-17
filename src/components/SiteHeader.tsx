@@ -42,7 +42,7 @@ const ROWS = [
   { label: 'Tap to Record', hint: 'Pay with Apple Pay, tap Add', href: '/features/tap-to-record/', art: 'tap' },
   { label: 'Help', hint: 'Quick answers, or write to us', href: '/support/', art: 'help' },
   { label: 'Privacy', hint: 'What we keep, and why', href: '/privacy/', art: 'privacy' },
-  { label: 'Get the app', hint: 'Coming soon to iPhone', href: '/#get', art: 'app' },
+  { label: 'Get the app', hint: 'Coming soon', href: '/#get', art: 'app' },
 ] as const;
 
 function Thumb({ art }: { art: string }) {

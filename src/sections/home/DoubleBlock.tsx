@@ -19,7 +19,7 @@ const BLOCKS: { title: string; text: string; href: string; photo: { name: string
     title: 'Every currency in one total.',
     text: 'Dirhams, rupees and dollars, each in its own wallet, added up at the rate you got, a fixed peg or the day’s rate. If there is no rate, it says so instead of guessing.',
     href: '/features/accounts/',
-    photo: { name: 'wallets-hijab', h: 2700, alt: 'A woman in a hijab holding an iPhone showing Wealthit’s Wallets: accounts in dirhams, dollars, dinars and rupees', at: '50% 52%' },
+    photo: { name: 'wallets-hijab', h: 2700, alt: 'A woman in a hijab holding a phone showing Wealthit’s Wallets: accounts in dirhams, dollars, dinars and rupees', at: '50% 52%' },
   },
   {
     title: 'A heads-up before you overspend.',

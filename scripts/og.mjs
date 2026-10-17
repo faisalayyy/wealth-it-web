@@ -32,7 +32,7 @@ p { position: absolute; left: 72px; top: 430px; width: 500px; font-size: 25px; l
 </style></head><body>
 <div class="logo"><svg viewBox="0 0 100 100">${leaves.map(d => `<path d="${d}" fill="#4cc38a"/>`).join('')}<circle cx="50" cy="32.4" r="10.8" fill="#f2c66d"/></svg><span>Wealth<i>it</i></span></div>
 <h1>Know where you stand<span class="coin"></span></h1>
-<p>Every account, budget, bill and goal, in any currency. On iPhone.</p>
+<p>Every account, budget, bill and goal, in any currency.</p>
 ${phone('budgets-dark', 700, 150, 250, -6)}
 ${phone('home-dark', 890, 90, 270, 4)}
 </body></html>`;

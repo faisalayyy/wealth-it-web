@@ -44,7 +44,7 @@ export function TapToRecord() {
       <div className={`wrap ${s.grid}`}>
         <div className={s.copy}>
           <p className={`cap ${s.cap}`}>
-            <Icon name="tap" size={16} stroke={1.8} /> Tap to Record, on iPhone
+            <Icon name="tap" size={16} stroke={1.8} /> Tap to Record
           </p>
           <h2 id="tap-title" className={`display-2 ${s.title}`}>
             {coined('You paid. It’s already written down.')}
@@ -64,7 +64,7 @@ export function TapToRecord() {
               </li>
             ))}
           </ol>
-          <p className={s.fine}>Needs an iPhone with Apple Pay. Not available on Android.</p>
+          <p className={s.fine}>Works with Apple Pay. Set it up once.</p>
           <Link href="/features/tap-to-record/" className={s.more}>
             How Tap to Record works <Icon name="arrow-right" size={16} />
           </Link>

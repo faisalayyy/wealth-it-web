@@ -21,8 +21,9 @@
   padding-bottom: clamp(40px, 6vw, 88px);
 }
 
-.cap {
-  color: rgba(247, 246, 241, 0.6);
+/* on the Forest in both themes, so it is never the page's own caption colour */
+.panel .cap {
+  color: rgba(247, 246, 241, 0.74);
   margin-bottom: 16px;
 }
 

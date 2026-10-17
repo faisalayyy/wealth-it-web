@@ -21,7 +21,7 @@ export const metadata: Metadata = pageMeta({
   path: '/privacy/',
 });
 
-const updated = '11 October 2026';
+const updated = '17 October 2026';
 
 const nots = [
   'No tracking, no advertising and no analytics.',
@@ -34,7 +34,7 @@ export default function Privacy() {
   return (
     <div className="page">
       <main id="main">
-        <PageHero cap="Privacy" title="Your money is yours to see." lead="Wealthit is a personal finance app. This page says what it keeps, why, where, and what you can do about it." />
+        <PageHero cap="Privacy policy" title="Your money is yours to see." lead="Wealthit is a personal finance app. This privacy policy says what it keeps, why, where, who else handles it, and what you can do about it." />
         <div className={p.prose}>
           <p className={p.updated}>Last updated {updated}.</p>
           <ul className={p.ticks} role="list">
@@ -48,8 +48,8 @@ export default function Privacy() {
 
           <h2>Who is responsible</h2>
           <p>
-            Wealthit is made by Faisal Mukhtar, who is responsible for the data described here. Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a>{' '}
-            about anything on this page.
+            Wealthit is made by Faisal Mukhtar, who is responsible for the data described here. This policy covers the Wealthit app and this
+            website. Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> about anything on this page.
           </p>
 
           <h2>What Wealthit keeps</h2>
@@ -84,14 +84,16 @@ export default function Privacy() {
               <strong>Your profile picture.</strong> Copied into the app and kept on the phone.
             </li>
             <li>
-              <strong>Your app lock PIN.</strong> Held in the phone’s keychain. Face ID is checked by the phone; the app is only told yes or no.
+              <strong>Your app lock PIN.</strong> Held in the phone’s own secure storage. Face ID, a fingerprint or face unlock is checked by the
+              phone; the app is only told yes or no.
             </li>
             <li>
               <strong>Sample data.</strong> If you explore with sample data, it never leaves the phone and is never added to your account.
             </li>
             <li>
-              <strong>Tap to Record.</strong> If you set up the Wallet shortcut, the amount and merchant of a card payment are handed to the app on
-              the phone, and become a record like any other.
+              <strong>Tap to Record.</strong> If you set it up with Apple Pay, the amount, the shop and the card’s name (as your wallet shows it,
+              never its number) are handed to the app on the phone. The payment becomes a record like any other, and the card’s name is kept with
+              your settings so the next payment finds its wallet.
             </li>
             <li>
               <strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications.
@@ -103,7 +105,27 @@ export default function Privacy() {
             On your phone, and on Wealthit’s server: an application server run by Render and a database run by Neon, both in Frankfurt, in the EU.
             Every connection is encrypted. Each account’s records are kept apart by the database itself.
           </p>
-          <p>Sign-in emails are sent through Resend, which receives your address and the message, and nothing else.</p>
+
+          <h2>Who else handles it</h2>
+          <p>A few services run parts of Wealthit. Each one handles your data only to do that job for Wealthit, never for its own use:</p>
+          <ul className={p.list}>
+            <li>
+              <strong>Render</strong> runs the application server and <strong>Neon</strong> runs the database, both in Frankfurt.
+            </li>
+            <li>
+              <strong>Resend</strong> sends the sign-in emails. It receives your address and the message, and nothing else.
+            </li>
+            <li>
+              <strong>Zoho Mail</strong> receives the emails you send to {contactEmail}. A message is kept only as long as it takes to help you.
+            </li>
+            <li>
+              <strong>Apple and Google</strong>, only if you choose to sign in with them, as described above.
+            </li>
+          </ul>
+          <p>
+            Wealthit only uses services whose terms commit them to protect your data at least as well as this policy does. Nothing about you is
+            sold, rented or shared with anyone else, unless the law requires it.
+          </p>
 
           <h2>Other requests the app makes</h2>
           <ul className={p.list}>
@@ -129,15 +151,39 @@ export default function Privacy() {
               <strong>Log out</strong> from the side menu. Your records stay in your account.
             </li>
             <li>
-              <strong>Delete your account</strong> from your profile. You are signed out on every phone and this phone is cleared, and 60 days later
-              your account and everything in it are deleted from the server for good. Changed your mind? Sign in before then and everything comes
-              back. If you signed in with Apple, Wealthit also hands that sign-in back to Apple straight away.
+              <strong>Turn things off.</strong> Stop the daily exchange rates in Currency &amp; format, and remove Tap to Record by deleting its
+              automation. Wealthit stops using them at once.
             </li>
             <li>
-              <strong>Ask</strong> for a copy of what Wealthit holds about you, for a correction, or for your account to be deleted straight away, by
-              writing to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from the address you sign in with.
+              <strong>Ask</strong> for a copy of what Wealthit holds about you, or for a correction, by writing to{' '}
+              <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from the address you sign in with.
+            </li>
+            <li>
+              <strong>Delete your account</strong>, as described below.
             </li>
           </ul>
+          <p>
+            You can also complain to the data protection authority where you live. We would rather hear from you first: a person reads every
+            message.
+          </p>
+
+          <h2 id="delete-account">Deleting your account</h2>
+          <ul className={p.list}>
+            <li>
+              <strong>In the app:</strong> open your profile (your picture at the top of Home or of the side menu), then Delete account.
+            </li>
+            <li>
+              <strong>Without the app:</strong> write to <a href={`mailto:${contactEmail}?subject=Delete%20my%20Wealthit%20account`}>{contactEmail}</a>{' '}
+              from the address you sign in with and ask for your account to be deleted. It is deleted straight away, and you get a reply when it
+              is done.
+            </li>
+          </ul>
+          <p>
+            What is deleted: your account, your email address, your account’s id and everything you recorded, with your settings. From the app,
+            you are signed out on every phone and that phone is cleared, and 60 days later all of it is deleted from the server for good. Changed
+            your mind? Sign in before then and everything comes back. If you signed in with Apple, Wealthit hands that sign-in back to Apple
+            straight away. Receipt photos and your profile picture were only ever on your phone; they go when you delete the app.
+          </p>
 
           <h2>How long it is kept</h2>
           <p>
@@ -150,8 +196,10 @@ export default function Privacy() {
 
           <h2>This website</h2>
           <p>
-            The page you are reading is a static file. It sets no cookies, runs no analytics and embeds nothing from anywhere else. Whoever hosts
-            it can see the ordinary request logs any web server keeps (an IP address, a page, a time), and that is the only record of your visit.
+            The page you are reading is a static file, hosted by GitHub Pages. It sets no cookies, runs no analytics and embeds nothing from
+            anywhere else. GitHub can see the ordinary request logs any web server keeps (an IP address, a page, a time), and that is the only
+            record of your visit. If you switch the site between dark and light, that choice is saved in your own browser and never sent
+            anywhere.
           </p>
 
           <h2>Changes</h2>

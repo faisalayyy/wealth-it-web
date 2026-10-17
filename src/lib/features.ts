@@ -45,7 +45,7 @@ export const featurePages: FeaturePage[] = [
     label: 'Recording',
     summary: 'Type a payment the way you’d say it, scan the receipt, or tap Add after Apple Pay.',
     metaTitle: 'Expense tracker and receipt scanner',
-    metaDescription: 'Log a payment as one short sentence, let the receipt scanner fill it in, or tap Add after Apple Pay. An expense tracker for iPhone with no forms in the way.',
+    metaDescription: 'Log a payment as one short sentence, let the receipt scanner fill it in, or tap Add after Apple Pay. An expense tracker with no forms in the way.',
     thumb: 'record-sheet-dark',
     dark: true,
     hero: {
@@ -67,7 +67,7 @@ export const featurePages: FeaturePage[] = [
         media: { video: 'scan-receipt-dark', label: 'Scanning a receipt: the scan line reads it, the record fills in, Done', dark: true },
       },
       {
-        cap: 'Tap to Record, on iPhone',
+        cap: 'Tap to Record',
         title: 'Pay, and it’s already written down.',
         text: 'Set it up once: add the shortcut and link each card to a wallet. After you pay with Apple Pay, a card appears on your Lock Screen with the amount and the shop. Tap Add and it’s recorded; tap Cancel and it isn’t.',
         media: { tap: true, dark: true },
@@ -89,7 +89,7 @@ export const featurePages: FeaturePage[] = [
     label: 'Tap to Record',
     summary: 'Pay with Apple Pay and the payment is already filled in. Tap Add and you’re done.',
     metaTitle: 'Tap to Record: Apple Pay expense tracking',
-    metaDescription: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, already filled in. Tap Add and it’s recorded. Apple Pay expense tracking for iPhone.',
+    metaDescription: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, already filled in. Tap Add and it’s recorded. Expense tracking with nothing to type.',
     thumb: 'lockscreen',
     dark: true,
     hero: {
@@ -102,7 +102,7 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'On your Lock Screen',
         title: 'The payment, filled in for you.',
-        text: 'A moment after you pay, Wealthit shows the shop and the amount on your Lock Screen, and in the Dynamic Island if your iPhone has one. You don’t open the app or type a thing.',
+        text: 'A moment after you pay, Wealthit shows the shop and the amount on your Lock Screen, and in the Dynamic Island where there is one. You don’t open the app or type a thing.',
         media: { tap: true, dark: true },
       },
       {
@@ -123,7 +123,7 @@ export const featurePages: FeaturePage[] = [
       { title: 'Your cards', text: 'The first time you pay with a card, you choose its wallet. Change or forget any card later.' },
       { title: 'Never twice', text: 'If the same payment arrives twice, it’s recorded once.' },
       { title: 'Nothing to type', text: 'The amount comes from the payment itself, in the wallet’s own currency.' },
-      { title: 'Needs Apple Pay', text: 'Tap to Record works with Apple Pay on iPhone. It isn’t available on Android.' },
+      { title: 'Works with Apple Pay', text: 'Tap to Record picks up the payments you make with Apple Pay.' },
       { title: 'Only what you paid', text: 'Apple Pay passes on the card, the shop and the amount, and nothing more. There is no bank login.' },
     ],
   },
@@ -172,7 +172,7 @@ export const featurePages: FeaturePage[] = [
     label: 'Budgets',
     summary: 'Set a limit and get a heads-up before you go over.',
     metaTitle: 'Budget planner with overspending alerts',
-    metaDescription: 'Set a weekly, monthly or yearly budget for any category, see what you can spend each day, and get a heads-up before you overspend. A budget app for iPhone.',
+    metaDescription: 'Set a weekly, monthly or yearly budget for any category, see what you can spend each day, and get a heads-up before you overspend. A budget app that keeps you ahead.',
     thumb: 'budgets-dark',
     dark: true,
     hero: {
@@ -284,7 +284,7 @@ export const featurePages: FeaturePage[] = [
     slug: 'home',
     label: 'Home & widgets',
     summary: 'Put what matters first, hide the amounts, and keep it on your Home Screen.',
-    metaTitle: 'Money overview and iPhone widgets',
+    metaTitle: 'Money overview and Home Screen widgets',
     metaDescription: 'Choose what Wealthit’s Home shows and in what order, hide amounts with one tap, and keep budgets, goals and spending on your Home Screen with seven widgets.',
     thumb: 'home-dark',
     dark: true,

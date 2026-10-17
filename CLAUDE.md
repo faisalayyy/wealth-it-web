@@ -108,11 +108,15 @@ node scripts/og.mjs        # the link preview, public/og.png
   26 countries whose money the app keeps (flags from flag-icons, MIT). No Pricing or Blog page until
   there is a price or a post.
 - **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: its own page, a homepage
-  section and one of the two large tiles in the features bento. iPhone only, with Apple Pay, set up once; never promise it
-  on Android. Its Lock Screen card can't be captured on a simulator: `scripts/tap.mjs` renders the
+  section and one of the two large tiles in the features bento. It works with Apple Pay and is set
+  up once; never promise it on Android. Its Lock Screen card can't be captured on a simulator: `scripts/tap.mjs` renders the
   App Store poster 03's own HTML, card only (`media-src/app`).
-- **Not in the stores yet.** The iPhone app is in TestFlight; Android is planned. `stores` stays
-  `null`; AppButtons say "Coming soon" / "Later on" and are not links.
+- **Not in the stores yet.** `stores` stays `null`; both AppButtons say "Coming soon" and are not
+  links.
+- **No platform names in the copy** (the owner, 17 October 2026): Wealthit is for iPhone, Android
+  and the web, and the site never says which: no "for iPhone", "Android to follow" or "on the App
+  Store". Tap to Record still says it works with Apple Pay, because that is how it works; it is
+  never promised for Android.
 - **The web app is not deployed.** `webApp` stays `null`; "Log in" says "Soon" until then. One URL
   serves log in and sign up (its root shows sign-in). Say only what it does: same account, records
   in step with the phone; not budgets, goals, schedules or wallet editing yet.

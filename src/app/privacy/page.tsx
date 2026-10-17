@@ -73,7 +73,28 @@ export default function Privacy() {
               <strong>A password, only if you set one</strong>, stored only as an Argon2 hash, never the password itself. Sign-in codes are stored
               only as a keyed hash, and expire after ten minutes.
             </li>
+            <li>
+              <strong>When you joined and when you last used Wealthit</strong>, and a sign-in session for each phone you are signed in on, so
+              you stay signed in. Logging out ends that phone’s session.
+            </li>
           </ul>
+
+          <h2>What the app asks your phone for</h2>
+          <ul className={p.list}>
+            <li>
+              <strong>The camera</strong>, only when you take a photo of a receipt.
+            </li>
+            <li>
+              <strong>Your photos</strong>, only the one you pick, for a receipt or your profile picture.
+            </li>
+            <li>
+              <strong>Face or fingerprint unlock</strong>, only if you turn on the app lock. The phone checks it and tells the app yes or no.
+            </li>
+            <li>
+              <strong>Notifications</strong>, only for the reminders you set up, which the phone schedules itself.
+            </li>
+          </ul>
+          <p>Wealthit never asks for your location, your contacts or your bank login. You can say no to any of these and still use the app.</p>
 
           <h2>What stays on your phone</h2>
           <ul className={p.list}>
@@ -119,6 +140,12 @@ export default function Privacy() {
               <strong>Zoho Mail</strong> receives the emails you send to {contactEmail}. A message is kept only as long as it takes to help you.
             </li>
             <li>
+              <strong>Vercel</strong> runs, in Frankfurt, the design service the app asks for its look, and Wealthit’s own admin page. The admin
+              page lets the person who runs Wealthit see that an account exists, when it joined, when it was last used and how many records it
+              keeps, never what those records say. It can find an account by its email address to sign it out or delete it when you ask, it
+              needs a password, and every change made with it is written to a log nobody can edit.
+            </li>
+            <li>
               <strong>Apple and Google</strong>, only if you choose to sign in with them, as described above.
             </li>
           </ul>
@@ -126,6 +153,31 @@ export default function Privacy() {
             Wealthit only uses services whose terms commit them to protect your data at least as well as this policy does. Nothing about you is
             sold, rented or shared with anyone else, unless the law requires it.
           </p>
+
+          <h2>Keeping it safe</h2>
+          <ul className={p.list}>
+            <li>Every connection between the app, the server and these services is encrypted.</li>
+            <li>Passwords and sign-in codes are only ever stored as hashes.</li>
+            <li>The database itself keeps each account’s records apart, so one person’s session can never read another’s.</li>
+            <li>
+              Your IP address is used for a few minutes to stop too many sign-in tries in a row. It is held in memory only and never stored.
+            </li>
+            <li>The server’s logs say what went wrong, never who it happened to: no email addresses, no codes, no records.</li>
+          </ul>
+
+          <h2>Why Wealthit can use it</h2>
+          <ul className={p.list}>
+            <li>
+              <strong>To give you the service you signed up for</strong>: your account, your records, and the same money on every phone you
+              sign in on.
+            </li>
+            <li>
+              <strong>To keep it secure</strong>: stopping repeated sign-in tries, and signing out or deleting an account when you ask.
+            </li>
+            <li>
+              <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record and reminders. Turn them off and they stop.
+            </li>
+          </ul>
 
           <h2>Other requests the app makes</h2>
           <ul className={p.list}>
@@ -188,7 +240,8 @@ export default function Privacy() {
           <h2>How long it is kept</h2>
           <p>
             For as long as you have an account. When you delete it, it is removed for good 60 days later, unless you sign in again before then.
-            The database keeps a short recovery history of its own, which expires by itself.
+            The database keeps a recovery history of the last six hours of changes, so once something is deleted for good, it is gone from that
+            history within six hours as well. Emails you send to {contactEmail} are kept only as long as it takes to help you.
           </p>
 
           <h2>Children</h2>

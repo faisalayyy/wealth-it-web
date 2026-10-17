@@ -26,7 +26,8 @@
   color: var(--n-text);
 }
 
-.prose p + p {
+.prose p + p,
+.prose ul + p {
   margin-top: 14px;
 }
 

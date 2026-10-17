@@ -11,21 +11,21 @@ import s from './DoubleBlock.module.css';
 
 /**
  * Two big claims side by side (the reference's double block), each a card with a round arrow to
- * its feature page, a photograph in the middle — the Wallets screen in someone's hand, a couple at
- * the shops — and one line under it.
+ * its feature page, a photograph in the middle — the Wallets screen in her hands, the budgets at a
+ * table — and one line under it.
  */
 const BLOCKS: { title: string; text: string; href: string; photo: { name: string; h: number; alt: string; at?: string } }[] = [
   {
-    title: 'Every currency. One total.',
-    text: 'Dirhams, rupees and dollars, each in its own wallet, added up at the rate you got, a fixed peg or the day’s rate. If there is no rate, it says so — it never guesses.',
+    title: 'Every currency in one total.',
+    text: 'Dirhams, rupees and dollars, each in its own wallet, added up at the rate you got, a fixed peg or the day’s rate. If there is no rate, it says so instead of guessing.',
     href: '/features/accounts/',
-    photo: { name: 'street-phone', h: 2700, alt: 'A hand holding a phone showing Wealthit’s Wallets: accounts in dirhams, dollars, dinars and rupees', at: '50% 32%' },
+    photo: { name: 'wallets-hijab', h: 2700, alt: 'A woman in a hijab holding an iPhone showing Wealthit’s Wallets: accounts in dirhams, dollars, dinars and rupees', at: '50% 52%' },
   },
   {
     title: 'A heads-up before you overspend.',
-    text: 'When a budget is nearly used up, you hear about it while there is still time to do something — with what is left and how much that is a day.',
+    text: 'When a budget is nearly used up, you’re told what is left and how much that is a day, while there is still time to do something.',
     href: '/features/budgets/',
-    photo: { name: 'supermarket', h: 1201, alt: 'A couple shopping for groceries; she checks her phone', at: '70% 40%' },
+    photo: { name: 'desk-budgets', h: 1201, alt: 'A hand holding an iPhone showing Wealthit’s budgets, at a table', at: '42% 50%' },
   },
 ];
 

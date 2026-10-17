@@ -2,7 +2,7 @@ import { Button } from '@/components/Button';
 import { SiteFooter } from '@/components/SiteFooter';
 import { PageHero } from '@/sections/product/PageHero';
 
-export const metadata = { title: 'Not found' };
+export const metadata = { title: 'Not found', robots: { index: false, follow: true } };
 
 export default function NotFound() {
   return (
@@ -11,7 +11,7 @@ export default function NotFound() {
         <PageHero
           cap="404"
           title="Nothing here."
-          lead="That page doesn’t exist — but the rest of the site does."
+          lead="That page doesn’t exist, but the rest of the site does."
           actions={
             <>
               <Button label="Back to the homepage" href="/" tone="brand" />

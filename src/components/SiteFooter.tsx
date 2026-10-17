@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { gsap, isTouch, reducedMotion, useGSAP } from '@/animation/gsap';
 import { featurePages } from '@/lib/features';
-import { contactEmail, site } from '@/lib/site';
+import { contactEmail, site, socials } from '@/lib/site';
+import { Icon } from './Icon';
 import { Mark } from './Logo';
 import s from './SiteFooter.module.css';
 
 /**
  * The footer: the page ends in a sheet with rounded bottom corners, lifted off a warm grey footer —
- * the way around, the way to write to us, the legal line, and the name across the whole width
+ * the way around, the way to write to us, where to follow, the legal line, and the name across the whole width
  * ("it" in Emerald) on a glow of the brand's green and gold, rising into place as it comes into
  * view. `sheet` is the colour of the page above it, so its rounded lip matches.
  */
@@ -30,8 +31,9 @@ const COLUMNS = [
       { label: 'Get the app', href: '/#get' },
     ],
   },
+  { title: 'Socials', links: socials.map(so => ({ label: `${so.label} ${so.handle}`, href: so.href, icon: so.icon })) },
   { title: 'Legal', links: [{ label: 'Privacy policy', href: '/privacy/' }] },
-];
+] as { title: string; links: { label: string; href: string; icon?: string }[] }[];
 
 export function SiteFooter({ sheet = 'var(--n-50)' }: { sheet?: string }) {
   const root = useRef<HTMLElement>(null);
@@ -68,6 +70,11 @@ export function SiteFooter({ sheet = 'var(--n-50)' }: { sheet?: string }) {
                 <li key={l.href}>
                   {l.href.startsWith('mailto:') ? (
                     <a href={l.href} className={s.link}>
+                      {l.label}
+                    </a>
+                  ) : l.href.startsWith('http') ? (
+                    <a href={l.href} className={`${s.link} ${s.social}`} target="_blank" rel="noopener me">
+                      {l.icon && <Icon name={l.icon} size={17} />}
                       {l.label}
                     </a>
                   ) : (

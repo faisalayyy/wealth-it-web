@@ -13,7 +13,7 @@
     "record-sheet-dark": "The record sheet: I spent AED 42.50 on Restaurant, fast-food from Main bank, today",
     "amount-pad-dark": "Typing an amount on Wealthit's own number pad",
     "categories-dark": "Choosing what it was for: category chips",
-    "scan-reading-dark": "Scanning a receipt — the scan line reading it",
+    "scan-reading-dark": "Scanning a receipt: the scan line reading it",
     "scan-done-dark": "A scanned receipt as a record to check: AED 86.50, Groceries, paid to Harbour Lane",
     "wallets-dark": "Wallets: net worth, banks in five currencies, cards, savings",
     "wallets-light": "Wallets, light",
@@ -23,18 +23,19 @@
     "budget-detail-dark": "One budget: what is left, a daily allowance, its settings",
     "goals-dark": "Goals: a habit, savings goals, a loan to clear",
     "goal-detail-dark": "One goal: progress, the amount a month, the date it will be reached",
-    "schedules-dark": "Scheduled payments: a bill waiting — Record it or Skip this time",
+    "schedules-dark": "Scheduled payments: a bill waiting, with Record it and Skip this time",
     "schedule-detail-dark": "Rent, every month, and each time it was paid",
     "notifications-dark": "Notifications, with Pay, Got paid and Record",
     "customise-home-dark": "Customise Home: what Home shows, and in what order",
     "statistics-dark": "Statistics: balance forecast, spending, cashflow",
     "statistics-spending-dark": "A month's spending: daily bars, must, need and want",
-    "advanced-settings-dark": "Advanced settings: Security and Your data"
+    "advanced-settings-dark": "Advanced settings: Security and Your data",
+    "lockscreen": "The iPhone Lock Screen at 9:41"
   },
   "cuts": {
     "tap-card": {
-      "file": "media-src/app/tap-live-activity",
-      "alt": "Tap to Record on the Lock Screen: Harbour Lane Supermarket, AED 86.50, Groceries from Main bank — Cancel or Add"
+      "file": "media-src/app/tap-card",
+      "alt": "Tap to Record on the Lock Screen: Harbour Lane Supermarket, AED 86.50, Groceries from Main bank, with Cancel and Add"
     }
   },
   "crops": {
@@ -101,5 +102,9 @@
       "w": 322,
       "h": 60
     }
+  },
+  "files": {
+    "$comment": "captures kept in this repo rather than in the iOS session's folder: the Lock Screen the App Store poster 03 uses (media-src/app, scripts/tap.mjs)",
+    "lockscreen": "media-src/app/lockscreen"
   }
 }

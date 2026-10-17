@@ -1,6 +1,6 @@
 .button {
   --height: 48px;
-  --color: var(--ink);
+  --color: var(--n-ink);
   --bg-color: var(--brand);
   position: relative;
   display: inline-flex;
@@ -39,7 +39,7 @@
 
 /* ink: the dark button of the homepage's second design, on light grounds */
 .button[data-tone='ink'] {
-  --color: var(--white);
+  --color: var(--n-50);
   --bg-color: var(--n-ink);
 }
 .button[data-tone='ink'][data-variant='outline'],

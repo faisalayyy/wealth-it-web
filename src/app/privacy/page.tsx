@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import { Icon } from '@/components/Icon';
 import p from '@/components/Prose.module.css';
 import { SiteFooter } from '@/components/SiteFooter';
@@ -14,10 +15,11 @@ import { PageHero } from '@/sections/product/PageHero';
  * changes in the app, it has to change here on the same day — a privacy page that has drifted is
  * worse than no privacy page.
  */
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Privacy',
   description: 'What Wealthit keeps, where it is kept, and what you can do about it. No tracking, no ads, no analytics.',
-};
+  path: '/privacy/',
+});
 
 const updated = '11 October 2026';
 
@@ -68,7 +70,7 @@ export default function Privacy() {
               never sees your Google or Apple password. If you choose Apple’s “Hide My Email”, Wealthit only ever sees the address Apple gives it.
             </li>
             <li>
-              <strong>A password, only if you set one</strong>, stored only as an Argon2 hash — never the password itself. Sign-in codes are stored
+              <strong>A password, only if you set one</strong>, stored only as an Argon2 hash, never the password itself. Sign-in codes are stored
               only as a keyed hash, and expire after ten minutes.
             </li>
           </ul>
@@ -149,7 +151,7 @@ export default function Privacy() {
           <h2>This website</h2>
           <p>
             The page you are reading is a static file. It sets no cookies, runs no analytics and embeds nothing from anywhere else. Whoever hosts
-            it can see the ordinary request logs any web server keeps — an IP address, a page, a time — and that is the only record of your visit.
+            it can see the ordinary request logs any web server keeps (an IP address, a page, a time), and that is the only record of your visit.
           </p>
 
           <h2>Changes</h2>

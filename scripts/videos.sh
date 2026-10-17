@@ -16,6 +16,8 @@ typeset -A poster=(
   goal-dark 4.0
   customise-home-dark 3.4
   hide-amounts-dark 0.3
+  record-expense-light 4.6
+  hide-amounts-light 0.3
 )
 for name in ${(k)poster}; do
   f=("$src/$name".(mp4|mov)(N))

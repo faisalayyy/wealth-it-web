@@ -15,7 +15,9 @@
 }
 
 .text {
-  width: min(1040px, var(--wrap));
+  width: min(1160px, var(--wrap));
+  /* a step above the shared .statement size (50 px at most): the sentence carries the page */
+  font-size: clamp(31px, calc(18px + 2.55vw), 57px);
   text-align: center;
   text-wrap: balance;
 }

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { reducedMotion } from '@/animation/gsap';
 import { asset } from '@/lib/site';
+import { themedVideo, useTheme } from '@/lib/theme';
 import { Phone } from './Phone';
 import s from './PhoneVideo.module.css';
 
@@ -16,6 +17,7 @@ export function PhoneVideo({ name, label, className, poster }: { name: string; l
   const video = useRef<HTMLVideoElement>(null);
   const [near, setNear] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const file = themedVideo(name, useTheme());
 
   useEffect(() => {
     const el = video.current!;
@@ -44,8 +46,8 @@ export function PhoneVideo({ name, label, className, poster }: { name: string; l
       <video
         ref={video}
         className={s.video}
-        src={near ? asset(`/videos/${name}.mp4`) : undefined}
-        poster={asset(`/videos/${poster ?? name}.jpg`)}
+        src={near ? asset(`/videos/${file}.mp4`) : undefined}
+        poster={asset(`/videos/${poster ?? file}.jpg`)}
         muted
         loop
         playsInline

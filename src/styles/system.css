@@ -138,7 +138,7 @@ body {
   line-height: 1.5;
   font-weight: 450;
   letter-spacing: -0.003em;
-  color: var(--ink);
+  color: var(--n-ink);
   background: var(--n-50);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -188,7 +188,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--ink);
+  outline: 2px solid var(--n-ink);
   outline-offset: 3px;
 }
 
@@ -390,14 +390,25 @@ button {
    Warm neutral surfaces from the app's own light theme, Night panels that sit with its dark
    screens, Forest for the brand's own moments, Emerald for what to press, Gold for the coin. */
 :root {
+  color-scheme: light;
   --n-50: #f7f6f1; /* ivory: the page */
   --n-100: #f0efe9;
   --n-150: #e8e7e0;
   --n-200: #dcdbd3;
-  --n-ink: #0b0b0c;
+  --n-ink: #0b0b0c; /* text */
+  --n-text: rgba(11, 11, 12, 0.7); /* body copy under a headline */
   --n-cap: rgba(11, 11, 12, 0.52);
   --n-line: rgba(11, 11, 12, 0.11);
-  --panel: #0b0b0c;
+  --n-tint: rgba(11, 11, 12, 0.07); /* a control's fill */
+  --n-tint-2: rgba(11, 11, 12, 0.13); /* the same, pointed at */
+  --surface: #ffffff; /* a card on the page */
+  --n-pill: rgba(233, 232, 225, 0.86); /* the header's pills, frosted */
+  --n-pill-edge: rgba(255, 255, 255, 0.35);
+  --n-menu: #e9e8e1; /* what opens out of the pills */
+  --n-hero: #e1e0d8; /* the hero's gradient, at its top */
+  --soon-bg: rgba(242, 198, 109, 0.35);
+  --soon-fg: #6b4f12;
+  --panel: #0b0b0c; /* the dark panels the app's screens sit on */
   --r-sm: 12px;
   --r-md: 18px;
   --r-lg: 28px;
@@ -406,6 +417,41 @@ button {
   --wrap: min(1328px, calc(var(--100vw) - var(--gutter) * 2));
   --sec: clamp(96px, 11vw, 168px);
   --ease-quint: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* The dark theme, the default (the owner wants the site mostly dark): the page in near-black with
+   a breath of the leaves' green, the same panels a step lighter so the app's dark screens still
+   stand out, Mint for brand text (as the brand puts it on dark). The light theme is the one above;
+   a visitor's choice is kept in localStorage and set before the first paint (layout.tsx). */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --n-50: #0d0f0e;
+  --n-100: #131514;
+  --n-150: #191c1a;
+  --n-200: #232624;
+  --n-ink: #f3f2ec;
+  --n-text: rgba(243, 242, 236, 0.72);
+  --n-cap: rgba(243, 242, 236, 0.52);
+  --n-line: rgba(243, 242, 236, 0.12);
+  --n-tint: rgba(243, 242, 236, 0.08);
+  --n-tint-2: rgba(243, 242, 236, 0.15);
+  --surface: #181b19;
+  --n-pill: rgba(28, 31, 29, 0.8);
+  --n-pill-edge: rgba(255, 255, 255, 0.08);
+  --n-menu: #181b19;
+  --n-hero: #1a1d1b;
+  --soon-bg: rgba(242, 198, 109, 0.16);
+  --soon-fg: #f2c66d;
+  --panel: #171a18;
+  --brand-text: var(--mint);
+  --brand-25: rgba(76, 195, 138, 0.12);
+  --ink-soft: rgba(243, 242, 236, 0.62);
+}
+
+/* what shows in one theme only: a capture and its light twin, the theme switch's two icons */
+:root[data-theme='dark'] .only-light,
+:root:not([data-theme='dark']) .only-dark {
+  display: none !important;
 }
 
 /* the coin: a headline's full stop, drawn as the logo's gold coin */
@@ -455,7 +501,7 @@ button {
   font-size: clamp(16px, 1.2vw, 18px);
   line-height: 1.55;
   letter-spacing: -0.006em;
-  color: rgba(11, 11, 12, 0.68);
+  color: var(--n-text);
 }
 .cap {
   font-size: 13px;
@@ -463,4 +509,16 @@ button {
   font-weight: 550;
   letter-spacing: 0.01em;
   color: var(--n-cap);
+}
+
+/* switching theme: the page eases from one to the other instead of snapping */
+.theme-turning,
+.theme-turning *,
+.theme-turning *::before,
+.theme-turning *::after {
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    border-color 0.35s ease,
+    fill 0.35s ease !important;
 }

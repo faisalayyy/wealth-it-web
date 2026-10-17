@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Icon } from '@/components/Icon';
 import { Phone } from '@/components/Phone';
+import { TapPhone } from '@/components/TapPhone';
 import type { FeaturePage } from '@/lib/features';
 import s from './NextFeature.module.css';
 
@@ -19,7 +20,11 @@ export function NextFeature({ feature }: { feature: FeaturePage }) {
             </span>
           </span>
           <span className={s.media} aria-hidden>
-            <Phone screen={feature.thumb} variant="device" className={s.phone} sizes="240px" alt="" />
+            {feature.hero.media && 'tap' in feature.hero.media ? (
+              <TapPhone className={s.phone} sizes="240px" note={false} />
+            ) : (
+              <Phone screen={feature.thumb} variant="device" className={s.phone} sizes="240px" alt="" />
+            )}
           </span>
         </Link>
       </div>

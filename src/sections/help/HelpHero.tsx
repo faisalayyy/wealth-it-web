@@ -40,7 +40,7 @@ export function HelpHero() {
     if (!get('message')) wrong.push('message');
     setInvalid(wrong);
     if (wrong.length) return;
-    const body = `${get('message')}\n\n— ${get('name')}\n${get('email')}`;
+    const body = `${get('message')}\n\n${get('name')}\n${get('email')}`;
     window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(`Wealthit: a note from ${get('name')}`)}&body=${encodeURIComponent(body)}`;
   };
 
@@ -69,7 +69,7 @@ export function HelpHero() {
           </p>
           <h1 className={`display-2 ${s.title}`}>{coined('How can we help?')}</h1>
           <p className={`lead ${s.lead}`} data-in>
-            Most questions have an answer further down this page. If yours doesn’t, write — a person reads every message.
+            Most questions have an answer further down this page. If yours doesn’t, write to us. A person reads every message.
           </p>
           <form className={s.form} onSubmit={send} noValidate data-in>
             <div className={s.row}>

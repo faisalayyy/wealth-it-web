@@ -6,9 +6,10 @@ import { THREE } from './stage';
 /**
  * Small 3D illustrations in the hero keyring's materials, rendered once to transparent images
  * (public/art, by scripts/art.mjs through src/app/_lab/art) for the pieces set inside the homepage's
- * statement: an account, a budget, a bill, a goal, and the mark.
+ * statement (an account, a budget, a bill, a goal, the mark) and the menu's rows (a card being
+ * tapped, a chat, a padlock, a phone).
  */
-export const ART = ['account', 'budget', 'bill', 'goal', 'mark'] as const;
+export const ART = ['account', 'budget', 'bill', 'goal', 'mark', 'tap', 'help', 'privacy', 'app'] as const;
 export type ArtName = (typeof ART)[number];
 
 export function buildArt(name: ArtName, env: THREE.Texture) {
@@ -156,6 +157,110 @@ export function buildArt(name: ArtName, env: THREE.Texture) {
     c.position.set((BRAND_MARK.coin.cx - 50) * k, -(BRAND_MARK.coin.cy - 50) * k, 6 * k);
     group.add(leaves, c);
     group.rotation.set(-0.1, -0.45, 0);
+  }
+
+  if (name === 'tap') {
+    // a card tilted towards a reader, and the contactless waves coming off it
+    const card = new THREE.Group();
+    card.add(new THREE.Mesh(new RoundedBoxGeometry(2.2, 1.38, 0.07, 4, 0.12), emerald));
+    const chip = new THREE.Mesh(new RoundedBoxGeometry(0.32, 0.24, 0.02, 2, 0.04), gold);
+    chip.position.set(-0.65, 0.12, 0.045);
+    const band = new THREE.Mesh(new RoundedBoxGeometry(1.1, 0.08, 0.02, 2, 0.03), gloss('#4cc38a', { roughness: 0.5 }));
+    band.position.set(-0.2, -0.4, 0.045);
+    card.add(chip, band);
+    card.rotation.set(0, 0, -0.18);
+    group.add(card);
+    [0.32, 0.56, 0.8].forEach((r, i) => {
+      const arc = new THREE.Mesh(new THREE.TorusGeometry(r, 0.055, 14, 48, Math.PI * 0.62), i === 1 ? gold : chrome);
+      arc.rotation.z = -Math.PI * 0.31;
+      arc.position.set(1.0, 0.55, 0.2);
+      group.add(arc);
+    });
+    group.rotation.set(-0.12, -0.42, 0);
+  }
+
+  if (name === 'help') {
+    // a speech bubble, the three dots of someone writing back
+    const s = new THREE.Shape();
+    const w = 2.1;
+    const h = 1.4;
+    const r = 0.55;
+    s.moveTo(-w / 2 + r, -h / 2);
+    s.lineTo(-w / 2 + 0.75, -h / 2);
+    s.lineTo(-w / 2 + 0.35, -h / 2 - 0.42);
+    s.lineTo(-w / 2 + 1.05, -h / 2);
+    s.lineTo(w / 2 - r, -h / 2);
+    s.absarc(w / 2 - r, -h / 2 + r, r, -Math.PI / 2, 0, false);
+    s.lineTo(w / 2, h / 2 - r);
+    s.absarc(w / 2 - r, h / 2 - r, r, 0, Math.PI / 2, false);
+    s.lineTo(-w / 2 + r, h / 2);
+    s.absarc(-w / 2 + r, h / 2 - r, r, Math.PI / 2, Math.PI, false);
+    s.lineTo(-w / 2, -h / 2 + r);
+    s.absarc(-w / 2 + r, -h / 2 + r, r, Math.PI, Math.PI * 1.5, false);
+    const geo = new THREE.ExtrudeGeometry(s, { depth: 0.22, bevelEnabled: true, bevelThickness: 0.08, bevelSize: 0.07, bevelSegments: 8, curveSegments: 40 });
+    geo.translate(0, 0, -0.11);
+    group.add(new THREE.Mesh(geo, ivory));
+    [-0.5, 0, 0.5].forEach((x, i) => {
+      const dot = new THREE.Mesh(new THREE.SphereGeometry(0.15, 32, 24), i === 2 ? gold : emerald);
+      dot.scale.z = 0.6;
+      dot.position.set(x, 0, 0.22);
+      group.add(dot);
+    });
+    group.rotation.set(-0.1, -0.45, 0.04);
+  }
+
+  if (name === 'privacy') {
+    // the keyring's padlock: a Forest body, a chrome shackle, a gold keyhole
+    const W = 1.5;
+    const H = 1.25;
+    const D = 0.56;
+    const body = new THREE.Mesh(new RoundedBoxGeometry(W, H, D, 6, 0.22), forest);
+    const ringR = 0.46;
+    const legs = 0.34;
+    const path = new THREE.CurvePath<THREE.Vector3>();
+    path.add(new THREE.LineCurve3(new THREE.Vector3(-ringR, H / 2 - 0.08, 0), new THREE.Vector3(-ringR, H / 2 + legs, 0)));
+    path.add(
+      new THREE.CubicBezierCurve3(
+        new THREE.Vector3(-ringR, H / 2 + legs, 0),
+        new THREE.Vector3(-ringR, H / 2 + legs + ringR * 1.33, 0),
+        new THREE.Vector3(ringR, H / 2 + legs + ringR * 1.33, 0),
+        new THREE.Vector3(ringR, H / 2 + legs, 0),
+      ),
+    );
+    path.add(new THREE.LineCurve3(new THREE.Vector3(ringR, H / 2 + legs, 0), new THREE.Vector3(ringR, H / 2 - 0.08, 0)));
+    const shackle = new THREE.Mesh(new THREE.TubeGeometry(path, 64, 0.12, 18, false), chrome);
+    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.04, 32), gold);
+    hole.rotation.x = Math.PI / 2;
+    hole.position.set(0, 0.07, D / 2 + 0.005);
+    const slot = new THREE.Mesh(new RoundedBoxGeometry(0.09, 0.28, 0.04, 2, 0.02), gold);
+    slot.position.set(0, -0.1, D / 2 + 0.005);
+    group.add(body, shackle, hole, slot);
+    group.rotation.set(-0.08, -0.5, 0.06);
+  }
+
+  if (name === 'app') {
+    // a phone with the mark on its screen
+    const W = 1.3;
+    const H = 2.6;
+    const shell = new THREE.Mesh(new RoundedBoxGeometry(W, H, 0.16, 6, 0.2), gloss('#121313', { roughness: 0.25, clearcoat: 1 }));
+    const screen = new THREE.Mesh(new RoundedBoxGeometry(W - 0.12, H - 0.12, 0.02, 4, 0.15), gloss('#0e3b30', { roughness: 0.4, clearcoat: 0.5 }));
+    screen.position.z = 0.08;
+    const island = new THREE.Mesh(new RoundedBoxGeometry(0.34, 0.1, 0.02, 2, 0.05), gloss('#050505'));
+    island.position.set(0, H / 2 - 0.2, 0.095);
+    group.add(shell, screen, island);
+    const svg = new SVGLoader().parse(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${BRAND_MARK.viewBox}">${BRAND_MARK.paths.map(d => `<path d="${d}"/>`).join('')}</svg>`);
+    const shapes = svg.paths.flatMap(p => SVGLoader.createShapes(p));
+    const geo = new THREE.ExtrudeGeometry(shapes, { depth: 4, bevelEnabled: true, bevelThickness: 1.5, bevelSize: 1, bevelSegments: 5, curveSegments: 48 });
+    const k = 0.95 / 76;
+    geo.translate(-50, -50, 0);
+    geo.scale(k, -k, -k);
+    geo.translate(0, 0.15, 0.1 + 5.5 * k);
+    group.add(new THREE.Mesh(geo, mint));
+    const c = coin(BRAND_MARK.coin.r * k, 4 * k);
+    c.rotation.x = Math.PI / 2;
+    c.position.set((BRAND_MARK.coin.cx - 50) * k, -(BRAND_MARK.coin.cy - 50) * k + 0.15, 0.1 + 3 * k);
+    group.add(c);
+    group.rotation.set(-0.08, -0.5, 0.08);
   }
 
   scene.add(new THREE.HemisphereLight('#ffffff', '#c9cbc4', 1.2));

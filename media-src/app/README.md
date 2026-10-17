@@ -1,6 +1,11 @@
 # From the app's own marketing
 
-`tap-live-activity.png` is a rectangle cut from the App Store poster
-`App/marketing/app-store/masters/03-apple-pay@2x.png` (left 150, top 3880, 2340 × 1000 px). The
-poster draws Tap to Record's Lock Screen card from the app's real `TapLiveActivity.swift`; it can't
-be captured on the simulator (no Apple Pay or Shortcuts there), so the iOS session pointed here.
+Tap to Record's Lock Screen card can't be captured on the simulator (no Apple Pay or Shortcuts
+there), so the iOS session pointed to the App Store poster 03, which draws it from the app's real
+`TapLiveActivity.swift`. `scripts/tap.mjs` renders that poster's own HTML (read from
+`App/marketing/app-store/source/03-apple-pay.html`, unchanged) with everything but the card hidden:
+
+- `tap-card.png`: the card, at the poster's 2.7x, transparent around its rounded corners.
+- `lockscreen.png`: the iOS Lock Screen capture the poster uses (`App/marketing/app-store/assets/screens`).
+
+The site lays the card over the Lock Screen in a phone; it never redraws either.

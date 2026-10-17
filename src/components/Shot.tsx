@@ -2,6 +2,7 @@ import type { Media } from '@/lib/features';
 import { Phone } from './Phone';
 import { PhoneVideo } from './PhoneVideo';
 import { Crop, Cut } from './Screen';
+import { TapPhone } from './TapPhone';
 import s from './Shot.module.css';
 
 /**
@@ -10,6 +11,13 @@ import s from './Shot.module.css';
  * screen — all real, none redrawn.
  */
 export function Shot({ media, sizes = '(max-width: 743px) 64vw, 320px', className }: { media: Media; sizes?: string; className?: string }) {
+  if ('tap' in media) {
+    return (
+      <div className={`${s.phones} ${className ?? ''}`}>
+        <TapPhone className={s.phone} sizes={sizes} />
+      </div>
+    );
+  }
   if ('video' in media) {
     return (
       <div className={`${s.phones} ${className ?? ''}`}>

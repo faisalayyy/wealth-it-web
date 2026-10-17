@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { pageMeta } from '@/lib/seo';
 import { Button } from '@/components/Button';
 import { Shot } from '@/components/Shot';
 import { SiteFooter } from '@/components/SiteFooter';
@@ -9,10 +10,11 @@ import { Facts } from '@/sections/product/Facts';
 import { PageHero } from '@/sections/product/PageHero';
 import { Switcher } from '@/sections/product/Switcher';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMeta({
   title: 'Features',
-  description: 'Record a payment in a sentence or a photo, see every account in one total, and plan budgets, bills and goals — what Wealthit does, feature by feature.',
-};
+  description: 'What Wealthit does, feature by feature: record a payment in a sentence or a photo, see every account in one total, and plan budgets, bills and goals.',
+  path: '/features/',
+});
 
 /**
  * What the app does, after the reference's product page: the headline and the app, then every
@@ -26,7 +28,7 @@ export default function Features() {
         <PageHero
           cap="Features"
           title="Everything you need to know where you stand."
-          lead="Write down what you spend in a sentence or a photo. See every account, in every currency, added up. Plan what is coming — budgets, bills and goals."
+          lead="Write down what you spend in a sentence or a photo, and see every account added up, whatever its currency. Then plan for what’s coming with budgets, bills and goals."
           actions={
             <>
               <Button label="Get the app" href="/#get" tone="brand" />

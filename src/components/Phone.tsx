@@ -10,6 +10,7 @@ import s from './Phone.module.css';
  */
 export function Phone({
   screen,
+  exact,
   variant = 'glass',
   alt,
   sizes,
@@ -19,6 +20,8 @@ export function Phone({
   children,
 }: {
   screen?: ScreenName;
+  /** keep this capture in both themes (no light twin) */
+  exact?: boolean;
   variant?: 'glass' | 'device';
   alt?: string;
   sizes?: string;
@@ -31,7 +34,7 @@ export function Phone({
     <div className={`${s.phone} ${className ?? ''}`} data-variant={variant} style={style}>
       <div className={s.frame}>
         <div className={s.screen}>
-          {screen && <Screen name={screen} alt={alt} sizes={sizes} priority={priority} className={s.shot} />}
+          {screen && <Screen name={screen} exact={exact} alt={alt} sizes={sizes} priority={priority} className={s.shot} />}
           {children}
           <span className={s.island} aria-hidden />
         </div>

@@ -125,7 +125,7 @@
 .text {
   max-width: 30ch;
   margin-top: 18px;
-  color: rgba(15, 15, 15, 0.7);
+  color: var(--n-text);
   animation: rise 0.6s var(--ease-quint);
 }
 

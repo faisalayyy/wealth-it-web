@@ -47,7 +47,7 @@ export function Whole() {
           <div className={s.copy} data-copy>
             <p className="cap">The whole picture</p>
             <p id="whole-title" className={`story ${s.text}`}>
-              <Words parts={['What you have, what is due and what you are saving for — on one screen, nothing left to add up yourself.']} />
+              <Words parts={['What you have, what is due and what you are saving for, all on one screen with nothing left to add up yourself.']} />
             </p>
           </div>
         </div>

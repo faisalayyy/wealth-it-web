@@ -9,6 +9,7 @@ import type { CropName, CutName, ScreenName } from './screens';
  */
 
 export type Media =
+  | { tap: true; dark?: boolean }
   | { video: string; label: string; dark?: boolean }
   | { screen: ScreenName; dark?: boolean }
   | { screens: ScreenName[]; dark?: boolean }
@@ -25,11 +26,13 @@ export type FeaturePage = {
   label: string;
   /** one line, in menus and cards */
   summary: string;
+  /** for search results, when the summary and the hero's lead together would say it badly */
+  metaDescription?: string;
   /** the menu's thumbnail and the card's screen */
   thumb: ScreenName;
   /** the card's ground */
   dark: boolean;
-  hero: { title: string; lead: string; screens: ScreenName[] };
+  hero: { title: string; lead: string; screens: ScreenName[]; /** shown instead of the screens */ media?: Media };
   rows: Row[];
   facts: Fact[];
 };
@@ -49,26 +52,26 @@ export const featurePages: FeaturePage[] = [
     rows: [
       {
         cap: 'Finish the sentence',
-        title: 'No forms. Just the blanks.',
+        title: 'One sentence with a few blanks.',
         text: 'Tap +, type the amount on Wealthit’s own number pad, pick what it was for, and you’re done. The sentence reads back exactly what will be saved, so there is nothing to double-check.',
         media: { video: 'record-expense-dark', label: 'Recording an expense: the amount, then the category, then Done', dark: true },
       },
       {
         cap: 'Scan a receipt',
-        title: 'Snap it. Check it. Done.',
-        text: 'Point the camera at a receipt, or pick a photo of one. Wealthit reads it on your phone and fills in the amount, the shop, the date and the category. You look it over before it is saved, and the photo stays with the record — on your phone.',
+        title: 'Snap it, then check it.',
+        text: 'Point the camera at a receipt, or pick a photo of one. Wealthit reads it on your phone and fills in the amount, the shop, the date and the category. You look it over before it is saved. The photo stays with the record, on your phone.',
         media: { video: 'scan-receipt-dark', label: 'Scanning a receipt: the scan line reads it, the record fills in, Done', dark: true },
       },
       {
         cap: 'Tap to Record, on iPhone',
-        title: 'You paid. It’s already written down.',
+        title: 'Pay, and it’s already written down.',
         text: 'Set it up once: add the shortcut and link each card to a wallet. After an Apple Pay payment, a card appears on your Lock Screen with the amount and the shop. Tap Add and it’s recorded; tap Cancel and it isn’t.',
-        media: { cut: 'tap-card', dark: true },
+        media: { tap: true, dark: true },
       },
     ],
     facts: [
-      { title: 'Income and transfers', text: 'Money in, money out, and money moved between your own wallets — with the fee, if there was one. A transfer is never counted as spending.' },
-      { title: 'Split one payment', text: 'One receipt, three categories? Split it, and the parts can never add up to more than the total.' },
+      { title: 'Income and transfers', text: 'Money in, money out, and money moved between your own wallets, with the fee if there was one. A transfer is never counted as spending.' },
+      { title: 'Split one payment', text: 'Split a receipt across categories. The parts can never add up to more than the total.' },
       { title: 'It remembers where you shop', text: 'Shops you have paid before are remembered, so you type each one once.' },
       { title: 'Find anything', text: 'Search and filter every record, duplicate one you make often, or change many at once.' },
       { title: 'Bring your history', text: 'Import a spreadsheet from your bank, from BudgetBakers Wallet or from Wealthit itself.' },
@@ -76,14 +79,57 @@ export const featurePages: FeaturePage[] = [
     ],
   },
   {
+    // App/docs/TAP_TO_RECORD.md and decisions A348, A349, A350, A353, A354. iPhone only, with Apple
+    // Pay; set up once. The Lock Screen card can't be captured on a simulator: media-src/app.
+    slug: 'tap-to-record',
+    label: 'Tap to Record',
+    summary: 'Pay with Apple Pay and the payment is already filled in. Tap Add.',
+    thumb: 'lockscreen',
+    dark: true,
+    hero: {
+      title: 'You paid. It’s already written down.',
+      lead: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen with the shop, the amount, the category and the wallet filled in. Tap Add and it’s recorded. Tap Cancel and it isn’t.',
+      screens: ['lockscreen'],
+      media: { tap: true, dark: true },
+    },
+    rows: [
+      {
+        cap: 'On your Lock Screen',
+        title: 'The payment, filled in for you.',
+        text: 'A moment after you pay, Wealthit shows the shop and the amount on your Lock Screen, and in the Dynamic Island if your iPhone has one. You don’t open the app or type anything.',
+        media: { tap: true, dark: true },
+      },
+      {
+        cap: 'Worked out from the payment',
+        title: 'The category from the shop. The wallet from the card.',
+        text: 'A shop you have filed before goes where you filed it last time. A new one is filed by its name, so a supermarket goes under Groceries and a petrol station under Fuel. If Wealthit can’t tell, you choose once and it remembers.',
+        media: { screen: 'categories-dark', dark: true },
+      },
+      {
+        cap: 'Your choice',
+        title: 'Save at once, or check first.',
+        text: 'With Save automatically, Add records the payment there and then. With Confirm before saving, Add opens the record already filled in, for you to look over and save.',
+        media: { screen: 'record-sheet-dark', dark: true },
+      },
+    ],
+    facts: [
+      { title: 'Set up once', text: 'Add Wealthit’s shortcut in the Shortcuts app and switch it on. The app shows each step.' },
+      { title: 'Your cards', text: 'The first time you pay with a card, you choose its wallet. Change or forget any card later.' },
+      { title: 'Never twice', text: 'If the same payment arrives twice, it is recorded once.' },
+      { title: 'Nothing to type', text: 'The amount comes from the payment itself, in the wallet’s own currency.' },
+      { title: 'Needs Apple Pay', text: 'Tap to Record works with Apple Pay on iPhone. It isn’t available on Android.' },
+      { title: 'Only what you paid', text: 'Apple Pay passes on the card, the shop and the amount, and nothing more. There is no bank login.' },
+    ],
+  },
+  {
     slug: 'accounts',
     label: 'Accounts & currencies',
-    summary: 'Bank accounts, cash, cards and savings in 26 currencies — with one total.',
+    summary: 'Bank accounts, cash, cards and savings in 26 currencies, added up to one total.',
     thumb: 'wallets-dark',
     dark: true,
     hero: {
-      title: 'Every account. Every currency. One total.',
-      lead: 'Add the places your money lives — a bank account in dirhams, savings in rupees, a card in dollars, the cash in your wallet — and see them added up in the currency you choose.',
+      title: 'Every account and currency in one total.',
+      lead: 'Add the places your money lives, like a bank account in dirhams, savings in rupees, a card in dollars and the cash in your wallet. Then see them added up in the currency you choose.',
       screens: ['wallets-dark', 'home-dark'],
     },
     rows: [
@@ -96,13 +142,13 @@ export const featurePages: FeaturePage[] = [
       {
         cap: '26 currencies',
         title: 'Added up at the day’s rate.',
-        text: 'Totals use the rate you actually got on a transfer, a fixed peg like the dirham’s to the dollar, or the day’s published rate. If there is no rate, the amount is left out of the total — and the app tells you so. It never guesses.',
+        text: 'Totals use the rate you actually got on a transfer, a fixed peg like the dirham’s to the dollar, or the day’s published rate. If there is no rate, the amount is left out of the total and the app tells you so. It never guesses.',
         media: { crop: 'net-worth', dark: true },
       },
       {
         cap: 'Friends & family',
         title: 'Who owes whom, kept straight.',
-        text: 'Lend to a friend or borrow from family, and it sits in its own wallet: who owes you, and whom you owe — with a reminder when it is due.',
+        text: 'Lend to a friend or borrow from family, and it sits in its own wallet showing who owes you and whom you owe. You get a reminder when it is due.',
         media: { screen: 'friends-family-dark', dark: true },
       },
     ],
@@ -139,8 +185,8 @@ export const featurePages: FeaturePage[] = [
       },
       {
         cap: 'Alerts',
-        title: 'Told in time, not too late.',
-        text: 'When a budget is nearly used up, a notification says how much is left — before the month is over, not after.',
+        title: 'Told while there’s still time.',
+        text: 'When a budget is nearly used up, a notification says how much is left, so you hear about it before the month is over.',
         media: { crop: 'notif-budget', dark: true },
       },
     ],
@@ -172,13 +218,13 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'A month at a time',
         title: 'The amount, worked out for you.',
-        text: 'Set a target and a date, and the goal tells you how much to save each month to get there — and when you will get there at the pace you are going.',
+        text: 'Set a target and a date, and the goal tells you how much to save each month to get there. It also shows when you will get there at the pace you are going.',
         media: { video: 'goal-dark', label: 'Opening the Trip goal: its progress, the monthly amount and its history', dark: true },
       },
     ],
     facts: [
       { title: 'Saving or paying off', text: 'A goal can be money to save, or a loan to clear.' },
-      { title: 'Habits, too', text: 'A goal can be a streak — thirty days without something — counted day by day.' },
+      { title: 'Habits, too', text: 'A goal can be a streak, such as thirty days without something, counted day by day.' },
       { title: 'Counted for you', text: 'Money you label for a goal counts towards it, without adding it up yourself.' },
       { title: 'A widget', text: 'Keep a goal on your Home Screen, and watch it move.' },
     ],
@@ -191,14 +237,14 @@ export const featurePages: FeaturePage[] = [
     dark: true,
     hero: {
       title: 'Bills that remember themselves.',
-      lead: 'Set up rent, salary or a subscription once. On the day, it records itself — or asks you first, if you’d rather check the amount.',
+      lead: 'Set up rent, salary or a subscription once. On the day it records itself, or asks you first if you’d rather check the amount.',
       screens: ['schedules-dark', 'schedule-detail-dark'],
     },
     rows: [
       {
         cap: 'Waiting for you',
         title: 'Record it, or skip this time.',
-        text: 'A bill that asks first waits at the top of the list until you choose — useful for the ones that change every month, like electricity.',
+        text: 'A bill that asks first waits at the top of the list until you choose. That helps with the ones that change every month, like electricity.',
         media: { crop: 'bill-waiting', dark: true },
       },
       {
@@ -210,7 +256,7 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Never twice',
         title: 'Recorded once, on every phone.',
-        text: 'Each payment is tied to its schedule and its date, so the same rent on the same day is the same record — however many times the app is opened, on however many phones.',
+        text: 'Each payment is tied to its schedule and its date, so the same rent on the same day is the same record, however many times the app is opened and on however many phones.',
         media: { screen: 'planning-dark', dark: true },
       },
     ],
@@ -234,8 +280,8 @@ export const featurePages: FeaturePage[] = [
     rows: [
       {
         cap: 'Customise Home',
-        title: 'Your sections, your order.',
-        text: 'Hold a section and drag it where you want it — budgets, goals, coming up, the spending pulse — then Save, and Home follows.',
+        title: 'Home in the order you choose.',
+        text: 'Hold a section, such as budgets, goals, coming up or the spending pulse, and drag it where you want it. Tap Save and Home follows.',
         media: { video: 'customise-home-dark', label: 'Customise Home: Goals dragged above Budgets, saved, and Home in the new order', dark: true },
       },
       {
@@ -247,7 +293,7 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Notifications',
         title: 'What needs you, in one list.',
-        text: 'Budgets nearly used up, bills due today and money owed to you — each with the button to deal with it.',
+        text: 'Budgets nearly used up, bills due today and money owed to you show up here, each with the button to deal with it.',
         media: { crop: 'notif-list', dark: true },
       },
     ],

@@ -5,9 +5,11 @@
 // Input: the iOS session's captures in ~/Movies/Wealthit Website/screens (default; outside iCloud,
 // which evicts files), whole screens 1320x2868; and any cut whose name has a slash, from this repo.
 // Output, in public/screens/:
-//   {name}-{420,840,1320}.{avif,webp}   whole screens
+//   {name}-{420,840,1320}.{avif,webp}   whole screens; every "-dark" screen also gets its "-light"
+//                                       twin, which the site shows in its light theme
 //   cuts/{name}-{640,1280}.{avif,webp}  the app's own pieces, at their own shape
-//   crops/{name}.{avif,webp}            rectangles cut from whole screens, at 2x
+//   crops/{name}.{avif,webp}            rectangles cut from whole screens, at 2x, and
+//   crops/{name}-light.{avif,webp}      the same rectangle from the light twin
 // and src/lib/screens.sizes.json, the pixel size of every cut and crop.
 //
 // Nothing is retouched: images are resized, crops are cut from the same pixels. Device frames
@@ -33,13 +35,17 @@ const WEBP = { quality: 86, effort: 5, smartSubsample: true };
 const AVIF = { quality: 58, effort: 5 };
 const raw = name => {
   // a name with a slash is a file in this repo (media-src/…); anything else is a capture
-  const file = name.includes('/') ? path.join(root, `${name}.png`) : path.join(rawDir, `${name}.png`);
+  // and a few captures are kept in the repo too (manifest.files)
+  const file = name.includes('/') ? path.join(root, `${name}.png`) : manifest.files?.[name] ? path.join(root, `${manifest.files[name]}.png`) : path.join(rawDir, `${name}.png`);
   if (!fs.existsSync(file)) throw new Error(`missing capture: ${file}`);
   return file;
 };
 
 let written = 0;
-for (const name of Object.keys(manifest.screens)) {
+const twin = name => name.replace(/-dark$/, '-light');
+const names = new Set(Object.keys(manifest.screens));
+for (const name of Object.keys(manifest.screens)) if (name.endsWith('-dark')) names.add(twin(name));
+for (const name of names) {
   for (const w of [420, 840, 1320]) {
     await sharp(raw(name)).resize({ width: w }).webp(WEBP).toFile(path.join(out, `${name}-${w}.webp`));
     await sharp(raw(name)).resize({ width: w }).avif(AVIF).toFile(path.join(out, `${name}-${w}.avif`));
@@ -62,6 +68,12 @@ for (const [name, c] of Object.entries(manifest.cuts)) {
 const crops = [];
 for (const [name, c] of Object.entries(manifest.crops)) {
   const region = { left: c.x * scale, top: c.y * scale, width: c.w * scale, height: c.h * scale };
+  if (c.from.endsWith('-dark')) {
+    const light = await sharp(raw(twin(c.from))).extract(region).resize({ width: c.w * 2 }).png().toBuffer();
+    await sharp(light).webp({ ...WEBP, quality: 90 }).toFile(path.join(out, 'crops', `${name}-light.webp`));
+    await sharp(light).avif(AVIF).toFile(path.join(out, 'crops', `${name}-light.avif`));
+    written += 2;
+  }
   const buf = await sharp(raw(c.from)).extract(region).resize({ width: c.w * 2 }).png().toBuffer();
   await sharp(buf).webp({ ...WEBP, quality: 90 }).toFile(path.join(out, 'crops', `${name}.webp`));
   await sharp(buf).avif(AVIF).toFile(path.join(out, 'crops', `${name}.avif`));

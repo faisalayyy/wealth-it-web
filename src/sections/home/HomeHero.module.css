@@ -5,7 +5,7 @@
   min-height: max(100svh, 640px);
   padding-bottom: clamp(72px, 13vh, 140px);
   overflow: hidden;
-  background: linear-gradient(180deg, #e1e0d8 0%, var(--n-50) 92%);
+  background: linear-gradient(180deg, var(--n-hero) 0%, var(--n-50) 92%);
   color: var(--n-ink);
 }
 

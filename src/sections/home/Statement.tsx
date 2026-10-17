@@ -22,7 +22,7 @@ const PARTS: Part[] = [
   { art: 'bill', label: 'a calendar with a due day marked', ratio: 0.81 },
   ' and every goal',
   { art: 'goal', label: 'coins stacked up to a flag', ratio: 1.3 },
-  ' — so you always know where you stand',
+  ', so you always know where you stand',
   { art: 'mark', label: 'the Wealthit mark', ratio: 1.25 },
   '.',
 ];

@@ -6,6 +6,7 @@ import { Phone } from '@/components/Phone';
 import { Screen } from '@/components/Screen';
 import type { ScreenName } from '@/lib/screens';
 import { asset } from '@/lib/site';
+import { themedVideo, useTheme } from '@/lib/theme';
 import s from './RecordTabs.module.css';
 
 /**
@@ -18,7 +19,7 @@ type Step = { title: string; text: string; screen: ScreenName; alt: string; /** 
 const STEPS: Step[] = [
   {
     title: 'Type it',
-    text: 'Tap +, type the amount on Wealthit’s own number pad, pick what it was for — and the sentence reads back what will be saved.',
+    text: 'Tap +, type the amount on Wealthit’s own number pad and pick what it was for. The sentence reads back what will be saved.',
     screen: 'record-sheet-dark',
     video: 'record-expense-dark',
     dwell: 13600,
@@ -34,7 +35,7 @@ const STEPS: Step[] = [
   },
   {
     title: 'Schedule it',
-    text: 'Rent, salary, subscriptions: set them up once and they record themselves on the day — or ask you first.',
+    text: 'Rent, salary, subscriptions: set them up once and they record themselves on the day, or ask you first.',
     screen: 'schedules-dark',
     alt: 'Scheduled payments: what is waiting, and what is due later this month',
   },
@@ -125,6 +126,7 @@ export function RecordTabs() {
 function StepVideo({ name, label, on, className }: { name: string; label: string; on: boolean; className: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [load, setLoad] = useState(false);
+  const file = themedVideo(name, useTheme());
   useEffect(() => {
     const el = ref.current!;
     if (on) {
@@ -139,8 +141,8 @@ function StepVideo({ name, label, on, className }: { name: string; label: string
       ref={ref}
       className={`${className} ${s.video}`}
       data-on={on ? '' : undefined}
-      src={load ? asset(`/videos/${name}.mp4`) : undefined}
-      poster={asset(`/videos/${name}.jpg`)}
+      src={load ? asset(`/videos/${file}.mp4`) : undefined}
+      poster={asset(`/videos/${file}.jpg`)}
       muted
       loop
       playsInline

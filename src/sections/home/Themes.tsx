@@ -11,7 +11,8 @@ import s from './Themes.module.css';
 /**
  * Make it yours (the reference's "Get the look"): a dark card at the left showing one real screen,
  * and the ways Home can look, listed large at the right in two tones. Pointing at a name, focusing
- * it, or tapping it puts that screen in the card.
+ * it, or tapping it puts that screen in the card. Dark and Light always show those themes; the
+ * other two follow the site's theme like every other capture.
  */
 const VIEWS: { name: string; where: string; screen: ScreenName; alt: string }[] = [
   { name: 'Dark', where: 'Home', screen: 'home-dark', alt: 'Home in the dark theme' },
@@ -28,7 +29,7 @@ export function Themes() {
         <div className={s.media}>
           <Phone variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px">
             {VIEWS.map((v, i) => (
-              <Screen key={v.screen} name={v.screen} alt={i === on ? v.alt : ''} sizes="(max-width: 743px) 60vw, 320px" className={s.shot} data-on={i === on ? '' : undefined} />
+              <Screen key={v.screen} name={v.screen} exact={v.name === 'Dark' || v.name === 'Light'} alt={i === on ? v.alt : ''} sizes="(max-width: 743px) 60vw, 320px" className={s.shot} data-on={i === on ? '' : undefined} />
             ))}
           </Phone>
         </div>

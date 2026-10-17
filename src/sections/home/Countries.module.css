@@ -21,7 +21,7 @@
   line-height: 1.45;
   font-weight: 550;
   letter-spacing: -0.015em;
-  color: rgba(11, 11, 12, 0.72);
+  color: var(--n-text);
   text-wrap: balance;
 }
 
@@ -63,7 +63,7 @@
   height: 60px;
   padding: 0 24px 0 14px;
   border-radius: 999px;
-  background: var(--white);
+  background: var(--surface);
   box-shadow:
     inset 0 0 0 1px var(--n-line),
     0 6px 16px -10px rgba(11, 11, 12, 0.18);

@@ -5,60 +5,32 @@
 
 .panel {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: stretch;
   border-radius: var(--r-xl);
   overflow: hidden;
   background:
-    radial-gradient(70% 80% at 80% 0%, rgba(76, 195, 138, 0.26), rgba(76, 195, 138, 0) 70%),
-    radial-gradient(40% 50% at 70% 110%, rgba(242, 198, 109, 0.16), rgba(242, 198, 109, 0) 70%),
+    radial-gradient(60% 50% at 50% 100%, rgba(76, 195, 138, 0.32), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(45% 40% at 15% 0%, rgba(242, 198, 109, 0.14), rgba(242, 198, 109, 0) 70%),
+    radial-gradient(45% 40% at 85% 0%, rgba(76, 195, 138, 0.16), rgba(76, 195, 138, 0) 70%),
     var(--forest);
   color: var(--ivory);
-}
-
-.picture {
-  position: relative;
-  min-height: 420px;
-}
-
-.photo,
-.photo img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.photo img {
-  object-fit: cover;
-}
-
-/* the photograph melts into the Forest at its inner edge */
-.picture::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(14, 59, 48, 0) 55%, var(--forest));
+  text-align: center;
 }
 
 .body {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  padding: clamp(48px, 7vw, 112px) clamp(24px, 5vw, 80px);
+  align-items: center;
+  padding: clamp(56px, 7vw, 104px) clamp(24px, 5vw, 80px) 0;
 }
 
 .mark {
-  width: clamp(56px, 6vw, 80px);
-  height: clamp(56px, 6vw, 80px);
-  margin-bottom: clamp(20px, 2.5vw, 32px);
+  width: clamp(52px, 5vw, 72px);
+  height: clamp(52px, 5vw, 72px);
+  margin-bottom: clamp(18px, 2vw, 28px);
 }
 
 .title {
-  max-width: none;
-  font-size: clamp(40px, 5.2vw, 76px);
+  font-size: clamp(42px, 6.4vw, 96px);
 }
 
 .line {
@@ -67,27 +39,55 @@
 }
 
 .lead {
-  max-width: 28em;
-  margin-top: 22px;
+  max-width: 30em;
+  margin-top: 20px;
   color: rgba(247, 246, 241, 0.74);
 }
 
 .buttons {
-  margin-top: 32px;
+  margin-top: 30px;
+  justify-content: center;
 }
 
-@media (max-width: 899px) {
-  .panel {
-    grid-template-columns: 1fr;
+/* three phones rising out of the lower edge, the middle one a little ahead */
+.phones {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: clamp(12px, 2.4vw, 36px);
+  height: clamp(240px, 27vw, 380px);
+  margin-top: clamp(40px, 5vw, 72px);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent);
+  mask-image: linear-gradient(180deg, #000 70%, transparent);
+}
+
+.middle .phone {
+  --w: clamp(200px, 22vw, 300px);
+}
+
+.side {
+  margin-top: clamp(40px, 5vw, 72px);
+}
+
+.side .phone {
+  --w: clamp(160px, 18vw, 250px);
+  opacity: 0.92;
+}
+
+.side:first-child {
+  rotate: -5deg;
+}
+
+.side:last-child {
+  rotate: 5deg;
+}
+
+@media (max-width: 599px) {
+  .side .phone {
+    --w: 30vw;
   }
-  .picture {
-    min-height: 0;
-    aspect-ratio: 3 / 2;
-  }
-  .picture::after {
-    background: linear-gradient(180deg, rgba(14, 59, 48, 0) 55%, var(--forest));
-  }
-  .body {
-    padding-top: 8px;
+  .middle .phone {
+    --w: 40vw;
   }
 }

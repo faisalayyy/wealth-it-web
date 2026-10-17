@@ -1,6 +1,6 @@
 .hero {
   padding: clamp(132px, 15vw, 196px) 0 clamp(56px, 7vw, 96px);
-  background: linear-gradient(180deg, #e3e2db 0%, var(--n-50) 62%);
+  background: linear-gradient(180deg, var(--n-hero) 0%, var(--n-50) 62%);
   color: var(--n-ink);
 }
 

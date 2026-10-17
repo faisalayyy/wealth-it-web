@@ -36,7 +36,7 @@ export function Planning() {
         <div>
           <p className="cap">Bills & schedules</p>
           <h2 id="planning-title" className={`story ${s.title}`}>
-            <Words parts={['Bills that remember themselves — on the day, and never twice.']} />
+            <Words parts={['Bills that remember themselves on the day, and never twice.']} />
           </h2>
           <p className={`lead ${s.lead}`}>
             Set up rent, salary or a subscription once. On the day it records itself, or waits for you to say Record it or Skip this
@@ -48,7 +48,7 @@ export function Planning() {
             <Phone screen="schedules-dark" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Scheduled payments in Wealthit: the next 30 days" />
           </div>
           <div className={s.float} data-float>
-            <Crop name="bill-waiting" className={s.bill} alt="Waiting for you: Metro card top-up, due 17 October — Record it, or Skip this time" />
+            <Crop name="bill-waiting" className={s.bill} alt="Waiting for you: Metro card top-up, due 17 October, with Record it and Skip this time" />
           </div>
         </div>
       </div>

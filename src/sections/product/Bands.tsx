@@ -25,12 +25,12 @@ export function Bands({ features }: { features: FeaturePage[] }) {
             </h2>
             <p className={`lead ${s.text}`}>{f.hero.lead}</p>
             <Link href={`/features/${f.slug}/`} className={s.more}>
-              More about {f.label.toLowerCase()}
+              More about {f.slug === 'tap-to-record' ? f.label : f.label.toLowerCase()}
               <Icon name="arrow-right" size={18} />
             </Link>
           </div>
           <Link href={`/features/${f.slug}/`} className={s.panel} data-dark={f.dark ? '' : undefined} data-reveal="scale" tabIndex={-1} aria-hidden>
-            <Shot media={{ screens: f.hero.screens }} />
+            <Shot media={f.hero.media ?? { screens: f.hero.screens }} />
           </Link>
         </section>
       ))}

@@ -67,7 +67,7 @@
 }
 
 .meta {
-  padding-right: 32px;
+  padding-right: 8px;
 }
 
 .title {
@@ -82,19 +82,48 @@
   color: var(--n-cap);
 }
 
+/* the arrow sits inside the picture, at its bottom right */
 .arrow {
   position: absolute;
-  right: 0;
-  bottom: 2px;
+  z-index: 3;
+  right: clamp(14px, 1.4vw, 20px);
+  bottom: clamp(14px, 1.4vw, 20px);
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
-  background: var(--n-150);
+  background: rgba(247, 246, 241, 0.92);
+  color: #0b0b0c;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.45);
   transition:
     background-color 0.3s,
+    color 0.3s,
     transform 0.4s var(--ease-quint);
+}
+
+/* Tap to Record, first and across the width, on the Lock Screen's blues */
+.wide {
+  grid-column: 1 / -1;
+}
+
+.card[data-wide] .media {
+  aspect-ratio: auto;
+  height: clamp(300px, 30vw, 420px);
+}
+
+.media[data-tone='tap'] {
+  background:
+    radial-gradient(50% 70% at 50% 100%, rgba(76, 195, 138, 0.26), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(60% 80% at 85% 0%, rgba(64, 108, 214, 0.32), rgba(64, 108, 214, 0) 70%),
+    #0b1220;
+}
+
+.card[data-wide] .phone {
+  --w: clamp(200px, 19vw, 270px);
+  top: 13%;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -139,5 +168,13 @@
   .cards li {
     flex: 0 0 80%;
     scroll-snap-align: start;
+  }
+  .card[data-wide] .media {
+    aspect-ratio: 5 / 4;
+    height: auto;
+  }
+  .card[data-wide] .phone {
+    --w: 44%;
+    top: 11%;
   }
 }

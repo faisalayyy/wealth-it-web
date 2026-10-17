@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useId, useState } from 'react';
 import { coined } from '@/components/Coin';
 import { Icon } from '@/components/Icon';
+import { faqSchema, JsonLd } from '@/lib/seo';
 import s from './Faq.module.css';
 
 /**
@@ -19,11 +20,11 @@ const HOME: QA[] = [
   },
   {
     q: 'Do I need an account?',
-    a: 'Yes — sign in with Apple, Google or your email. Your records are kept in your account, so they are the same on every phone you sign in on, and a lost or new phone loses nothing.',
+    a: 'Yes. You sign in with Apple, Google or your email. Your records are kept in your account, so they are the same on every phone you sign in on, and a lost or new phone loses nothing.',
   },
   {
     q: 'Does it connect to my bank?',
-    a: 'No. Wealthit never asks for your bank login. You record what you spend yourself — as a sentence, from a receipt, or with Tap to Record when you pay with Apple Pay.',
+    a: 'No. Wealthit never asks for your bank login. You record what you spend yourself: as a sentence, from a receipt, or with Tap to Record when you pay with Apple Pay.',
   },
   {
     q: 'How does it handle different currencies?',
@@ -41,17 +42,21 @@ export function Faq({
   title = 'Asked, and answered.',
   more = true,
   sectionId,
+  schema = items === HOME,
 }: {
   items?: QA[];
   cap?: string;
   title?: string;
   more?: boolean;
   sectionId?: string;
+  /** add the questions as schema.org FAQPage (once per page) */
+  schema?: boolean;
 }) {
   const [open, setOpen] = useState<number | null>(0);
   const id = useId();
   return (
     <section className={s.section} aria-labelledby={`${id}-title`} id={sectionId} data-ground="light">
+      {schema && <JsonLd data={faqSchema(items)} />}
       <div className={`wrap ${s.grid}`}>
         <div>
           <p className="cap">{cap}</p>

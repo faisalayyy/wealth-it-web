@@ -4,6 +4,7 @@ import { Button } from '@/components/Button';
 import { Shot } from '@/components/Shot';
 import { SiteFooter } from '@/components/SiteFooter';
 import { featureBySlug, featurePages } from '@/lib/features';
+import { breadcrumbs, JsonLd, pageMeta } from '@/lib/seo';
 import { Closing } from '@/sections/home/Closing';
 import { Facts } from '@/sections/product/Facts';
 import { NextFeature } from '@/sections/product/NextFeature';
@@ -19,9 +20,13 @@ export function generateStaticParams() {
   return featurePages.map(f => ({ slug: f.slug }));
 }
 
+/** whole sentences, as many as fit in n characters (search results cut longer descriptions) */
+const upTo = (text: string, n: number) =>
+  (text.match(/[^.]+\.(\s|$)/g) ?? [text]).reduce((out, s) => (out && (out + s).trim().length > n ? out : out + s), '').trim();
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const f = featureBySlug((await params).slug);
-  return f ? { title: f.label, description: f.summary } : {};
+  return f ? pageMeta({ title: f.label, description: f.metaDescription ?? upTo(f.hero.lead, 165), path: `/features/${f.slug}/` }) : {};
 }
 
 export default async function Feature({ params }: { params: Promise<{ slug: string }> }) {
@@ -31,6 +36,13 @@ export default async function Feature({ params }: { params: Promise<{ slug: stri
   return (
     <div className="page">
       <main id="main">
+        <JsonLd
+          data={breadcrumbs([
+            { name: 'Home', path: '/' },
+            { name: 'Features', path: '/features/' },
+            { name: f.label, path: `/features/${f.slug}/` },
+          ])}
+        />
         <PageHero
           cap={f.label}
           title={f.hero.title}
@@ -42,7 +54,7 @@ export default async function Feature({ params }: { params: Promise<{ slug: stri
               <Button label="All features" href="/features/" tone="ink" variant="secondary" />
             </>
           }
-          media={<Shot media={{ screens: f.hero.screens }} sizes="(max-width: 743px) 64vw, 300px" />}
+          media={<Shot media={f.hero.media ?? { screens: f.hero.screens }} sizes="(max-width: 743px) 64vw, 300px" />}
         />
         <Rows rows={f.rows} />
         <Facts facts={f.facts} />

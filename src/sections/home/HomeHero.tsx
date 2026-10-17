@@ -36,7 +36,7 @@ export function HomeHero() {
           {coined('Know where you stand.')}
         </h1>
         <p className={`lead ${s.lead}`} data-rise>
-          Your accounts, cash and cards in any currency, added up — with what’s left this month, what’s due and what you’re saving for.
+          See your accounts, cash and cards in any currency added up, along with what’s left this month, what’s due and what you’re saving for.
         </p>
         <div className={s.ctas} data-rise>
           <Button label="Get the app" href="/#get" tone="brand" onClick={jump('get')} />

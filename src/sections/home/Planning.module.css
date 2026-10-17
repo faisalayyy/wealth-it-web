@@ -19,7 +19,7 @@
 .lead {
   max-width: 38ch;
   margin-top: 24px;
-  color: rgba(15, 15, 15, 0.7);
+  color: var(--n-text);
 }
 
 .panel {
@@ -27,7 +27,7 @@
   aspect-ratio: 6 / 5;
   border-radius: var(--r-lg);
   overflow: hidden;
-  background: var(--white);
+  background: var(--surface);
   box-shadow: 0 1px 0 var(--n-line);
 }
 

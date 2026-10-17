@@ -20,8 +20,8 @@ const COLUMNS = [
   {
     title: 'Help',
     links: [
-      { label: 'Questions & answers', href: '/support/' },
-      { label: 'Your account', href: '/support/#account' },
+      { label: 'Help & FAQs', href: '/support/' },
+      { label: 'Account & sign-in', href: '/support/#account' },
     ],
   },
   {
@@ -31,7 +31,7 @@ const COLUMNS = [
       { label: 'Get the app', href: '/#get' },
     ],
   },
-  { title: 'Socials', links: socials.map(so => ({ label: `${so.label} ${so.handle}`, href: so.href, icon: so.icon })) },
+  { title: 'Follow along', links: socials.map(so => ({ label: `${so.label} ${so.handle}`, href: so.href, icon: so.icon })) },
   { title: 'Legal', links: [{ label: 'Privacy policy', href: '/privacy/' }] },
 ] as { title: string; links: { label: string; href: string; icon?: string }[] }[];
 
@@ -97,7 +97,7 @@ export function SiteFooter({ sheet = 'var(--n-50)' }: { sheet?: string }) {
       </div>
       <div className={`wrap ${s.legal} cap`}>
         <p>
-          Wealthit is a personal finance app. It is not a bank, does not hold or move money and does not give financial
+          Wealthit is a personal finance app. It isn’t a bank, doesn’t hold or move money and doesn’t give financial
           advice. No tracking, no advertising, no analytics.
         </p>
         <p>© {new Date().getFullYear()} Wealthit</p>

@@ -8,14 +8,14 @@ import { Photo } from '@/components/Photo';
 import s from './Moments.module.css';
 
 /**
- * The human side: three photographs of the app on an iPhone in someone's hand, in the moments it
- * is for (on the sofa, over a coffee, paying at a till), each with the real screen on the phone
- * (scripts/compose.mjs). The captions say what the app does there; the people are models, not
+ * The human side: three photographs of the moments the app is for (at home with a phone, over a
+ * coffee with a friend, paying at a till, where the phone shows the real Lock Screen card, from
+ * scripts/compose.mjs). The captions say what the app does there; the people are models, not
  * users, and nothing here says otherwise.
  */
 const SHOTS = [
-  { name: 'home-sofa', h: 1201, alt: 'Someone on a sofa looking at Wealthit’s Home on an iPhone', caption: 'Where you stand, as soon as it opens.' },
-  { name: 'cafe-record', h: 1013, alt: 'A hand holding an iPhone showing Wealthit’s record sheet, in a café', caption: 'Written down before the coffee cools.' },
+  { name: 'phone-smile', h: 2700, alt: 'A young woman in a beige hijab smiling at her phone at home', caption: 'Where you stand, as soon as it opens.' },
+  { name: 'cafe-chat', h: 1200, alt: 'A woman in a mustard hijab and a man chatting over drinks at a café table', caption: 'Written down before the bill arrives.' },
   {
     name: 'till-tap',
     h: 1350,

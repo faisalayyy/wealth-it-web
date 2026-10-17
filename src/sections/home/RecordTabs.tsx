@@ -23,21 +23,21 @@ const STEPS: Step[] = [
     screen: 'record-sheet-dark',
     video: 'record-expense-dark',
     dwell: 13600,
-    alt: 'Recording an expense in Wealthit: the amount, the category, Done',
+    alt: 'Recording an expense in Wealthit: typing the amount, choosing the category, then Done',
   },
   {
     title: 'Scan it',
-    text: 'Snap the receipt, or pick a photo of one. It’s read on your phone, and the amount, shop, date and category are filled in for you to check.',
+    text: 'Snap the receipt or pick a photo of one. It’s read on your phone, and the amount, shop, date and category are filled in for you to check.',
     screen: 'scan-done-dark',
     video: 'scan-receipt-dark',
     dwell: 8300,
-    alt: 'Scanning a receipt in Wealthit: read, filled in, saved',
+    alt: 'Scanning a receipt in Wealthit: the receipt is read, the record filled in, then saved',
   },
   {
     title: 'Schedule it',
     text: 'Rent, salary, subscriptions: set them up once and they record themselves on the day, or ask you first.',
     screen: 'schedules-dark',
-    alt: 'Scheduled payments: what is waiting, and what is due later this month',
+    alt: 'Wealthit’s Scheduled payments screen: a bill waiting for you, and what’s due in the next 7 days and later this month',
   },
 ];
 const DWELL = 5200;
@@ -126,7 +126,14 @@ export function RecordTabs() {
 function StepVideo({ name, label, on, className }: { name: string; label: string; on: boolean; className: string }) {
   const ref = useRef<HTMLVideoElement>(null);
   const [load, setLoad] = useState(false);
+  const [near, setNear] = useState(false);
   const file = themedVideo(name, useTheme());
+  // its first frame loads only once the section is near
+  useEffect(() => {
+    const io = new IntersectionObserver(([e]) => e.isIntersecting && (setNear(true), io.disconnect()), { rootMargin: '60% 0px' });
+    io.observe(ref.current!);
+    return () => io.disconnect();
+  }, []);
   useEffect(() => {
     const el = ref.current!;
     if (on) {
@@ -142,7 +149,7 @@ function StepVideo({ name, label, on, className }: { name: string; label: string
       className={`${className} ${s.video}`}
       data-on={on ? '' : undefined}
       src={load ? asset(`/videos/${file}.mp4`) : undefined}
-      poster={asset(`/videos/${file}.jpg`)}
+      poster={near ? asset(`/videos/${file}.webp`) : undefined}
       muted
       loop
       playsInline

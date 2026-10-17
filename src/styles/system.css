@@ -375,10 +375,11 @@ button {
   padding-right: var(--grid-padding);
 }
 
-/* SplitText character masks for display lines */
+/* SplitText character masks for display lines: room for descenders and for the side bearings
+   that tight tracking pushes past each letter's box, given back by the negative margins */
 .hc-mask {
-  padding-bottom: 0.15em;
-  margin-bottom: -0.15em;
+  padding: 0.04em 0.08em 0.2em;
+  margin: -0.04em -0.08em -0.2em;
   vertical-align: bottom;
 }
 
@@ -397,7 +398,7 @@ button {
   --n-200: #dcdbd3;
   --n-ink: #0b0b0c; /* text */
   --n-text: rgba(11, 11, 12, 0.7); /* body copy under a headline */
-  --n-cap: rgba(11, 11, 12, 0.52);
+  --n-cap: rgba(11, 11, 12, 0.63); /* small captions: 4.5:1 or better on every light ground */
   --n-line: rgba(11, 11, 12, 0.11);
   --n-tint: rgba(11, 11, 12, 0.07); /* a control's fill */
   --n-tint-2: rgba(11, 11, 12, 0.13); /* the same, pointed at */

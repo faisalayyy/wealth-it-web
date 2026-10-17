@@ -12,135 +12,189 @@
 }
 
 .head h2 {
-  max-width: 13em;
+  max-width: 14em;
   text-wrap: balance;
 }
 
-.head .cap {
+.head :global(.cap) {
   margin-bottom: 16px;
 }
 
-.cards {
+/* two large tiles over five small ones */
+.bento {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px 16px;
+  gap: 14px;
   margin-top: clamp(40px, 5vw, 64px);
 }
 
-.card {
+.big {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: clamp(340px, 30vw, 420px);
+  gap: 14px;
+}
+
+.small {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.big li,
+.small li {
+  min-width: 0;
+}
+
+.tile {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 18px;
   height: 100%;
-  border-radius: var(--r-md);
-  outline-offset: 4px;
-}
-
-.card:focus-visible {
-  outline: 2px solid var(--n-ink);
-}
-
-.media {
-  position: relative;
-  aspect-ratio: 5 / 4;
-  border-radius: var(--r-md);
+  padding: clamp(20px, 2vw, 28px);
+  border-radius: var(--r-lg);
   overflow: hidden;
-  background:
-    radial-gradient(70% 70% at 50% 100%, rgba(76, 195, 138, 0.14), rgba(76, 195, 138, 0) 70%),
-    var(--panel);
+  isolation: isolate;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 1px var(--n-line);
+  transition: box-shadow 0.4s;
 }
 
-.media[data-tone='light'] {
-  background:
-    radial-gradient(70% 70% at 50% 100%, rgba(13, 116, 67, 0.1), rgba(13, 116, 67, 0) 70%),
-    var(--n-150);
+.tile:focus-visible {
+  outline: 2px solid var(--n-ink);
+  outline-offset: 3px;
 }
 
-.phone {
-  --w: 44%;
-  position: absolute;
-  left: 50%;
-  top: 11%;
-  transform: translateX(-50%);
-  transition: transform 0.7s var(--ease-quint);
+.text {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 8px;
+  max-width: 24ch;
+  padding-right: 40px;
 }
 
-.meta {
-  padding-right: 8px;
-}
-
-.title {
-  font-size: 19px;
-  font-weight: 650;
-  letter-spacing: -0.02em;
-}
-
-.summary {
-  margin-top: 4px;
-  font-size: 15px;
+.cap {
+  font-size: 13px;
+  font-weight: 600;
   color: var(--n-cap);
 }
 
-/* the arrow sits inside the picture, at its bottom right */
+.title {
+  font-size: clamp(20px, 1.6vw, 24px);
+  font-weight: 620;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
 .arrow {
   position: absolute;
   z-index: 3;
-  right: clamp(14px, 1.4vw, 20px);
-  bottom: clamp(14px, 1.4vw, 20px);
+  top: clamp(16px, 1.6vw, 22px);
+  right: clamp(16px, 1.6vw, 22px);
   display: grid;
   place-items: center;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   border-radius: 50%;
-  background: rgba(247, 246, 241, 0.92);
-  color: #0b0b0c;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 20px -10px rgba(0, 0, 0, 0.45);
+  color: var(--n-cap);
   transition:
     background-color 0.3s,
     color 0.3s,
     transform 0.4s var(--ease-quint);
 }
 
-/* Tap to Record, first and across the width, on the Lock Screen's blues */
-.wide {
-  grid-column: 1 / -1;
+/* the large tiles: the piece of the app peeks in from the lower edge, fading into it */
+.media {
+  position: absolute;
+  z-index: 1;
+  left: 28px;
+  right: 28px;
+  bottom: 0;
+  height: 66%;
+  pointer-events: none;
+  transform: translateY(12%);
+  -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+  mask-image: linear-gradient(180deg, #000 55%, transparent 96%);
+  transition: transform 0.8s var(--ease-quint);
 }
 
-.card[data-wide] .media {
-  aspect-ratio: auto;
-  height: clamp(300px, 30vw, 420px);
+.piece {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
 
-.media[data-tone='tap'] {
-  background:
-    radial-gradient(50% 70% at 50% 100%, rgba(76, 195, 138, 0.26), rgba(76, 195, 138, 0) 70%),
-    radial-gradient(60% 80% at 85% 0%, rgba(64, 108, 214, 0.32), rgba(64, 108, 214, 0) 70%),
-    #0b1220;
+.piece img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px var(--n-line),
+    0 26px 50px -28px rgba(0, 0, 0, 0.55);
 }
 
-.card[data-wide] .phone {
-  --w: clamp(200px, 19vw, 270px);
-  top: 13%;
+.tile[data-tap] .piece {
+  align-items: center;
+}
+
+.tile[data-tap] .piece img {
+  border-radius: 0;
+  box-shadow: none;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.4));
+}
+
+/* the small tiles: the 3D piece above, the words at the foot */
+.small .tile {
+  min-height: 210px;
+  justify-content: flex-end;
+}
+
+.small .title {
+  font-size: 18px;
+}
+
+.art {
+  position: absolute;
+  z-index: 1;
+  top: clamp(18px, 2vw, 24px);
+  left: clamp(18px, 2vw, 24px);
+  height: 46px;
+  transition: transform 0.6s var(--ease-quint);
+}
+
+.art img {
+  display: block;
+  width: auto;
+  height: 100%;
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .card:hover .phone {
-    transform: translateX(-50%) translateY(-6%);
+  .tile:hover {
+    box-shadow: inset 0 0 0 1px var(--n-tint-2);
   }
-  .card:hover .arrow {
+  .tile:hover .arrow {
     background: var(--brand);
     color: var(--on-brand);
     transform: rotate(45deg);
   }
+  .tile:hover .media {
+    transform: translateY(4%);
+  }
+  .tile:hover .art {
+    transform: translateY(-4px) rotate(-8deg);
+  }
 }
 
 @media (max-width: 1023px) {
-  .cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px 16px;
+  .small {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
@@ -149,32 +203,22 @@
     flex-direction: column;
     align-items: flex-start;
   }
+  .big {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 340px;
+  }
+  .small {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .small .tile {
+    min-height: 190px;
+  }
 }
 
-@media (max-width: 559px) {
-  .cards {
-    display: flex;
-    gap: 12px;
-    margin-inline: calc(var(--gutter) * -1);
-    padding-inline: var(--gutter);
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: var(--gutter);
-    scrollbar-width: none;
-  }
-  .cards::-webkit-scrollbar {
-    display: none;
-  }
-  .cards li {
-    flex: 0 0 80%;
-    scroll-snap-align: start;
-  }
-  .card[data-wide] .media {
-    aspect-ratio: 5 / 4;
-    height: auto;
-  }
-  .card[data-wide] .phone {
-    --w: 44%;
-    top: 11%;
+@media (prefers-reduced-motion: reduce) {
+  .media,
+  .art,
+  .arrow {
+    transition: none;
   }
 }

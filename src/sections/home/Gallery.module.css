@@ -72,6 +72,10 @@
   }
 }
 
+.item[data-from='bottom'] .shot img {
+  object-position: 50% 100%;
+}
+
 .item[data-size='short'] .frame {
   aspect-ratio: 440 / 612;
 }

@@ -76,10 +76,10 @@
     },
     "bill-waiting": {
       "from": "schedules-dark",
-      "x": 18,
-      "y": 340,
-      "w": 404,
-      "h": 160
+      "x": 7,
+      "y": 361,
+      "w": 425,
+      "h": 165
     },
     "schedule-summary": {
       "from": "schedules-dark",
@@ -101,6 +101,27 @@
       "y": 596,
       "w": 322,
       "h": 60
+    },
+    "record-sentence": {
+      "from": "record-sheet-dark",
+      "x": 12,
+      "y": 572,
+      "w": 416,
+      "h": 352
+    },
+    "home-ring": {
+      "from": "home-dark",
+      "x": 78,
+      "y": 292,
+      "w": 284,
+      "h": 272
+    },
+    "goal-hero": {
+      "from": "goal-detail-dark",
+      "x": 20,
+      "y": 114,
+      "w": 400,
+      "h": 328
     }
   },
   "files": {

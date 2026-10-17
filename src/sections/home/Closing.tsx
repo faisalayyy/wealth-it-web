@@ -47,7 +47,7 @@ export function Closing() {
               </span>
             ))}
           </h2>
-          <p className={`lead ${s.lead}`}>Wealthit is coming soon to iPhone, with Android to follow. Your first record takes a few seconds.</p>
+          <p className={`lead ${s.lead}`}>Wealthit is coming soon to iPhone, with Android to follow. Your first record takes a few seconds, and that’s where the habit starts.</p>
           <AppButtons tone="light" className={s.buttons} />
         </div>
         <div className={s.phones} aria-hidden>

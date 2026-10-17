@@ -2,8 +2,8 @@
   position: relative;
   display: flex;
   align-items: flex-end;
-  min-height: max(100svh, 640px);
-  padding-bottom: clamp(72px, 13vh, 140px);
+  min-height: max(100svh, 720px);
+  padding-bottom: clamp(44px, 7vh, 88px);
   overflow: hidden;
   background: linear-gradient(180deg, var(--n-hero) 0%, var(--n-50) 92%);
   color: var(--n-ink);
@@ -32,8 +32,8 @@
 }
 
 .lead {
-  max-width: 36ch;
-  margin-top: 22px;
+  max-width: 40ch;
+  margin-top: 14px;
 }
 
 .ctas {
@@ -41,7 +41,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-  margin-top: 32px;
+  margin-top: 26px;
 }
 
 @media (max-width: 743px) {
@@ -54,5 +54,88 @@
   }
   .ctas {
     justify-content: flex-start;
+  }
+}
+
+.title {
+  text-wrap: balance;
+}
+
+/* the moments the app is for, turning one into the next */
+.moments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 0.3em;
+  margin-top: 14px;
+  font-size: clamp(20px, 1.8vw, 26px);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.turn {
+  position: relative;
+  display: inline-grid;
+  justify-items: start;
+  height: 1.25em;
+  overflow: hidden;
+  transition: width 0.55s var(--ease-quint);
+  color: var(--brand-text);
+  text-align: left;
+}
+
+.word {
+  grid-area: 1 / 1;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(100%);
+  transition:
+    transform 0.6s var(--ease-quint),
+    opacity 0.4s;
+}
+
+.word[data-on] {
+  opacity: 1;
+  transform: none;
+}
+
+.word[data-past] {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+/* three plain facts under the buttons */
+.facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 22px;
+  margin-top: 22px;
+  font-size: 14px;
+  font-weight: 550;
+  color: var(--n-text);
+}
+
+.facts li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.facts svg {
+  color: var(--brand-text);
+}
+
+@media (max-width: 743px) {
+  .moments,
+  .facts {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .word {
+    transition: none;
   }
 }

@@ -12,8 +12,8 @@ import { Faq, type QA } from '@/sections/home/Faq';
  * site, 11 October 2026), checked against the app as built.
  */
 export const metadata: Metadata = pageMeta({
-  title: 'Help',
-  description: 'Answers to the questions Wealthit gets about new phones, sign-in, currencies that will not convert and the rest, with a way to write to us.',
+  title: 'Help and FAQs',
+  description: 'Answers to common Wealthit questions: moving to a new phone, signing in, currencies that won’t convert, app lock and deleting your account. Or write to us.',
   path: '/support/',
 });
 

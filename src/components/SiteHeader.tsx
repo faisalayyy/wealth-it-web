@@ -38,10 +38,10 @@ const LINKS = [
 
 /** The menu's large rows, each with its 3D piece (public/art). */
 const ROWS = [
-  { label: 'Features', hint: 'Everything the app does', href: '/features/', art: 'budget' },
+  { label: 'Features', hint: 'Every feature, up close', href: '/features/', art: 'budget' },
   { label: 'Tap to Record', hint: 'Pay with Apple Pay, tap Add', href: '/features/tap-to-record/', art: 'tap' },
-  { label: 'Help', hint: 'Answers, and a way to write to us', href: '/support/', art: 'help' },
-  { label: 'Privacy', hint: 'What is kept, and why', href: '/privacy/', art: 'privacy' },
+  { label: 'Help', hint: 'Quick answers, or write to us', href: '/support/', art: 'help' },
+  { label: 'Privacy', hint: 'What we keep, and why', href: '/privacy/', art: 'privacy' },
   { label: 'Get the app', hint: 'Coming soon to iPhone', href: '/#get', art: 'app' },
 ] as const;
 
@@ -101,6 +101,8 @@ export function SiteHeader() {
   const [features, setFeatures] = useState(false);
   const [menu, setMenu] = useState(false);
   const [hover, setHover] = useState(0);
+  // the menu's and the panel's pictures load once someone heads for them, not with the page
+  const [armed, setArmed] = useState(false);
   const root = useRef<HTMLElement>(null);
   const dots = useRef<HTMLButtonElement>(null);
   const panelId = useId();
@@ -155,6 +157,7 @@ export function SiteHeader() {
     setMenu(false);
   };
   const toggle = () => {
+    setArmed(true);
     setFeatures(false);
     setMenu(m => !m);
   };
@@ -177,12 +180,19 @@ export function SiteHeader() {
       <div className={s.shade} onClick={close} aria-hidden />
       <div
         className={s.left}
-        onMouseEnter={() => setPointer(true)}
+        onMouseEnter={() => {
+          setPointer(true);
+          setArmed(true);
+        }}
+        onTouchStart={() => setArmed(true)}
         onMouseLeave={() => {
           setPointer(false);
           setFeatures(false);
         }}
-        onFocus={() => setFocusIn(true)}
+        onFocus={() => {
+          setFocusIn(true);
+          setArmed(true);
+        }}
         onBlur={blur}
       >
         <div className={s.bar}>
@@ -238,9 +248,7 @@ export function SiteHeader() {
           </ul>
           <div className={s.side}>
             <div className={s.preview} aria-hidden>
-              {featurePages.map((f, i) => (
-                <Preview key={f.slug} thumb={f.thumb} on={hover === i} tap={f.slug === 'tap-to-record'} />
-              ))}
+              {armed && featurePages.map((f, i) => <Preview key={f.slug} thumb={f.thumb} on={hover === i} tap={f.slug === 'tap-to-record'} />)}
             </div>
             <Link href="/features/" className={s.all} onClick={close}>
               All features
@@ -257,7 +265,7 @@ export function SiteHeader() {
                   <Link href={r.href} className={s.menuRow} data-active={active(r.href) ? '' : undefined} onClick={r.href === '/#get' ? getApp(close) : close}>
                     <span className={s.menuMain}>
                       <span className={s.thumb}>
-                        <Thumb art={r.art} />
+                        {armed && <Thumb art={r.art} />}
                       </span>
                       <span className={s.menuLabel}>{r.label}</span>
                     </span>

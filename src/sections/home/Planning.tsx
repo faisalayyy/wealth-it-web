@@ -40,12 +40,12 @@ export function Planning() {
           </h2>
           <p className={`lead ${s.lead}`}>
             Set up rent, salary or a subscription once. On the day it records itself, or waits for you to say Record it or Skip this
-            time. The next 30 days are always one screen away.
+            time. The next 30 days are always one screen away, so rent day doesn’t sneak up on you.
           </p>
         </div>
         <div className={s.panel}>
           <div className={s.phoneWrap} data-rise>
-            <Phone screen="schedules-dark" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Scheduled payments in Wealthit: the next 30 days" />
+            <Phone screen="schedules-dark" variant="device" className={s.phone} sizes="(max-width: 743px) 60vw, 320px" alt="Wealthit’s Scheduled payments screen: what’s coming in and going out over the next 30 days" />
           </div>
           <div className={s.float} data-float>
             <Crop name="bill-waiting" className={s.bill} alt="Waiting for you: Metro card top-up, due 17 October, with Record it and Skip this time" />

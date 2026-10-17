@@ -15,9 +15,9 @@ import s from './Themes.module.css';
  * other two follow the site's theme like every other capture.
  */
 const VIEWS: { name: string; where: string; screen: ScreenName; alt: string }[] = [
-  { name: 'Dark', where: 'Home', screen: 'home-dark', alt: 'Home in the dark theme' },
-  { name: 'Light', where: 'Home', screen: 'home-light', alt: 'Home in the light theme' },
-  { name: 'Hidden', where: 'Amounts', screen: 'home-hidden-dark', alt: 'Home with every amount hidden' },
+  { name: 'Dark', where: 'Home', screen: 'home-dark', alt: 'Wealthit’s Home screen in the dark theme' },
+  { name: 'Light', where: 'Home', screen: 'home-light', alt: 'Wealthit’s Home screen in the light theme' },
+  { name: 'Hidden', where: 'Amounts', screen: 'home-hidden-dark', alt: 'Wealthit’s Home screen with every amount hidden' },
   { name: 'Your order', where: 'Customise', screen: 'customise-home-dark', alt: 'Customise Home: choosing what Home shows, and in what order' },
 ];
 
@@ -46,7 +46,7 @@ export function Themes() {
               </li>
             ))}
           </ul>
-          <p className={`lead ${s.note}`}>Light or dark, amounts on show or hidden from the person next to you, and Home in the order you choose.</p>
+          <p className={`lead ${s.note}`}>Light or dark, amounts on show or hidden from whoever’s sitting next to you, and Home in the order you choose.</p>
           <Link href="/features/home/" className={s.more}>
             More about Home & widgets
             <Icon name="arrow-up-right" size={16} />

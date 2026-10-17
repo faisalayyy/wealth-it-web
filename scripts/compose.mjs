@@ -95,7 +95,7 @@ const COMPOSITES = [
   },
 ];
 /** photographs shown as they are */
-const PLAIN = ['laptop-coffee'];
+const PLAIN = ['laptop-coffee', 'phone-smile', 'cafe-chat', 'supermarket-couple'];
 
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 

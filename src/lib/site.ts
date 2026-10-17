@@ -7,10 +7,10 @@
 export const site = {
   name: 'Wealthit',
   origin: 'https://wealthit.app',
-  title: 'Wealthit: know where you stand',
+  title: 'Wealthit: budget app and expense tracker for iPhone',
   tagline: 'Small steps. Big wealth.',
   description:
-    'Wealthit keeps your accounts, cash and cards in any currency, plus your budgets, bills and goals. Sign in on any phone and it’s all there. No tracking, no ads.',
+    'Build better money habits with Wealthit, a budget app and expense tracker for iPhone: 26 currencies, budgets, bills and savings goals. No ads, no tracking.',
 } as const;
 
 /** App Store and Google Play. The iPhone app is in TestFlight; Android is planned, not built. */
@@ -37,18 +37,20 @@ export const socials: { label: string; handle: string; href: string; icon: 'inst
 /** For search engines and link previews. */
 export const seo = {
   keywords: [
-    'expense tracker',
     'budget app',
+    'expense tracker',
+    'spending tracker',
     'money manager',
-    'personal finance app',
-    'multi-currency budget',
+    'personal finance app for iPhone',
+    'multi-currency budget app',
+    'savings goals',
+    'bill reminders',
     'receipt scanner',
     'Apple Pay expense tracking',
-    'bill reminders',
-    'savings goals',
-    'iPhone budgeting app',
+    'financial habits',
+    'net worth tracker',
   ],
-  ogAlt: 'Wealthit: know where you stand. Accounts, budgets, bills and goals on your iPhone.',
+  ogAlt: 'Wealthit, the budget app for iPhone: the line “Know where you stand.” beside two phones showing its Budgets and Home screens.',
 };
 
 export const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? '';

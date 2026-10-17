@@ -16,8 +16,8 @@ import { PageHero } from '@/sections/product/PageHero';
  * worse than no privacy page.
  */
 export const metadata: Metadata = pageMeta({
-  title: 'Privacy',
-  description: 'What Wealthit keeps, where it is kept, and what you can do about it. No tracking, no ads, no analytics.',
+  title: 'Privacy policy',
+  description: 'What Wealthit keeps, where and why. Records sync to your account on a server in Frankfurt; receipt photos stay on your phone. No tracking, ads or analytics.',
   path: '/privacy/',
 });
 

@@ -1,47 +1,94 @@
 'use client';
 
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap, reducedMotion, SplitText, useGSAP } from '@/animation/gsap';
 import { Button } from '@/components/Button';
 import { coined } from '@/components/Coin';
+import { Icon } from '@/components/Icon';
 import { ThreeCanvas } from '@/three/ThreeCanvas';
 import { useJump } from './useJump';
 import s from './HomeHero.module.css';
 
 /**
  * The first screen (the reference's hero): a warm ground, the keyring of Wealthit charms hanging
- * in from the top edge — knock them with the pointer — and under it the App Store line, one
- * sentence about the app, and the two ways on: to the app, and to how it works.
+ * in from the top edge (knock them with the pointer), and under it the brand's line,
+ * a line that turns through the everyday moments the app is for, one sentence about it, the two
+ * ways on, and three plain facts.
+ *
+ * The headline rises letter by letter out of masks that leave room for descenders and side
+ * bearings, and the split is undone when it lands, so nothing is ever clipped at rest.
  */
+const MOMENTS = ['payday', 'rent day', 'the coffee runs', 'the trip fund', 'your savings era'];
+
+const FACTS = [
+  { icon: 'globe', label: '26 currencies' },
+  { icon: 'shield', label: 'No ads, no tracking' },
+  { icon: 'check', label: 'Coming soon to iPhone' },
+];
+
 export function HomeHero() {
   const root = useRef<HTMLElement>(null);
   const jump = useJump();
+  const [moment, setMoment] = useState(0);
+  const turn = useRef<HTMLSpanElement>(null);
 
   useGSAP(
     () => {
       if (reducedMotion()) return;
-      const split = SplitText.create(root.current!.querySelector('h1')!, { type: 'chars,words', mask: 'chars' });
-      gsap.from(split.chars, { yPercent: 110, duration: 1.2, stagger: 0.02, ease: 'expo.out', delay: 0.35 });
-      gsap.from(root.current!.querySelector('.coin'), { scale: 0, duration: 0.9, ease: 'back.out(3)', delay: 0.95 });
-      gsap.from(root.current!.querySelectorAll('[data-rise]'), { y: 24, opacity: 0, duration: 1.1, stagger: 0.1, ease: 'expo.out', delay: 0.8 });
+      const split = SplitText.create(root.current!.querySelector('h1')!, { type: 'chars,words', mask: 'chars', charsClass: 'hc' });
+      gsap.from(split.chars, { yPercent: 110, duration: 1.2, stagger: 0.02, ease: 'expo.out', delay: 0.35, onComplete: () => split.revert() });
+      gsap.from(root.current!.querySelectorAll('[data-rise]'), { y: 24, opacity: 0, duration: 1.1, stagger: 0.09, ease: 'expo.out', delay: 0.75 });
     },
     { scope: root },
   );
+
+  // the box is as wide as the moment showing, so the line stays centred as the words change
+  useEffect(() => {
+    const box = turn.current;
+    const word = box?.children[moment] as HTMLElement | undefined;
+    if (box && word) box.style.width = `${word.offsetWidth}px`;
+  }, [moment]);
+
+  // the moments turn every 2.4 s, and hold still with reduced motion
+  useEffect(() => {
+    if (reducedMotion()) return;
+    const id = window.setInterval(() => setMoment(m => (m + 1) % MOMENTS.length), 2400);
+    return () => window.clearInterval(id);
+  }, []);
 
   return (
     <section ref={root} className={s.hero} aria-labelledby="hero-title">
       <ThreeCanvas scene="keyring" className={s.canvas} onReady={() => root.current?.setAttribute('data-ready', '')} />
       <div className={`wrap ${s.content}`}>
-        <h1 id="hero-title" className="display-1">
+        <h1 id="hero-title" className={`display-1 ${s.title}`}>
           {coined('Know where you stand.')}
         </h1>
+        <p className={s.moments} data-rise>
+          <span>Money habits for</span>{' '}
+          <span ref={turn} className={s.turn} aria-hidden>
+            {MOMENTS.map((m, i) => (
+              <span key={m} className={s.word} data-on={i === moment ? '' : undefined} data-past={i === (moment + MOMENTS.length - 1) % MOMENTS.length ? '' : undefined}>
+                {m}.
+              </span>
+            ))}
+          </span>
+          <span className="sr-only">{MOMENTS.join(', ')}.</span>
+        </p>
         <p className={`lead ${s.lead}`} data-rise>
-          See your accounts, cash and cards in any currency added up, along with what’s left this month, what’s due and what you’re saving for.
+          Your accounts, cash and cards in any currency, added up. Plus budgets that warn you early and goals you can watch grow.
         </p>
         <div className={s.ctas} data-rise>
           <Button label="Get the app" href="/#get" tone="brand" onClick={jump('get')} />
           <Button label="See how it works" href="/#how" tone="ink" variant="secondary" onClick={jump('how')} />
         </div>
+        <ul className={s.facts} data-rise>
+          {FACTS.map(f => (
+            <li key={f.label}>
+              <Icon name={f.icon} size={16} stroke={1.8} />
+              {f.label}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

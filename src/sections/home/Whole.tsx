@@ -47,15 +47,15 @@ export function Whole() {
           <div className={s.copy} data-copy>
             <p className="cap">The whole picture</p>
             <p id="whole-title" className={`story ${s.text}`}>
-              <Words parts={['What you have, what is due and what you are saving for, all on one screen with nothing left to add up yourself.']} />
+              <Words parts={['What you have, what’s due and what you’re saving for, on one screen and already added up. Your money, sorted.']} />
             </p>
           </div>
         </div>
         <div className={s.window} data-window>
           <div className={s.phones} data-phones>
-            <Phone screen="budgets-dark" variant="device" className={`${s.phone} ${s.side}`} sizes="300px" alt="Budgets: over budget, running out early, going fast" />
-            <Phone screen="home-dark" variant="device" className={s.phone} sizes="340px" alt="Home: what is left this month across every wallet" />
-            <Phone screen="goals-dark" variant="device" className={`${s.phone} ${s.side}`} sizes="300px" alt="Goals: a new car, a safety net, clearing a car loan" />
+            <Phone screen="budgets-dark" variant="device" className={`${s.phone} ${s.side}`} sizes="300px" alt="Wealthit’s Budgets screen: monthly budgets grouped into over budget, running out early and going fast" />
+            <Phone screen="home-dark" variant="device" className={s.phone} sizes="340px" alt="Wealthit’s Home screen: the total balance across every wallet, spent today and this month’s spending" />
+            <Phone screen="goals-dark" variant="device" className={`${s.phone} ${s.side}`} sizes="300px" alt="Wealthit’s Goals screen: a 30-day streak, saving for a trip and a safety net, and clearing a car loan" />
           </div>
         </div>
       </div>

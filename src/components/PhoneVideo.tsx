@@ -9,7 +9,8 @@ import s from './PhoneVideo.module.css';
 
 /**
  * A screen recording of the app, playing inside the phone: muted, looping, inline, and only while
- * it is on screen (it pauses off screen, and loads nothing until it is near). With reduced motion
+ * it is on screen (it pauses off screen, and loads nothing, not even its first frame, until it is
+ * near). With reduced motion
  * it waits on its first frame until tapped. The frames are the app's own, only resized
  * (scripts/video.swift).
  */
@@ -47,7 +48,7 @@ export function PhoneVideo({ name, label, className, poster }: { name: string; l
         ref={video}
         className={s.video}
         src={near ? asset(`/videos/${file}.mp4`) : undefined}
-        poster={asset(`/videos/${poster ?? file}.jpg`)}
+        poster={near ? asset(`/videos/${poster ?? file}.webp`) : undefined}
         muted
         loop
         playsInline

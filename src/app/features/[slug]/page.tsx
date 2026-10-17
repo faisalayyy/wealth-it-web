@@ -26,7 +26,7 @@ const upTo = (text: string, n: number) =>
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const f = featureBySlug((await params).slug);
-  return f ? pageMeta({ title: f.label, description: f.metaDescription ?? upTo(f.hero.lead, 165), path: `/features/${f.slug}/` }) : {};
+  return f ? pageMeta({ title: f.metaTitle ?? f.label, description: f.metaDescription ?? upTo(f.hero.lead, 165), path: `/features/${f.slug}/` }) : {};
 }
 
 export default async function Feature({ params }: { params: Promise<{ slug: string }> }) {

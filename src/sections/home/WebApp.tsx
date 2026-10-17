@@ -14,7 +14,7 @@ export function WebApp() {
     <section className={s.section} aria-labelledby="web-title" data-ground="light">
       <div className={`wrap ${s.card}`}>
         <div className={s.picture}>
-          <Photo name="laptop-coffee" alt="A woman on a sofa working on a laptop, a coffee beside her" height={1013} className={s.photo} sizes="(max-width: 743px) 100vw, 40vw" focus="60% 50%" />
+          <Photo name="laptop-coffee" alt="A woman in a pink hijab working on a laptop on a sofa, a cup of coffee on the table beside her" height={1013} className={s.photo} sizes="(max-width: 743px) 100vw, 40vw" focus="60% 50%" />
         </div>
         <div className={s.copy}>
           <span className={s.icon} aria-hidden>

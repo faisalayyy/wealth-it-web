@@ -1,22 +1,22 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import { gsap, reducedMotion, ScrollTrigger } from '@/animation/gsap';
 import { basePath } from '@/lib/site';
 import s from './PageTransition.module.css';
 
 /**
- * Pages never simply swap. A click on any link to another page raises a lime panel from the
- * bottom with a progress line along its edge; the route changes behind it, and it lifts away.
- * Modified clicks, new tabs, in-page anchors and reduced motion go straight through.
+ * A quiet change of page. A click on a link to another page fades the page out with a small lift
+ * while a thin line runs along the top of the window; the route changes behind it, and the new page
+ * eases up into place as the line completes. The header stays put throughout. Modified clicks, new
+ * tabs, links within the page and reduced motion go straight through.
  */
 export function PageTransition() {
-  const ref = useRef<HTMLDivElement>(null);
   const bar = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const pathname = usePathname();
-  const covered = useRef(false);
+  const leaving = useRef(false);
 
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
@@ -28,40 +28,39 @@ export function PageTransition() {
       const path = url.pathname.replace(basePath, '') || '/';
       if (path === pathname || reducedMotion()) return;
       e.preventDefault();
-      const panel = ref.current!;
-      covered.current = true;
-      gsap.killTweensOf([panel, bar.current]);
-      gsap.set(panel, { display: 'block', yPercent: 100 });
-      gsap.set(bar.current, { scaleX: 0 });
-      gsap
-        .timeline()
-        .to(panel, { yPercent: 0, duration: 0.65, ease: 'power4.inOut' })
-        .to(bar.current, { scaleX: 0.7, duration: 0.5, ease: 'power2.out' }, 0.2)
-        .add(() => router.push(`${path}${url.hash}`));
+      leaving.current = true;
+      const page = document.querySelector('.page');
+      gsap.killTweensOf([page, bar.current]);
+      gsap.set(bar.current, { opacity: 1, scaleX: 0 });
+      gsap.to(bar.current, { scaleX: 0.7, duration: 0.6, ease: 'power2.out' });
+      gsap.to(page, {
+        opacity: 0,
+        y: -10,
+        duration: 0.28,
+        ease: 'power2.in',
+        onComplete: () => router.push(`${path}${url.hash}`),
+      });
     };
     document.addEventListener('click', onClick);
     return () => document.removeEventListener('click', onClick);
   }, [pathname, router]);
 
-  useEffect(() => {
-    if (!covered.current) return;
-    covered.current = false;
-    const panel = ref.current!;
+  // before the new page paints: start it hidden, then bring it in
+  useLayoutEffect(() => {
+    if (!leaving.current) return;
+    leaving.current = false;
+    const page = document.querySelector('.page');
     // land on the link's section if it named one (the download section, a support answer)
     const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
     if (target) target.scrollIntoView();
     else window.scrollTo(0, 0);
-    requestAnimationFrame(() => ScrollTrigger.refresh());
+    gsap.fromTo(page, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.55, ease: 'power3.out', clearProps: 'transform,opacity' });
     gsap
       .timeline()
-      .to(bar.current, { scaleX: 1, duration: 0.25, ease: 'power2.out' })
-      .to(panel, { yPercent: -100, duration: 0.7, ease: 'power4.inOut' }, '+=0.05')
-      .set(panel, { display: 'none' });
+      .to(bar.current, { scaleX: 1, duration: 0.3, ease: 'power2.out' })
+      .to(bar.current, { opacity: 0, duration: 0.35 }, '+=0.05');
+    requestAnimationFrame(() => ScrollTrigger.refresh());
   }, [pathname]);
 
-  return (
-    <div ref={ref} className={s.panel} aria-hidden>
-      <div ref={bar} className={s.progress} />
-    </div>
-  );
+  return <div ref={bar} className={s.bar} aria-hidden />;
 }

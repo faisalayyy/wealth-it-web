@@ -56,7 +56,7 @@ export function Countries() {
       <div className={`wrap ${s.head}`}>
         <p className="cap">Made for money that crosses borders</p>
         <h2 id="countries-title" className={s.title}>
-          Salary in Dubai, savings back home, a card in dollars: keep each account in its own country’s money and see them added up.
+          Salary in Dubai, savings back home, a card in dollars: keep each account in its own currency and watch it all add up.
         </h2>
       </div>
       <p className="sr-only">Wealthit keeps wallets in the money of {all.length} places: {all.map(c => c.name).join(', ')}.</p>

@@ -27,8 +27,8 @@
       "h": 350
     },
     "bill-waiting": {
-      "w": 808,
-      "h": 320
+      "w": 850,
+      "h": 330
     },
     "schedule-summary": {
       "w": 808,
@@ -41,6 +41,18 @@
     "notif-budget": {
       "w": 644,
       "h": 120
+    },
+    "record-sentence": {
+      "w": 832,
+      "h": 704
+    },
+    "home-ring": {
+      "w": 568,
+      "h": 544
+    },
+    "goal-hero": {
+      "w": 800,
+      "h": 656
     }
   }
 }

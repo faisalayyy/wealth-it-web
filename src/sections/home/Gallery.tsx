@@ -17,11 +17,12 @@ import s from './Gallery.module.css';
  * screen; a trackpad's sideways swipe, the arrows and the arrow keys glide it the same way. Up and
  * down still scroll the page. The screens rise into place as the panel comes into view.
  */
-const SHOTS: { screen: ScreenName; name: string; area: string }[] = [
+// `from: 'bottom'`: a sheet that rises from the bottom of the screen is shown from the bottom up
+const SHOTS: { screen: ScreenName; name: string; area: string; from?: 'bottom' }[] = [
   { screen: 'home-dark', name: 'Home', area: 'Where you stand' },
   { screen: 'wallets-dark', name: 'Wallets', area: 'Every account' },
-  { screen: 'record-sheet-dark', name: 'Recording', area: 'Finish the sentence' },
-  { screen: 'scan-reading-dark', name: 'Scan a receipt', area: 'Read on your phone' },
+  { screen: 'record-sheet-dark', name: 'Recording', area: 'Finish the sentence', from: 'bottom' },
+  { screen: 'scan-reading-dark', name: 'Scan a receipt', area: 'Read on your phone', from: 'bottom' },
   { screen: 'budgets-dark', name: 'Budgets', area: 'Before you overspend' },
   { screen: 'goals-dark', name: 'Goals', area: 'Every step counts' },
   { screen: 'planning-dark', name: 'Planning', area: 'What is coming' },
@@ -187,7 +188,7 @@ export function Gallery() {
         >
           <ul ref={track} className={s.rail}>
             {SHOTS.map((sh, i) => (
-              <li key={sh.screen} className={s.item} data-size={i % 3 === 1 ? 'tall' : 'short'}>
+              <li key={sh.screen} className={s.item} data-size={i % 3 === 1 ? 'tall' : 'short'} data-from={sh.from}>
                 <figure>
                   <div className={s.frame}>
                     <Screen name={sh.screen} alt={`${sh.name}: ${sh.area.toLowerCase()}`} sizes="260px" className={s.shot} />

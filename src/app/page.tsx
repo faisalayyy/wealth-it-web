@@ -45,16 +45,16 @@ export default function Home() {
         <Moments />
         <Story
           caption="Recording"
-          parts={['Write each payment the way you’d say it. Tap +, type the amount and pick what it was for, with no form to fill in.']}
+          parts={['Write each payment the way you’d say it. Tap +, type the amount and pick what it was for. No forms, no spreadsheet energy.']}
           video="record-expense-dark"
-          alt="Recording an expense in Wealthit: the amount, then the category, then Done"
+          alt="Recording an expense in Wealthit: typing the amount, choosing the category, then tapping Done"
         />
         <Story
           caption="Scan a receipt"
           side="left"
-          parts={['Point your camera at a receipt. It’s read on your phone and filled in for you to check.']}
+          parts={['Point your camera at a receipt. It’s read on your phone and filled in, ready for you to check.']}
           video="scan-receipt-dark"
-          alt="Wealthit reading a Harbour Lane Supermarket receipt: the scan line, then the record filled in, AED 86.50"
+          alt="Wealthit’s receipt scanner reading a Harbour Lane Supermarket receipt, then the record filled in for AED 86.50"
         />
         <TapToRecord />
         <Whole />

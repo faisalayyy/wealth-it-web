@@ -52,7 +52,8 @@ node scripts/og.mjs        # the link preview, public/og.png
 - `src/sections/help/`, `src/sections/about/` — Help's hero and form; the Jeton About parts.
 - `src/components/` — SiteHeader (Features menu with captures; butter's two dots: the pill folds to
   name + dots on scroll, the dots open the large menu at any scroll, its rows with 3D pieces from
-  `src/three/art.ts`, and Instagram; the theme switch, Log in, Get the app), SiteFooter (with
+  `src/three/art.ts`, and Instagram; the theme switch, Log in, Get the app), PageTransition (a soft
+  fade and lift between pages, with a thin line along the top), SiteFooter (with
   Socials), ThemeSwitch, TapPhone (the Lock Screen with Tap to Record's card arriving),
   Button (character roll; tones `brand` Emerald, `ink`, `neutral` Ivory on dark), AppButtons, Logo
   and Mark, Coin (`coined()`), Phone, Screen/Cut/Crop, Shot (renders any `Media`), Icon, and the
@@ -98,14 +99,16 @@ node scripts/og.mjs        # the link preview, public/og.png
   "effortless", "seamless", "all in one" or "take control", no exclamation marks, and never "it
   never leaves your phone" (records sync to the account). The owner wants nothing that reads as
   machine-written: no em or en dashes in anything visible, no "not X, but Y", no rhythm-for-its-own-
-  sake triads or stacked fragments.
+  sake triads or stacked fragments. The voice (17 October 2026): professional and warm, about small
+  habits for a better future, with a light Gen Z touch at most once a section ("minus the
+  spreadsheet energy", "future you will thank you"); never in legal or help answers.
 - **No invented facts.** No user counts, reviews, partners, certifications or prices. Social links
   only for accounts that exist (`socials` in `src/lib/site.ts`: Instagram @wealthitapp, the app's
   own, App/docs/marketing/instagram). Where butter shows client logos the homepage shows the
   26 countries whose money the app keeps (flags from flag-icons, MIT). No Pricing or Blog page until
   there is a price or a post.
 - **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: its own page, a homepage
-  section and the first feature card. iPhone only, with Apple Pay, set up once; never promise it
+  section and one of the two large tiles in the features bento. iPhone only, with Apple Pay, set up once; never promise it
   on Android. Its Lock Screen card can't be captured on a simulator: `scripts/tap.mjs` renders the
   App Store poster 03's own HTML, card only (`media-src/app`).
 - **Not in the stores yet.** The iPhone app is in TestFlight; Android is planned. `stores` stays

@@ -51,8 +51,12 @@
   object-fit: cover;
 }
 
+.card[data-i='0'] .photo img {
+  object-position: 50% 30%;
+}
+
 .card[data-i='1'] .photo img {
-  object-position: 68% 40%;
+  object-position: 50% 45%;
 }
 
 .card[data-i='2'] .photo img {

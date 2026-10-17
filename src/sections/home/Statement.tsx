@@ -22,7 +22,7 @@ const PARTS: Part[] = [
   { art: 'bill', label: 'a calendar with a due day marked', ratio: 0.81 },
   ' and every goal',
   { art: 'goal', label: 'coins stacked up to a flag', ratio: 1.3 },
-  ', so you always know where you stand',
+  ', so you know where you stand and where you’re heading',
   { art: 'mark', label: 'the Wealthit mark', ratio: 1.25 },
   '.',
 ];
@@ -86,7 +86,7 @@ export function Statement() {
         </p>
         <div className={s.phoneRow}>
           <div data-phone>
-            <Phone screen="home-dark" variant="device" className={s.phone} sizes="320px" alt="Wealthit’s Home: the total across eight wallets, spent today, and this month’s spending ring" />
+            <Phone screen="home-dark" variant="device" className={s.phone} sizes="320px" alt="Wealthit’s Home screen: the total balance across eight wallets, spent today, and this month’s spending ring" />
           </div>
         </div>
       </div>

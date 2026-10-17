@@ -11,8 +11,8 @@ import { PageHero } from '@/sections/product/PageHero';
 import { Switcher } from '@/sections/product/Switcher';
 
 export const metadata: Metadata = pageMeta({
-  title: 'Features',
-  description: 'What Wealthit does, feature by feature: record a payment in a sentence or a photo, see every account in one total, and plan budgets, bills and goals.',
+  title: 'Features: spending, budgets, bills and goals',
+  description: 'What Wealthit does: log spending in a sentence, scan receipts, record Apple Pay payments, add up 26 currencies, and plan budgets, bills and savings goals.',
   path: '/features/',
 });
 
@@ -27,8 +27,8 @@ export default function Features() {
       <main id="main">
         <PageHero
           cap="Features"
-          title="Everything you need to know where you stand."
-          lead="Write down what you spend in a sentence or a photo, and see every account added up, whatever its currency. Then plan for what’s coming with budgets, bills and goals."
+          title="Everything you need for better money habits."
+          lead="Log what you spend in a sentence or a photo and see every account added up, whatever the currency. Then plan ahead with budgets, bill reminders and savings goals."
           actions={
             <>
               <Button label="Get the app" href="/#get" tone="brand" />
@@ -41,11 +41,11 @@ export default function Features() {
         <Facts
           title="And the rest, too."
           facts={[
-            { title: 'The same on every phone', text: 'Sign in on another phone and your records are there. A record made offline goes up when you are back online.' },
-            { title: 'Your data, to take', text: 'Export everything at any time, as a backup file or a spreadsheet.' },
+            { title: 'The same on every phone', text: 'Sign in on another phone and your records are there. A record made offline goes up when you’re back online.' },
+            { title: 'Your data, yours to take', text: 'Export everything at any time, as a backup file or a spreadsheet.' },
             { title: 'App lock', text: 'Face ID or a PIN keeps the app closed. The PIN never leaves your phone.' },
             { title: 'Reminders', text: 'For bills due and budgets running low, scheduled on your phone.' },
-            { title: 'No bank login', text: 'Wealthit never asks for your bank password. You record what you spend; it adds it up.' },
+            { title: 'No bank login', text: 'Wealthit never asks for your bank password. You record what you spend, and it does the adding up.' },
             { title: 'No ads, no tracking', text: 'No advertising and no analytics, in the app or on this site.' },
           ]}
         />

@@ -11,8 +11,8 @@ import s from './DoubleBlock.module.css';
 
 /**
  * Two big claims side by side (the reference's double block), each a card with a round arrow to
- * its feature page, a photograph in the middle — the Wallets screen in her hands, the budgets at a
- * table — and one line under it.
+ * its feature page, a photograph in the middle — the Wallets screen in her hands, a couple at the
+ * supermarket — and one line under it.
  */
 const BLOCKS: { title: string; text: string; href: string; photo: { name: string; h: number; alt: string; at?: string } }[] = [
   {
@@ -25,7 +25,7 @@ const BLOCKS: { title: string; text: string; href: string; photo: { name: string
     title: 'A heads-up before you overspend.',
     text: 'When a budget is nearly used up, you’re told what is left and how much that is a day, while there is still time to do something.',
     href: '/features/budgets/',
-    photo: { name: 'desk-budgets', h: 1201, alt: 'A hand holding an iPhone showing Wealthit’s budgets, at a table', at: '42% 50%' },
+    photo: { name: 'supermarket-couple', h: 1202, alt: 'A couple at the supermarket with a trolley; she checks her phone while he leans in to look', at: '50% 35%' },
   },
 ];
 

@@ -12,7 +12,7 @@ export function NextFeature({ feature }: { feature: FeaturePage }) {
       <div className="wrap">
         <Link href={`/features/${feature.slug}/`} className={s.card} data-dark={feature.dark ? '' : undefined}>
           <span className={s.copy}>
-            <span className={`cap ${s.cap}`}>Next</span>
+            <span className={`cap ${s.cap}`}>Up next</span>
             <span className={`display-2 ${s.title}`}>{feature.label}</span>
             <span className={s.summary}>{feature.summary}</span>
             <span className={s.arrow} aria-hidden>

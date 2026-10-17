@@ -122,3 +122,10 @@
     flex-direction: column;
   }
 }
+
+/* on the dark page the glow under the name is kept low, so the letters stay crisp */
+:global(:root[data-theme='dark']) .word {
+  text-shadow:
+    0 0.025em 0 rgba(13, 116, 67, 0.85),
+    0 0.08em 0.14em rgba(76, 195, 138, 0.18);
+}

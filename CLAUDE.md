@@ -120,10 +120,16 @@ node scripts/og.mjs        # the link preview, public/og.png
 - **The web app is not deployed.** `webApp` stays `null`; "Log in" says "Soon" until then. One URL
   serves log in and sign up (its root shows sign-in). Say only what it does: same account, records
   in step with the phone; not budgets, goals, schedules or wallet editing yet.
-- **Privacy claims are load-bearing.** `/privacy/` and Help are the app session's text (11 October
-  2026): an account (email, Google, Apple), records synced to Wealthit's server in Frankfurt
-  (Render + Neon), receipt photos, profile picture and PIN only on the phone, open.er-api.com for
-  rates, no tracking/ads/analytics, delete with a 60-day grace. If the app changes, these change the
+- **Privacy claims are load-bearing.** `/privacy/` and Help started as the app session's text (11
+  October 2026) and were checked against Apple's 5.1.1 and Google Play's user data and account
+  deletion rules on 17 October 2026, from the app's code and notes: an account (email, Google,
+  Apple), records synced to Wealthit's server in Frankfurt (Render + Neon, a six-hour restore
+  window on Neon's free plan), receipt photos, profile picture and PIN only on the phone,
+  open.er-api.com for rates, Resend for sign-in email, Zoho Mail for support email, Vercel for the
+  design service and the owner's admin page (counts and dates only, never what records say), IP
+  addresses only in memory for sign-in limits, no tracking/ads/analytics, delete with a 60-day
+  grace (or at once by email, `/privacy/#delete-account`). The app's
+  `docs/PRIVACY_POLICY_DRAFT.md` should be brought in line. If the app changes, these change the
   same day. The app links to `/privacy/` and `/support/` — never move them.
 - **Nothing loaded from elsewhere.** Fonts, captures and 3D are all served from this site.
 - **Type.** Plus Jakarta Sans (OFL), the app's own face, one variable file in `src/fonts`.

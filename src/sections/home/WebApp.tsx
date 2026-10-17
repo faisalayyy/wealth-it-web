@@ -24,8 +24,8 @@ export function WebApp() {
             {coined('On your computer, too.')}
           </h2>
           <p className={s.text}>
-            Sign in on the web with the same account and your records are there. Add one on your laptop and it shows on your phone
-            within seconds.
+            Sign in on the web with the same account and your records are there, with your budgets, bills and goals on a bigger screen.
+            Add one on your laptop and it shows on your phone within seconds.
           </p>
           {webApp ? (
             <a href={webApp} className={s.go}>

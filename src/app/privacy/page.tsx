@@ -48,8 +48,8 @@ export default function Privacy() {
 
           <h2>Who is responsible</h2>
           <p>
-            Wealthit is made by Faisal Mukhtar, who is responsible for the data described here. This policy covers the Wealthit app and this
-            website. Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> about anything on this page.
+            Wealthit is made by Faisal Mukhtar, who is responsible for the data described here. This policy covers the Wealthit app,
+            Wealthit on the web and this website. Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> about anything on this page.
           </p>
 
           <h2>What Wealthit keeps</h2>
@@ -242,6 +242,15 @@ export default function Privacy() {
             For as long as you have an account. When you delete it, it is removed for good 60 days later, unless you sign in again before then.
             The database keeps a recovery history of the last six hours of changes, so once something is deleted for good, it is gone from that
             history within six hours as well. Emails you send to {contactEmail} are kept only as long as it takes to help you.
+          </p>
+
+          <h2>Wealthit on the web</h2>
+          <p>
+            At dashboard.wealthit.app you sign in with the same account, with an email code or your password, and see the same records. Your
+            browser keeps your sign-in and a working
+            copy of your records in its own storage, so the page opens quickly; there are no cookies. Signing out erases both, because a browser
+            may be someone else’s. The web app is hosted by GitHub Pages, asks open.er-api.com for exchange rates in the same way as the app,
+            and runs no tracking, advertising or analytics.
           </p>
 
           <h2>Children</h2>

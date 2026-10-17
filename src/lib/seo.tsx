@@ -31,7 +31,7 @@ export const appSchema = {
   name: site.name,
   description: site.description,
   url: pageUrl('/'),
-  operatingSystem: 'iOS',
+  operatingSystem: 'iOS, Android, Web',
   applicationCategory: 'FinanceApplication',
   inLanguage: 'en',
   publisher: { '@id': `${site.origin}/#organization` },

@@ -31,7 +31,7 @@ export function TapPhone({ className, sizes = '(max-width: 743px) 70vw, 340px', 
   }, []);
   return (
     <div ref={ref} className={`${s.tap} ${className ?? ''}`}>
-      <Phone screen="lockscreen" exact variant="device" className={s.phone} sizes={sizes} alt="An iPhone Lock Screen" />
+      <Phone screen="lockscreen" exact variant="device" className={s.phone} sizes={sizes} alt="A phone’s Lock Screen" />
       <div className={s.card}>
         <Cut name="tap-card" className={s.cut} sizes={sizes} />
         <span className={s.press} aria-hidden />

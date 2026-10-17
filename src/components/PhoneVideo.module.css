@@ -19,7 +19,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--n-ink) 55%, transparent);
+  background: rgba(11, 11, 12, 0.55); /* over the video, so dark in both themes */
   color: #fff;
   fill: currentColor;
   -webkit-backdrop-filter: blur(8px);

@@ -23,7 +23,7 @@ const MOMENTS = ['payday', 'rent day', 'the coffee runs', 'the trip fund', 'your
 const FACTS = [
   { icon: 'globe', label: '26 currencies' },
   { icon: 'shield', label: 'No ads, no tracking' },
-  { icon: 'check', label: 'Coming soon to iPhone' },
+  { icon: 'check', label: 'Synced across your devices' },
 ];
 
 export function HomeHero() {

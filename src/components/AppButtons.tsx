@@ -9,7 +9,7 @@ import s from './AppButtons.module.css';
 export function AppButtons({ tone = 'dark', className }: { tone?: 'dark' | 'light'; className?: string }) {
   const items = [
     { key: 'ios', store: 'App Store', href: stores.ios, soon: 'Coming soon to' },
-    { key: 'android', store: 'Google Play', href: stores.android, soon: 'Later on' },
+    { key: 'android', store: 'Google Play', href: stores.android, soon: 'Coming soon to' },
   ];
   return (
     <div className={`${s.row} ${className ?? ''}`} data-tone={tone}>

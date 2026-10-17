@@ -14,7 +14,7 @@ import s from './Privacy.module.css';
  * every line is in the privacy policy (src/app/privacy) — and a recording of hiding the amounts.
  */
 const POINTS = [
-  { icon: 'lock', title: 'Face ID or a PIN', text: 'Lock the app. The PIN stays in your phone’s keychain.' },
+  { icon: 'lock', title: 'Lock it', text: 'With a PIN, your face or your fingerprint. The PIN stays in your phone’s secure storage.' },
   { icon: 'eye-off', title: 'Hide amounts', text: 'One tap, and the person next to you can’t read a thing.' },
   { icon: 'bank', title: 'No bank login', text: 'Wealthit never asks for your bank password.' },
   { icon: 'shield', title: 'Nothing tracked', text: 'No tracking, no advertising, no analytics.' },

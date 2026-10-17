@@ -15,8 +15,8 @@ export type QA = { q: string; a: string | string[] };
 
 const HOME: QA[] = [
   {
-    q: 'Is Wealthit on the App Store yet?',
-    a: 'Not yet. The iPhone app is in testing now and coming soon to the App Store, and Android is planned. The buttons on this page turn into real links the day it’s listed.',
+    q: 'Is Wealthit out yet?',
+    a: 'Not yet. It’s in testing now and coming soon. The buttons on this page turn into real links the day it’s out.',
   },
   {
     q: 'Do I need an account?',

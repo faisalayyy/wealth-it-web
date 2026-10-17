@@ -128,7 +128,8 @@ node scripts/og.mjs        # the link preview, public/og.png
   window on Neon's free plan), receipt photos, profile picture and PIN only on the phone,
   open.er-api.com for rates, Resend for sign-in email, Zoho Mail for support email, Vercel for the
   design service and the owner's admin page (counts and dates only, never what records say), IP
-  addresses only in memory for sign-in limits, no tracking/ads/analytics, delete with a 60-day
+  addresses only in memory for sign-in limits, no tracking or ads, Wealthit runs no analytics (on
+  Android, Google's ML Kit receipt reader sends Google its own diagnostics; the policy says so), delete with a 60-day
   grace (or at once by email, `/privacy/#delete-account`). The app's
   `docs/PRIVACY_POLICY_DRAFT.md` should be brought in line. If the app changes, these change the
   same day. The app links to `/privacy/` and `/support/` — never move them.

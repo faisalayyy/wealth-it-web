@@ -117,9 +117,10 @@ node scripts/og.mjs        # the link preview, public/og.png
   and the web, and the site never says which: no "for iPhone", "Android to follow" or "on the App
   Store". Tap to Record still says it works with Apple Pay, because that is how it works; it is
   never promised for Android.
-- **The web app is not deployed.** `webApp` stays `null`; "Log in" says "Soon" until then. One URL
+- **The web app is at https://dashboard.wealthit.app** (`webApp`; ../WebApp, published through the
+  wealthit-dashboard-site repository). "Log in" and "Open Wealthit on the web" go there. One URL
   serves log in and sign up (its root shows sign-in). Say only what it does: same account, records
-  in step with the phone; not budgets, goals, schedules or wallet editing yet.
+  in step with the phone.
 - **Privacy claims are load-bearing.** `/privacy/` and Help started as the app session's text (11
   October 2026) and were checked against Apple's 5.1.1 and Google Play's user data and account
   deletion rules on 17 October 2026, from the app's code and notes: an account (email, Google,

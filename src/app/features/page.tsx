@@ -46,7 +46,7 @@ export default function Features() {
             { title: 'App lock', text: 'Face ID or a PIN keeps the app closed. The PIN never leaves your phone.' },
             { title: 'Reminders', text: 'For bills due and budgets running low, scheduled on your phone.' },
             { title: 'No bank login', text: 'Wealthit never asks for your bank password. You record what you spend, and it does the adding up.' },
-            { title: 'No ads, no tracking', text: 'No advertising and no analytics, in the app or on this site.' },
+            { title: 'No ads, no tracking', text: 'No advertising anywhere, and Wealthit runs no analytics of its own.' },
           ]}
         />
         <Closing />

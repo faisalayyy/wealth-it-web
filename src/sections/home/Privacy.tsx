@@ -17,7 +17,7 @@ const POINTS = [
   { icon: 'lock', title: 'Lock it', text: 'With a PIN, your face or your fingerprint. The PIN stays in your phone’s secure storage.' },
   { icon: 'eye-off', title: 'Hide amounts', text: 'One tap, and the person next to you can’t read a thing.' },
   { icon: 'bank', title: 'No bank login', text: 'Wealthit never asks for your bank password.' },
-  { icon: 'shield', title: 'Nothing tracked', text: 'No tracking, no advertising, no analytics.' },
+  { icon: 'shield', title: 'Nothing tracked', text: 'No tracking or advertising, and Wealthit runs no analytics.' },
   { icon: 'trash', title: 'Delete it any time', text: 'From your profile. Sixty days later, everything is gone for good.' },
 ];
 

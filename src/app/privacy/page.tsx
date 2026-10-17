@@ -17,14 +17,14 @@ import { PageHero } from '@/sections/product/PageHero';
  */
 export const metadata: Metadata = pageMeta({
   title: 'Privacy policy',
-  description: 'What Wealthit keeps, where and why. Records sync to your account on a server in Frankfurt; receipt photos stay on your phone. No tracking, ads or analytics.',
+  description: 'What Wealthit keeps, where and why. Records sync to your account on a server in Frankfurt; receipt photos stay on your phone. No tracking and no ads.',
   path: '/privacy/',
 });
 
 const updated = '17 October 2026';
 
 const nots = [
-  'No tracking, no advertising and no analytics.',
+  'No tracking and no advertising, and Wealthit runs no analytics.',
   'Nothing about you is sold, rented or shared with anyone for their own use.',
   'Nobody reads your records. They are used to keep your phones in step and to work out the figures the app shows you.',
   'Receipt photos and your profile picture stay on your phone.',
@@ -188,6 +188,16 @@ export default function Privacy() {
             <li>
               <strong>The app’s look.</strong> The app asks Wealthit’s own design service for its current colours and text sizes. The request
               carries nothing about you or your records.
+            </li>
+            <li>
+              <strong>The receipt reader, on Android.</strong> Android reads receipts with Google’s ML Kit, on the phone. The photo and its
+              text never leave the phone, but ML Kit sends Google its own diagnostics: the phone’s model and system version, Wealthit’s version,
+              an id for this installation, and how long reading took and whether it failed. Google uses them to measure and improve ML Kit and
+              does not share them (
+              <a href="https://developers.google.com/ml-kit/android-data-disclosure" rel="noopener">
+                Google’s disclosure
+              </a>
+              ).
             </li>
           </ul>
           <p>

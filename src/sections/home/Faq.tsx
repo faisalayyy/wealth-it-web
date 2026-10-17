@@ -36,7 +36,7 @@ const HOME: QA[] = [
   },
   {
     q: 'Who can see my records?',
-    a: 'You. They are kept on your phone and in your account on Wealthit’s server in Frankfurt, in the EU, and nobody reads them. There is no tracking, no advertising and no analytics, and receipt photos never leave your phone.',
+    a: 'You. They are kept on your phone and in your account on Wealthit’s server in Frankfurt, in the EU, and nobody reads them. There is no tracking or advertising, Wealthit runs no analytics, and receipt photos never leave your phone.',
   },
 ];
 

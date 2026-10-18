@@ -500,25 +500,28 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     }
     face();
   };
-  const settle = (steps: number) => {
-    // heavy air while settling, so the first frame is already at rest
-    for (const p of parts) {
-      p.body.linearDamping = 0.95;
-      p.body.angularDamping = 0.95;
-    }
-    for (let i = 0; i < steps; i++) {
+  // settling the chains before the first frame, a slice at a time (stage.ts calls `warm`) instead of
+  // 720 steps at once, which froze the page for a second on a phone
+  const WARM = 720;
+  let warmed = 0;
+  const warm = (budgetMs: number) => {
+    const end = performance.now() + budgetMs;
+    if (warmed === 0) for (const p of parts) (p.body.linearDamping = 0.95), (p.body.angularDamping = 0.95);
+    while (warmed < WARM && performance.now() < end) {
       place(0);
       face();
       world.step(STEP);
+      warmed++;
     }
+    if (warmed < WARM) return false;
     for (const p of parts) {
       const charm = charms.includes(p as Charm);
       p.body.linearDamping = charm ? 0.24 : 0.3;
       p.body.angularDamping = charm ? 0.4 : 0.5;
     }
+    sync();
+    return true;
   };
-  settle(720);
-  sync();
 
   // ─── the pointer ────────────────────────────────────────────────────────────────────────
   const canvas = renderer.domElement;
@@ -566,6 +569,7 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
   return {
     scene,
     camera,
+    warm,
     resize: (w, h) => {
       const aspect = w / h;
       const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z;
@@ -576,14 +580,15 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     },
     update: (t, dt, pointer) => {
       if (dt === 0) {
-        // a still frame (reduced motion): the ring in its place, everything at rest
-        settle(900);
+        // a still frame (reduced motion): already settled while warming, so only drawn
         sync();
         return;
       }
       if (Number.isNaN(dropAt)) dropAt = t;
       lean.x += (pointer.x - lean.x) * 0.04;
-      acc += Math.min(dt, 0.05);
+      // at most four steps a frame: a slow frame slows the swing a touch instead of piling up more
+      // steps for the next one, which is how a busy phone starts to stutter
+      acc = Math.min(acc + Math.min(dt, 0.05), STEP * 4);
       let at = t - acc;
       while (acc >= STEP) {
         at += STEP;

@@ -1,4 +1,5 @@
 import { gsap, reducedMotion, ScrollTrigger } from './gsap';
+import { introLate } from './intro';
 
 /**
  * The entrance every block on the site shares: anything marked `data-reveal` inside `root` rises a
@@ -7,7 +8,9 @@ import { gsap, reducedMotion, ScrollTrigger } from './gsap';
  */
 export function reveal(root: HTMLElement | null) {
   if (!root || reducedMotion()) return;
-  const items = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal]'));
+  // what is already on screen when the scripts arrive late stays as it is
+  const late = introLate();
+  const items = Array.from(root.querySelectorAll<HTMLElement>('[data-reveal]')).filter(i => !late || i.getBoundingClientRect().top > innerHeight);
   if (!items.length) return;
   gsap.set(items, { opacity: 0, y: 28 });
   gsap.set(items.filter(i => i.dataset.reveal === 'scale'), { y: 40, scale: 0.96 });

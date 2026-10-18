@@ -29,8 +29,7 @@ export function ThreeCanvas({ scene, className, onReady }: { scene: keyof typeof
       const [{ mount }, build] = await Promise.all([import('./stage'), SCENES[scene]()]);
       if (cancelled) return;
       try {
-        dispose = mount(canvas, build, { still: reducedMotion() });
-        onReady?.();
+        dispose = mount(canvas, build, { still: reducedMotion(), onReady });
       } catch {
         /* no WebGL: the ground colour behind the canvas stands in */
       }

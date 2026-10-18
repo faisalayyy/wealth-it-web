@@ -69,11 +69,15 @@ export function Gallery() {
     };
     measure();
     let shown = '';
+    let drawn = NaN;
     const tick = (_t: number, dt: number) => {
+      // at rest there is nothing to do, so a still rail costs nothing a frame
+      if (p.x === p.to && drawn === p.x) return;
       const k = still ? 1 : 1 - Math.pow(1 - 0.14, dt / 16.7);
       p.x += (p.to - p.x) * k;
       if (Math.abs(p.to - p.x) < 0.1) p.x = p.to;
       el.style.transform = `translate3d(${-p.x}px, 0, 0)`;
+      drawn = p.x;
       const e = `${p.to < 8}${p.to > p.max - 8}`;
       if (e !== shown) {
         shown = e;

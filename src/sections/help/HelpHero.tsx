@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from 'react';
 import { gsap, reducedMotion, SplitText, useGSAP } from '@/animation/gsap';
+import { introLate } from '@/animation/intro';
 import { Button } from '@/components/Button';
 import { coined } from '@/components/Coin';
 import { Icon } from '@/components/Icon';
@@ -22,7 +23,7 @@ export function HelpHero() {
 
   useGSAP(
     () => {
-      if (reducedMotion()) return;
+      if (reducedMotion() || introLate()) return;
       const split = SplitText.create(root.current!.querySelector('h1')!, { type: 'chars,words', mask: 'chars', charsClass: 'hc' });
       gsap.from(split.chars, { yPercent: 110, duration: 1.1, stagger: 0.018, ease: 'expo.out', delay: 0.2, onComplete: () => split.revert() });
       gsap.from(root.current!.querySelectorAll('[data-in]'), { opacity: 0, y: 24, duration: 1.1, stagger: 0.08, ease: 'expo.out', delay: 0.4 });

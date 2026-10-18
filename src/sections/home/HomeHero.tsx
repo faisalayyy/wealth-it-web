@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { gsap, reducedMotion, SplitText, useGSAP } from '@/animation/gsap';
+import { introLate } from '@/animation/intro';
 import { Button } from '@/components/Button';
 import { coined } from '@/components/Coin';
 import { Icon } from '@/components/Icon';
@@ -16,7 +17,8 @@ import s from './HomeHero.module.css';
  * ways on, and three plain facts.
  *
  * The headline rises letter by letter out of masks that leave room for descenders and side
- * bearings, and the split is undone when it lands, so nothing is ever clipped at rest.
+ * bearings, and the split is undone when it lands, so nothing is ever clipped at rest. When the
+ * scripts arrive late, the intro is skipped and what is already showing stays.
  */
 const MOMENTS = ['payday', 'rent day', 'the coffee runs', 'the trip fund', 'your savings era'];
 
@@ -34,7 +36,9 @@ export function HomeHero() {
 
   useGSAP(
     () => {
-      if (reducedMotion()) return;
+      // on a slow connection the headline has been on screen a while before the scripts arrive:
+      // hiding it again to play the intro would look like the page stuck, so it simply stays
+      if (reducedMotion() || introLate()) return;
       const split = SplitText.create(root.current!.querySelector('h1')!, { type: 'chars,words', mask: 'chars', charsClass: 'hc' });
       gsap.from(split.chars, { yPercent: 110, duration: 1.2, stagger: 0.02, ease: 'expo.out', delay: 0.35, onComplete: () => split.revert() });
       gsap.from(root.current!.querySelectorAll('[data-rise]'), { y: 24, opacity: 0, duration: 1.1, stagger: 0.09, ease: 'expo.out', delay: 0.75 });
@@ -49,11 +53,17 @@ export function HomeHero() {
     if (box && word) box.style.width = `${word.offsetWidth}px`;
   }, [moment]);
 
-  // the moments turn every 2.4 s, and hold still with reduced motion
+  // the moments turn every 2.4 s while the hero is on screen, and hold still with reduced motion
   useEffect(() => {
     if (reducedMotion()) return;
-    const id = window.setInterval(() => setMoment(m => (m + 1) % MOMENTS.length), 2400);
-    return () => window.clearInterval(id);
+    let seen = true;
+    const io = new IntersectionObserver(([e]) => (seen = e.isIntersecting));
+    io.observe(root.current!);
+    const id = window.setInterval(() => seen && !document.hidden && setMoment(m => (m + 1) % MOMENTS.length), 2400);
+    return () => {
+      window.clearInterval(id);
+      io.disconnect();
+    };
   }, []);
 
   return (

@@ -24,7 +24,7 @@ export const metadata: Metadata = pageMeta({
 });
 
 // the day records only you can read ship (the app's A430)
-const updated = '[the release day]';
+const updated = '23 October 2026';
 
 const nots = [
   'Only you can read your records. They are locked on your phone, or in your browser, before they are sent, with a key only you hold. Wealthit, and the companies that run its server, cannot read them.',

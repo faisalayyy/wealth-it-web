@@ -291,8 +291,8 @@ export default function Privacy() {
           <p>
             At dashboard.wealthit.app you sign in with the same account, with an email code or your password, and see the same records. The
             first time, it asks for your recovery key to open them. Your browser keeps your sign-in, the key and a working copy of your records
-            in its own storage, so the page opens quickly; there are no cookies. Signing out erases all three, because a browser may be
-            someone else’s. The web app is hosted by GitHub Pages, asks open.er-api.com for exchange rates in the same way as the app,
+            in its own storage, so the page opens quickly; there are no cookies. Signing out erases your sign-in and the copy, and keeps the
+            key so you won’t type it again in that browser, unless you tell it this is a shared computer, when signing out forgets the key too. The web app is hosted by GitHub Pages, asks open.er-api.com for exchange rates in the same way as the app,
             and runs no tracking, advertising or analytics service.
           </p>
 

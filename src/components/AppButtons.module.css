@@ -40,7 +40,7 @@ a.btn {
 }
 
 .row[data-tone='light'] .btn {
-  --color: var(--ivory);
+  --color: var(--blade-white);
 }
 
 .btn[data-soon] + .btn[data-soon] {

@@ -11,10 +11,8 @@
   padding: clamp(40px, 6vw, 88px) clamp(24px, 5vw, 80px) 0;
   border-radius: var(--r-xl);
   overflow: hidden;
-  background:
-    radial-gradient(60% 70% at 85% 100%, rgba(76, 195, 138, 0.22), rgba(76, 195, 138, 0) 70%),
-    var(--forest);
-  color: var(--ivory);
+  background: var(--liquid);
+  color: var(--blade-white);
 }
 
 .copy {
@@ -23,7 +21,7 @@
 
 /* on the Forest in both themes, so it is never the page's own caption colour */
 .panel .cap {
-  color: rgba(247, 246, 241, 0.74);
+  color: rgba(243, 243, 243, 0.74);
   margin-bottom: 16px;
 }
 
@@ -52,7 +50,7 @@
 
 .text {
   display: block;
-  color: rgba(247, 246, 241, 0.68);
+  color: rgba(243, 243, 243, 0.68);
 }
 
 .icon {
@@ -62,8 +60,8 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: rgba(247, 246, 241, 0.08);
-  color: var(--mint);
+  background: rgba(243, 243, 243, 0.08);
+  color: var(--lime);
 }
 
 .more {
@@ -72,11 +70,11 @@
   gap: 6px;
   margin-top: 32px;
   font-weight: 600;
-  color: var(--gold);
+  color: var(--lime);
 }
 
 .more:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--lime);
   outline-offset: 3px;
 }
 
@@ -91,7 +89,7 @@
 
 .phone {
   --w: clamp(240px, 24vw, 330px);
-  filter: drop-shadow(0 30px 60px rgba(3, 22, 17, 0.55));
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.55));
 }
 
 @media (max-width: 899px) {

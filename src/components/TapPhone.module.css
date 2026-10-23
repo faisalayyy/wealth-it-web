@@ -24,8 +24,8 @@
   -webkit-backdrop-filter: blur(4cqi) saturate(1.4);
   backdrop-filter: blur(4cqi) saturate(1.4);
   box-shadow:
-    0 9cqi 16cqi -5cqi rgba(6, 30, 24, 0.55),
-    0 2.5cqi 5cqi -1.5cqi rgba(6, 30, 24, 0.35);
+    0 9cqi 16cqi -5cqi rgba(0, 0, 0, 0.5),
+    0 2.5cqi 5cqi -1.5cqi rgba(0, 0, 0, 0.35);
   opacity: 0;
 }
 
@@ -57,12 +57,12 @@
   gap: 6px;
   padding: 9px 14px 9px 11px;
   border-radius: 999px;
-  background: var(--emerald);
-  color: #fff;
+  background: var(--lime);
+  color: var(--ink);
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
-  box-shadow: 0 14px 30px -12px rgba(6, 30, 24, 0.55);
+  box-shadow: 0 14px 30px -12px rgba(0, 0, 0, 0.5);
   translate: -50% 0;
   opacity: 0;
 }

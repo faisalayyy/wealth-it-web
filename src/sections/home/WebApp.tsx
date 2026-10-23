@@ -1,4 +1,4 @@
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { Photo } from '@/components/Photo';
 import { webApp } from '@/lib/site';
@@ -21,7 +21,7 @@ export function WebApp() {
             <Icon name="globe" size={22} />
           </span>
           <h2 id="web-title" className={s.title}>
-            {coined('On your computer, too.')}
+            {fullStop('On your computer, too.')}
           </h2>
           <p className={s.text}>
             Sign in on the web with the same account and your records are there, with your budgets, bills and goals on a bigger screen.

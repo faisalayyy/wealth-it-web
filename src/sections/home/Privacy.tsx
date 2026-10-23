@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { useGSAP } from '@/animation/gsap';
 import { reveal } from '@/animation/reveal';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { PhoneVideo } from '@/components/PhoneVideo';
 import s from './Privacy.module.css';
 
 /**
- * Private by design (the app's tenth poster): a Forest panel with what keeps your money yours —
+ * Private by design (the app's tenth poster): a Night panel lit like the top of the app's Home,
+ * with what keeps your money yours —
  * every line is in the privacy policy (src/app/privacy) — and a recording of hiding the amounts.
  */
 const POINTS = [
@@ -32,7 +33,7 @@ export function Privacy() {
             Private by design
           </p>
           <h2 id="privacy-title" className={`display-2 ${s.title}`} data-reveal>
-            {coined('For your eyes only.')}
+            {fullStop('For your eyes only.')}
           </h2>
           <ul className={s.points}>
             {POINTS.map(p => (

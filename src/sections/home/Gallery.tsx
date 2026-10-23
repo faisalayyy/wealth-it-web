@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap, reducedMotion, useGSAP } from '@/animation/gsap';
 import { Button } from '@/components/Button';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { Screen } from '@/components/Screen';
 import type { ScreenName } from '@/lib/screens';
@@ -171,7 +171,7 @@ export function Gallery() {
       <div className={`wrap ${s.head}`}>
         <p className="cap">Inside the app</p>
         <h2 id="gallery-title" className="display-2">
-          {coined('Every screen here is the real app.')}
+          {fullStop('Every screen here is the real app.')}
         </h2>
       </div>
       <div className={`wrap ${s.panel}`}>

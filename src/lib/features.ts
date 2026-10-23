@@ -43,9 +43,9 @@ export const featurePages: FeaturePage[] = [
   {
     slug: 'recording',
     label: 'Recording',
-    summary: 'Type a payment the way you’d say it, scan the receipt, or tap Add after Apple Pay.',
+    summary: 'Type a payment the way you’d say it, scan the receipt, or tap Save after Apple Pay.',
     metaTitle: 'Expense tracker and receipt scanner',
-    metaDescription: 'Log a payment as one short sentence, let the receipt scanner fill it in, or tap Add after Apple Pay. An expense tracker with no forms in the way.',
+    metaDescription: 'Log a payment as one short sentence, let the receipt scanner fill it in, or tap Save after Apple Pay. An expense tracker with no forms in the way.',
     thumb: 'record-sheet-dark',
     dark: true,
     hero: {
@@ -69,7 +69,7 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Tap to Record',
         title: 'Pay, and it’s already written down.',
-        text: 'Set it up once: add the shortcut and link each card to a wallet. After you pay with Apple Pay, a card appears on your Lock Screen with the amount and the shop. Tap Add and it’s recorded; tap Cancel and it isn’t.',
+        text: 'Set it up once: add the shortcut and link each card to a wallet. After you pay with Apple Pay, a card appears on your Lock Screen with the amount and the shop. Tap Save and it’s recorded, or Change to look it over first.',
         media: { tap: true, dark: true },
       },
     ],
@@ -83,18 +83,18 @@ export const featurePages: FeaturePage[] = [
     ],
   },
   {
-    // App/docs/TAP_TO_RECORD.md and decisions A348, A349, A350, A353, A354. iPhone only, with Apple
+    // App/docs/TAP_TO_RECORD.md and decisions A348, A349, A350, A353, A354, A390, A436 to A438. iPhone only, with Apple
     // Pay; set up once. The Lock Screen card can't be captured on a simulator: media-src/app.
     slug: 'tap-to-record',
     label: 'Tap to Record',
-    summary: 'Pay with Apple Pay and the payment is already filled in. Tap Add and you’re done.',
+    summary: 'Pay with Apple Pay and the payment is already filled in. Tap Save and you’re done.',
     metaTitle: 'Tap to Record: Apple Pay expense tracking',
-    metaDescription: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, already filled in. Tap Add and it’s recorded. Expense tracking with nothing to type.',
+    metaDescription: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, already filled in. Tap Save and it’s recorded. Expense tracking with nothing to type.',
     thumb: 'lockscreen',
     dark: true,
     hero: {
       title: 'You paid. It’s already written down.',
-      lead: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen with the shop, the amount, the category and the wallet filled in. Tap Add and it’s recorded. Tap Cancel and it isn’t.',
+      lead: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen with the shop, the amount, the category and the wallet filled in. Tap Save and it’s recorded. Tap Change to look it over first.',
       screens: ['lockscreen'],
       media: { tap: true, dark: true },
     },
@@ -108,19 +108,19 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Worked out from the payment',
         title: 'The category from the shop. The wallet from the card.',
-        text: 'A shop you have filed before goes where you filed it last time. A new one is filed by its name, so a supermarket goes under Groceries and a petrol station under Fuel. If Wealthit can’t tell, you choose once and it remembers.',
+        text: 'A shop you have filed before goes where you usually file it, whatever name the card machine gives it. A new one is filed by its name, so a supermarket goes under Groceries and a petrol station under Fuel. If Wealthit can’t tell, your Lock Screen offers two categories to pick from, and it remembers.',
         media: { screen: 'categories-dark', dark: true },
       },
       {
         cap: 'Your choice',
         title: 'Save at once, or check first.',
-        text: 'With Save automatically, Add records the payment there and then. With Confirm before saving, Add opens the record already filled in, for you to look over and save.',
+        text: 'Save records the payment there and then, without opening Wealthit. Change opens the record already filled in, for you to look over and save.',
         media: { screen: 'record-sheet-dark', dark: true },
       },
     ],
     facts: [
       { title: 'Set up once', text: 'Add Wealthit’s shortcut in the Shortcuts app and switch it on. The app shows you each step.' },
-      { title: 'Your cards', text: 'The first time you pay with a card, you choose its wallet. Change or forget any card later.' },
+      { title: 'Your cards', text: 'Link each card to a wallet. A card Wealthit hasn’t seen goes to the wallet you choose for new cards, and you can move it later.' },
       { title: 'Never twice', text: 'If the same payment arrives twice, it’s recorded once.' },
       { title: 'Nothing to type', text: 'The amount comes from the payment itself, in the wallet’s own currency.' },
       { title: 'Works with Apple Pay', text: 'Tap to Record picks up the payments you make with Apple Pay.' },

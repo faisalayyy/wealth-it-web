@@ -31,8 +31,8 @@
   height: 10px;
   margin-bottom: 28px;
   border-radius: 50%;
-  background: var(--gold);
-  box-shadow: 0 0 0 4px rgba(242, 198, 109, 0.22);
+  background: var(--lime);
+  box-shadow: 0 0 0 4px rgba(119, 196, 27, 0.22);
 }
 
 .name {

@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { useGSAP } from '@/animation/gsap';
 import { reveal } from '@/animation/reveal';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import type { Fact } from '@/lib/features';
 import s from './Facts.module.css';
 
@@ -15,7 +15,7 @@ export function Facts({ title = 'The little things, too.', facts }: { title?: st
     <section ref={root} className={s.section} data-ground="light">
       <div className="wrap">
         <h2 className={`display-2 ${s.title}`} data-reveal>
-          {coined(title)}
+          {fullStop(title)}
         </h2>
         <ul className={s.grid}>
           {facts.map(f => (

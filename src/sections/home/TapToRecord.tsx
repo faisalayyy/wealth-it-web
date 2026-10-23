@@ -3,20 +3,21 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import { gsap, reducedMotion, useGSAP } from '@/animation/gsap';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { TapPhone } from '@/components/TapPhone';
 import s from './TapToRecord.module.css';
 
 /**
- * Tap to Record (App/docs/TAP_TO_RECORD.md, decisions A348, A349, A353, A354): pay with Apple Pay
- * and the payment is waiting on the Lock Screen, filled in, for Add or Cancel. The headline is the
- * App Store poster's. What it needs is said plainly: an iPhone, Apple Pay, one setup.
+ * Tap to Record (App/docs/TAP_TO_RECORD.md, decisions A348, A349, A353, A354, A436 to A438): pay with
+ * Apple Pay and the payment is waiting on the Lock Screen, filled in, for Save or Change; a shop it
+ * hasn't seen offers two categories to pick. The headline is the App Store poster's. What it needs is
+ * said plainly: an iPhone, Apple Pay, one setup.
  */
 const STEPS = [
   { title: 'Set it up once', text: 'Add Wealthit’s shortcut in the Shortcuts app and switch it on. The app walks you through it.' },
   { title: 'Pay as you always do', text: 'Apple Pay passes on the shop, the amount and the card. There is nothing to type.' },
-  { title: 'Tap Add', text: 'The category comes from the shop and the wallet from the card. The first time you use a card, you choose its wallet.' },
+  { title: 'Tap Save', text: 'The category comes from the shop and the wallet from the card. For a shop it hasn’t seen, you pick the category in one tap, and it remembers.' },
 ];
 
 export function TapToRecord() {
@@ -47,11 +48,11 @@ export function TapToRecord() {
             <Icon name="tap" size={16} stroke={1.8} /> Tap to Record
           </p>
           <h2 id="tap-title" className={`display-2 ${s.title}`}>
-            {coined('You paid. It’s already written down.')}
+            {fullStop('You paid. It’s already written down.')}
           </h2>
           <p className={`lead ${s.lead}`}>
-            Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, already filled in. Tap Add and it’s recorded. Tap
-            Cancel and it isn’t.
+            Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, already filled in. Tap Save and it’s recorded, or
+            Change to look it over first.
           </p>
           <ol className={s.steps} data-steps>
             {STEPS.map((st, i) => (

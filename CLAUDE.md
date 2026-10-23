@@ -55,14 +55,16 @@ node scripts/og.mjs        # the link preview, public/og.png
   `src/three/art.ts`, and Instagram; the theme switch, Log in, Get the app), PageTransition (a soft
   fade and lift between pages, with a thin line along the top), SiteFooter (with
   Socials), ThemeSwitch, TapPhone (the Lock Screen with Tap to Record's card arriving),
-  Button (character roll; tones `brand` Emerald, `ink`, `neutral` Ivory on dark), AppButtons, Logo
-  and Mark, Coin (`coined()`), Phone, Screen/Cut/Crop, Shot (renders any `Media`), Icon, and the
-  Jeton blocks About uses.
+  Button (character roll; tones `brand` lime with ink text, `ink`, `neutral` Blade White on dark),
+  AppButtons, Logo and Mark (the blades), Stop (`fullStop()`), Phone, Screen/Cut/Crop, Shot (renders
+  any `Media`), Icon, and the Jeton blocks About uses.
 - `src/three/` — `stage.ts` and the scenes `keyring` (hero; every split ring, chain link and charm
-  is a cannon-es body on ball joints; charms collide; the pointer pushes them) and `slabs` (About).
-- `src/styles/system.css` — the grid, spacing and type scale, then the brand tokens (`--forest`,
-  `--gold`, `--emerald`, `--mint`, `--ivory`, `--night`, roles `--brand`/`--brand-deep`), the
-  neutrals and classes (`.wrap`, `.display-1/2`, `.statement`, `.story`, `.lead`, `.cap`, `.coin`).
+  is a cannon-es body on ball joints; charms collide; the pointer pushes them) and `slabs` (About);
+  `blades.ts` makes the mark's blades solid, for the keyring and `art.ts`.
+- `src/styles/system.css` — the grid, spacing and type scale, then the brand tokens (`--lime`,
+  `--lime-text`, `--night`, `--blade-white`, `--ink`, `--paper`, roles `--brand`/`--brand-deep`/
+  `--brand-text`/`--stop`, the Liquid's lights `--l-*` and `--liquid`), the neutrals and classes
+  (`.wrap`, `.display-1/2`, `.statement`, `.story`, `.lead`, `.cap`, `.stop`).
 - **Two themes.** Dark is the default (the owner wants the site mostly dark), light is a switch in
   the header, kept per visitor and set before the first paint (`layout.tsx`). Colours on the page go
   through the neutral tokens (`--n-50`… `--n-ink`, `--n-text`, `--n-cap`, `--n-line`, `--n-tint`,
@@ -90,11 +92,18 @@ node scripts/og.mjs        # the link preview, public/og.png
   and no caption makes anyone say anything (the Pexels licence: don't imply endorsement). The owner's
   rules (17 October 2026): people from many places, not only the Gulf; every woman shown wears a
   hijab; and new photographs are shown to the owner, composited, before they go on the site.
-- **The brand is the app's** (`App/brand/README.md`, `App/src/ui/brandMark.ts`). The mark is two
-  leaves and a gold coin: leaves Emerald `#0D7443` on light, Mint `#4CC38A` on dark; the coin is
-  always Gold `#F2C66D`. In the name, "Wealth" is Night (Ivory on dark) and "it" is Emerald (Mint
-  on dark). Buttons are Emerald with white text; big brand panels are Forest `#0E3B30` with Ivory
-  text. Headlines end on the gold-coin full stop — `coined('…')`.
+- **The brand is the app's** (`App/brand/README.md`, `App/src/ui/brandMark.ts`, since 21 October
+  2026, A417 to A423). The mark is Faisal's three blades, each a step higher: the first is always
+  Lime `#77C41B`, the other two Night `#0B0B0C` on light and Blade White `#F3F3F3` on dark
+  (`src/lib/brand.ts` draws them from the app's figures; never redraw or recolour them). In the name,
+  "Wealth" is Night (Blade White on dark) and "it" is the lime on every ground. Buttons are the lime
+  with ink `#111111` text; green text on light is Lime Text `#008317`, the lime on dark; the light
+  page is Paper `#F5F5F3`, the dark page Night. Big brand panels are Night lit by the app's Liquid
+  (the four lights behind the top of Home: lime, forest, teal, olive) with Blade White text. The
+  icon is the tile: the blades over Night (`public/favicon.svg`, `apple-touch-icon.png`,
+  `icon-512.png`, copied from `App/brand/favicon`). Headlines end on the lime full stop,
+  `fullStop('…')`, as the App Store posters do. The leaves, the gold coin, Forest, Emerald, Mint
+  and Ivory are the old brand: none of them on the site.
 - **Words** (`App/docs/marketing/app-store-campaign.md`): plain and specific. Never "smart",
   "effortless", "seamless", "all in one" or "take control", no exclamation marks, and never "it
   never leaves your phone" (records sync to the account). The owner wants nothing that reads as
@@ -109,8 +118,10 @@ node scripts/og.mjs        # the link preview, public/og.png
   there is a price or a post.
 - **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: its own page, a homepage
   section and one of the two large tiles in the features bento. It works with Apple Pay and is set
-  up once; never promise it on Android. Its Lock Screen card can't be captured on a simulator: `scripts/tap.mjs` renders the
-  App Store poster 03's own HTML, card only (`media-src/app`).
+  up once; never promise it on Android. After a payment the Lock Screen card says Change and Save
+  (A436); a shop it hasn't seen offers two categories to pick (A438). Its Lock Screen card can't be
+  captured on a simulator: `scripts/tap.mjs` renders the App Store poster 03's own HTML, card only
+  (`media-src/app`), and the till photograph carries it (`compose.mjs`).
 - **Not in the stores yet.** `stores` stays `null`; both AppButtons say "Coming soon" and are not
   links.
 - **No platform names in the copy** (the owner, 17 October 2026): Wealthit is for iPhone, Android
@@ -164,3 +175,13 @@ live in `screens-raw.nosync/`, and evicted files come back with `brctl download`
 replaces the `node_modules` link with a real folder** — move it back to `node_modules.nosync` and
 re-link afterwards. iCloud has also recreated deleted files as "name 2" conflict copies; they are
 not part of the site.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

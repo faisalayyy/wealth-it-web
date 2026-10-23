@@ -35,7 +35,7 @@
   display: grid;
   place-items: center;
   background:
-    radial-gradient(60% 60% at 50% 40%, rgba(76, 195, 138, 0.15), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(60% 60% at 50% 40%, rgba(119, 196, 27, 0.15), rgba(119, 196, 27, 0) 70%),
     var(--panel);
   clip-path: inset(18vh 4vw 18vh 52vw round 24px);
 }

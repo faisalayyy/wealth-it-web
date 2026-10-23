@@ -4,7 +4,7 @@ import { useRef, useState, type FormEvent } from 'react';
 import { gsap, reducedMotion, SplitText, useGSAP } from '@/animation/gsap';
 import { introLate } from '@/animation/intro';
 import { Button } from '@/components/Button';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { Mark } from '@/components/Logo';
 import { contactEmail } from '@/lib/site';
@@ -68,7 +68,7 @@ export function HelpHero() {
           <p className="cap" data-in>
             Help
           </p>
-          <h1 className={`display-2 ${s.title}`}>{coined('How can we help?')}</h1>
+          <h1 className={`display-2 ${s.title}`}>{fullStop('How can we help?')}</h1>
           <p className={`lead ${s.lead}`} data-in>
             Most questions are answered just below. If yours isn’t, write to us. A real person reads every message.
           </p>

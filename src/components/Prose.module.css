@@ -69,7 +69,7 @@
 .ticks svg {
   flex: none;
   margin-top: 4px;
-  color: var(--emerald);
+  color: var(--brand-text);
 }
 
 .list {
@@ -81,7 +81,7 @@
 }
 
 .list li::marker {
-  color: var(--emerald);
+  color: var(--brand-text);
 }
 
 .updated {

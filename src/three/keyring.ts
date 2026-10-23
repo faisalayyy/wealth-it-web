@@ -1,15 +1,16 @@
 import * as CANNON from 'cannon-es';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
-import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
-import { BRAND_MARK, CHART } from '@/lib/brand';
+import { CHART } from '@/lib/brand';
+import { bladeGeometries } from './blades';
 import { THREE, type Scene } from './stage';
 
 /**
  * The homepage hero's 3D, after the reference's keyring: a big ring hanging from the top edge of
  * the screen, split rings threaded on it, link chains from the split rings, and on the chains the
- * charms — the Wealthit mark (mint leaves, a gold coin) on a soft black block, the spending
- * chart, a card, a receipt and a padlock — spaced evenly either side of the ring's lowest point.
+ * charms — the Wealthit mark (the lime blade and two white ones) on a soft black block, as on the
+ * app's icon, the spending chart, a card, a receipt and a padlock — spaced evenly either side of the
+ * ring's lowest point.
  *
  * Everything that moves is a solid body in a small physics world (cannon-es): every split ring,
  * every chain link and every charm hangs from the one above it on a ball joint, and the charms
@@ -64,11 +65,10 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
   const steel = new THREE.MeshPhysicalMaterial({ color: '#dfe1dc', metalness: 1, roughness: 0.22, envMap: env, envMapIntensity: 1.1 });
   const gloss = (color: string, extra: Partial<THREE.MeshPhysicalMaterialParameters> = {}) =>
     new THREE.MeshPhysicalMaterial({ color, roughness: 0.3, clearcoat: 0.9, clearcoatRoughness: 0.14, envMap: env, envMapIntensity: 0.65, ...extra });
-  const emerald = gloss('#0d7443', { roughness: 0.28 });
-  const forest = gloss('#0e3b30', { roughness: 0.34, clearcoat: 0.8 });
-  const gold = new THREE.MeshPhysicalMaterial({ color: '#f0b94a', metalness: 0.35, roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.12, envMap: env, envMapIntensity: 0.9 });
-  // the leaves as the mark is drawn on dark grounds: Mint, here as a polished green metal
-  const mint = new THREE.MeshPhysicalMaterial({ color: '#4cc38a', metalness: 0.55, roughness: 0.2, clearcoat: 0.9, clearcoatRoughness: 0.1, envMap: env, envMapIntensity: 1.1 });
+  // the brand's lime and Blade White, lacquered; Night for the card
+  const lime = gloss('#77c41b', { roughness: 0.24, clearcoat: 1, clearcoatRoughness: 0.1, envMapIntensity: 0.8 });
+  const blade = gloss('#f3f3f3', { roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.12, envMapIntensity: 0.7 });
+  const night = gloss('#141415', { roughness: 0.3, clearcoat: 0.9 });
   const ink = gloss('#111112', { roughness: 0.42, clearcoat: 0.55, clearcoatRoughness: 0.3 });
 
   const group = new THREE.Group();
@@ -207,7 +207,7 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     return g;
   };
 
-  // ─── 1 · the mark, in chrome, on a soft black block ─────────────────────────────────────
+  // ─── 1 · the mark on a soft black block, as on the app's icon ───────────────────────────
   {
     const S = 1.0;
     const D = 0.5;
@@ -224,25 +224,9 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
       }
       block.geometry.computeVertexNormals();
     }
-    const loader = new SVGLoader();
-    const svg = loader.parse(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="${BRAND_MARK.viewBox}">${BRAND_MARK.paths.map(d => `<path d="${d}"/>`).join('')}</svg>`);
-    const shapes = svg.paths.flatMap(p => SVGLoader.createShapes(p));
-    const geo = new THREE.ExtrudeGeometry(shapes, { depth: 7, bevelEnabled: true, bevelThickness: 2.4, bevelSize: 1.6, bevelSegments: 6, curveSegments: 48 });
-    // the mark's own box is 25.2–82 on its 100 grid: centre that, at 0.84 of the block
-    const k = (S * 0.84) / 76;
-    const cx = 50;
-    const cy = (21.6 + 78.4) / 2;
-    geo.translate(-cx, -cy, 0);
-    // SVG's y runs down: turn it over about x (a rotation, so the faces stay outward), which also
-    // sends the extrusion backwards — bring it forward again
-    geo.scale(k, -k, -k);
-    geo.translate(0, 0, (7 + 2.4) * k);
-    const leaves = new THREE.Mesh(geo, mint);
-    const coin = new THREE.Mesh(new THREE.CylinderGeometry(BRAND_MARK.coin.r * k, BRAND_MARK.coin.r * k, 9 * k, 64), gold);
-    coin.rotation.x = Math.PI / 2;
-    coin.position.set((BRAND_MARK.coin.cx - cx) * k, -(BRAND_MARK.coin.cy - cy) * k, 4 * k);
+    // the blades at the size the app's icon sets them on its tile, raised off the face
     const mark = new THREE.Group();
-    mark.add(leaves, coin);
+    bladeGeometries(S * 0.56, 0.03, 0.012).forEach((geo, i) => mark.add(new THREE.Mesh(geo, i === 0 ? lime : blade)));
     mark.position.z = D / 2 - 0.03;
     const { obj: e, eyelet } = eye(S * 0.47);
     const holder = new THREE.Group();
@@ -259,7 +243,8 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     const gap = 0.05;
     const holder = new THREE.Group();
     let a0 = Math.PI / 2;
-    CHART.forEach((slice, i) => {
+    const most = Math.max(...CHART.map(c => c.share));
+    CHART.forEach(slice => {
       const sweep = (slice.share / 100) * Math.PI * 2;
       const s = new THREE.Shape();
       const from = a0 - gap / 2;
@@ -270,7 +255,7 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
       const g = new THREE.ExtrudeGeometry(s, { depth: 0.16, bevelEnabled: true, bevelThickness: 0.035, bevelSize: 0.03, bevelSegments: 5, curveSegments: 40 });
       g.translate(0, 0, -0.08);
       const m = new THREE.Mesh(g, gloss(slice.color, { roughness: 0.32 }));
-      if (i === 0) {
+      if (slice.share === most) {
         // the biggest slice stands out, the way the app lifts the one you tap
         const mid = a0 - sweep / 2;
         m.position.set(Math.cos(mid) * 0.06, Math.sin(mid) * 0.06, 0.05);
@@ -285,33 +270,33 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     strand(-24, 3, { obj: holder, body, eyelet }, -0.35, 0.18);
   }
 
-  // ─── 3 · an emerald card, on a split ring through the hole in its corner ────────────────────
+  // ─── 3 · a Night card, on a split ring through the hole in its corner ───────────────────
   {
     const W = 1.36;
     const H = 0.86;
     const D = 0.05;
     const face = canvasTexture((ctx, w, h) => {
       const g = ctx.createLinearGradient(0, 0, w, h);
-      g.addColorStop(0, '#118a52');
-      g.addColorStop(1, '#0b5e37');
+      g.addColorStop(0, '#232325');
+      g.addColorStop(1, '#0b0b0c');
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, w, h);
       ctx.font = `700 ${h * 0.13}px "Plus Jakarta Sans Variable", system-ui, -apple-system, sans-serif`;
       ctx.textAlign = 'right';
-      ctx.fillStyle = '#f7f6f1';
+      ctx.fillStyle = '#f3f3f3';
       ctx.fillText('Wealth', w * 0.92 - ctx.measureText('it').width, h * 0.22);
-      ctx.fillStyle = '#4cc38a';
+      ctx.fillStyle = '#77c41b';
       ctx.fillText('it', w * 0.92, h * 0.22);
       // the chip
-      ctx.fillStyle = '#f2c66d';
+      ctx.fillStyle = '#cfcfca';
       ctx.beginPath();
       ctx.roundRect(w * 0.1, h * 0.4, w * 0.15, h * 0.2, h * 0.03);
       ctx.fill();
-      ctx.strokeStyle = 'rgba(80,60,10,0.45)';
+      ctx.strokeStyle = 'rgba(40,40,40,0.4)';
       ctx.lineWidth = 2;
       ctx.strokeRect(w * 0.1 + 6, h * 0.4 + 6, w * 0.15 - 12, h * 0.2 - 12);
       // contactless
-      ctx.strokeStyle = 'rgba(247,246,241,0.7)';
+      ctx.strokeStyle = 'rgba(243,243,243,0.7)';
       ctx.lineWidth = h * 0.014;
       ctx.lineCap = 'round';
       for (let i = 0; i < 3; i++) {
@@ -319,13 +304,13 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
         ctx.arc(w * 0.3, h * 0.5, h * (0.04 + i * 0.035), -0.7, 0.7);
         ctx.stroke();
       }
-      ctx.fillStyle = 'rgba(247,246,241,0.72)';
+      ctx.fillStyle = 'rgba(243,243,243,0.72)';
       ctx.font = `500 ${h * 0.085}px ui-monospace, monospace`;
       ctx.textAlign = 'left';
       ctx.fillText('••••  ••••  ••••  4821', w * 0.1, h * 0.84);
     }, renderer, 860, 540);
     const faceMat = gloss('#ffffff', { map: face, roughness: 0.26, clearcoat: 1, envMapIntensity: 0.5 });
-    const card = new THREE.Mesh(new RoundedBoxGeometry(W, H, D, 4, 0.08), [emerald, emerald, emerald, emerald, faceMat, emerald]);
+    const card = new THREE.Mesh(new RoundedBoxGeometry(W, H, D, 4, 0.08), [night, night, night, night, faceMat, night]);
     const hole = { x: -W / 2 + 0.12, y: H / 2 - 0.12 };
     const holder = new THREE.Group();
     holder.add(card, grommet(hole.x, hole.y, D));
@@ -415,7 +400,7 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     const W = 0.66;
     const H = 0.56;
     const D = 0.26;
-    const bodyMesh = new THREE.Mesh(new RoundedBoxGeometry(W, H, D, 6, 0.1), forest);
+    const bodyMesh = new THREE.Mesh(new RoundedBoxGeometry(W, H, D, 6, 0.1), lime);
     const ringR = 0.2;
     const legs = 0.16;
     const path = new THREE.CurvePath<THREE.Vector3>();
@@ -431,10 +416,10 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     path.add(new THREE.LineCurve3(new THREE.Vector3(ringR, H / 2 + legs, 0), new THREE.Vector3(ringR, H / 2 - 0.04, 0)));
     const shackle = new THREE.Mesh(new THREE.TubeGeometry(path, 64, 0.052, 14, false), chrome);
     const keyhole = new THREE.Group();
-    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.02, 24), gold);
+    const hole = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.02, 24), ink);
     hole.rotation.x = Math.PI / 2;
     hole.position.set(0, 0.03, D / 2 + 0.002);
-    const slot = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.12, 0.02), gold);
+    const slot = new THREE.Mesh(new THREE.BoxGeometry(0.04, 0.12, 0.02), ink);
     slot.position.set(0, -0.04, D / 2 + 0.002);
     keyhole.add(hole, slot);
     const holder = new THREE.Group();

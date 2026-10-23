@@ -49,7 +49,7 @@
   height: 48px;
   border-radius: 14px;
   background: var(--brand-25);
-  color: var(--emerald);
+  color: var(--brand-text);
 }
 
 .title {

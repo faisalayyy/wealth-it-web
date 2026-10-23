@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap, reducedMotion, SplitText, useGSAP } from '@/animation/gsap';
 import { introLate } from '@/animation/intro';
 import { Button } from '@/components/Button';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { ThreeCanvas } from '@/three/ThreeCanvas';
 import { useJump } from './useJump';
@@ -71,7 +71,7 @@ export function HomeHero() {
       <ThreeCanvas scene="keyring" className={s.canvas} onReady={() => root.current?.setAttribute('data-ready', '')} />
       <div className={`wrap ${s.content}`}>
         <h1 id="hero-title" className={`display-1 ${s.title}`}>
-          {coined('Know where you stand.')}
+          {fullStop('Know where you stand.')}
         </h1>
         <p className={s.moments} data-rise>
           <span>Money habits for</span>{' '}

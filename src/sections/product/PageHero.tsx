@@ -3,7 +3,7 @@
 import { useRef, type ReactNode } from 'react';
 import { gsap, reducedMotion, SplitText, useGSAP } from '@/animation/gsap';
 import { introLate } from '@/animation/intro';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import s from './PageHero.module.css';
 
 /**
@@ -57,7 +57,7 @@ export function PageHero({
             {cap}
           </p>
         )}
-        <h1 className={`display-1 ${s.title}`}>{coined(title)}</h1>
+        <h1 className={`display-1 ${s.title}`}>{fullStop(title)}</h1>
         <p className={`lead ${s.lead}`} data-in>
           {lead}
         </p>

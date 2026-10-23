@@ -8,8 +8,8 @@ import s from './Button.module.css';
  * tilted, one letter after another — the label is split into characters here, on the server, so
  * the motion is pure CSS and nothing waits for JavaScript.
  *
- * tone:    'brand' sits on light grounds (Emerald, white text); 'neutral' on dark and Forest
- *          grounds (Ivory); 'ink' is the dark button of light grounds.
+ * tone:    'brand' is the lime with ink text, as the app's own buttons; 'neutral' sits on dark and
+ *          Night grounds (Blade White); 'ink' is the dark button of light grounds.
  * variant: 'primary' is filled, 'secondary' a light wash, 'outline' a hairline.
  */
 export type ButtonProps = {

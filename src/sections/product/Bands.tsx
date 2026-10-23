@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { useGSAP } from '@/animation/gsap';
 import { reveal } from '@/animation/reveal';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { Shot } from '@/components/Shot';
 import type { FeaturePage } from '@/lib/features';
@@ -21,7 +21,7 @@ export function Bands({ features }: { features: FeaturePage[] }) {
           <div className={s.copy} data-reveal>
             <p className="cap">{f.label}</p>
             <h2 id={`${f.slug}-title`} className={`display-2 ${s.title}`}>
-              {coined(f.hero.title)}
+              {fullStop(f.hero.title)}
             </h2>
             <p className={`lead ${s.text}`}>{f.hero.lead}</p>
             <Link href={`/features/${f.slug}/`} className={s.more}>

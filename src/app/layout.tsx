@@ -50,13 +50,13 @@ export const metadata: Metadata = {
   other: { 'apple-mobile-web-app-title': site.name },
 };
 
-export const viewport: Viewport = { themeColor: '#0d0f0e', colorScheme: 'dark light', width: 'device-width', initialScale: 1, viewportFit: 'cover' };
+export const viewport: Viewport = { themeColor: '#0b0b0c', colorScheme: 'dark light', width: 'device-width', initialScale: 1, viewportFit: 'cover' };
 
 /**
  * Dark is the default theme; a visitor who chose light (the switch in the header) gets it before the
  * first paint, so the page never flashes from one to the other.
  */
-const THEME = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='light'?'#f7f6f1':'#0d0f0e'}}catch(e){}`;
+const THEME = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='light'?'#f5f5f3':'#0b0b0c'}}catch(e){}`;
 
 /** Who publishes the site, for search engines (schema.org). Only facts that are true today. */
 const ORGANIZATION = {

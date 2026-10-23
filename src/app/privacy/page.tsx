@@ -11,24 +11,24 @@ import { PageHero } from '@/sections/product/PageHero';
  *
  * The text is the app session's (app repo, branch privacy-accounts of this site, 11 October 2026),
  * and every claim is a claim about the app as built: an account to sign in with, records kept on
- * the phone and, locked so only the person can read them, on Wealthit's server in the EU (the app's
- * A430), or on the phone only if they choose (A429); no ads, no tracking, and no analytics service —
- * only which parts are used, as yes or no. If any of that
+ * the phone and on Wealthit's server in the EU; locked so only the person can read them if they turn
+ * that on (the app's A430, A439), or on the phone only if they choose (A429); no ads, no tracking,
+ * and no analytics service — only which parts are used, as yes or no. If any of that
  * changes in the app, it has to change here on the same day — a privacy page that has drifted is
  * worse than no privacy page.
  */
 export const metadata: Metadata = pageMeta({
   title: 'Privacy policy',
-  description: 'What Wealthit keeps, where and why. Your records are locked on your phone before they sync, so only you can read them; or keep them on your phone only. No tracking and no ads.',
+  description: 'What Wealthit keeps, where and why. Records sync to your account on a server in Frankfurt; lock them so only you can read them, or keep them on your phone only. No tracking and no ads.',
   path: '/privacy/',
 });
 
 // the day records only you can read ship (the app's A430)
-const updated = '23 October 2026';
+const updated = '24 October 2026';
 
 const nots = [
-  'Only you can read your records. They are locked on your phone, or in your browser, before they are sent, with a key only you hold. Wealthit, and the companies that run its server, cannot read them.',
-  'Or keep them on your phone only: then they are never sent anywhere.',
+  'Your records are kept on your phone and in your account, encrypted on the way and on the server, and used only to give you Wealthit.',
+  'Want more? Turn on “Only you can read your records” and they are locked with a key only you hold, so not even Wealthit can read them. Or keep them on your phone only.',
   'No tracking, no advertising, and no analytics service. The app tells Wealthit only which parts you use, as yes or no, never what you record.',
   'Nothing about you is sold, rented or shared with anyone for their own use.',
   'Receipt photos and your profile picture stay on your phone.',
@@ -66,13 +66,13 @@ export default function Privacy() {
             </li>
             <li>
               <strong>What you record</strong>: your wallets, transactions, categories, labels, budgets, scheduled payments, goals, the people you
-              share costs with, your settings, and the name you give yourself in the app. It is locked on your device before it is sent, so a lost
-              phone loses nothing and every phone you sign in on shows the same money. Wealthit keeps only a locked copy it cannot open, and, for
-              each record, an id, when it changed and when it was removed, which keeping your phones in step needs.
+              share costs with, your settings, and the name you give yourself in the app. It is kept so a lost phone loses nothing and every phone
+              you sign in on shows the same money.
             </li>
             <li>
-              <strong>The key that opens them</strong>, itself locked with your recovery key. Wealthit never sees your recovery key, so it cannot
-              open the key, and cannot recover it if you lose it.
+              <strong>If you turn on “Only you can read your records”</strong>, what you record is locked on your device before it is sent.
+              Wealthit then keeps only a locked copy it cannot open, with, for each record, an id, when it changed and when it was removed; and
+              the key that opens them, itself locked with your recovery key, which Wealthit never sees and cannot recover for you.
             </li>
             <li>
               <strong>Which parts of Wealthit you use</strong>, as yes or no: budgets, scheduled payments, goals, labels, split records, transfers,
@@ -116,8 +116,9 @@ export default function Privacy() {
               sent; any copy Wealthit had is deleted from its server. Only your sign-in stays.
             </li>
             <li>
-              <strong>Your keys.</strong> Held in the phone’s own secure storage. On an iPhone your recovery key is also kept in your iCloud
-              Keychain, which Apple encrypts end to end, so your other Apple devices can open your records without it being typed.
+              <strong>Your keys</strong>, if you lock your records. Held in the phone’s own secure storage. On an iPhone your recovery key is also
+              kept in your iCloud Keychain, which Apple encrypts end to end, so your other Apple devices can open your records without it being
+              typed.
             </li>
             <li>
               <strong>Receipt photos.</strong> Read on the phone and kept with that record on the phone. They are not uploaded.
@@ -144,7 +145,7 @@ export default function Privacy() {
 
           <h2>Where it is kept</h2>
           <p>
-            On your phone, and, locked, on Wealthit’s server: an application server run by Render and a database run by Neon, both in Frankfurt, in the EU.
+            On your phone, and on Wealthit’s server: an application server run by Render and a database run by Neon, both in Frankfurt, in the EU.
             Every connection is encrypted. Each account’s records are kept apart by the database itself.
           </p>
 
@@ -163,7 +164,7 @@ export default function Privacy() {
             <li>
               <strong>Vercel</strong> runs, in Frankfurt, the design service the app asks for its look, and Wealthit’s own admin page. The admin
               page lets the person who runs Wealthit see that an account exists, when it joined, when it was last used, how many records it
-              keeps and which parts of Wealthit it uses, as yes or no; never what those records say, which it cannot read. It can find an account by its email address to sign it out or delete it when you ask, it
+              keeps and which parts of Wealthit it uses, as yes or no; never what those records say. It can find an account by its email address to sign it out or delete it when you ask, it
               needs a password, and every change made with it is written to a log nobody can edit.
             </li>
             <li>
@@ -177,12 +178,13 @@ export default function Privacy() {
 
           <h2>Keeping it safe</h2>
           <ul className={p.list}>
+            <li>Every connection between the app, the server and these services is encrypted, and the database is encrypted on its disks.</li>
             <li>
-              Your records are locked end to end with AES-256, on your phone or in your browser, with a key made there. Only your devices hold
-              it, and your recovery key, which you keep, opens it on a new one. Lose both your devices and your recovery key, and nobody,
-              Wealthit included, can open your records again.
+              If you turn on “Only you can read your records”, they are locked end to end with AES-256, on your phone or in your browser, with a
+              key made there. Only your devices hold it, and your recovery key, which you keep, opens it on a new one. Lose both your devices and
+              your recovery key, and nobody, Wealthit included, can open your records again. You can turn it off again; your records are then
+              kept as before.
             </li>
-            <li>Every connection between the app, the server and these services is encrypted.</li>
             <li>Passwords and sign-in codes are only ever stored as hashes.</li>
             <li>The database itself keeps each account’s records apart, so one person’s session can never read another’s.</li>
             <li>
@@ -237,7 +239,8 @@ export default function Privacy() {
               deletes Wealthit’s copy.
             </li>
             <li>
-              <strong>See or save your recovery key</strong> again from Advanced settings → Your data.
+              <strong>Lock your records so only you can read them</strong>, or unlock them again, with “Only you can read your records” in
+              Advanced settings → Your data. While they are locked, you can see or save your recovery key there too.
             </li>
             <li>
               <strong>Export</strong> your records at any time, as a backup file or a spreadsheet, from Advanced settings → Your data.
@@ -289,8 +292,8 @@ export default function Privacy() {
 
           <h2>Wealthit on the web</h2>
           <p>
-            At dashboard.wealthit.app you sign in with the same account, with an email code or your password, and see the same records. The
-            first time, it asks for your recovery key to open them. Your browser keeps your sign-in, the key and a working copy of your records
+            At dashboard.wealthit.app you sign in with the same account, with an email code or your password, and see the same records. If you
+            locked them, the first time it asks for your recovery key to open them. Your browser keeps your sign-in, the key and a working copy of your records
             in its own storage, so the page opens quickly; there are no cookies. Signing out erases your sign-in and the copy, and keeps the
             key so you won’t type it again in that browser, unless you turn on “Forget my key when I sign out”. The web app is hosted by GitHub Pages, asks open.er-api.com for exchange rates in the same way as the app,
             and runs no tracking, advertising or analytics service.

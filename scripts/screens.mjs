@@ -2,7 +2,7 @@
 //
 //   node scripts/screens.mjs [raw-dir] [--sheet out.png]
 //
-// Input: the iOS session's captures in ~/Movies/Wealthit Website/screens (default; outside iCloud,
+// Input: the iOS session's captures in ~/Movies/Wealthit Website/build-26/screens (default; outside iCloud,
 // which evicts files), whole screens 1320x2868; and any cut whose name has a slash, from this repo.
 // Output, in public/screens/:
 //   {name}-{420,840,1320}.{avif,webp}   whole screens; every "-dark" screen also gets its "-light"
@@ -24,7 +24,7 @@ const manifest = JSON.parse(fs.readFileSync(path.join(root, 'src/lib/screens.jso
 const args = process.argv.slice(2);
 const sheetAt = args.indexOf('--sheet');
 const sheetOut = sheetAt >= 0 ? args[sheetAt + 1] : null;
-const rawDir = path.resolve(root, args.find((a, i) => !a.startsWith('--') && i !== sheetAt + 1) ?? path.join(process.env.HOME, 'Movies/Wealthit Website/screens'));
+const rawDir = path.resolve(root, args.find((a, i) => !a.startsWith('--') && i !== sheetAt + 1) ?? path.join(process.env.HOME, 'Movies/Wealthit Website/build-26/screens'));
 const out = path.join(root, 'public/screens');
 fs.rmSync(out, { recursive: true, force: true });
 fs.mkdirSync(path.join(out, 'crops'), { recursive: true });

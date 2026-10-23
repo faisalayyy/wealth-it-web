@@ -1,5 +1,5 @@
 {
-  "$comment": "Every product image on the site, from the app's own captures: ~/Movies/Wealthit Website/screens, made by the iOS session on 17 October 2026 from the app at commit 5b4b4d4 (TestFlight build 14) on the iPhone 17 Pro Max simulator — 1320 x 2868 px = 440 x 956 pt — with the app's sample data. `screens` are whole screens, shown in a phone. `crops` are rectangles in points cut from a whole screen. `cuts` are pieces cut elsewhere: tap-card from the App Store poster that draws Tap to Record's Lock Screen card from the app's real code (media-src/app). Nothing is redrawn or retouched. See docs/SCREENSHOTS.md.",
+  "$comment": "Every product image on the site, from the app's own captures: ~/Movies/Wealthit Website/build-26/screens, made by the iOS session on 23 October 2026 from the app at commit e3a5dbd (TestFlight build 26) on the iPhone 17 Pro Max simulator — 1320 x 2868 px = 440 x 956 pt — with the app's sample data. `screens` are whole screens, shown in a phone. `crops` are rectangles in points cut from a whole screen. `cuts` are pieces cut elsewhere: tap-card from the App Store poster that draws Tap to Record's Lock Screen card from the app's real code (media-src/app). Nothing is redrawn or retouched. See docs/SCREENSHOTS.md.",
   "device": {
     "w": 440,
     "h": 956,
@@ -70,9 +70,9 @@
     "goal-card": {
       "from": "goals-dark",
       "x": 18,
-      "y": 310,
+      "y": 331,
       "w": 404,
-      "h": 175
+      "h": 158
     },
     "bill-waiting": {
       "from": "schedules-dark",
@@ -91,14 +91,14 @@
     "notif-list": {
       "from": "notifications-dark",
       "x": 112,
-      "y": 186,
+      "y": 270,
       "w": 322,
-      "h": 300
+      "h": 290
     },
     "notif-budget": {
       "from": "notifications-dark",
       "x": 112,
-      "y": 596,
+      "y": 737,
       "w": 322,
       "h": 60
     },

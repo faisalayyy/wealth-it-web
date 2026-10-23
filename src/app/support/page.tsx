@@ -22,16 +22,20 @@ const ACCOUNT: QA[] = [
     q: 'I got a new phone. How do I move my records across?',
     a: [
       'Install Wealthit on the new phone and sign in the way you signed in before: Apple, Google, or your email. Everything you recorded comes down from your account.',
+      'If you chose to keep your records on the old phone only, turn on Sync with my account there first, in Advanced settings → Your data.',
       'Receipt photos and your profile picture stay on the old phone, because they are never uploaded.',
     ],
   },
   {
     q: 'I lost my phone. What can be recovered?',
-    a: ['Everything you recorded, as of the last time the phone was online. Sign in on any phone and it is there.', 'If you had an app lock on the lost phone, the records on it stay behind that lock.'],
+    a: [
+      'If your records sync with your account: everything you recorded, as of the last time the phone was online. Sign in on any phone and it is there. Records kept on that phone only go with it.',
+      'If you had an app lock on the lost phone, the records on it stay behind that lock.',
+    ],
   },
   {
     q: 'Can I use Wealthit on two phones?',
-    a: ['Yes. Sign in to the same account on both and they show the same money. A record made offline goes up as soon as that phone is back online.'],
+    a: ['Yes. Sign in to the same account on both, with Sync with my account on, and they show the same money. A record made offline goes up as soon as that phone is back online.'],
   },
   {
     q: 'I did not get the sign-in email.',
@@ -43,7 +47,7 @@ const ACCOUNT: QA[] = [
   {
     q: 'I have forgotten my app lock PIN.',
     a: [
-      'After two wrong tries, the lock screen offers to log you out. Sign in again with Apple, Google or your email, and your records come back from your account. The old PIN is removed, so you can set a new one in Advanced settings → Security.',
+      'After two wrong tries, the lock screen offers to log you out. Sign in again with Apple, Google or your email, and if your records sync with your account, they come back from it. The old PIN is removed, so you can set a new one in Advanced settings → Security.',
       'If you also turned on Face ID for the lock, Face ID still opens the app.',
     ],
   },
@@ -92,7 +96,7 @@ const PRIVACY: QA[] = [
   {
     q: 'Who can see my records?',
     a: [
-      'You. They are kept on your phone and in your account on Wealthit’s server in Frankfurt, in the EU, and nobody reads them. There is no tracking or advertising, Wealthit runs no analytics, and receipt photos never leave your phone.',
+      'You. They are kept on your phone and, if you sync, in your account on Wealthit’s server in Frankfurt, in the EU, and nobody reads them. Turn on “Only you can read your records” and not even Wealthit can. There is no tracking, advertising or analytics service, and receipt photos never leave your phone.',
       'The privacy policy says everything that is kept, where, and for how long.',
     ],
   },

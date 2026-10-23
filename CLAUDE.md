@@ -83,7 +83,7 @@ node scripts/og.mjs        # the link preview, public/og.png
 ## Rules that are easy to break
 
 - **Real app UI only.** Every product image is one of the iOS session's captures or recordings
-  (`~/Movies/Wealthit Website`, from TestFlight build 14), or a rectangle cut from one — or, where a
+  (`~/Movies/Wealthit Website/build-26`, from TestFlight build 26), or a rectangle cut from one — or, where a
   simulator can't show it (Tap to Record), a rectangle cut from the App Store poster drawn from the
   app's real code. Never draw app UI in HTML, never retouch a capture. The app is shown mostly in
   dark. New screens or recordings: ask the iOS session; `docs/SCREENSHOTS.md`.
@@ -139,10 +139,13 @@ node scripts/og.mjs        # the link preview, public/og.png
   window on Neon's free plan), receipt photos, profile picture and PIN only on the phone,
   open.er-api.com for rates, Resend for sign-in email, Zoho Mail for support email, Vercel for the
   design service and the owner's admin page (counts and dates only, never what records say), IP
-  addresses only in memory for sign-in limits, no tracking or ads, Wealthit runs no analytics (on
+  addresses only in memory for sign-in limits, no tracking or ads, no analytics service: the app
+  tells Wealthit only which parts are used, as yes or no (the app session's policy, 23 October; on
   Android, Google's ML Kit receipt reader sends Google its own diagnostics; the policy says so), delete with a 60-day
   grace (or at once by email, `/privacy/#delete-account`). The app's
-  `docs/PRIVACY_POLICY_DRAFT.md` should be brought in line. If the app changes, these change the
+  `docs/PRIVACY_POLICY_DRAFT.md` should be brought in line. Since 23 October (the app's A429,
+  A439): everyone signs in, then chooses Sync with my account or Keep on this phone; "Only you can
+  read your records" is a choice, off by default. Never say every account is end-to-end encrypted. If the app changes, these change the
   same day. The app links to `/privacy/` and `/support/` — never move them.
 - **Nothing loaded from elsewhere.** Fonts, captures and 3D are all served from this site.
 - **Type.** Plus Jakarta Sans (OFL), the app's own face, one variable file in `src/fonts`.

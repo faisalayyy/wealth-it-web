@@ -20,7 +20,7 @@ const HOME: QA[] = [
   },
   {
     q: 'Do I need an account?',
-    a: 'Yes. You sign in with Apple, Google or your email. Your records are kept in your account, so they’re the same on every phone you sign in on, and a lost or new phone loses nothing.',
+    a: 'Yes. You sign in with Apple, Google or your email, then choose where your records live: in your account, so they’re the same on every phone you sign in on and a lost or new phone loses nothing, or on this phone only.',
   },
   {
     q: 'Can I use Wealthit on my computer?',
@@ -36,7 +36,7 @@ const HOME: QA[] = [
   },
   {
     q: 'Who can see my records?',
-    a: 'You. They are kept on your phone and in your account on Wealthit’s server in Frankfurt, in the EU, and nobody reads them. There is no tracking or advertising, Wealthit runs no analytics, and receipt photos never leave your phone.',
+    a: 'You. They are kept on your phone and, if you sync, in your account on Wealthit’s server in Frankfurt, in the EU, and nobody reads them. Turn on “Only you can read your records” and not even Wealthit can. There is no tracking, advertising or analytics service, and receipt photos never leave your phone.',
   },
 ];
 

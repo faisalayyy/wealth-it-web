@@ -39,7 +39,7 @@ const LINKS = [
 /** The menu's large rows, each with its 3D piece (public/art). */
 const ROWS = [
   { label: 'Features', hint: 'Every feature, up close', href: '/features/', art: 'budget' },
-  { label: 'Tap to Record', hint: 'Pay with Apple Pay, tap Add', href: '/features/tap-to-record/', art: 'tap' },
+  { label: 'Tap to Record', hint: 'Pay with Apple Pay, tap Save', href: '/features/tap-to-record/', art: 'tap' },
   { label: 'Help', hint: 'Quick answers, or write to us', href: '/support/', art: 'help' },
   { label: 'Privacy', hint: 'What we keep, and why', href: '/privacy/', art: 'privacy' },
   { label: 'Get the app', hint: 'Coming soon', href: '/#get', art: 'app' },

@@ -35,7 +35,7 @@
 .toggle:focus-visible,
 .toggle[data-playing]:focus-visible {
   opacity: 1;
-  outline: 2px solid var(--mint);
+  outline: 2px solid var(--lime);
   outline-offset: 2px;
 }
 

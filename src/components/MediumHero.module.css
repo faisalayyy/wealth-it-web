@@ -12,7 +12,7 @@
   padding: var(--136-64) 0;
   border-radius: var(--40-20);
   background:
-    radial-gradient(70% 90% at 50% 0%, rgba(76, 195, 138, 0.24), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(70% 90% at 50% 0%, rgba(119, 196, 27, 0.24), rgba(119, 196, 27, 0) 70%),
     var(--brand-deep);
   color: var(--on-deep);
   text-align: center;

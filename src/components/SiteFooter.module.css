@@ -84,9 +84,9 @@
   user-select: none;
   color: var(--n-ink);
   text-shadow:
-    0 0.025em 0 rgba(13, 116, 67, 0.9),
-    0 0.06em 0.06em rgba(76, 195, 138, 0.55),
-    0 0.11em 0.16em rgba(242, 198, 109, 0.5);
+    0 0.025em 0 rgba(0, 131, 23, 0.9),
+    0 0.06em 0.06em rgba(119, 196, 27, 0.55),
+    0 0.11em 0.16em rgba(107, 128, 20, 0.5);
 }
 
 .word span {
@@ -94,7 +94,7 @@
 }
 
 .word span[data-it] {
-  color: var(--brand-text);
+  color: var(--lime);
 }
 
 .legal {
@@ -126,6 +126,6 @@
 /* on the dark page the glow under the name is kept low, so the letters stay crisp */
 :global(:root[data-theme='dark']) .word {
   text-shadow:
-    0 0.025em 0 rgba(13, 116, 67, 0.85),
-    0 0.08em 0.14em rgba(76, 195, 138, 0.18);
+    0 0.025em 0 rgba(0, 131, 23, 0.85),
+    0 0.08em 0.14em rgba(119, 196, 27, 0.18);
 }

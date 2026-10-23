@@ -94,7 +94,7 @@ export function slabs({ renderer, env }: { renderer: THREE.WebGLRenderer; env: T
   wall.receiveShadow = true;
   scene.add(wall);
 
-  scene.add(new THREE.HemisphereLight('#f3fff8', '#0d7443', 1.15));
+  scene.add(new THREE.HemisphereLight('#f3fff8', '#008317', 1.15));
   // the key light, high at the left, throws the shadows down and to the right on the wall
   const key = new THREE.DirectionalLight('#ffffff', 1.9);
   key.position.set(-3.5, 5, 7);

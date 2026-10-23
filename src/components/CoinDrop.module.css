@@ -9,7 +9,7 @@
 }
 
 .coin[data-tone='brand'] {
-  background: var(--gold);
+  background: var(--lime);
 }
 
 .coin span {

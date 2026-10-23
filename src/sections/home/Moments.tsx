@@ -3,7 +3,7 @@
 import { useRef } from 'react';
 import { gsap, reducedMotion, useGSAP } from '@/animation/gsap';
 import { reveal } from '@/animation/reveal';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Photo } from '@/components/Photo';
 import s from './Moments.module.css';
 
@@ -19,8 +19,8 @@ const SHOTS = [
   {
     name: 'till-tap',
     h: 1350,
-    alt: 'Paying at a till with a phone, Wealthit’s Tap to Record card on the Lock Screen: Harbour Lane Supermarket, AED 86.50, with Cancel and Add',
-    caption: 'Paid, and ready to tap Add.',
+    alt: 'Paying at a till with a phone, Wealthit’s Tap to Record card on the Lock Screen: Harbour Lane Supermarket, AED 86.50, with Change and Save',
+    caption: 'Paid, and ready to tap Save.',
   },
 ];
 
@@ -43,7 +43,7 @@ export function Moments() {
           In everyday life
         </p>
         <h2 id="moments-title" className={`display-2 ${s.title}`} data-reveal>
-          {coined('Less adding up. More living.')}
+          {fullStop('Less adding up. More living.')}
         </h2>
       </div>
       <div className={`wrap ${s.grid}`}>

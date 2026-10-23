@@ -3,14 +3,15 @@
 import { useRef } from 'react';
 import { gsap, reducedMotion, useGSAP } from '@/animation/gsap';
 import { AppButtons } from '@/components/AppButtons';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Mark } from '@/components/Logo';
 import { Phone } from '@/components/Phone';
 import { site } from '@/lib/site';
 import s from './Closing.module.css';
 
 /**
- * The next step, at the end of every page: a Forest panel with the mark, the brand's line and the
+ * The next step, at the end of every page: a Night panel lit like the top of the app's Home, with
+ * the mark, the brand's line and the
  * store buttons, which say "Coming soon" and lead nowhere until the app is listed (src/lib/site.ts).
  * Three phones rise out of its lower edge as it comes into view: Home in the middle, budgets and
  * goals either side.
@@ -43,7 +44,7 @@ export function Closing() {
           <h2 id="get-title" className={`display-1 ${s.title}`}>
             {site.tagline.split(/(?<=\.) /).map((line, i, all) => (
               <span key={line} className={s.line}>
-                {i === all.length - 1 ? coined(line) : line}
+                {i === all.length - 1 ? fullStop(line) : line}
               </span>
             ))}
           </h2>

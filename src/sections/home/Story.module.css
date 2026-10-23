@@ -48,7 +48,7 @@
   border-radius: var(--r-lg);
   overflow: hidden;
   background:
-    radial-gradient(70% 55% at 50% 30%, rgba(76, 195, 138, 0.15), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(70% 55% at 50% 30%, rgba(119, 196, 27, 0.15), rgba(119, 196, 27, 0) 70%),
     var(--panel);
 }
 

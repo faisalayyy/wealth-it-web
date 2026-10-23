@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { gsap, reducedMotion, useGSAP } from '@/animation/gsap';
 import { Button } from '@/components/Button';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { Crop, Cut } from '@/components/Screen';
 import { featurePages } from '@/lib/features';
@@ -21,7 +21,7 @@ import s from './FeatureCards.module.css';
 type Media = { crop: CropName } | { tap: true };
 const TILES: Record<string, { title: string; media?: Media; art?: string }> = {
   recording: { title: 'Write it down in seconds.', media: { crop: 'record-sentence' } },
-  'tap-to-record': { title: 'Pay with Apple Pay, then tap Add.', media: { tap: true } },
+  'tap-to-record': { title: 'Pay with Apple Pay, then tap Save.', media: { tap: true } },
   accounts: { title: 'Every currency in one total.', art: 'account' },
   budgets: { title: 'Know before you overspend.', art: 'budget' },
   goals: { title: 'Watch your savings grow.', art: 'goal' },
@@ -85,7 +85,7 @@ export function FeatureCards() {
           <div>
             <p className="cap">Features</p>
             <h2 id="features-title" className="display-2">
-              {coined('Everything your money needs, minus the spreadsheet energy.')}
+              {fullStop('Everything your money needs, minus the spreadsheet energy.')}
             </h2>
           </div>
           <Button label="All features" href="/features/" tone="ink" variant="secondary" />

@@ -13,7 +13,7 @@ export function ThemeSwitch({ className }: { className?: string }) {
     const next = root.dataset.theme === 'light' ? 'dark' : 'light';
     root.classList.add('theme-turning');
     root.dataset.theme = next;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'light' ? '#f7f6f1' : '#0d0f0e');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'light' ? '#f5f5f3' : '#0b0b0c');
     try {
       localStorage.setItem('theme', next);
     } catch {}

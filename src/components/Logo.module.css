@@ -1,12 +1,12 @@
 .logo {
   display: inline-flex;
-  align-items: center;
-  gap: 0.22em;
+  align-items: baseline;
+  gap: 0.2em;
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.025em;
   line-height: 1;
-  color: var(--n-ink);
+  color: var(--logo-ink);
 }
 
 .logo[data-tone='light'] {
@@ -14,14 +14,14 @@
 }
 
 .logo[data-tone='dark'] {
-  color: var(--ivory);
+  color: var(--blade-white);
 }
 
+/* 1.1 capitals tall, standing on the baseline (its lowest blade's foot) */
 .mark {
-  width: 1.18em;
-  height: 1.18em;
   flex: none;
-  margin: -0.1em 0;
+  width: 0.83em;
+  height: 0.77em;
 }
 
 .name {
@@ -29,11 +29,5 @@
 }
 
 .it {
-  color: var(--brand-text);
-}
-.logo[data-tone='light'] .it {
-  color: var(--emerald);
-}
-.logo[data-tone='dark'] .it {
-  color: var(--mint);
+  color: var(--lime);
 }

@@ -84,7 +84,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .close:hover {
-    background: #dcefe3;
+    background: #e4f1d4;
   }
 }
 
@@ -92,7 +92,7 @@
   outline: none;
   box-shadow:
     0 0 0 1px var(--brand-text),
-    0 0 0 3px rgba(76, 195, 138, 0.45);
+    0 0 0 3px rgba(119, 196, 27, 0.45);
 }
 
 .slot {
@@ -178,13 +178,13 @@
 .container > textarea:focus-visible {
   box-shadow:
     0 0 0 1px var(--brand-text),
-    0 0 0 3px rgba(76, 195, 138, 0.45);
+    0 0 0 3px rgba(119, 196, 27, 0.45);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .container > input:hover,
   .container > textarea:hover {
-    background: #dcefe3;
+    background: #e4f1d4;
   }
 }
 
@@ -244,12 +244,12 @@
 .dial:focus-within {
   box-shadow:
     0 0 0 1px var(--brand-text),
-    0 0 0 3px rgba(76, 195, 138, 0.45);
+    0 0 0 3px rgba(119, 196, 27, 0.45);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .dial:hover {
-    background: #dcefe3;
+    background: #e4f1d4;
   }
 }
 

@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useId, useState } from 'react';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { faqSchema, JsonLd } from '@/lib/seo';
 import s from './Faq.module.css';
@@ -65,7 +65,7 @@ export function Faq({
         <div>
           <p className="cap">{cap}</p>
           <h2 id={`${id}-title`} className={`display-2 ${s.title}`}>
-            {coined(title)}
+            {fullStop(title)}
           </h2>
           {more && (
             <Link href="/support/" className={s.more}>

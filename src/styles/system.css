@@ -1,41 +1,27 @@
 /* The design system — measured grid, spacing and type scale (docs/REFERENCE_SPEC.md,
-   docs/BUTTER_REFERENCE.md), carrying Wealthit's brand (App/brand/README.md): Forest, Gold,
-   Emerald, Mint, Ivory and Night, set in Plus Jakarta Sans. */
+   docs/BUTTER_REFERENCE.md), carrying Wealthit's brand (App/brand/README.md): Lime, Lime Text,
+   Night, Blade White, Ink and Paper, set in Plus Jakarta Sans. */
 
 :root {
   /* ─── colour: the brand (App/brand/README.md, App/src/ui/brandMark.ts) ──────────────── */
-  --forest: #0e3b30; /* the icon's ground: the brand's big panels */
-  --gold: #f2c66d; /* the coin: the full stop at the end of a headline, small highlights */
-  --emerald: #0d7443; /* the leaves on light: buttons, and brand text on light grounds */
-  --mint: #4cc38a; /* the leaves on dark: brand text on dark grounds */
-  --ivory: #f7f6f1;
-  --night: #0b0b0c;
+  --lime: #77c41b; /* the first blade, "it" in the name, the full stop; the app's primary, with ink on it */
+  --lime-text: #008317; /* green text on light grounds, where the lime is too faint to read; never the logo */
+  --night: #0b0b0c; /* the other two blades and "Wealth" on light; the dark canvas; the icon's tile */
+  --blade-white: #f3f3f3; /* the other two blades and "Wealth" on dark; text on Night */
+  --ink: #111111; /* text on light grounds, and on the lime */
+  --paper: #f5f5f3; /* the light page; cards on it are white */
 
   /* roles */
-  --brand: var(--emerald); /* a brand fill — text on it is white */
-  --on-brand: #ffffff;
-  --brand-deep: var(--forest); /* a brand ground — text on it is ivory */
-  --on-deep: var(--ivory);
-  --brand-bar: #12865a; /* a step lighter than emerald, for hovers */
-  --brand-25: #e8f2ec; /* the lightest tint */
-  --brand-text: var(--emerald); /* brand text on light grounds (the app's accent text) */
-  --ink: #0b0b0c; /* text, and the darkest tone */
-  --ink-soft: rgba(11, 11, 12, 0.62);
+  --brand: var(--lime); /* a brand fill — text on it is ink */
+  --on-brand: var(--ink);
+  --brand-deep: var(--night); /* a big brand panel — text on it is Blade White */
+  --on-deep: var(--blade-white);
+  --brand-25: #e9f3dc; /* the lightest tint */
+  --brand-text: var(--lime-text); /* brand text on light grounds (the app's green text) */
+  --stop: var(--lime); /* a headline's full stop */
+  --ink-soft: rgba(17, 17, 17, 0.62);
   --white: #ffffff;
   --media: #0b0b0c; /* the dark ground behind phones (the app's dark background) */
-  --sf: #161617; /* the app's dark surface */
-  --mu: #9c9c98; /* the app's muted text on dark */
-
-  /* category hues and meanings, from the app */
-  --c-housing: #8e9bc4;
-  --c-food: #d9a066;
-  --c-financial: #c98a8a;
-  --c-shopping: #c4b36a;
-  --c-comms: #6fbfa0;
-  --c-life: #b889b0;
-  --c-transport: #6fa8b8;
-  --inc: #5bc98c;
-  --exp: #e2664f;
 
   /* ─── grid: 16 columns, fluid gap and margin ───────────────────────────────────────── */
   --100vw: calc(100vw - var(--sbw, 0px));
@@ -388,28 +374,44 @@ button {
 }
 
 /* ─── the second design (docs/BUTTER_REFERENCE.md) ─────────────────────────────────────────
-   Warm neutral surfaces from the app's own light theme, Night panels that sit with its dark
-   screens, Forest for the brand's own moments, Emerald for what to press, Gold for the coin. */
+   Paper and white from the app's light theme, Night panels that sit with its dark screens, and the
+   lime for what to press and for the full stop. The brand's own moments (the closing panel, privacy,
+   help) are Night lit by the app's Liquid (App/src/ui/HomeSilk.tsx, A431): soft lime, forest, teal
+   and olive lights, as behind the top of Home. */
 :root {
   color-scheme: light;
-  --n-50: #f7f6f1; /* ivory: the page */
-  --n-100: #f0efe9;
-  --n-150: #e8e7e0;
-  --n-200: #dcdbd3;
-  --n-ink: #0b0b0c; /* text */
-  --n-text: rgba(11, 11, 12, 0.7); /* body copy under a headline */
-  --n-cap: rgba(11, 11, 12, 0.63); /* small captions: 4.5:1 or better on every light ground */
-  --n-line: rgba(11, 11, 12, 0.11);
-  --n-tint: rgba(11, 11, 12, 0.07); /* a control's fill */
-  --n-tint-2: rgba(11, 11, 12, 0.13); /* the same, pointed at */
+  /* the Liquid's four lights on Night, as r g b for rgb(var(--l-lime) / alpha) */
+  --l-lime: 119 196 27;
+  --l-forest: 46 107 18;
+  --l-teal: 13 69 61;
+  --l-olive: 107 128 20;
+  /* a brand panel: the four lights where the app puts them (lime high on the right, forest and olive
+     on the left, teal lower in the middle), soft as its gaussians, on Night */
+  --liquid:
+    radial-gradient(46% 62% at 84% 2%, rgb(var(--l-lime) / 0.55), rgb(var(--l-lime) / 0.22) 45%, rgb(var(--l-lime) / 0) 100%),
+    radial-gradient(44% 60% at 22% 16%, rgb(var(--l-forest) / 0.75), rgb(var(--l-forest) / 0.3) 45%, rgb(var(--l-forest) / 0) 100%),
+    radial-gradient(52% 64% at 62% 42%, rgb(var(--l-teal) / 0.8), rgb(var(--l-teal) / 0.32) 45%, rgb(var(--l-teal) / 0) 100%),
+    radial-gradient(30% 42% at 6% 0%, rgb(var(--l-olive) / 0.6), rgb(var(--l-olive) / 0.24) 45%, rgb(var(--l-olive) / 0) 100%),
+    var(--night);
+  --n-50: #f5f5f3; /* paper: the page */
+  --n-100: #eeeeeb;
+  --n-150: #e6e6e2;
+  --n-200: #dadad5;
+  --n-ink: #111111; /* text */
+  --n-text: rgba(17, 17, 17, 0.7); /* body copy under a headline */
+  --n-cap: rgba(17, 17, 17, 0.63); /* small captions: 4.5:1 or better on every light ground */
+  --n-line: rgba(17, 17, 17, 0.11);
+  --n-tint: rgba(17, 17, 17, 0.07); /* a control's fill */
+  --n-tint-2: rgba(17, 17, 17, 0.13); /* the same, pointed at */
   --surface: #ffffff; /* a card on the page */
-  --n-pill: rgba(233, 232, 225, 0.86); /* the header's pills, frosted */
+  --n-pill: rgba(236, 236, 232, 0.86); /* the header's pills, frosted */
   --n-pill-edge: rgba(255, 255, 255, 0.35);
-  --n-menu: #e9e8e1; /* what opens out of the pills */
-  --n-hero: #e1e0d8; /* the hero's gradient, at its top */
-  --soon-bg: rgba(242, 198, 109, 0.35);
-  --soon-fg: #6b4f12;
+  --n-menu: #ebebe7; /* what opens out of the pills */
+  --n-hero: #e3e3df; /* the hero's gradient, at its top */
+  --soon-bg: rgba(119, 196, 27, 0.22);
+  --soon-fg: #2e5f08;
   --panel: #0b0b0c; /* the dark panels the app's screens sit on */
+  --logo-ink: var(--night); /* the two blades and "Wealth" */
   --r-sm: 12px;
   --r-md: 18px;
   --r-lg: 28px;
@@ -420,33 +422,34 @@ button {
   --ease-quint: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* The dark theme, the default (the owner wants the site mostly dark): the page in near-black with
-   a breath of the leaves' green, the same panels a step lighter so the app's dark screens still
-   stand out, Mint for brand text (as the brand puts it on dark). The light theme is the one above;
-   a visitor's choice is kept in localStorage and set before the first paint (layout.tsx). */
+/* The dark theme, the default (the owner wants the site mostly dark): the page is the app's own dark
+   canvas, Night, with its surface a step lighter for cards and the panels the app's screens sit on,
+   so they still stand out; the lime for brand text, as the app has it on dark. The light theme is the
+   one above; a visitor's choice is kept in localStorage and set before the first paint (layout.tsx). */
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --n-50: #0d0f0e;
-  --n-100: #131514;
-  --n-150: #191c1a;
-  --n-200: #232624;
-  --n-ink: #f3f2ec;
-  --n-text: rgba(243, 242, 236, 0.72);
-  --n-cap: rgba(243, 242, 236, 0.52);
-  --n-line: rgba(243, 242, 236, 0.12);
-  --n-tint: rgba(243, 242, 236, 0.08);
-  --n-tint-2: rgba(243, 242, 236, 0.15);
-  --surface: #181b19;
-  --n-pill: rgba(28, 31, 29, 0.8);
+  --n-50: #0b0b0c;
+  --n-100: #121213;
+  --n-150: #19191b;
+  --n-200: #232325;
+  --n-ink: #f3f3f3;
+  --n-text: rgba(243, 243, 243, 0.72);
+  --n-cap: rgba(243, 243, 243, 0.55);
+  --n-line: rgba(243, 243, 243, 0.12);
+  --n-tint: rgba(243, 243, 243, 0.08);
+  --n-tint-2: rgba(243, 243, 243, 0.15);
+  --surface: #161617;
+  --n-pill: rgba(28, 28, 30, 0.8);
   --n-pill-edge: rgba(255, 255, 255, 0.08);
-  --n-menu: #181b19;
-  --n-hero: #1a1d1b;
-  --soon-bg: rgba(242, 198, 109, 0.16);
-  --soon-fg: #f2c66d;
-  --panel: #171a18;
-  --brand-text: var(--mint);
-  --brand-25: rgba(76, 195, 138, 0.12);
-  --ink-soft: rgba(243, 242, 236, 0.62);
+  --n-menu: #161617;
+  --n-hero: #1a1a1c;
+  --soon-bg: rgba(119, 196, 27, 0.16);
+  --soon-fg: var(--lime);
+  --panel: #161617;
+  --logo-ink: var(--blade-white);
+  --brand-text: var(--lime);
+  --brand-25: rgba(119, 196, 27, 0.12);
+  --ink-soft: rgba(243, 243, 243, 0.62);
 }
 
 /* what shows in one theme only: a capture and its light twin, the theme switch's two icons */
@@ -455,18 +458,17 @@ button {
   display: none !important;
 }
 
-/* the coin: a headline's full stop, drawn as the logo's gold coin */
-.coin {
+/* a headline's full stop, in the lime (the App Store campaign's rule, A417: every headline ends on it) */
+.stop {
   display: inline-block;
-  width: 0.2em;
-  height: 0.2em;
-  margin-left: 0.05em;
+  width: 0.19em;
+  height: 0.19em;
+  margin-left: 0.04em;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--stop);
   color: transparent;
   overflow: hidden;
   vertical-align: baseline;
-  box-shadow: inset 0 -0.02em 0 rgba(120, 80, 10, 0.18);
 }
 
 .wrap {

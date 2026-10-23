@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { useGSAP } from '@/animation/gsap';
 import { reveal } from '@/animation/reveal';
-import { coined } from '@/components/Coin';
+import { fullStop } from '@/components/Stop';
 import { Icon } from '@/components/Icon';
 import { Photo } from '@/components/Photo';
 import s from './DoubleBlock.module.css';
@@ -38,7 +38,7 @@ export function DoubleBlock() {
         {BLOCKS.map(b => (
           <li key={b.href} className={s.card} data-reveal="scale">
             <div className={s.top}>
-              <h2 className={s.title}>{coined(b.title)}</h2>
+              <h2 className={s.title}>{fullStop(b.title)}</h2>
               <Link href={b.href} className={s.arrow} aria-label={`More about this: ${b.title}`}>
                 <Icon name="arrow-up-right" size={18} />
               </Link>

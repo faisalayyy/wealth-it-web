@@ -19,14 +19,14 @@
   isolation: isolate;
 }
 
-/* tones: neutral sits on dark and Forest grounds (an ivory fill), brand on light ones (Emerald) */
+/* tones: neutral sits on dark and Night grounds (a Blade White fill), brand is the lime with ink on it */
 .button[data-tone='neutral'] {
-  --color: var(--forest);
-  --bg-color: var(--ivory);
+  --color: var(--night);
+  --bg-color: var(--blade-white);
 }
 .button[data-tone='neutral'][data-variant='outline'],
 .button[data-tone='neutral'][data-variant='secondary'] {
-  --color: var(--ivory);
+  --color: var(--blade-white);
 }
 .button[data-tone='brand'] {
   --color: var(--on-brand);
@@ -87,7 +87,7 @@
   background: var(--bg-color);
 }
 .button[data-variant='secondary'][data-tone='neutral'] .bg::before {
-  background: var(--ivory);
+  background: var(--blade-white);
   opacity: 0.12;
 }
 .button[data-variant='secondary'][data-tone='brand'] .bg::before {

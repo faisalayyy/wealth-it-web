@@ -16,7 +16,7 @@
 
 .card[data-dark] {
   background: var(--panel);
-  color: var(--ivory);
+  color: var(--blade-white);
 }
 
 .copy {
@@ -28,7 +28,7 @@
 }
 
 .card[data-dark] .cap {
-  color: rgba(247, 246, 241, 0.55);
+  color: rgba(243, 243, 243, 0.55);
 }
 
 .summary {
@@ -39,7 +39,7 @@
 }
 
 .card[data-dark] .summary {
-  color: rgba(247, 246, 241, 0.78);
+  color: rgba(243, 243, 243, 0.78);
 }
 
 .arrow {

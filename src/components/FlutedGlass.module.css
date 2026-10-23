@@ -47,7 +47,7 @@
   right: 0;
   height: 60%;
   top: -30%;
-  background: radial-gradient(60% 50% at 50% 50%, rgba(242, 198, 109, 0.35), rgba(242, 198, 109, 0));
+  background: radial-gradient(60% 50% at 50% 50%, rgba(107, 128, 20, 0.35), rgba(107, 128, 20, 0));
   animation: band 13.5s ease-in-out var(--d) infinite alternate;
 }
 

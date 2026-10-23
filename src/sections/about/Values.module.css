@@ -60,7 +60,7 @@
   margin: 0;
   padding: 16px;
   border-radius: 16px;
-  background: rgba(247, 246, 241, 0.08);
+  background: rgba(243, 243, 243, 0.08);
 }
 
 .quote blockquote {
@@ -82,8 +82,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--gold);
-  color: var(--forest);
+  background: var(--lime);
+  color: var(--night);
   font-size: 14px;
   font-weight: 500;
 }

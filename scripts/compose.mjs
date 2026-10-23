@@ -375,7 +375,9 @@ async function capture(job) {
 }
 
 async function browser() {
-  const BIN = `${os.homedir()}/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell`;
+  // Playwright's headless Chromium, the newest one installed
+  const PW = `${os.homedir()}/Library/Caches/ms-playwright`;
+  const BIN = `${PW}/${fs.readdirSync(PW).filter(d => d.startsWith('chromium_headless_shell-')).sort().at(-1)}/chrome-headless-shell-mac-arm64/chrome-headless-shell`;
   const port = 9500 + Math.floor(Math.random() * 300);
   const proc = spawn(BIN, [`--remote-debugging-port=${port}`, `--user-data-dir=${path.join(tmp, 'profile')}`, '--allow-file-access-from-files', 'about:blank'], { stdio: 'ignore' });
   const sleep = ms => new Promise(r => setTimeout(r, ms));

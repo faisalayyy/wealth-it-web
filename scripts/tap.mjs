@@ -19,7 +19,9 @@ const poster = path.join(app, 'marketing/app-store/source/03-apple-pay.html');
 const out = path.join(root, 'media-src/app');
 fs.copyFileSync(path.join(app, 'marketing/app-store/assets/screens/lockscreen.png'), path.join(out, 'lockscreen.png'));
 
-const BIN = `${os.homedir()}/Library/Caches/ms-playwright/chromium_headless_shell-1234/chrome-headless-shell-mac-arm64/chrome-headless-shell`;
+// Playwright's headless Chromium, the newest one installed
+const PW = `${os.homedir()}/Library/Caches/ms-playwright`;
+const BIN = `${PW}/${fs.readdirSync(PW).filter(d => d.startsWith('chromium_headless_shell-')).sort().at(-1)}/chrome-headless-shell-mac-arm64/chrome-headless-shell`;
 const port = 9500 + Math.floor(Math.random() * 300);
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tap-'));
 const proc = spawn(BIN, [`--remote-debugging-port=${port}`, `--user-data-dir=${tmp}`, '--allow-file-access-from-files', 'about:blank'], { stdio: 'ignore' });
@@ -52,7 +54,7 @@ await sleep(2500);
 // only the card: the poster's ground, headline and phone go; nothing in the card is touched
 await run(`(() => {
   const s = document.createElement('style');
-  s.textContent = 'html, body, .poster { background: transparent !important } .poster::before, .kicker, .headline, .support, .device { display: none !important } .card { box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .14) !important }';
+  s.textContent = 'html, body, .poster { background: transparent !important } .poster::before, .kicker, .headline, .support, .device, .iphone { display: none !important } .card { box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .14) !important }';
   document.head.append(s);
 })()`);
 await sleep(400);

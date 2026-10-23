@@ -39,7 +39,7 @@
   margin-top: 28px;
   padding: 12px 18px;
   border-radius: 12px;
-  background: rgba(13, 116, 67, 0.09);
+  background: rgba(0, 131, 23, 0.09);
   color: var(--brand-text);
   font-weight: 600;
   font-size: 15.5px;
@@ -52,7 +52,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .more:hover {
-    background: rgba(13, 116, 67, 0.15);
+    background: rgba(0, 131, 23, 0.15);
   }
   .more:hover svg {
     transform: translateX(4px);
@@ -72,13 +72,13 @@
   border-radius: var(--r-lg);
   overflow: hidden;
   background:
-    radial-gradient(60% 60% at 50% 100%, rgba(13, 116, 67, 0.1), rgba(13, 116, 67, 0) 70%),
+    radial-gradient(60% 60% at 50% 100%, rgba(0, 131, 23, 0.1), rgba(0, 131, 23, 0) 70%),
     var(--n-150);
 }
 
 .panel[data-dark] {
   background:
-    radial-gradient(70% 60% at 50% 30%, rgba(76, 195, 138, 0.13), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(70% 60% at 50% 30%, rgba(119, 196, 27, 0.13), rgba(119, 196, 27, 0) 70%),
     var(--panel);
 }
 

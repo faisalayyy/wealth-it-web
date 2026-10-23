@@ -9,8 +9,8 @@
   inset: 0;
   overflow: hidden;
   background:
-    radial-gradient(120% 90% at 78% 30%, rgba(76, 195, 138, 0.32) 0%, rgba(76, 195, 138, 0) 60%),
-    radial-gradient(90% 80% at 10% 100%, rgba(13, 116, 67, 0.55) 0%, rgba(13, 116, 67, 0) 65%),
+    radial-gradient(120% 90% at 78% 30%, rgba(119, 196, 27, 0.32) 0%, rgba(119, 196, 27, 0) 60%),
+    radial-gradient(90% 80% at 10% 100%, rgba(0, 131, 23, 0.55) 0%, rgba(0, 131, 23, 0) 65%),
     var(--brand-deep);
 }
 
@@ -61,14 +61,14 @@
   bottom: 42px;
   padding: 0.4em 0.85em;
   border-radius: 5em;
-  background: rgba(247, 246, 241, 0.08);
-  border: 1px solid rgba(247, 246, 241, 0.14);
+  background: rgba(243, 243, 243, 0.08);
+  border: 1px solid rgba(243, 243, 243, 0.14);
   color: var(--on-deep);
   transition: background-color 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .hint:hover {
-  background: rgba(247, 246, 241, 0.16);
+  background: rgba(243, 243, 243, 0.16);
 }
 
 .hintRow {

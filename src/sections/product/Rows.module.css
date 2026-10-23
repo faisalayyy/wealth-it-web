@@ -44,7 +44,7 @@
 
 .panel[data-dark] {
   background:
-    radial-gradient(70% 60% at 50% 30%, rgba(76, 195, 138, 0.13), rgba(76, 195, 138, 0) 70%),
+    radial-gradient(70% 60% at 50% 30%, rgba(119, 196, 27, 0.13), rgba(119, 196, 27, 0) 70%),
     var(--panel);
 }
 

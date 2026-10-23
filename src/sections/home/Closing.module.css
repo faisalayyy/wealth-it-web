@@ -7,12 +7,8 @@
   position: relative;
   border-radius: var(--r-xl);
   overflow: hidden;
-  background:
-    radial-gradient(60% 50% at 50% 100%, rgba(76, 195, 138, 0.32), rgba(76, 195, 138, 0) 70%),
-    radial-gradient(45% 40% at 15% 0%, rgba(242, 198, 109, 0.14), rgba(242, 198, 109, 0) 70%),
-    radial-gradient(45% 40% at 85% 0%, rgba(76, 195, 138, 0.16), rgba(76, 195, 138, 0) 70%),
-    var(--forest);
-  color: var(--ivory);
+  background: var(--liquid);
+  color: var(--blade-white);
   text-align: center;
 }
 
@@ -41,7 +37,7 @@
 .lead {
   max-width: 30em;
   margin-top: 20px;
-  color: rgba(247, 246, 241, 0.74);
+  color: rgba(243, 243, 243, 0.74);
 }
 
 .buttons {

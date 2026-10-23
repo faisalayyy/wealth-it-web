@@ -15,9 +15,9 @@ which the site shows in its light theme. `scripts/screens.mjs` writes `public/sc
 `src/lib/screens.sizes.json`. New screens: ask the iOS session for them in the same folder.
 
 Tap to Record can't be captured on a simulator (no Apple Pay, no Shortcuts). `node scripts/tap.mjs`
-renders the App Store poster 03's own HTML with only its Lock Screen card showing, on a transparent
-ground, and copies the Lock Screen capture the poster uses (`media-src/app`; `files` in
-screens.json). `TapPhone` lays the card over the Lock Screen.
+renders the App Store poster 03's own HTML with only its Lock Screen card showing (since build 26,
+Change and Save), on a transparent ground, and copies the Lock Screen capture the poster uses
+(`media-src/app`; `files` in screens.json). `TapPhone` lays the card over the Lock Screen.
 
 ## Recordings — `scripts/videos.sh`
 
@@ -47,4 +47,5 @@ in `public/art/`; steps in the script's header.
 
 ## The link preview: `scripts/og.mjs`
 
-`public/og.png`, 1200 x 630: the mark, "Know where you stand." and Home and Budgets in two phones.
+`public/og.png`, 1200 x 630: the logo, "Know where you stand." with the lime full stop, and Home and
+Budgets in two phones, on Night lit like the top of the app's Home.

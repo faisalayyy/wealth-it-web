@@ -12,7 +12,7 @@ import s from './SiteFooter.module.css';
 /**
  * The footer: the page ends in a sheet with rounded bottom corners, lifted off a warm grey footer —
  * the way around, the way to write to us, where to follow, the legal line, and the name across the whole width
- * ("it" in Emerald) on a glow of the brand's green and gold, rising into place as it comes into
+ * ("it" in the lime) on a glow of the brand's greens, rising into place as it comes into
  * view. `sheet` is the colour of the page above it, so its rounded lip matches.
  */
 const COLUMNS = [

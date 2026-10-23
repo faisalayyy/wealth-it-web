@@ -17,13 +17,13 @@ const PARTS: Part[] = [
   'Wealthit adds up every account',
   { art: 'account', label: 'a bank card and a coin', ratio: 1.07 },
   ', every budget',
-  { art: 'budget', label: 'a spending chart', ratio: 0.98 },
+  { art: 'budget', label: 'a spending chart', ratio: 1.05 },
   ', every bill',
   { art: 'bill', label: 'a calendar with a due day marked', ratio: 0.81 },
   ' and every goal',
   { art: 'goal', label: 'coins stacked up to a flag', ratio: 1.3 },
   ', so you know where you stand and where you’re heading',
-  { art: 'mark', label: 'the Wealthit mark', ratio: 1.25 },
+  { art: 'mark', label: 'the Wealthit app icon', ratio: 0.87 },
   '.',
 ];
 

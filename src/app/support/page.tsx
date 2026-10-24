@@ -9,11 +9,12 @@ import { Faq, type QA } from '@/sections/home/Faq';
  * Help, and the URL the App Store asks for (the app's About screen links here). It answers first
  * and offers an address second: almost every question about the app is one the page can settle
  * faster than a reply could. The answers are the app session's (branch privacy-accounts of this
- * site, 11 October 2026), checked against the app as built.
+ * site, 11 October 2026), checked against the app as built; where records live and the recovery key
+ * are the app's A429, A430 and A439, in the words of its own Your data and sign-in screens.
  */
 export const metadata: Metadata = pageMeta({
   title: 'Help and FAQs',
-  description: 'Answers to common Wealthit questions: moving to a new phone, signing in, currencies that won’t convert, app lock and deleting your account. Or write to us.',
+  description: 'Answers to common Wealthit questions: moving to a new phone, where your records live, the recovery key, currencies that won’t convert, app lock and deleting your account. Or write to us.',
   path: '/support/',
 });
 
@@ -22,7 +23,8 @@ const ACCOUNT: QA[] = [
     q: 'I got a new phone. How do I move my records across?',
     a: [
       'Install Wealthit on the new phone and sign in the way you signed in before: Apple, Google, or your email. Everything you recorded comes down from your account.',
-      'If you chose to keep your records on the old phone only, turn on Sync with my account there first, in Advanced settings → Your data.',
+      'If you keep your records on the old phone only, turn on Sync with my account there first, or export a backup there and import it on the new phone. Both are in Advanced settings → Your data.',
+      'If your records are locked so only you can read them, the new phone asks for your recovery key.',
       'Receipt photos and your profile picture stay on the old phone, because they are never uploaded.',
     ],
   },
@@ -48,6 +50,7 @@ const ACCOUNT: QA[] = [
     q: 'I have forgotten my app lock PIN.',
     a: [
       'After two wrong tries, the lock screen offers to log you out. Sign in again with Apple, Google or your email, and if your records sync with your account, they come back from it. The old PIN is removed, so you can set a new one in Advanced settings → Security.',
+      'Records kept on this phone only are erased when you log out, because they are nowhere else. A backup file is worth keeping.',
       'If you also turned on Face ID for the lock, Face ID still opens the app.',
     ],
   },
@@ -56,6 +59,37 @@ const ACCOUNT: QA[] = [
     a: [
       'Open your profile and choose Delete account. You are signed out everywhere and the phone is cleared, and 60 days later the account and everything in it are deleted for good. Sign in before then to change your mind.',
       'To have it deleted straight away, write to the address at the top of this page from the email you sign in with.',
+    ],
+  },
+];
+
+const RECORDS: QA[] = [
+  {
+    q: 'Where are my records kept?',
+    a: [
+      'You choose, right after you sign in. Sync with my account backs them up to your account, so they’re the same on every phone you sign in on and on the web. Keep on this phone keeps them on this phone only and never sends them anywhere: lose the phone or delete Wealthit, and they go with it.',
+      'You can change this any time in Advanced settings → Your data. Records kept on a phone only don’t show on the web, which reads your account.',
+    ],
+  },
+  {
+    q: 'What does “Only you can read your records” do?',
+    a: [
+      'It locks your records on your phone before they’re sent, with a key only you hold, so not even Wealthit can read them. Without it, your records are kept in your account encrypted on the way and on the server, as most finance apps keep them.',
+      'It’s off unless you turn it on, in Advanced settings → Your data, while your records sync with your account. Turning it on gives you a recovery key. Turning it off sends your records again as they are, and the key stops working.',
+    ],
+  },
+  {
+    q: 'What is the recovery key?',
+    a: [
+      'Twenty-four letters and numbers, in six groups of four. On a new phone or on the web, it opens your locked records. Wealthit never sees it and can’t recover it for you, so keep it somewhere safe. The app asks you to type its last group back, to be sure you saved it.',
+      'While a phone keeps it, you can see it again there in Advanced settings → Your data → Recovery key. On a computer other people use, turn on “Forget my key when I sign out” on the web.',
+    ],
+  },
+  {
+    q: 'I lost my recovery key.',
+    a: [
+      'If one of your phones still has it, open Advanced settings → Your data → Recovery key there and save it again.',
+      'If none does, choose “Lost your key?” where the app asks for it. Your account’s records can’t be opened without the key, so they’re deleted from your account. What is on the phone you’re using stays. Nobody, Wealthit included, can unlock them for you.',
     ],
   },
 ];
@@ -107,8 +141,9 @@ export default function Support() {
     <div className="page">
       <main id="main">
         <HelpHero />
-        <JsonLd data={faqSchema([...ACCOUNT, ...MONEY, ...PRIVACY])} />
+        <JsonLd data={faqSchema([...ACCOUNT, ...RECORDS, ...MONEY, ...PRIVACY])} />
         <Faq sectionId="account" cap="Your account and your phones" title="Signing in, new phones, and leaving." items={ACCOUNT} more={false} />
+        <Faq sectionId="records" cap="Your records and your key" title="Where your records live." items={RECORDS} more={false} />
         <Faq sectionId="money" cap="Money and records" title="When a number looks wrong." items={MONEY} more={false} />
         <Faq sectionId="privacy" cap="Privacy" title="Yours, and only yours." items={PRIVACY} more={false} />
         <Closing />

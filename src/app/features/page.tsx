@@ -41,7 +41,8 @@ export default function Features() {
         <Facts
           title="And the rest, too."
           facts={[
-            { title: 'The same on every phone', text: 'Sign in on another phone and your records are there. A record made offline goes up when you’re back online.' },
+            { title: 'The same on every phone', text: 'Sync with your account and your records are there on every phone you sign in on, even what you recorded offline. Or keep them on this phone only.' },
+            { title: 'Only you can read', text: 'Turn it on and your records are locked with a key only you hold, so not even Wealthit can read them.' },
             { title: 'Your data, yours to take', text: 'Export everything at any time, as a backup file or a spreadsheet.' },
             { title: 'App lock', text: 'Face ID or a PIN keeps the app closed. The PIN never leaves your phone.' },
             { title: 'Reminders', text: 'For bills due and budgets running low, scheduled on your phone.' },

@@ -20,8 +20,10 @@ const COLUMNS = [
   {
     title: 'Help',
     links: [
+      { label: 'How it works', href: '/how-it-works/' },
       { label: 'Help & FAQs', href: '/support/' },
       { label: 'Account & sign-in', href: '/support/#account' },
+      { label: 'Your records & key', href: '/support/#records' },
     ],
   },
   {
@@ -32,7 +34,14 @@ const COLUMNS = [
     ],
   },
   { title: 'Follow along', links: socials.map(so => ({ label: `${so.label} ${so.handle}`, href: so.href, icon: so.icon })) },
-  { title: 'Legal', links: [{ label: 'Privacy policy', href: '/privacy/' }] },
+  {
+    title: 'Legal',
+    links: [
+      { label: 'Security', href: '/security/' },
+      { label: 'Privacy policy', href: '/privacy/' },
+      { label: 'Delete your account', href: '/privacy/#delete-account' },
+    ],
+  },
 ] as { title: string; links: { label: string; href: string; icon?: string }[] }[];
 
 export function SiteFooter({ sheet = 'var(--n-50)' }: { sheet?: string }) {

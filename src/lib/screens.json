@@ -30,6 +30,10 @@
     "statistics-dark": "Statistics: balance forecast, spending, cashflow",
     "statistics-spending-dark": "A month's spending: daily bars, must, need and want",
     "advanced-settings-dark": "Advanced settings: Security and Your data",
+    "where-records-live-dark": "Where should your records live? Sync with my account, or Keep on this phone",
+    "your-data-dark": "Your data: Sync with my account on, Only you can read your records on, and the Recovery key",
+    "recovery-key-dark": "Save your recovery key, shown once you turn on Only you can read your records",
+    "app-lock-dark": "Wealthit is locked: the PIN pad and Use Face ID",
     "lockscreen": "The iPhone Lock Screen at 9:41"
   },
   "cuts": {

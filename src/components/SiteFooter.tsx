@@ -20,6 +20,7 @@ const COLUMNS = [
   {
     title: 'Help',
     links: [
+      { label: 'How it works', href: '/how-it-works/' },
       { label: 'Help & FAQs', href: '/support/' },
       { label: 'Account & sign-in', href: '/support/#account' },
       { label: 'Your records & key', href: '/support/#records' },
@@ -36,6 +37,7 @@ const COLUMNS = [
   {
     title: 'Legal',
     links: [
+      { label: 'Security', href: '/security/' },
       { label: 'Privacy policy', href: '/privacy/' },
       { label: 'Delete your account', href: '/privacy/#delete-account' },
     ],

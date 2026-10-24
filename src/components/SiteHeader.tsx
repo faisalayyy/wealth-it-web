@@ -17,8 +17,8 @@ import s from './SiteHeader.module.css';
  * The header, after butter.video's (docs/BUTTER_REFERENCE.md): two pills floating over the page.
  *
  * The left pill holds the name, the way around — Features opens a panel of the feature pages,
- * each with a real capture beside it — and two dots at its end. Help and the privacy policy live in
- * the footer and the menu, not the pill (the owner, 24 October 2026). Once the page has scrolled, the
+ * each with a real capture beside it — How it works and Security, and two dots at its end. Help and
+ * the privacy policy live in the footer, not the pill or the menu (the owner, 24 October 2026). Once the page has scrolled, the
  * links fade and the pill folds to the name and the dots; pointing at it or tabbing into it opens
  * it again. The dots open the menu at any time: the pill widens, "Close" appears beside the dots,
  * the page behind dims, and a panel opens under the pill: five large rows, each with a small 3D
@@ -31,12 +31,18 @@ import s from './SiteHeader.module.css';
  * whole header and the menu carries all three.
  */
 
+// the pill's links after Features (About is not published until its content is real, src/app/_about)
+const LINKS = [
+  { label: 'How it works', href: '/how-it-works/' },
+  { label: 'Security', href: '/security/' },
+];
+
 /** The menu's large rows, each with its 3D piece (public/art). */
 const ROWS = [
   { label: 'Features', hint: 'Every feature, up close', href: '/features/', art: 'budget' },
+  { label: 'How it works', hint: 'From sign-in to where you stand', href: '/how-it-works/', art: 'goal' },
   { label: 'Tap to Record', hint: 'Pay with Apple Pay, tap Save', href: '/features/tap-to-record/', art: 'tap' },
-  { label: 'Help', hint: 'Quick answers, or write to us', href: '/support/', art: 'help' },
-  { label: 'Privacy', hint: 'What we keep, and why', href: '/privacy/', art: 'privacy' },
+  { label: 'Security', hint: 'What keeps your money private', href: '/security/', art: 'privacy' },
   { label: 'Get the app', hint: 'Coming soon', href: '/#get', art: 'app' },
 ] as const;
 
@@ -209,6 +215,13 @@ export function SiteHeader() {
                   <Icon name="chevron-down" size={14} className={s.chevron} />
                 </button>
               </li>
+              {LINKS.map(l => (
+                <li key={l.href} onMouseEnter={() => setFeatures(false)}>
+                  <Link href={l.href} className={s.link} data-active={active(l.href) ? '' : undefined}>
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </nav>
           <button ref={dots} type="button" className={s.dots} aria-expanded={menu} aria-controls={menuId} aria-label={menu ? 'Close menu' : 'Open menu'} onClick={toggle}>

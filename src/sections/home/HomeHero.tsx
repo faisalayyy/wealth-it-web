@@ -89,7 +89,7 @@ export function HomeHero() {
         </p>
         <div className={s.ctas} data-rise>
           <Button label="Get the app" href="/#get" tone="brand" onClick={jump('get')} />
-          <Button label="See how it works" href="/#how" tone="ink" variant="secondary" onClick={jump('how')} />
+          <Button label="See how it works" href="/how-it-works/" tone="ink" variant="secondary" />
         </div>
         <ul className={s.facts} data-rise>
           {FACTS.map(f => (

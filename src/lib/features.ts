@@ -301,6 +301,12 @@ export const featurePages: FeaturePage[] = [
         media: { video: 'customise-home-dark', label: 'Customise Home: Goals dragged above Budgets, saved, and Home in the new order', dark: true },
       },
       {
+        cap: 'Widgets',
+        title: 'The figures you check, on your Home Screen.',
+        text: 'Seven widgets: what’s left this month, your spending, what’s coming up, budgets, wallets and goals, and Quick add to record a payment from there.',
+        media: { cut: 'widgets', dark: true },
+      },
+      {
         cap: 'Hide amounts',
         title: 'For your eyes only.',
         text: 'One tap on the eye and every amount turns to drifting dots, so the person next to you can’t read them. Lock the app with Face ID or a PIN as well.',

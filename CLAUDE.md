@@ -38,6 +38,7 @@ npm run screens   # the iOS session's captures → public/screens (docs/SCREENSH
 scripts/videos.sh # its recordings → public/videos
 node scripts/compose.mjs   # photographs, with the app on the iPhones → public/people
 node scripts/tap.mjs       # Tap to Record's Lock Screen card, from the App Store poster's source
+node scripts/widgets.mjs   # two Home Screen widgets, from App Store poster 09's source
 node scripts/og.mjs        # the link preview, public/og.png
 ```
 
@@ -84,8 +85,8 @@ node scripts/og.mjs        # the link preview, public/og.png
 
 - **Real app UI only.** Every product image is one of the iOS session's captures or recordings
   (`~/Movies/Wealthit Website/build-26`, from TestFlight build 26), or a rectangle cut from one — or, where a
-  simulator can't show it (Tap to Record), a rectangle cut from the App Store poster drawn from the
-  app's real code. Never draw app UI in HTML, never retouch a capture. The app is shown mostly in
+  simulator can't show it (Tap to Record's card, the Home Screen widgets), a rectangle cut from the
+  App Store poster drawn from the app's real code (posters 03 and 09). Never draw app UI in HTML, never retouch a capture. The app is shown mostly in
   dark. New screens or recordings: ask the iOS session; `docs/SCREENSHOTS.md`.
 - **Photographs** (`media-src/people`, credited in `CREDITS.md`) are models, not users: the app
   may be composited onto a phone in a hand or over a shoulder, never into a smiling face's hands,

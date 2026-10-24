@@ -98,7 +98,7 @@ export function SiteFooter({ sheet = 'var(--n-50)' }: { sheet?: string }) {
       <div className={`wrap ${s.legal} cap`}>
         <p>
           Wealthit is a personal finance app. It isn’t a bank, doesn’t hold or move money and doesn’t give financial
-          advice. No tracking or advertising, and Wealthit runs no analytics.
+          advice. No tracking, advertising or analytics service.
         </p>
         <p>© {new Date().getFullYear()} Wealthit</p>
       </div>

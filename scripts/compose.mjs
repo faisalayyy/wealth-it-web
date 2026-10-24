@@ -2,7 +2,7 @@
 // (media-src/people, see CREDITS.md) and writes every photograph for the web.
 //
 //   node scripts/compose.mjs [captures-dir] [--only name] [--src dir] [--out dir] [--debug dir]
-//     captures-dir   default ~/Movies/Wealthit Website/screens
+//     captures-dir   default ~/Movies/Wealthit Website/build-26/screens
 //     --src, --out   default media-src/people and public/people (a preview can go elsewhere)
 //     --debug        also writes each composite as a JPEG, and a close look at its phone
 //
@@ -37,7 +37,7 @@ const FLAGS = ['--only', '--debug', '--src', '--out'];
 const flag = n => (args.includes(n) ? args[args.indexOf(n) + 1] : null);
 const only = flag('--only');
 const debug = flag('--debug');
-const caps = args.find((a, i) => !a.startsWith('--') && !FLAGS.includes(args[i - 1])) ?? path.join(os.homedir(), 'Movies/Wealthit Website/screens');
+const caps = args.find((a, i) => !a.startsWith('--') && !FLAGS.includes(args[i - 1])) ?? path.join(os.homedir(), 'Movies/Wealthit Website/build-26/screens');
 const src = path.resolve(flag('--src') ?? path.join(root, 'media-src/people'));
 const out = path.resolve(flag('--out') ?? path.join(root, 'public/people'));
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'compose-'));

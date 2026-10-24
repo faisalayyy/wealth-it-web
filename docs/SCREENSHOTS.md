@@ -21,6 +21,11 @@ renders the App Store poster 03's own HTML with only its Lock Screen card showin
 Change and Save), on a transparent ground, and copies the Lock Screen capture the poster uses
 (`media-src/app`; `files` in screens.json). `TapPhone` lays the card over the Lock Screen.
 
+The Home Screen widgets get no data on a simulator. `node scripts/widgets.mjs` renders App Store
+poster 09's own HTML with only its wallpaper strip and two widgets showing (drawn there from the
+app's widget layout), the small above the medium, into `media-src/app/widgets.png`; it is the
+`widgets` cut, shown on the Home & widgets page.
+
 ## Recordings — `scripts/videos.sh`
 
 Source: `~/Movies/Wealthit Website/build-26/videos/`, the iOS session's screen recordings (H.264, native

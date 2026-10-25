@@ -26,6 +26,15 @@ poster 09's own HTML with only its wallpaper strip and two widgets showing (draw
 app's widget layout), the small above the medium, into `media-src/app/widgets.png`; it is the
 `widgets` cut, shown on the Home & widgets page.
 
+## Android — `node scripts/android.mjs`
+
+Record from bank messages exists only on Android, so its pictures come from the **Android** session:
+`~/Movies/Wealthit Website/android/screens/` (emulator, 1080 × 2400, the website ledger, made-up
+bank texts; its README says what each shows and what the site must not claim). The site's phone
+frames are iPhones, so an Android screen is never shown whole: `scripts/android.mjs` cuts pieces by
+recorded rectangles into `media-src/android/` (`bank-alert`: the bank's text and Wealthit's alert
+with Save and Change), and they are cuts in screens.json.
+
 ## Recordings — `scripts/videos.sh`
 
 Source: `~/Movies/Wealthit Website/build-26/videos/`, the iOS session's screen recordings (H.264, native

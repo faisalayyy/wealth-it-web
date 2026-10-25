@@ -106,6 +106,10 @@ export default function Privacy() {
             <li>
               <strong>Notifications</strong>, only for the reminders you set up, which the phone schedules itself.
             </li>
+            <li>
+              <strong>Notification access, on Android</strong>, only if you turn on Record from bank messages, so Wealthit can read your bank’s
+              payment alerts as they arrive. It needs no permission to read your text messages, and never reads old ones.
+            </li>
           </ul>
           <p>Wealthit never asks for your location, your contacts or your bank login. You can say no to any of these and still use the app.</p>
 
@@ -137,6 +141,13 @@ export default function Privacy() {
               <strong>Tap to Record.</strong> If you set it up with Apple Pay, the amount, the shop and the card’s name (as your wallet shows it,
               never its number) are handed to the app on the phone. The payment becomes a record like any other, and the card’s name is kept with
               your settings so the next payment finds its wallet.
+            </li>
+            <li>
+              <strong>Record from bank messages, on Android.</strong> If you turn it on, your bank’s payment alerts are read on the phone. The
+              message itself is never kept or sent anywhere: the phone keeps only a fingerprint of each, so the same alert isn’t counted twice.
+              What was read from it (the amount, the currency, the shop’s or person’s name and the card’s or account’s last four digits) becomes a
+              record like any other, kept in your account if you sync, and the card’s bank and last four digits are kept with your settings so the
+              next payment finds its wallet.
             </li>
             <li>
               <strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications.
@@ -203,7 +214,7 @@ export default function Privacy() {
               <strong>To keep it secure</strong>: stopping repeated sign-in tries, and signing out or deleting an account when you ask.
             </li>
             <li>
-              <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record and reminders. Turn them off and they stop.
+              <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record, bank messages and reminders. Turn them off and they stop.
             </li>
           </ul>
 
@@ -249,8 +260,9 @@ export default function Privacy() {
               <strong>Log out</strong> from the side menu. Your records stay in your account.
             </li>
             <li>
-              <strong>Turn things off.</strong> Stop the daily exchange rates in Currency &amp; format, and remove Tap to Record by deleting its
-              automation. Wealthit stops using them at once.
+              <strong>Turn things off.</strong> Stop the daily exchange rates in Currency &amp; format, remove Tap to Record by deleting its
+              automation, and stop bank messages by turning them off or taking away Wealthit’s notification access in your phone’s settings.
+              Wealthit stops using them at once.
             </li>
             <li>
               <strong>Ask</strong> for a copy of what Wealthit holds about you, or for a correction, by writing to{' '}

@@ -66,7 +66,7 @@ export function TapToRecord() {
             ))}
           </ol>
           <p className={s.fine}>Works with Apple Pay. Set it up once.</p>
-          <Link href="/features/tap-to-record/" className={s.more}>
+          <Link href="/features/record-as-you-pay/" className={s.more}>
             How Tap to Record works <Icon name="arrow-right" size={16} />
           </Link>
         </div>

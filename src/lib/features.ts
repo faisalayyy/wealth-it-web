@@ -83,48 +83,58 @@ export const featurePages: FeaturePage[] = [
     ],
   },
   {
-    // App/docs/TAP_TO_RECORD.md and decisions A348, A349, A350, A353, A354, A390, A436 to A438. iPhone only, with Apple
-    // Pay; set up once. The Lock Screen card can't be captured on a simulator: media-src/app.
-    slug: 'tap-to-record',
-    label: 'Tap to Record',
-    summary: 'Pay with Apple Pay and the payment is already filled in. Tap Save and you’re done.',
-    metaTitle: 'Tap to Record: Apple Pay expense tracking',
-    metaDescription: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, already filled in. Tap Save and it’s recorded. Expense tracking with nothing to type.',
+    // Two ways a payment arrives filled in, on one page (the owner, 24 October 2026). Tap to Record:
+    // App/docs/TAP_TO_RECORD.md and decisions A348, A349, A350, A353, A354, A390, A436 to A438; iPhone
+    // only, with Apple Pay, set up once; its Lock Screen card can't be captured on a simulator
+    // (media-src/app). Record from bank messages: A440, A441; Android only for now, which the page
+    // says (the owner's exception to "no platform names"); its alert is cut from the Android
+    // session's captures. Was /features/tap-to-record/, which now forwards here.
+    slug: 'record-as-you-pay',
+    label: 'Record as you pay',
+    summary: 'Pay, and the payment is already filled in: with Apple Pay in a shop, or from your bank’s payment alert. Tap Save and you’re done.',
+    metaTitle: 'Record as you pay: expense tracking with nothing to type',
+    metaDescription: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen, filled in. Or let it read your bank’s payment alerts, online payments too. Tap Save and it’s recorded.',
     thumb: 'lockscreen',
     dark: true,
     hero: {
       title: 'You paid. It’s already written down.',
-      lead: 'Pay with Apple Pay and Wealthit puts the payment on your Lock Screen with the shop, the amount, the category and the wallet filled in. Tap Save and it’s recorded. Tap Change to look it over first.',
+      lead: 'Pay with Apple Pay in a shop, or let Wealthit read your bank’s payment alert, and the payment is waiting for you with the shop, the amount, the category and the wallet filled in. Tap Save and it’s recorded, or Change to look it over first.',
       screens: ['lockscreen'],
       media: { tap: true, dark: true },
     },
     rows: [
       {
-        cap: 'On your Lock Screen',
-        title: 'The payment, filled in for you.',
-        text: 'A moment after you pay, Wealthit shows the shop and the amount on your Lock Screen, and in the Dynamic Island where there is one. You don’t open the app or type a thing.',
+        cap: 'Tap to Record · with Apple Pay',
+        title: 'On your Lock Screen, a moment after you pay.',
+        text: 'Pay with Apple Pay in a shop and Wealthit shows the shop and the amount on your Lock Screen, and in the Dynamic Island where there is one. You don’t open the app or type a thing. Set it up once, in the Shortcuts app.',
         media: { tap: true, dark: true },
+      },
+      {
+        cap: 'Record from bank messages · Android for now',
+        title: 'From your bank’s alert, online payments too.',
+        text: 'Your bank sends you an alert when you pay by card, in a shop or online. With your permission, Wealthit reads it as it arrives and asks only what it doesn’t know yet: the wallet for a new card, what a new shop was for, or just Save or Change. It never reads old messages and needs no bank login. It keeps only what the record needs: the amount, the shop and the card’s last four digits. The message itself isn’t stored.',
+        media: { cut: 'bank-alert', dark: true },
       },
       {
         cap: 'Worked out from the payment',
         title: 'The category from the shop. The wallet from the card.',
-        text: 'A shop you have filed before goes where you usually file it, whatever name the card machine gives it. A new one is filed by its name, so a supermarket goes under Groceries and a petrol station under Fuel. If Wealthit can’t tell, your Lock Screen offers two categories to pick from, and it remembers.',
+        text: 'A shop you have filed before goes where you usually file it, whatever name the card machine gives it. Tap to Record also knows many shops by their name, so a supermarket goes under Groceries. Otherwise you pick from two categories, once, and it remembers.',
         media: { screen: 'categories-dark', dark: true },
       },
       {
         cap: 'Your choice',
         title: 'Save at once, or check first.',
-        text: 'Save records the payment there and then, without opening Wealthit. Change opens the record already filled in, for you to look over and save.',
+        text: 'Save records the payment there and then, without opening Wealthit. Change opens the record already filled in, for you to look over and save. Bank messages ask first too, unless you choose to save a known card and shop straight away.',
         media: { screen: 'record-sheet-dark', dark: true },
       },
     ],
     facts: [
-      { title: 'Set up once', text: 'Add Wealthit’s shortcut in the Shortcuts app and switch it on. The app shows you each step.' },
-      { title: 'Your cards', text: 'Link each card to a wallet. A card Wealthit hasn’t seen goes to the wallet you choose for new cards, and you can move it later.' },
+      { title: 'Set up once', text: 'Add Wealthit’s shortcut for Tap to Record, or allow notification access for bank messages. The app shows you each step.' },
+      { title: 'Your cards', text: 'A card Wealthit hasn’t seen goes to a wallet it suggests or you choose, and you can move it later.' },
       { title: 'Never twice', text: 'If the same payment arrives twice, it’s recorded once.' },
       { title: 'Nothing to type', text: 'The amount comes from the payment itself, in the wallet’s own currency.' },
-      { title: 'Works with Apple Pay', text: 'Tap to Record picks up the payments you make with Apple Pay.' },
-      { title: 'Only what you paid', text: 'Apple Pay passes on the card, the shop and the amount, and nothing more. There is no bank login.' },
+      { title: 'Android for now', text: 'Record from bank messages works on Android for now. Tap to Record works with Apple Pay.' },
+      { title: 'Only what you paid', text: 'Apple Pay passes on the card, the shop and the amount. From a bank alert, Wealthit keeps only the amount, the shop and the card’s last four digits, never the message. There is no bank login.' },
     ],
   },
   {

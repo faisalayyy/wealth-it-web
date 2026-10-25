@@ -112,7 +112,7 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Record from bank messages · Android for now',
         title: 'From your bank’s alert, online payments too.',
-        text: 'Your bank sends you an alert when you pay by card, in a shop or online. With your permission, Wealthit reads it as it arrives and asks only what it doesn’t know yet: the wallet for a new card, what a new shop was for, or just Save or Change. It never reads old messages, needs no bank login, and keeps none of the alert’s words.',
+        text: 'Your bank sends you an alert when you pay by card, in a shop or online. With your permission, Wealthit reads it as it arrives and asks only what it doesn’t know yet: the wallet for a new card, what a new shop was for, or just Save or Change. It never reads old messages and needs no bank login. It keeps only what the record needs: the amount, the shop and the card’s last four digits. The message itself isn’t stored.',
         media: { cut: 'bank-alert', dark: true },
       },
       {
@@ -134,7 +134,7 @@ export const featurePages: FeaturePage[] = [
       { title: 'Never twice', text: 'If the same payment arrives twice, it’s recorded once.' },
       { title: 'Nothing to type', text: 'The amount comes from the payment itself, in the wallet’s own currency.' },
       { title: 'Android for now', text: 'Record from bank messages works on Android for now. Tap to Record works with Apple Pay.' },
-      { title: 'Only what you paid', text: 'Apple Pay passes on the card, the shop and the amount. A bank alert is read on your phone, and its words are never kept. There is no bank login.' },
+      { title: 'Only what you paid', text: 'Apple Pay passes on the card, the shop and the amount. From a bank alert, Wealthit keeps only the amount, the shop and the card’s last four digits, never the message. There is no bank login.' },
     ],
   },
   {

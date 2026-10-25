@@ -151,8 +151,9 @@ node scripts/og.mjs        # the link preview, public/og.png
   A439): everyone signs in, then chooses Sync with my account or Keep on this phone; "Only you can
   read your records" is a choice, off by default. Never say every account is end-to-end encrypted.
   Record from bank messages (A440, Android): Notification access, never SMS; the alert read on the
-  phone, its words never kept or sent (a fingerprint only); the card's bank and last four digits
-  kept with the settings; the policy says so. If the app changes, these change the
+  phone, the message itself never kept or sent (a fingerprint only); what's read from it (amount,
+  currency, shop or person, last four digits) becomes the record; the card's bank and last four
+  digits kept with the settings; the policy says so. If the app changes, these change the
   same day. The app links to `/privacy/` and `/support/` — never move them.
 - **Nothing loaded from elsewhere.** Fonts, captures and 3D are all served from this site.
 - **Type.** Plus Jakarta Sans (OFL), the app's own face, one variable file in `src/fonts`.

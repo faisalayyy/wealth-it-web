@@ -143,10 +143,11 @@ export default function Privacy() {
               your settings so the next payment finds its wallet.
             </li>
             <li>
-              <strong>Record from bank messages, on Android.</strong> If you turn it on, your bank’s payment alerts are read on the phone for the
-              amount, the shop and the card’s last four digits. The alert’s words are never kept or sent anywhere: only a fingerprint of each, so
-              the same alert isn’t counted twice. The payment becomes a record like any other, and the card’s bank and last four digits are kept
-              with your settings so the next payment finds its wallet.
+              <strong>Record from bank messages, on Android.</strong> If you turn it on, your bank’s payment alerts are read on the phone. The
+              message itself is never kept or sent anywhere: the phone keeps only a fingerprint of each, so the same alert isn’t counted twice.
+              What was read from it (the amount, the currency, the shop’s or person’s name and the card’s or account’s last four digits) becomes a
+              record like any other, kept in your account if you sync, and the card’s bank and last four digits are kept with your settings so the
+              next payment finds its wallet.
             </li>
             <li>
               <strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications.

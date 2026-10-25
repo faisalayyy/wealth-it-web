@@ -117,8 +117,10 @@ node scripts/og.mjs        # the link preview, public/og.png
   own, App/docs/marketing/instagram). Where butter shows client logos the homepage shows the
   26 countries whose money the app keeps (flags from flag-icons, MIT). No Pricing or Blog page until
   there is a price or a post.
-- **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: its own page, a homepage
-  section and one of the two large tiles in the features bento. It works with Apple Pay and is set
+- **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: a homepage section, one of the
+  two large tiles in the features bento, and with Record from bank messages (A440, Android) the
+  page **Record as you pay** (`/features/record-as-you-pay/`; the owner, 24 October 2026; the old
+  `/features/tap-to-record/` forwards there). It works with Apple Pay and is set
   up once; never promise it on Android. After a payment the Lock Screen card says Change and Save
   (A436); a shop it hasn't seen offers two categories to pick (A438). Its Lock Screen card can't be
   captured on a simulator: `scripts/tap.mjs` renders the App Store poster 03's own HTML, card only
@@ -128,7 +130,8 @@ node scripts/og.mjs        # the link preview, public/og.png
 - **No platform names in the copy** (the owner, 17 October 2026): Wealthit is for iPhone, Android
   and the web, and the site never says which: no "for iPhone", "Android to follow" or "on the App
   Store". Tap to Record still says it works with Apple Pay, because that is how it works; it is
-  never promised for Android.
+  never promised for Android. The one exception (the owner, 24 October 2026): Record from bank
+  messages says "Android for now", on Record as you pay.
 - **The web app is at https://dashboard.wealthit.app** (`webApp`; ../WebApp, published through the
   wealthit-dashboard-site repository). "Log in" and "Open Wealthit on the web" go there. One URL
   serves log in and sign up (its root shows sign-in). Say only what it does: same account, records
@@ -146,7 +149,10 @@ node scripts/og.mjs        # the link preview, public/og.png
   grace (or at once by email, `/privacy/#delete-account`). The app's
   `docs/PRIVACY_POLICY_DRAFT.md` should be brought in line. Since 23 October (the app's A429,
   A439): everyone signs in, then chooses Sync with my account or Keep on this phone; "Only you can
-  read your records" is a choice, off by default. Never say every account is end-to-end encrypted. If the app changes, these change the
+  read your records" is a choice, off by default. Never say every account is end-to-end encrypted.
+  Record from bank messages (A440, Android): Notification access, never SMS; the alert read on the
+  phone, its words never kept or sent (a fingerprint only); the card's bank and last four digits
+  kept with the settings; the policy says so. If the app changes, these change the
   same day. The app links to `/privacy/` and `/support/` — never move them.
 - **Nothing loaded from elsewhere.** Fonts, captures and 3D are all served from this site.
 - **Type.** Plus Jakarta Sans (OFL), the app's own face, one variable file in `src/fonts`.

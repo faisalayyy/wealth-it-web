@@ -1,5 +1,5 @@
 {
-  "$comment": "Every product image on the site, from the app's own captures: ~/Movies/Wealthit Website/build-26/screens, made by the iOS session on 23 October 2026 from the app at commit e3a5dbd (TestFlight build 26) on the iPhone 17 Pro Max simulator — 1320 x 2868 px = 440 x 956 pt — with the app's sample data. `screens` are whole screens, shown in a phone. `crops` are rectangles in points cut from a whole screen. `cuts` are pieces cut elsewhere: tap-card and widgets from the App Store posters 03 and 09, which draw Tap to Record's Lock Screen card and two Home Screen widgets from the app's real code (media-src/app). Nothing is redrawn or retouched. See docs/SCREENSHOTS.md.",
+  "$comment": "Every product image on the site, from the app's own captures: ~/Movies/Wealthit Website/build-26/screens, made by the iOS session on 23 October 2026 from the app at commit e3a5dbd (TestFlight build 26) on the iPhone 17 Pro Max simulator — 1320 x 2868 px = 440 x 956 pt — with the app's sample data. `screens` are whole screens, shown in a phone. `crops` are rectangles in points cut from a whole screen. `cuts` are pieces cut elsewhere: tap-card and widgets from the App Store posters 03 and 09, which draw Tap to Record's Lock Screen card and two Home Screen widgets from the app's real code (media-src/app); bank-alert cut from the Android session's capture of Record from bank messages (media-src/android, scripts/android.mjs). Nothing is redrawn or retouched. See docs/SCREENSHOTS.md.",
   "device": {
     "w": 440,
     "h": 956,
@@ -40,6 +40,10 @@
     "tap-card": {
       "file": "media-src/app/tap-card",
       "alt": "Tap to Record on the Lock Screen: Harbour Lane Supermarket, AED 86.50, Groceries from Main bank, with Change and Save"
+    },
+    "bank-alert": {
+      "file": "media-src/android/bank-alert",
+      "alt": "Record from bank messages: the bank's text, Purchase of AED 61.30, and under it Wealthit's alert, AED 61.30 at Harbour Lane, Groceries, Main bank, with Save and Change"
     },
     "widgets": {
       "file": "media-src/app/widgets",

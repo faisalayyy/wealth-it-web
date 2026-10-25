@@ -41,7 +41,7 @@ const LINKS = [
 const ROWS = [
   { label: 'Features', hint: 'Every feature, up close', href: '/features/', art: 'budget' },
   { label: 'How it works', hint: 'From sign-in to where you stand', href: '/how-it-works/', art: 'goal' },
-  { label: 'Tap to Record', hint: 'Pay with Apple Pay, tap Save', href: '/features/tap-to-record/', art: 'tap' },
+  { label: 'Record as you pay', hint: 'Pay, then tap Save', href: '/features/record-as-you-pay/', art: 'tap' },
   { label: 'Security', hint: 'What keeps your money private', href: '/security/', art: 'privacy' },
   { label: 'Get the app', hint: 'Coming soon', href: '/#get', art: 'app' },
 ] as const;
@@ -249,7 +249,7 @@ export function SiteHeader() {
           </ul>
           <div className={s.side}>
             <div className={s.preview} aria-hidden>
-              {armed && featurePages.map((f, i) => <Preview key={f.slug} thumb={f.thumb} on={hover === i} tap={f.slug === 'tap-to-record'} />)}
+              {armed && featurePages.map((f, i) => <Preview key={f.slug} thumb={f.thumb} on={hover === i} tap={f.slug === 'record-as-you-pay'} />)}
             </div>
             <Link href="/features/" className={s.all} onClick={close}>
               All features

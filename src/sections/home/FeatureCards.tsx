@@ -14,14 +14,14 @@ import s from './FeatureCards.module.css';
 
 /**
  * Everything at a glance, as a quiet bento (chosen by the owner from four takes, 17 October 2026):
- * two large tiles with the app (Recording, and Tap to Record: the piece of the app peeks in from the
+ * two large tiles with the app (Recording, and Record as you pay: the piece of the app peeks in from the
  * lower edge and rises when pointed at), and five small ones with the feature's name, one line and
  * its 3D piece from the hero keyring. The whole tile is the link; the arrow sits inside it.
  */
 type Media = { crop: CropName } | { tap: true };
 const TILES: Record<string, { title: string; media?: Media; art?: string }> = {
   recording: { title: 'Write it down in seconds.', media: { crop: 'record-sentence' } },
-  'tap-to-record': { title: 'Pay with Apple Pay, then tap Save.', media: { tap: true } },
+  'record-as-you-pay': { title: 'Pay, then tap Save.', media: { tap: true } },
   accounts: { title: 'Every currency in one total.', art: 'account' },
   budgets: { title: 'Know before you overspend.', art: 'budget' },
   goals: { title: 'Watch your savings grow.', art: 'goal' },

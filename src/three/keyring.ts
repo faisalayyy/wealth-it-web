@@ -8,8 +8,8 @@ import { THREE, type Scene } from './stage';
 /**
  * The homepage hero's 3D, after the reference's keyring: a big ring hanging from the top edge of
  * the screen, split rings threaded on it, link chains from the split rings, and on the chains the
- * charms — the Wealthit mark (the lime blade and two white ones) on a soft black block, as on the
- * app's icon, the spending chart, a card, a receipt and a padlock — spaced evenly either side of the
+ * charms — the Wealthit mark (the lime blade and two Night ones) on a soft paper block, as on the
+ * app's light icon (A507: the logo has no black behind it), the spending chart, a card, a receipt and a padlock — spaced evenly either side of the
  * ring's lowest point.
  *
  * Everything that moves is a solid body in a small physics world (cannon-es): every split ring,
@@ -65,9 +65,9 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
   const steel = new THREE.MeshPhysicalMaterial({ color: '#dfe1dc', metalness: 1, roughness: 0.22, envMap: env, envMapIntensity: 1.1 });
   const gloss = (color: string, extra: Partial<THREE.MeshPhysicalMaterialParameters> = {}) =>
     new THREE.MeshPhysicalMaterial({ color, roughness: 0.3, clearcoat: 0.9, clearcoatRoughness: 0.14, envMap: env, envMapIntensity: 0.65, ...extra });
-  // the brand's lime and Blade White, lacquered; Night for the card
+  // the brand's lime and paper, lacquered; Night for the blades and the card
   const lime = gloss('#77c41b', { roughness: 0.24, clearcoat: 1, clearcoatRoughness: 0.1, envMapIntensity: 0.8 });
-  const blade = gloss('#f3f3f3', { roughness: 0.28, clearcoat: 1, clearcoatRoughness: 0.12, envMapIntensity: 0.7 });
+  const paper = gloss('#f5f5f3', { roughness: 0.42, clearcoat: 0.55, clearcoatRoughness: 0.3, envMapIntensity: 0.7 });
   const night = gloss('#141415', { roughness: 0.3, clearcoat: 0.9 });
   const ink = gloss('#111112', { roughness: 0.42, clearcoat: 0.55, clearcoatRoughness: 0.3 });
 
@@ -207,11 +207,11 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     return g;
   };
 
-  // ─── 1 · the mark on a soft black block, as on the app's icon ───────────────────────────
+  // ─── 1 · the mark on a soft paper block, as on the app's light icon ─────────────────────
   {
     const S = 1.0;
     const D = 0.5;
-    const block = new THREE.Mesh(new RoundedBoxGeometry(S, S * 0.94, D, 8, 0.22), ink);
+    const block = new THREE.Mesh(new RoundedBoxGeometry(S, S * 0.94, D, 8, 0.22), paper);
     // the block is a little soft — pressed in at the middle of each face
     {
       const p = block.geometry.attributes.position as THREE.BufferAttribute;
@@ -226,7 +226,7 @@ export function keyring({ renderer, env }: { renderer: THREE.WebGLRenderer; env:
     }
     // the blades at the size the app's icon sets them on its tile, raised off the face
     const mark = new THREE.Group();
-    bladeGeometries(S * 0.56, 0.03, 0.012).forEach((geo, i) => mark.add(new THREE.Mesh(geo, i === 0 ? lime : blade)));
+    bladeGeometries(S * 0.56, 0.03, 0.012).forEach((geo, i) => mark.add(new THREE.Mesh(geo, i === 0 ? lime : night)));
     mark.position.z = D / 2 - 0.03;
     const { obj: e, eyelet } = eye(S * 0.47);
     const holder = new THREE.Group();

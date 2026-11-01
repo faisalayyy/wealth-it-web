@@ -148,11 +148,11 @@ export function buildArt(name: ArtName, env: THREE.Texture) {
   }
 
   if (name === 'mark') {
-    // the app's icon: the blades over the Night tile, the mark 0.534 of its width
+    // the app's light icon (A507): the blades over the paper tile, the mark 0.534 of its width
     const T = 2.3;
-    group.add(new THREE.Mesh(new RoundedBoxGeometry(T, T, 0.36, 8, 0.5), night));
+    group.add(new THREE.Mesh(new RoundedBoxGeometry(T, T, 0.36, 8, 0.5), paper));
     bladeGeometries(T * 0.534, 0.12, 0.04).forEach((geo, i) => {
-      const m = new THREE.Mesh(geo, i === 0 ? lime : blade);
+      const m = new THREE.Mesh(geo, i === 0 ? lime : night);
       m.position.set(0, 0.03, 0.18);
       group.add(m);
     });

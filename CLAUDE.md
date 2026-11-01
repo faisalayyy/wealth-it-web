@@ -101,8 +101,10 @@ node scripts/og.mjs        # the link preview, public/og.png
   with ink `#111111` text; green text on light is Lime Text `#008317`, the lime on dark; the light
   page is Paper `#F5F5F3`, the dark page Night. Big brand panels are Night lit by the app's Liquid
   (the four lights behind the top of Home: lime, forest, teal, olive) with Blade White text. The
-  icon is the tile: the blades over Night (`public/favicon.svg`, `apple-touch-icon.png`,
-  `icon-512.png`, copied from `App/brand/favicon`). Headlines end on the lime full stop,
+  logo has no black behind it (A507): `public/favicon.svg` is the bare mark, its two blades turning
+  light on a dark tab strip by themselves; `favicon-32.png`, `apple-touch-icon.png` and `icon-512.png`
+  are the light tile, and all four are copied from `App/brand/favicon`. The keyring's charm and the
+  3D mark are that light tile too. A dark section with the mark directly on it is fine. Headlines end on the lime full stop,
   `fullStop('…')`, as the App Store posters do. The leaves, the gold coin, Forest, Emerald, Mint
   and Ivory are the old brand: none of them on the site.
 - **Words** (`App/docs/marketing/app-store-campaign.md`): plain and specific. Never "smart",

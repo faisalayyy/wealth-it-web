@@ -141,7 +141,8 @@ node scripts/og.mjs        # the link preview, public/og.png
 - **Privacy claims are load-bearing.** `/privacy/` and Help started as the app session's text (11
   October 2026) and were checked against Apple's 5.1.1 and Google Play's user data and account
   deletion rules on 17 October 2026, from the app's code and notes: an account (email, Google,
-  Apple), records synced to Wealthit's server in Frankfurt (Render + Neon, a six-hour restore
+  Apple), records synced to Wealthit's server in Frankfurt (Render + Neon, Render's network running
+  through Cloudflare, which carries every request, confirmed by Database & Server 2 Nov; a six-hour restore
   window on Neon's free plan), receipt photos, profile picture and PIN only on the phone,
   open.er-api.com for rates, Resend for sign-in email, Zoho Mail for support email, Vercel for the
   design service and the owner's admin page (counts and dates only, never what records say), IP

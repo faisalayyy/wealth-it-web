@@ -166,7 +166,9 @@ export default function Privacy() {
           <p>A few services run parts of Wealthit. Each one handles your data only to do that job for Wealthit, never for its own use:</p>
           <ul className={p.list}>
             <li>
-              <strong>Render</strong> runs the application server and <strong>Neon</strong> runs the database, both in Frankfurt.
+              <strong>Render</strong> runs the application server and <strong>Neon</strong> runs the database, both in Frankfurt. Render’s network
+              runs through <strong>Cloudflare</strong>, which carries every request from the app on to the server, so it sees your IP address and
+              the request on its way. Wealthit has no account with Cloudflare and no access to its logs.
             </li>
             <li>
               <strong>Resend</strong> sends the sign-in emails. It receives your address and the message, and nothing else.

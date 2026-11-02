@@ -63,7 +63,7 @@ const FACTS: Fact[] = [
   { title: 'Passwords never stored', text: 'A password, if you set one, is kept only as a hash. Sign-in codes expire after ten minutes.' },
   { title: 'Photos stay on your phone', text: 'Receipt photos and your profile picture are never uploaded.' },
   { title: 'Sign-in limits', text: 'Too many sign-in tries in a row are stopped. Wealthit doesn’t keep your IP address with your account or records.' },
-  { title: 'Nobody reads your records', text: 'Wealthit’s own admin page shows only counts and dates, never what your records say.' },
+  { title: 'Nobody reads your records', text: 'Wealthit’s own admin page shows only counts, dates and part of each email address, never what your records say.' },
   { title: 'Delete any time', text: 'From Advanced settings, gone for good 60 days later. Or write to us and it’s deleted straight away.' },
 ];
 

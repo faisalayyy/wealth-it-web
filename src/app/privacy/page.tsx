@@ -24,7 +24,7 @@ export const metadata: Metadata = pageMeta({
 });
 
 // the day records only you can read ship (the app's A430)
-const updated = '24 October 2026';
+const updated = '2 November 2026';
 
 const nots = [
   'Your records are kept on your phone and in your account, encrypted on the way and on the server, and used only to give you Wealthit.',
@@ -106,6 +106,11 @@ export default function Privacy() {
             <li>
               <strong>Notifications</strong>, only for the reminders you set up, which the phone schedules itself.
             </li>
+            <li>
+              <strong>Notification access, on Android</strong>, only if you turn on Record from bank messages, so Wealthit can read your bank’s
+              payment alerts as they arrive. Android shows Wealthit every alert; it looks only at text messages, for your bank’s payment alerts,
+              and leaves every other app’s alerts alone. It needs no permission to read your text messages, and never reads old ones.
+            </li>
           </ul>
           <p>Wealthit never asks for your location, your contacts or your bank login. You can say no to any of these and still use the app.</p>
 
@@ -136,10 +141,18 @@ export default function Privacy() {
             <li>
               <strong>Tap to Record.</strong> If you set it up with Apple Pay, the amount, the shop and the card’s name (as your wallet shows it,
               never its number) are handed to the app on the phone. The payment becomes a record like any other, and the card’s name is kept with
-              your settings so the next payment finds its wallet.
+              your settings so the next payment finds its wallet. When you sign out, payments still waiting on the phone are cleared.
             </li>
             <li>
-              <strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications.
+              <strong>Record from bank messages, on Android.</strong> If you turn it on, your bank’s payment alerts are read on the phone. The
+              message itself is never kept or sent anywhere: the phone keeps only a fingerprint of each, so the same alert isn’t counted twice.
+              What was read from it (the amount, the currency, the shop’s or person’s name and the card’s or account’s last four digits) becomes a
+              record like any other, kept in your account if you sync, and the card’s bank and last four digits are kept with your settings so the
+              next payment finds its wallet. Signing out or deleting your account clears what bank messages kept on the phone.
+            </li>
+            <li>
+              <strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications. While
+              nobody is signed in, widgets show no figures and no names.
             </li>
           </ul>
 
@@ -153,7 +166,9 @@ export default function Privacy() {
           <p>A few services run parts of Wealthit. Each one handles your data only to do that job for Wealthit, never for its own use:</p>
           <ul className={p.list}>
             <li>
-              <strong>Render</strong> runs the application server and <strong>Neon</strong> runs the database, both in Frankfurt.
+              <strong>Render</strong> runs the application server and <strong>Neon</strong> runs the database, both in Frankfurt. Render’s network
+              runs through <strong>Cloudflare</strong>, which carries every request from the app on to the server, so it sees your IP address and
+              the request on its way. Wealthit has no account with Cloudflare and no access to its logs.
             </li>
             <li>
               <strong>Resend</strong> sends the sign-in emails. It receives your address and the message, and nothing else.
@@ -192,6 +207,7 @@ export default function Privacy() {
               doesn’t keep it with your account or records.
             </li>
             <li>The server’s logs say what went wrong, never who it happened to: no email addresses, no codes, no records.</li>
+            <li>On Android, what Wealthit keeps on the phone is left out of Google’s backups and device transfers. Your account is the backup.</li>
           </ul>
 
           <h2>Why Wealthit can use it</h2>
@@ -204,7 +220,7 @@ export default function Privacy() {
               <strong>To keep it secure</strong>: stopping repeated sign-in tries, and signing out or deleting an account when you ask.
             </li>
             <li>
-              <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record and reminders. Turn them off and they stop.
+              <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record, bank messages and reminders. Turn them off and they stop.
             </li>
           </ul>
 
@@ -250,8 +266,9 @@ export default function Privacy() {
               <strong>Log out</strong> from the side menu. Your records stay in your account.
             </li>
             <li>
-              <strong>Turn things off.</strong> Stop the daily exchange rates in Currency &amp; format, and remove Tap to Record by deleting its
-              automation. Wealthit stops using them at once.
+              <strong>Turn things off.</strong> Stop the daily exchange rates in Currency &amp; format, remove Tap to Record by deleting its
+              automation, and stop bank messages by turning them off or taking away Wealthit’s notification access in your phone’s settings.
+              Wealthit stops using them at once.
             </li>
             <li>
               <strong>Ask</strong> for a copy of what Wealthit holds about you, or for a correction, by writing to{' '}
@@ -269,7 +286,7 @@ export default function Privacy() {
           <h2 id="delete-account">Deleting your account</h2>
           <ul className={p.list}>
             <li>
-              <strong>In the app:</strong> open your profile (your picture at the top of Home or of the side menu), then Delete account.
+              <strong>In the app:</strong> open Advanced settings, then Delete account, the last item.
             </li>
             <li>
               <strong>Without the app:</strong> write to <a href={`mailto:${contactEmail}?subject=Delete%20my%20Wealthit%20account`}>{contactEmail}</a>{' '}

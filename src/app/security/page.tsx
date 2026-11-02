@@ -27,7 +27,7 @@ const ROWS: Row[] = [
   {
     cap: 'Where your records live',
     title: 'Synced, or on this phone only.',
-    text: 'Right after you sign in, you choose. Sync with my account backs your records up, so they’re the same on every phone and on the web. Keep on this phone keeps them on that phone and never sends them to Wealthit’s server, though the phone’s own backup may include them. You can change it any time in Your data.',
+    text: 'When you make your account, you choose. Sync with my account backs your records up, so they’re the same on every phone and on the web. Keep on this phone keeps them on that phone and never sends them to Wealthit’s server, though the phone’s own backup may include them. You can change it any time in Your data.',
     media: { screen: 'where-records-live-dark', dark: true },
   },
   {
@@ -64,7 +64,7 @@ const FACTS: Fact[] = [
   { title: 'Photos stay on your phone', text: 'Receipt photos and your profile picture are never uploaded.' },
   { title: 'Sign-in limits', text: 'Too many sign-in tries in a row are stopped. Wealthit doesn’t keep your IP address with your account or records.' },
   { title: 'Nobody reads your records', text: 'Wealthit’s own admin page shows only counts and dates, never what your records say.' },
-  { title: 'Delete any time', text: 'From your profile, gone for good 60 days later. Or write to us and it’s deleted straight away.' },
+  { title: 'Delete any time', text: 'From Advanced settings, gone for good 60 days later. Or write to us and it’s deleted straight away.' },
 ];
 
 export default function Security() {

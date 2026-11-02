@@ -119,8 +119,10 @@ node scripts/og.mjs        # the link preview, public/og.png
   own, App/docs/marketing/instagram). Where butter shows client logos the homepage shows the
   26 countries whose money the app keeps (flags from flag-icons, MIT). No Pricing or Blog page until
   there is a price or a post.
-- **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: its own page, a homepage
-  section and one of the two large tiles in the features bento. It works with Apple Pay and is set
+- **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: a homepage section, one of the
+  two large tiles in the features bento, and with Record from bank messages (A440, Android) the
+  page **Record as you pay** (`/features/record-as-you-pay/`; the owner, 24 October 2026; the old
+  `/features/tap-to-record/` forwards there). It works with Apple Pay and is set
   up once; never promise it on Android. After a payment the Lock Screen card says Change and Save
   (A436); a shop it hasn't seen offers two categories to pick (A438). Its Lock Screen card can't be
   captured on a simulator: `scripts/tap.mjs` renders the App Store poster 03's own HTML, card only
@@ -130,7 +132,8 @@ node scripts/og.mjs        # the link preview, public/og.png
 - **No platform names in the copy** (the owner, 17 October 2026): Wealthit is for iPhone, Android
   and the web, and the site never says which: no "for iPhone", "Android to follow" or "on the App
   Store". Tap to Record still says it works with Apple Pay, because that is how it works; it is
-  never promised for Android.
+  never promised for Android. The one exception (the owner, 24 October 2026): Record from bank
+  messages says "Android for now", on Record as you pay.
 - **The web app is at https://dashboard.wealthit.app** (`webApp`; ../WebApp, published through the
   wealthit-dashboard-site repository). "Log in" and "Open Wealthit on the web" go there. One URL
   serves log in and sign up (its root shows sign-in). Say only what it does: same account, records
@@ -138,7 +141,8 @@ node scripts/og.mjs        # the link preview, public/og.png
 - **Privacy claims are load-bearing.** `/privacy/` and Help started as the app session's text (11
   October 2026) and were checked against Apple's 5.1.1 and Google Play's user data and account
   deletion rules on 17 October 2026, from the app's code and notes: an account (email, Google,
-  Apple), records synced to Wealthit's server in Frankfurt (Render + Neon, a six-hour restore
+  Apple), records synced to Wealthit's server in Frankfurt (Render + Neon, Render's network running
+  through Cloudflare, which carries every request, confirmed by Database & Server 2 Nov; a six-hour restore
   window on Neon's free plan), receipt photos, profile picture and PIN only on the phone,
   open.er-api.com for rates, Resend for sign-in email, Zoho Mail for support email, Vercel for the
   design service and the owner's admin page (counts and dates only, never what records say), IP
@@ -148,7 +152,13 @@ node scripts/og.mjs        # the link preview, public/og.png
   grace (or at once by email, `/privacy/#delete-account`). The app's
   `docs/PRIVACY_POLICY_DRAFT.md` should be brought in line. Since 23 October (the app's A429,
   A439): everyone signs in, then chooses Sync with my account or Keep on this phone; "Only you can
-  read your records" is a choice, off by default. Never say every account is end-to-end encrypted. If the app changes, these change the
+  read your records" is a choice, off by default. Never say every account is end-to-end encrypted.
+  Record from bank messages (A440, Android): Notification access, never SMS; the alert read on the
+  phone, the message itself never kept or sent (a fingerprint only); what's read from it (amount,
+  currency, shop or person, last four digits) becomes the record; the card's bank and last four
+  digits kept with the settings; only text messages read, other apps' alerts left alone, cleared on
+  sign-out, no Android cloud backup (A514, A518); the policy says so. Delete account is in Advanced
+  settings (A451); where records live is asked when the account is made (A450). If the app changes, these change the
   same day. The app links to `/privacy/` and `/support/` — never move them.
 - **Nothing loaded from elsewhere.** Fonts, captures and 3D are all served from this site.
 - **Type.** Plus Jakarta Sans (OFL), the app's own face, one variable file in `src/fonts`.

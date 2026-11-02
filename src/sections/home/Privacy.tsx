@@ -20,7 +20,7 @@ const POINTS = [
   { icon: 'key', title: 'Only you can read', text: 'Turn it on and your records are locked with a key only you hold, so not even Wealthit can read them. Or keep them on your phone only.' },
   { icon: 'bank', title: 'No bank login', text: 'Wealthit never asks for your bank password.' },
   { icon: 'shield', title: 'Nothing tracked', text: 'No tracking, advertising or analytics service. Only which parts you use, never what you record.' },
-  { icon: 'trash', title: 'Delete it any time', text: 'From your profile. Sixty days later, everything is gone for good.' },
+  { icon: 'trash', title: 'Delete it any time', text: 'From Advanced settings. Sixty days later, everything is gone for good.' },
 ];
 
 export function Privacy() {

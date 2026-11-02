@@ -57,7 +57,7 @@ const ACCOUNT: QA[] = [
   {
     q: 'How do I delete my account?',
     a: [
-      'Open your profile and choose Delete account. You are signed out everywhere and the phone is cleared, and 60 days later the account and everything in it are deleted for good. Sign in before then to change your mind.',
+      'Open Advanced settings and choose Delete account, the last item. You are signed out everywhere and the phone is cleared, and 60 days later the account and everything in it are deleted for good. Sign in before then to change your mind.',
       'To have it deleted straight away, write to the address at the top of this page from the email you sign in with.',
     ],
   },
@@ -67,7 +67,7 @@ const RECORDS: QA[] = [
   {
     q: 'Where are my records kept?',
     a: [
-      'You choose, right after you sign in. Sync with my account backs them up to your account, so they’re the same on every phone you sign in on and on the web. Keep on this phone keeps them on this phone only and never sends them anywhere: lose the phone or delete Wealthit, and they go with it.',
+      'You choose when you make your account. Sync with my account backs them up to your account, so they’re the same on every phone you sign in on and on the web. Keep on this phone keeps them on this phone only and never sends them anywhere: lose the phone or delete Wealthit, and they go with it.',
       'You can change this any time in Advanced settings → Your data. Records kept on a phone only don’t show on the web, which reads your account.',
     ],
   },

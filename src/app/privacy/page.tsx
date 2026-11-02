@@ -179,8 +179,9 @@ export default function Privacy() {
             <li>
               <strong>Vercel</strong> runs, in Frankfurt, the design service the app asks for its look, and Wealthit’s own admin page. The admin
               page lets the person who runs Wealthit see that an account exists, when it joined, when it was last used, how many records it
-              keeps and which parts of Wealthit it uses, as yes or no; never what those records say. It can find an account by its email address to sign it out or delete it when you ask, it
-              needs a password, and every change made with it is written to a log nobody can edit.
+              keeps and which parts of Wealthit it uses, as yes or no, and only part of its email address, like j•••@g•••.com; never what those
+              records say. Typing in a full email address finds that one account, to sign it out or delete it when you ask, and each such look-up
+              is logged. It needs a password, and every change made with it is written to a log nobody can edit.
             </li>
             <li>
               <strong>Apple and Google</strong>, only if you choose to sign in with them, as described above.

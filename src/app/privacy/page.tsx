@@ -24,7 +24,7 @@ export const metadata: Metadata = pageMeta({
 });
 
 // the day records only you can read ship (the app's A430)
-const updated = '24 October 2026';
+const updated = '2 November 2026';
 
 const nots = [
   'Your records are kept on your phone and in your account, encrypted on the way and on the server, and used only to give you Wealthit.',
@@ -108,7 +108,8 @@ export default function Privacy() {
             </li>
             <li>
               <strong>Notification access, on Android</strong>, only if you turn on Record from bank messages, so Wealthit can read your bank’s
-              payment alerts as they arrive. It needs no permission to read your text messages, and never reads old ones.
+              payment alerts as they arrive. Android shows Wealthit every alert; it looks only at text messages, for your bank’s payment alerts,
+              and leaves every other app’s alerts alone. It needs no permission to read your text messages, and never reads old ones.
             </li>
           </ul>
           <p>Wealthit never asks for your location, your contacts or your bank login. You can say no to any of these and still use the app.</p>
@@ -140,17 +141,18 @@ export default function Privacy() {
             <li>
               <strong>Tap to Record.</strong> If you set it up with Apple Pay, the amount, the shop and the card’s name (as your wallet shows it,
               never its number) are handed to the app on the phone. The payment becomes a record like any other, and the card’s name is kept with
-              your settings so the next payment finds its wallet.
+              your settings so the next payment finds its wallet. When you sign out, payments still waiting on the phone are cleared.
             </li>
             <li>
               <strong>Record from bank messages, on Android.</strong> If you turn it on, your bank’s payment alerts are read on the phone. The
               message itself is never kept or sent anywhere: the phone keeps only a fingerprint of each, so the same alert isn’t counted twice.
               What was read from it (the amount, the currency, the shop’s or person’s name and the card’s or account’s last four digits) becomes a
               record like any other, kept in your account if you sync, and the card’s bank and last four digits are kept with your settings so the
-              next payment finds its wallet.
+              next payment finds its wallet. Signing out or deleting your account clears what bank messages kept on the phone.
             </li>
             <li>
-              <strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications.
+              <strong>Widgets and reminders.</strong> Drawn and scheduled on the phone, by the phone. There are no push notifications. While
+              nobody is signed in, widgets show no figures and no names.
             </li>
           </ul>
 
@@ -202,6 +204,7 @@ export default function Privacy() {
               Your IP address is used for a few minutes to stop too many sign-in tries in a row. It is held in memory only and never stored.
             </li>
             <li>The server’s logs say what went wrong, never who it happened to: no email addresses, no codes, no records.</li>
+            <li>On Android, what Wealthit keeps on the phone is left out of Google’s backups and device transfers. Your account is the backup.</li>
           </ul>
 
           <h2>Why Wealthit can use it</h2>
@@ -280,7 +283,7 @@ export default function Privacy() {
           <h2 id="delete-account">Deleting your account</h2>
           <ul className={p.list}>
             <li>
-              <strong>In the app:</strong> open your profile (your picture at the top of Home or of the side menu), then Delete account.
+              <strong>In the app:</strong> open Advanced settings, then Delete account, the last item.
             </li>
             <li>
               <strong>Without the app:</strong> write to <a href={`mailto:${contactEmail}?subject=Delete%20my%20Wealthit%20account`}>{contactEmail}</a>{' '}

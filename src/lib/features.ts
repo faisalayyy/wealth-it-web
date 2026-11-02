@@ -112,7 +112,7 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Record from bank messages · Android for now',
         title: 'From your bank’s alert, online payments too.',
-        text: 'Your bank sends you an alert when you pay by card, in a shop or online. With your permission, Wealthit reads it as it arrives and asks only what it doesn’t know yet: the wallet for a new card, what a new shop was for, or just Save or Change. It never reads old messages and needs no bank login. It keeps only what the record needs: the amount, the shop and the card’s last four digits. The message itself isn’t stored.',
+        text: 'Your bank texts you when you pay by card, in a shop or online. With your permission, Wealthit reads that text as it arrives, leaves every other app’s alerts alone, and asks only what it doesn’t know yet: the wallet for a new card, what a new shop was for, or just Save or Change. It never reads old messages and needs no bank login. It keeps only what the record needs: the amount, the shop and the card’s last four digits. The message itself isn’t stored.',
         media: { cut: 'bank-alert', dark: true },
       },
       {
@@ -124,7 +124,7 @@ export const featurePages: FeaturePage[] = [
       {
         cap: 'Your choice',
         title: 'Save at once, or check first.',
-        text: 'Save records the payment there and then, without opening Wealthit. Change opens the record already filled in, for you to look over and save. Bank messages ask first too, unless you choose to save a known card and shop straight away.',
+        text: 'Save keeps the payment as it is, without opening Wealthit. Change opens it already filled in, for you to look over first. A payment from a bank message is added when you next open Wealthit, and those ask first too, unless you choose to save a known card and shop from a known bank straight away.',
         media: { screen: 'record-sheet-dark', dark: true },
       },
     ],

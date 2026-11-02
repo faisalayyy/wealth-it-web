@@ -155,7 +155,9 @@ node scripts/og.mjs        # the link preview, public/og.png
   Record from bank messages (A440, Android): Notification access, never SMS; the alert read on the
   phone, the message itself never kept or sent (a fingerprint only); what's read from it (amount,
   currency, shop or person, last four digits) becomes the record; the card's bank and last four
-  digits kept with the settings; the policy says so. If the app changes, these change the
+  digits kept with the settings; only text messages read, other apps' alerts left alone, cleared on
+  sign-out, no Android cloud backup (A514, A518); the policy says so. Delete account is in Advanced
+  settings (A451); where records live is asked when the account is made (A450). If the app changes, these change the
   same day. The app links to `/privacy/` and `/support/` — never move them.
 - **Nothing loaded from elsewhere.** Fonts, captures and 3D are all served from this site.
 - **Type.** Plus Jakarta Sans (OFL), the app's own face, one variable file in `src/fonts`.

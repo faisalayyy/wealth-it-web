@@ -25,7 +25,7 @@ const ROWS: Row[] = [
   {
     cap: 'Step 1 · Sign in',
     title: 'Sign in, then choose where your records live.',
-    text: 'Sign in with Apple, Google or your email. Then choose: sync with your account, so every phone and the web show the same money, or keep everything on this phone only.',
+    text: 'Sign in with Apple, Google or your email. When you make your account, you choose: sync with it, so every phone and the web show the same money, or keep everything on this phone only. You can change it later in Your data.',
     media: { screen: 'where-records-live-dark', dark: true },
   },
   {

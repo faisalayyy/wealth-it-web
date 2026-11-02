@@ -188,7 +188,8 @@ export default function Privacy() {
             <li>Passwords and sign-in codes are only ever stored as hashes.</li>
             <li>The database itself keeps each account’s records apart, so one person’s session can never read another’s.</li>
             <li>
-              Your IP address is used for a few minutes to stop too many sign-in tries in a row. It is held in memory only and never stored.
+              Your IP address is used for a few minutes to stop too many sign-in tries in a row. Wealthit holds it in memory only and
+              doesn’t keep it with your account or records.
             </li>
             <li>The server’s logs say what went wrong, never who it happened to: no email addresses, no codes, no records.</li>
           </ul>

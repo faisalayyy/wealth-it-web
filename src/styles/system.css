@@ -6,7 +6,7 @@
   /* ─── colour: the brand (App/brand/README.md, App/src/ui/brandMark.ts) ──────────────── */
   --lime: #77c41b; /* the first blade, "it" in the name, the full stop; the app's primary, with ink on it */
   --lime-text: #008317; /* green text on light grounds, where the lime is too faint to read; never the logo */
-  --night: #0b0b0c; /* the other two blades and "Wealth" on light; the dark canvas; the icon's tile */
+  --night: #0b0b0c; /* the other two blades and "Wealth" on light; the dark canvas */
   --blade-white: #f3f3f3; /* the other two blades and "Wealth" on dark; text on Night */
   --ink: #111111; /* text on light grounds, and on the lime */
   --paper: #f5f5f3; /* the light page; cards on it are white */

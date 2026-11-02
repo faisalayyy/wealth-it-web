@@ -43,7 +43,7 @@ const ACCOUNT: QA[] = [
     q: 'I did not get the sign-in email.',
     a: [
       'Check spam and other folders, and that the address is spelt right. The email comes from no-reply@wealthit.app and its link and code last ten minutes.',
-      'You can also sign in with Apple or Google, or set a password in your profile so email is never needed.',
+      'You can also sign in with Google, or with Apple where it’s offered, or set a password in your profile so email is never needed.',
     ],
   },
   {
@@ -67,7 +67,7 @@ const RECORDS: QA[] = [
   {
     q: 'Where are my records kept?',
     a: [
-      'You choose when you make your account. Sync with my account backs them up to your account, so they’re the same on every phone you sign in on and on the web. Keep on this phone keeps them on this phone only and never sends them anywhere: lose the phone or delete Wealthit, and they go with it.',
+      'You choose when you make your account. Sync with my account backs them up to your account, so they’re the same on every phone you sign in on and on the web. Keep on this phone keeps them on this phone only and never sends them to Wealthit’s server: lose the phone or delete Wealthit, and they go with it, unless the phone’s own backup kept them.',
       'You can change this any time in Advanced settings → Your data. Records kept on a phone only don’t show on the web, which reads your account.',
     ],
   },

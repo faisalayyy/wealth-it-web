@@ -56,6 +56,20 @@ export const viewport: Viewport = { themeColor: '#0b0b0c', colorScheme: 'dark li
  * Dark is the default theme; a visitor who chose light (the switch in the header) gets it before the
  * first paint, so the page never flashes from one to the other.
  */
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'unsafe-inline'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob:",
+  "font-src 'self' data:",
+  "media-src 'self'",
+  "connect-src 'self'",
+  "worker-src 'self' blob:",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+].join('; ');
+
 const THEME = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark'){document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='light'?'#f5f5f3':'#0b0b0c'}}catch(e){}`;
 
 /** Who publishes the site, for search engines (schema.org). Only facts that are true today. */
@@ -86,6 +100,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={font.variable} data-theme="dark" suppressHydrationWarning>
       <head>
+        {/* GitHub Pages can't send headers, so the content security policy is a meta tag, first in the head. Everything is
+            served from this site; the static export starts with inline scripts, and the page sets inline styles. */}
+        <meta httpEquiv="Content-Security-Policy" content={CSP} />
         <script dangerouslySetInnerHTML={{ __html: THEME }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(ORGANIZATION) }} />
       </head>

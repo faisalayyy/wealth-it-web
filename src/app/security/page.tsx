@@ -27,20 +27,20 @@ const ROWS: Row[] = [
   {
     cap: 'Where your records live',
     title: 'Synced, or on this phone only.',
-    text: 'When you make your account, you choose. Sync with my account backs your records up, so they’re the same on every phone and on the web. Keep on this phone keeps them on that phone and never sends them anywhere. You can change it any time in Your data.',
+    text: 'When you make your account, you choose. Sync with my account backs your records up, so they’re the same on every phone and on the web. Keep on this phone keeps them on that phone and never sends them to Wealthit’s server, though the phone’s own backup may include them. You can change it any time in Your data.',
     media: { screen: 'where-records-live-dark', dark: true },
   },
   {
     cap: 'Only you can read',
     title: 'Locked with a key only you hold.',
     text: 'Turn on “Only you can read your records” in Your data and they’re locked on your phone before they’re sent, so not even Wealthit can read them. You get a recovery key, which opens them on a new phone or on the web, and nobody can recover it for you. It’s off unless you turn it on, and only then is there a key to keep.',
-    media: { screen: 'recovery-key-dark', dark: true },
+    media: { screen: 'your-data-dark', dark: true },
   },
   {
     cap: 'App lock',
     title: 'A PIN, your face or your fingerprint.',
     text: 'Lock Wealthit so it opens only for you. The PIN is kept in your phone’s own secure storage, and your face or fingerprint is checked by the phone, which tells the app only yes or no.',
-    media: { screen: 'app-lock-dark', dark: true },
+    media: { screen: 'advanced-settings-dark', dark: true },
   },
   {
     cap: 'Hide amounts',
@@ -62,7 +62,7 @@ const FACTS: Fact[] = [
   { title: 'No tracking or ads', text: 'No tracking, advertising or analytics service. The app tells Wealthit only which parts you use, as yes or no.' },
   { title: 'Passwords never stored', text: 'A password, if you set one, is kept only as a hash. Sign-in codes expire after ten minutes.' },
   { title: 'Photos stay on your phone', text: 'Receipt photos and your profile picture are never uploaded.' },
-  { title: 'Sign-in limits', text: 'Too many sign-in tries in a row are stopped. Your IP address is used for that in memory only, and never stored.' },
+  { title: 'Sign-in limits', text: 'Too many sign-in tries in a row are stopped. Wealthit doesn’t keep your IP address with your account or records.' },
   { title: 'Nobody reads your records', text: 'Wealthit’s own admin page shows only counts and dates, never what your records say.' },
   { title: 'Delete any time', text: 'From Advanced settings, gone for good 60 days later. Or write to us and it’s deleted straight away.' },
 ];
@@ -88,7 +88,7 @@ export default function Security() {
               <Button label="Read the privacy policy" href="/privacy/" tone="ink" variant="secondary" />
             </>
           }
-          media={<Shot media={{ screens: ['home-hidden-dark', 'your-data-dark'] }} sizes="(max-width: 743px) 64vw, 300px" />}
+          media={<Shot media={{ screens: ['home-hidden-dark', 'app-lock-dark'] }} sizes="(max-width: 743px) 64vw, 300px" />}
         />
         <Rows rows={ROWS} />
         <Facts title="And underneath it all." facts={FACTS} />

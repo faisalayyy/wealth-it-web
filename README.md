@@ -4,7 +4,7 @@ The marketing and support site for Wealth-it, a personal finance app that keeps 
 phone. The homepage recreates jeton.com's experience — structure, rhythm, type scale, motion — with
 Wealth-it's content and real screens captured from the app.
 
-- **Live:** https://faisalayyy.github.io/wealth-it-web/
+- **Live:** https://wealthit.app
 - **App repo:** https://github.com/faisalayyy/wealth-it (private), the sibling folder `../App`
 - **Stack:** Next.js 16 (static export), React 19, GSAP + ScrollTrigger + SplitText, Lenis,
   Three.js, Matter.js

@@ -20,7 +20,7 @@ const HOME: QA[] = [
   },
   {
     q: 'Do I need an account?',
-    a: 'Yes. You sign in with Apple, Google or your email, then choose where your records live: in your account, so they’re the same on every phone you sign in on and a lost or new phone loses nothing, or on this phone only.',
+    a: 'Yes. You sign in with your email or Google, or with Apple where it’s offered, then choose where your records live: in your account, so they’re the same on every phone you sign in on and a lost or new phone loses nothing, or on this phone only.',
   },
   {
     q: 'Can I use Wealthit on my computer?',

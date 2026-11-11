@@ -3,11 +3,11 @@
 // top of the app's Home is (the Liquid's four lights). Drawn in headless Chromium from this site's own
 // font, mark and captures.
 //   node scripts/og.mjs        (after npm run screens)
-import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { openChrome } from './chrome.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const brand = fs.readFileSync(path.join(root, 'src/lib/brand.ts'), 'utf8');
@@ -43,33 +43,12 @@ ${phone('home-dark', 890, 90, 270, 4)}
 </body></html>`;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'og-'));
 fs.writeFileSync(path.join(tmp, 'og.html'), html);
-// Playwright's headless Chromium, the newest one installed
-const PW = `${os.homedir()}/Library/Caches/ms-playwright`;
-const BIN = `${PW}/${fs.readdirSync(PW).filter(d => d.startsWith('chromium_headless_shell-')).sort().at(-1)}/chrome-headless-shell-mac-arm64/chrome-headless-shell`;
-const port = 9500 + Math.floor(Math.random() * 300);
-const proc = spawn(BIN, [`--remote-debugging-port=${port}`, `--user-data-dir=${path.join(tmp, 'p')}`, '--allow-file-access-from-files', 'about:blank'], { stdio: 'ignore' });
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-let t;
-for (let i = 0; i < 50 && !t; i++) {
-  await sleep(200);
-  try {
-    t = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find(x => x.type === 'page');
-  } catch {}
-}
-const ws = new WebSocket(t.webSocketDebuggerUrl);
-await new Promise(r => ws.addEventListener('open', r, { once: true }));
-let id = 0;
-const pending = new Map();
-ws.addEventListener('message', e => {
-  const m = JSON.parse(e.data);
-  if (m.id) (pending.get(m.id)?.(m), pending.delete(m.id));
-});
-const send = (method, params = {}) => new Promise(r => { const i = ++id; pending.set(i, r); ws.send(JSON.stringify({ id: i, method, params })); });
+const { send, sleep, close } = await openChrome();
 await send('Emulation.setDeviceMetricsOverride', { width: 1200, height: 630, deviceScaleFactor: 1, mobile: false });
 await send('Page.navigate', { url: `file://${path.join(tmp, 'og.html')}` });
 await sleep(1800);
 const shot = await send('Page.captureScreenshot', { format: 'png' });
 fs.writeFileSync(path.join(root, 'public/og.png'), Buffer.from(shot.result.data, 'base64'));
 console.log('public/og.png');
-ws.close();
-proc.kill();
+await close();
+fs.rmSync(tmp, { recursive: true, force: true });

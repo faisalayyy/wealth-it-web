@@ -1,8 +1,8 @@
 /**
  * The facts every page repeats, and the links that do not exist yet.
  *
- * `stores` and `webApp` stay `null` until they exist; every control that reads them says "Coming
- * soon" while they are null and becomes a real link the day they are not — one line here.
+ * `stores` and `webApp` are the real addresses; every control that reads them says "Coming soon"
+ * while one is null and is a real link otherwise.
  */
 export const site = {
   name: 'Wealthit',
@@ -13,8 +13,14 @@ export const site = {
     'Build better money habits with Wealthit, a budget app and expense tracker: 26 currencies, budgets, bills and savings goals in one place. No ads, no tracking.',
 } as const;
 
-/** App Store and Google Play. The iPhone app is in TestFlight; Android is planned, not built. */
-export const stores: { ios: string | null; android: string | null } = { ios: null, android: null };
+/**
+ * App Store and Google Play, live since November 2026. The App Store link has no country in it, so
+ * Apple opens each visitor's own store.
+ */
+export const stores: { ios: string | null; android: string | null } = {
+  ios: 'https://apps.apple.com/app/id6821437072',
+  android: 'https://play.google.com/store/apps/details?id=com.faisalayyy.wealthit',
+};
 
 /**
  * The web app (../WebApp, built into the wealthit-dashboard-site repository): the same account and

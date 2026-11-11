@@ -43,7 +43,7 @@ const ROWS = [
   { label: 'How it works', hint: 'From sign-in to where you stand', href: '/how-it-works/', art: 'goal' },
   { label: 'Record as you pay', hint: 'Pay, then tap Save', href: '/features/record-as-you-pay/', art: 'tap' },
   { label: 'Security', hint: 'What keeps your money private', href: '/security/', art: 'privacy' },
-  { label: 'Get the app', hint: 'Coming soon', href: '/#get', art: 'app' },
+  { label: 'Get the app', hint: 'Out now', href: '/#get', art: 'app' },
 ] as const;
 
 function Thumb({ art }: { art: string }) {

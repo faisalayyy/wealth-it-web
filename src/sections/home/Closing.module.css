@@ -34,7 +34,8 @@
   white-space: nowrap;
 }
 
-.lead {
+/* .panel first, so the shared .lead's theme colour can't win and darken it on the light page */
+.panel .lead {
   max-width: 30em;
   margin-top: 20px;
   color: rgba(243, 243, 243, 0.74);

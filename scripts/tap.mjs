@@ -7,11 +7,10 @@
 //   tap-card.png     the card, 2.7x, transparent around its rounded corners
 //   lockscreen.png   the iOS Lock Screen capture, 1320 x 2868
 //   node scripts/tap.mjs [app-dir]     (default: ../App)
-import { spawn } from 'node:child_process';
 import fs from 'node:fs';
-import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { openChrome } from './chrome.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const app = path.resolve(root, process.argv[2] ?? '../App');
@@ -19,33 +18,7 @@ const poster = path.join(app, 'marketing/app-store/source/03-apple-pay.html');
 const out = path.join(root, 'media-src/app');
 fs.copyFileSync(path.join(app, 'marketing/app-store/assets/screens/lockscreen.png'), path.join(out, 'lockscreen.png'));
 
-// Playwright's headless Chromium, the newest one installed
-const PW = `${os.homedir()}/Library/Caches/ms-playwright`;
-const BIN = `${PW}/${fs.readdirSync(PW).filter(d => d.startsWith('chromium_headless_shell-')).sort().at(-1)}/chrome-headless-shell-mac-arm64/chrome-headless-shell`;
-const port = 9500 + Math.floor(Math.random() * 300);
-const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'tap-'));
-const proc = spawn(BIN, [`--remote-debugging-port=${port}`, `--user-data-dir=${tmp}`, '--allow-file-access-from-files', 'about:blank'], { stdio: 'ignore' });
-const sleep = ms => new Promise(r => setTimeout(r, ms));
-let t;
-for (let i = 0; i < 50 && !t; i++) {
-  await sleep(200);
-  try {
-    t = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find(x => x.type === 'page');
-  } catch {}
-}
-const ws = new WebSocket(t.webSocketDebuggerUrl);
-await new Promise(r => ws.addEventListener('open', r, { once: true }));
-let id = 0;
-const pending = new Map();
-ws.addEventListener('message', e => {
-  const m = JSON.parse(e.data);
-  if (m.id) {
-    pending.get(m.id)?.(m);
-    pending.delete(m.id);
-  }
-});
-const send = (method, params = {}) => new Promise(r => { const i = ++id; pending.set(i, r); ws.send(JSON.stringify({ id: i, method, params })); });
-const run = async expression => (await send('Runtime.evaluate', { expression, returnByValue: true })).result.result.value;
+const { send, run, sleep, close } = await openChrome();
 
 await send('Emulation.setDeviceMetricsOverride', { width: 1320, height: 2868, deviceScaleFactor: 1, mobile: false });
 await send('Emulation.setDefaultBackgroundColorOverride', { color: { r: 0, g: 0, b: 0, a: 0 } });
@@ -63,5 +36,4 @@ const pad = 2;
 const shot = await send('Page.captureScreenshot', { format: 'png', clip: { x: box.x - pad, y: box.y - pad, width: box.width + pad * 2, height: box.height + pad * 2, scale: 1 } });
 fs.writeFileSync(path.join(out, 'tap-card.png'), Buffer.from(shot.result.data, 'base64'));
 console.log(`tap-card.png ${Math.round(box.width)} x ${Math.round(box.height)}; lockscreen.png`);
-ws.close();
-proc.kill();
+await close();

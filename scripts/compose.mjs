@@ -24,12 +24,12 @@
 // Dynamic Island into every capture; that black pill is filled with the status bar's colour (the
 // phone in the photo has its own notch or island), and nothing of the app is changed.
 // Output: <out>/<name>-{900,1800}.{webp,avif}.
-import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
+import { openChrome } from './chrome.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const args = process.argv.slice(2);
@@ -374,35 +374,6 @@ async function capture(job) {
   return outFile;
 }
 
-async function browser() {
-  // Playwright's headless Chromium, the newest one installed
-  const PW = `${os.homedir()}/Library/Caches/ms-playwright`;
-  const BIN = `${PW}/${fs.readdirSync(PW).filter(d => d.startsWith('chromium_headless_shell-')).sort().at(-1)}/chrome-headless-shell-mac-arm64/chrome-headless-shell`;
-  const port = 9500 + Math.floor(Math.random() * 300);
-  const proc = spawn(BIN, [`--remote-debugging-port=${port}`, `--user-data-dir=${path.join(tmp, 'profile')}`, '--allow-file-access-from-files', 'about:blank'], { stdio: 'ignore' });
-  const sleep = ms => new Promise(r => setTimeout(r, ms));
-  let t;
-  for (let i = 0; i < 50 && !t; i++) {
-    await sleep(200);
-    try {
-      t = (await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()).find(x => x.type === 'page');
-    } catch {}
-  }
-  const ws = new WebSocket(t.webSocketDebuggerUrl);
-  await new Promise(r => ws.addEventListener('open', r, { once: true }));
-  let id = 0;
-  const pending = new Map();
-  ws.addEventListener('message', e => {
-    const m = JSON.parse(e.data);
-    if (m.id) {
-      pending.get(m.id)?.(m);
-      pending.delete(m.id);
-    }
-  });
-  const send = (method, params = {}) => new Promise(r => { const i = ++id; pending.set(i, r); ws.send(JSON.stringify({ id: i, method, params })); });
-  return { send, sleep, close: () => (ws.close(), proc.kill()) };
-}
-
 async function writeWeb(input, name) {
   for (const w of [900, 1800]) {
     const img = sharp(input).resize({ width: w });
@@ -415,7 +386,7 @@ const dataUrl = (file, type) => `data:${type};base64,${fs.readFileSync(file).toS
 
 const jobs = COMPOSITES.filter(j => !only || j.photo === only);
 if (jobs.length) {
-  const b = await browser();
+  const b = await openChrome();
   for (const job of jobs) {
     const cap = await capture(job);
     const meta = await sharp(cap).metadata();
@@ -467,9 +438,10 @@ if (jobs.length) {
     if (debug) await sharp(png).jpeg({ quality: 88 }).toFile(path.join(debug, `${job.photo}.jpg`));
     console.log(`${job.photo}: ${job.screen} at ${corners.map(c => c.map(Math.round).join(',')).join(' ')}`);
   }
-  b.close();
+  await b.close();
 }
 for (const name of PLAIN.filter(n => (!only || n === only) && fs.existsSync(path.join(src, `${n}.jpg`)))) {
   await writeWeb(path.join(src, `${name}.jpg`), name);
   console.log(`${name}: as photographed`);
 }
+fs.rmSync(tmp, { recursive: true, force: true });

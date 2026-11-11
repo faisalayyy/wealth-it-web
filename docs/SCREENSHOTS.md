@@ -2,6 +2,10 @@
 
 Every picture of the product is real. Four kinds of image, four scripts.
 
+The scripts that draw in a browser (`og`, `tap`, `widgets`, `compose`) run headless Chrome through
+`scripts/chrome.mjs`: `CHROME_BIN` if set, else Playwright's headless shell if one is installed, else
+Google Chrome (or Chromium, Edge or Brave) from /Applications. Its profile is deleted when it closes.
+
 ## Screens — `npm run screens`
 
 Source: `~/Movies/Wealthit Website/build-26/screens/`, made by the **Wealthit · iOS** session on
@@ -15,11 +19,17 @@ and what the site must not claim. The folder is outside iCloud on purpose (iClou
 points), and cuts taken from elsewhere. Every `-dark` screen and crop also gets its `-light` twin,
 which the site shows in its light theme. `scripts/screens.mjs` writes `public/screens/` and
 `src/lib/screens.sizes.json`. New screens: ask the iOS session for them in the same folder.
+By 11 November 2026 the folder was gone from `~/Movies`; `public/screens/<name>-1320.webp` are the
+same captures at full size, which is enough to rebuild the photographs (decode them to PNG and pass
+the folder to `compose.mjs`).
 
 Tap to Record can't be captured on a simulator (no Apple Pay, no Shortcuts). `node scripts/tap.mjs`
 renders the App Store poster 03's own HTML with only its Lock Screen card showing (since build 26,
 Change and Save), on a transparent ground, and copies the Lock Screen capture the poster uses
 (`media-src/app`; `files` in screens.json). `TapPhone` lays the card over the Lock Screen.
+Both poster scripts take the app's folder as their argument (default `../App`). Give them a checkout
+of the app repo's current `main`: the iCloud `../App` can lag behind (on 11 November it still had
+poster 03 with Cancel and Add, and poster 09's old widgets).
 
 The Home Screen widgets get no data on a simulator. `node scripts/widgets.mjs` renders App Store
 poster 09's own HTML with only its wallpaper strip and two widgets showing (drawn there from the

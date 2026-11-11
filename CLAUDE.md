@@ -75,7 +75,7 @@ node scripts/og.mjs        # the link preview, public/og.png
 - **SEO**: `src/lib/seo.tsx` (`pageMeta` for every page's title, description, canonical and
   preview; JSON-LD for the organisation, the app, FAQs and breadcrumbs), `sitemap.ts`, `robots.ts`,
   `manifest.ts`, `public/og.png`.
-- `src/lib/site.ts` — facts, `stores` and `webApp` (both `null`), contact address.
+- `src/lib/site.ts` — facts, `stores` and `webApp` (the store and web app links), contact address.
   `src/lib/features.ts` — every feature page's copy. `src/lib/brand.ts` — the mark's geometry and
   the chart colours. `src/lib/screens.json` — every capture, cut and crop.
 - The first (Jeton) homepage and its chrome were removed on 16 October 2026; they are in commit
@@ -127,8 +127,9 @@ node scripts/og.mjs        # the link preview, public/og.png
   (A436); a shop it hasn't seen offers two categories to pick (A438). Its Lock Screen card can't be
   captured on a simulator: `scripts/tap.mjs` renders the App Store poster 03's own HTML, card only
   (`media-src/app`), and the till photograph carries it (`compose.mjs`).
-- **Not in the stores yet.** `stores` stays `null`; both AppButtons say "Coming soon" and are not
-  links.
+- **In the stores since November 2026** (the owner, 11 November). `stores` holds the App Store and
+  Google Play links and both AppButtons link to them. Never call the app "free" (the owner, 11
+  November), and the copy still names no platform.
 - **No platform names in the copy** (the owner, 17 October 2026): Wealthit is for iPhone, Android
   and the web, and the site never says which: no "for iPhone", "Android to follow" or "on the App
   Store". Tap to Record still says it works with Apple Pay, because that is how it works; it is

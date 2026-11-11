@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { asset, basePath, seo, site } from './site';
+import { asset, basePath, seo, site, stores } from './site';
 
 /** The page's address on the live site, with the trailing slash the export uses. */
 export const pageUrl = (path: string) => `${site.origin}${basePath}${path}`;
@@ -24,7 +24,7 @@ export function JsonLd({ data }: { data: object }) {
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }} />;
 }
 
-/** The app itself (schema.org MobileApplication). No price, rating or download count: none exist yet. */
+/** The app itself (schema.org MobileApplication), with its store listings. No price, rating or download count. */
 export const appSchema = {
   '@context': 'https://schema.org',
   '@type': 'MobileApplication',
@@ -36,6 +36,7 @@ export const appSchema = {
   inLanguage: 'en',
   publisher: { '@id': `${site.origin}/#organization` },
   image: `${site.origin}${asset('/og.png')}`,
+  sameAs: [stores.ios, stores.android].filter(Boolean),
 };
 
 /** Questions and answers as schema.org FAQPage. */

@@ -12,7 +12,7 @@ import s from './Closing.module.css';
 /**
  * The next step, at the end of every page: a Night panel lit like the top of the app's Home, with
  * the mark, the brand's line and the
- * store buttons, which say "Coming soon" and lead nowhere until the app is listed (src/lib/site.ts).
+ * store buttons (src/lib/site.ts).
  * Three phones rise out of its lower edge as it comes into view: Home in the middle, budgets and
  * goals either side.
  */
@@ -48,7 +48,7 @@ export function Closing() {
               </span>
             ))}
           </h2>
-          <p className={`lead ${s.lead}`}>Wealthit is coming soon. Your first record takes a few seconds, and that’s where the habit starts.</p>
+          <p className={`lead ${s.lead}`}>Wealthit is out now. Your first record takes a few seconds, and that’s where the habit starts.</p>
           <AppButtons tone="light" className={s.buttons} />
         </div>
         <div className={s.phones} aria-hidden>

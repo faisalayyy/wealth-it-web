@@ -13,7 +13,8 @@ import { PageHero } from '@/sections/product/PageHero';
  * and every claim is a claim about the app as built: an account to sign in with, records kept on
  * the phone and on Wealthit's server in the EU; locked so only the person can read them if they turn
  * that on (the app's A430, A439), or on the phone only if they choose (A429); no ads, no tracking,
- * and no analytics service — only which parts are used, as yes or no. If any of that
+ * and no analytics service — only which parts are used, as yes or no, and a question sent to Halo
+ * when the person taps to send it (Teach Halo, Faisal 13 November 2026). If any of that
  * changes in the app, it has to change here on the same day — a privacy page that has drifted is
  * worse than no privacy page.
  */
@@ -24,12 +25,12 @@ export const metadata: Metadata = pageMeta({
 });
 
 // the day records only you can read ship (the app's A430)
-const updated = '2 November 2026';
+const updated = '13 November 2026';
 
 const nots = [
   'Your records are kept on your phone and in your account, encrypted on the way and on the server, and used only to give you Wealthit.',
   'Want more? Turn on “Only you can read your records” and they are locked with a key only you hold, so not even Wealthit can read them. Or keep them on your phone only.',
-  'No tracking, no advertising, and no analytics service. The app tells Wealthit only which parts you use, as yes or no, never what you record.',
+  'No tracking, no advertising, and no analytics service. The app tells Wealthit only which parts you use, as yes or no, never what you record, and a question for Halo only if you choose to send it.',
   'Nothing about you is sold, rented or shared with anyone for their own use.',
   'Receipt photos and your profile picture stay on your phone.',
 ];
@@ -77,6 +78,11 @@ export default function Privacy() {
             <li>
               <strong>Which parts of Wealthit you use</strong>, as yes or no: budgets, scheduled payments, goals, labels, split records, transfers,
               friends and family, and credit cards. Never an amount, a name or a date.
+            </li>
+            <li>
+              <strong>A question you send to Halo</strong>, Wealthit’s assistant, only if you tap “Send this question”: the words of that
+              question, so Halo can learn to answer it. Numbers are taken out first, no account is attached, and it is deleted within 90 days.
+              Nothing else leaves your phone for Halo.
             </li>
             <li>
               <strong>If you sign in with Google or Apple</strong>, they tell Wealthit your email address and an id for that account. Wealthit
@@ -222,6 +228,7 @@ export default function Privacy() {
             </li>
             <li>
               <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record, bank messages and reminders. Turn them off and they stop.
+              A question you send to Halo goes only when you tap to send it.
             </li>
           </ul>
 
@@ -305,7 +312,7 @@ export default function Privacy() {
           <h2>How long it is kept</h2>
           <p>
             For as long as you have an account. When you delete it, it is removed for good 60 days later, unless you sign in again before then.
-            The database keeps a recovery history of the last six hours of changes, so once something is deleted for good, it is gone from that
+            A question you send to Halo has no account attached and is deleted within 90 days. The database keeps a recovery history of the last six hours of changes, so once something is deleted for good, it is gone from that
             history within six hours as well. Emails you send to {contactEmail} are kept only as long as it takes to help you.
           </p>
 

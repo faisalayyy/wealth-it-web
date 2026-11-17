@@ -25,7 +25,7 @@ export const metadata: Metadata = pageMeta({
 });
 
 // the day records only you can read ship (the app's A430)
-const updated = '13 November 2026';
+const updated = '17 November 2026';
 
 const nots = [
   'Your records are kept on your phone and in your account, encrypted on the way and on the server, and used only to give you Wealthit.',
@@ -53,8 +53,8 @@ export default function Privacy() {
 
           <h2>Who is responsible</h2>
           <p>
-            Wealthit is made by Faisal Mukhtar, who is responsible for the data described here. This policy covers the Wealthit app,
-            Wealthit on the web and this website. Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> about anything on this page.
+            Wealthit is made by Faisal Mukhtar, who is responsible for the data described here. This policy covers the Wealthit app and
+            this website. Write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> about anything on this page.
           </p>
 
           <h2>What Wealthit keeps</h2>
@@ -202,8 +202,8 @@ export default function Privacy() {
           <ul className={p.list}>
             <li>Every connection between the app, the server and these services is encrypted, and the database is encrypted on its disks.</li>
             <li>
-              If you turn on “Only you can read your records”, they are locked end to end with AES-256, on your phone or in your browser, with a
-              key made there. Only your devices hold it, and your recovery key, which you keep, opens it on a new one. Lose both your devices and
+              If you turn on “Only you can read your records”, they are locked end to end with AES-256, on your phone, with a key
+              made there. Only your devices hold it, and your recovery key, which you keep, opens it on a new one. Lose both your devices and
               your recovery key, and nobody, Wealthit included, can open your records again. You can turn it off again; your records are then
               kept as before.
             </li>
@@ -316,14 +316,6 @@ export default function Privacy() {
             history within six hours as well. Emails you send to {contactEmail} are kept only as long as it takes to help you.
           </p>
 
-          <h2>Wealthit on the web</h2>
-          <p>
-            At dashboard.wealthit.app you sign in with the same account, with an email code or your password, and see the same records. If you
-            locked them, the first time it asks for your recovery key to open them. Your browser keeps your sign-in, the key and a working copy of your records
-            in its own storage, so the page opens quickly; there are no cookies. Signing out erases your sign-in and the copy, and keeps the
-            key so you won’t type it again in that browser, unless you turn on “Forget my key when I sign out”. The web app is hosted by GitHub Pages, asks open.er-api.com for exchange rates in the same way as the app,
-            and runs no tracking, advertising or analytics service.
-          </p>
 
           <h2>Children</h2>
           <p>Wealthit is a personal finance app for adults. It is not directed at children, and it does not knowingly keep anything about a child.</p>

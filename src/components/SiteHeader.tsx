@@ -26,8 +26,8 @@ import s from './SiteHeader.module.css';
  * rules drawing across; the feature pages listed small beneath, and where to follow Wealthit. The
  * dots, "Close", Escape, the dimmed page and following a link all close it.
  *
- * The right pill holds the theme switch and the ways in: Log in, for the web app (which says "Soon"
- * until it has an address, src/lib/site.ts), and the app itself. On phones the left pill is the
+ * The right pill holds the theme switch and the ways in: Log in, for the web app (shown only while
+ * it has an address, src/lib/site.ts), and the app itself. On phones the left pill is the
  * whole header and the menu carries all three.
  */
 
@@ -65,7 +65,7 @@ function Preview({ thumb, on, tap }: { thumb: Parameters<typeof screenSources>[0
   );
 }
 
-/** Log in: a link to the web app once it has an address; until then it says so. */
+/** Log in: a link to the web app while it has an address; without one, nothing. */
 function LogIn({ className }: { className: string }) {
   if (webApp)
     return (
@@ -73,11 +73,7 @@ function LogIn({ className }: { className: string }) {
         Log in
       </a>
     );
-  return (
-    <span className={className} data-soon title="The web app is on its way. It uses the same account as the phone app.">
-      Log in <span className={s.soon}>Soon</span>
-    </span>
-  );
+  return null;
 }
 
 function useGetApp() {

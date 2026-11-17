@@ -27,13 +27,13 @@ const ROWS: Row[] = [
   {
     cap: 'Where your records live',
     title: 'Synced, or on this phone only.',
-    text: 'When you make your account, you choose. Sync with my account backs your records up, so they’re the same on every phone and on the web. Keep on this phone keeps them on that phone and never sends them to Wealthit’s server, though the phone’s own backup may include them. You can change it any time in Your data.',
+    text: 'When you make your account, you choose. Sync with my account backs your records up, so they’re the same on every phone you sign in on. Keep on this phone keeps them on that phone and never sends them to Wealthit’s server, though the phone’s own backup may include them. You can change it any time in Your data.',
     media: { screen: 'where-records-live-dark', dark: true },
   },
   {
     cap: 'Only you can read',
     title: 'Locked with a key only you hold.',
-    text: 'Turn on “Only you can read your records” in Your data and they’re locked on your phone before they’re sent, so not even Wealthit can read them. You get a recovery key, which opens them on a new phone or on the web, and nobody can recover it for you. It’s off unless you turn it on, and only then is there a key to keep.',
+    text: 'Turn on “Only you can read your records” in Your data and they’re locked on your phone before they’re sent, so not even Wealthit can read them. You get a recovery key, which opens them on a new phone, and nobody can recover it for you. It’s off unless you turn it on, and only then is there a key to keep.',
     media: { screen: 'your-data-dark', dark: true },
   },
   {

@@ -67,8 +67,8 @@ const RECORDS: QA[] = [
   {
     q: 'Where are my records kept?',
     a: [
-      'You choose when you make your account. Sync with my account backs them up to your account, so they’re the same on every phone you sign in on and on the web. Keep on this phone keeps them on this phone only and never sends them to Wealthit’s server: lose the phone or delete Wealthit, and they go with it, unless the phone’s own backup kept them.',
-      'You can change this any time in Advanced settings → Your data. Records kept on a phone only don’t show on the web, which reads your account.',
+      'You choose when you make your account. Sync with my account backs them up to your account, so they’re the same on every phone you sign in on. Keep on this phone keeps them on this phone only and never sends them to Wealthit’s server: lose the phone or delete Wealthit, and they go with it, unless the phone’s own backup kept them.',
+      'You can change this any time in Advanced settings → Your data.',
     ],
   },
   {
@@ -81,8 +81,8 @@ const RECORDS: QA[] = [
   {
     q: 'What is the recovery key?',
     a: [
-      'You only have one if you turned on “Only you can read your records”. It’s twenty-four letters and numbers, in six groups of four. On a new phone or on the web, it opens your locked records. Wealthit never sees it and can’t recover it for you, so keep it somewhere safe. The app asks you to type its last group back, to be sure you saved it.',
-      'While a phone keeps it, you can see it again there in Advanced settings → Your data → Recovery key. On a computer other people use, turn on “Forget my key when I sign out” on the web.',
+      'You only have one if you turned on “Only you can read your records”. It’s twenty-four letters and numbers, in six groups of four. On a new phone, it opens your locked records. Wealthit never sees it and can’t recover it for you, so keep it somewhere safe. The app asks you to type its last group back, to be sure you saved it.',
+      'While a phone keeps it, you can see it again there in Advanced settings → Your data → Recovery key.',
     ],
   },
   {

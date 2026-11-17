@@ -13,7 +13,7 @@ import { PageHero } from '@/sections/product/PageHero';
  */
 export const metadata: Metadata = pageMeta({
   title: 'Refund and cancellation policy',
-  description: 'When you can get your money back for Wealthit+, how refunds are paid, and how to cancel on the web or in the apps.',
+  description: 'When you can get your money back for Wealthit+, how refunds are paid, and how to cancel.',
   path: '/refunds/',
 });
 
@@ -33,7 +33,7 @@ export default function Refunds() {
         <div className={p.prose}>
           <p className={p.updated}>Last updated {updated}.</p>
 
-          <h2>Bought on the web</h2>
+          <h2>Bought on wealthit.app</h2>
           <ul className={p.list}>
             <li>
               <strong>Within 14 days:</strong> write to us within 14 days of a payment and you get that payment back in full. This applies
@@ -71,7 +71,7 @@ export default function Refunds() {
           <h2>Cancelling</h2>
           <p>
             Cancel any time. Nothing is charged after the period you have paid for, and {plus.name} stays until that period ends. Cancel
-            within the {plus.trialDays}-day trial and nothing is charged at all. On the web, cancel in Wealthit on the web or write to us; in
+            within the {plus.trialDays}-day trial and nothing is charged at all. Bought on wealthit.app, write to us to cancel; in
             the apps, cancel in your App Store or Google Play subscriptions. The details are in the{' '}
             <Link href="/terms/#cancel">terms of sale</Link>.
           </p>

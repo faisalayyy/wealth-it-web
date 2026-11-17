@@ -45,21 +45,21 @@ const ALWAYS: Fact[] = [
   { title: 'Budgets and scheduled payments', text: 'Included for everyone, as they are.' },
   { title: 'The assistant, for everyone', text: `Ask about your money with or without ${plus.name}. It answers within what your plan includes.` },
   { title: 'Nothing is ever deleted', text: `If ${plus.name} ends, what you made stays. Its parts come back the moment you start again.` },
-  { title: 'One purchase, everywhere', text: 'Buy it once and it works on every phone you sign in on, and on the web.' },
+  { title: 'One purchase, everywhere', text: 'Buy it once and it works on every phone you sign in on.' },
 ];
 
 const QUESTIONS: QA[] = [
   {
     q: 'How does the trial work?',
-    a: `Try ${plus.name} for ${plus.trialDays} days, with everything it includes. On the web you choose a plan when you start, and nothing is charged until the ${plus.trialDays} days end. Cancel before then and nothing is charged at all. In the apps, the trial works the way the App Store or Google Play sets it up.`,
+    a: `Try ${plus.name} for ${plus.trialDays} days, with everything it includes. On wealthit.app you choose a plan when you start, and nothing is charged until the ${plus.trialDays} days end. Cancel before then and nothing is charged at all. In the apps, the trial works the way the App Store or Google Play sets it up.`,
   },
   {
     q: 'Where can I buy it?',
-    a: 'On the web through Safepay, in Pakistani rupees, or in the apps through the App Store or Google Play, which show their own local price. One purchase unlocks it for your account everywhere.',
+    a: 'On wealthit.app through Safepay, in Pakistani rupees, or in the apps through the App Store or Google Play, which show their own local price. One purchase unlocks it for your account everywhere.',
   },
   {
     q: 'Can I cancel any time?',
-    a: 'Yes. Nothing is charged after the period you have paid for. On the web, cancel in Wealthit on the web or write to us; in the apps, cancel in your App Store or Google Play subscriptions.',
+    a: 'Yes. Nothing is charged after the period you have paid for. Bought on wealthit.app? Write to us. In the apps, cancel in your App Store or Google Play subscriptions.',
   },
   { q: `I already have goals, or more than ${plus.wallets} wallets. What happens?`, a: 'You keep them, and you can go on using them.' },
   { q: 'Can I get a refund?', a: 'Yes, for a web payment within 14 days. Payments in the apps are refunded by Apple or Google. The refund and cancellation policy has the details.' },
@@ -98,7 +98,7 @@ export default function Plus() {
               ))}
             </div>
             <p className={s.small}>
-              Prices are in US dollars. On the web you pay through Safepay in Pakistani rupees; in the apps, the App Store or Google Play
+              Prices are in US dollars. On wealthit.app you pay through Safepay in Pakistani rupees; in the apps, the App Store or Google Play
               shows its own price in your currency. Monthly and yearly plans renew until you cancel. See the{' '}
               <Link href="/terms/">terms of sale</Link> and the <Link href="/refunds/">refund and cancellation policy</Link>.
             </p>

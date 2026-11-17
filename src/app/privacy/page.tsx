@@ -15,7 +15,7 @@ import { PageHero } from '@/sections/product/PageHero';
  * that on (the app's A430, A439), or on the phone only if they choose (A429); no ads, no tracking,
  * and no analytics service — only which parts are used, as yes or no, and a question sent to Halo
  * when the person taps to send it (Teach Halo, Faisal 13 November 2026). Wealthit+ is paid through
- * Safepay on the web and the stores in the apps, and Wealthit never sees a card (A631). If any of that
+ * Safepay on this website and the stores in the apps, and Wealthit never sees a card (A631). If any of that
  * changes in the app, it has to change here on the same day — a privacy page that has drifted is
  * worse than no privacy page.
  */
@@ -92,7 +92,7 @@ export default function Privacy() {
             </li>
             <li>
               <strong>If you buy Wealthit+</strong>: whether your account has it, where you bought it (Safepay, the App Store or Google Play)
-              and until when, so it works on every phone you sign in on and on the web. Never your card number.
+              and until when, so it works on every phone you sign in on. Never your card number.
             </li>
             <li>
               <strong>A password, only if you set one</strong>, stored only as an Argon2 hash, never the password itself. Sign-in codes are stored
@@ -199,7 +199,7 @@ export default function Privacy() {
               <strong>Apple and Google</strong>, only if you choose to sign in with them, as described above.
             </li>
             <li id="payments">
-              <strong>Safepay</strong> takes payments for Wealthit+ on the web, in rupees. You enter your card or account details on Safepay’s
+              <strong>Safepay</strong> takes payments for Wealthit+ on wealthit.app, in rupees. You enter your card or account details on Safepay’s
               own checkout, so Wealthit never sees them, and Safepay tells Wealthit only that a payment went through and for which account.
               Safepay keeps what you enter there under its own privacy policy. In the apps, the <strong>App Store</strong> or{' '}
               <strong>Google Play</strong> takes the payment through its own billing, under its own privacy policy, and tells Wealthit the
@@ -240,7 +240,7 @@ export default function Privacy() {
               <strong>To keep it secure</strong>: stopping repeated sign-in tries, and signing out or deleting an account when you ask.
             </li>
             <li>
-              <strong>Because you bought it</strong>: Wealthit+, if you pay for it, on every phone you sign in on and on the web.
+              <strong>Because you bought it</strong>: Wealthit+, if you pay for it, on every phone you sign in on.
             </li>
             <li>
               <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record, bank messages and reminders. Turn them off and they stop.

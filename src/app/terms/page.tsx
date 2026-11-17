@@ -8,7 +8,7 @@ import { PageHero } from '@/sections/product/PageHero';
 
 /**
  * The terms of sale for Wealthit+, which Safepay reads before it approves the website as a merchant.
- * Every fact is the app's (A634: 6 months of history and 5 money wallets without it; A631: Safepay on the web in rupees, the stores' own billing in the apps,
+ * Every fact is the app's (A634: 6 months of history and 5 money wallets without it; A631: Safepay on this website in rupees, the stores' own billing in the apps,
  * one purchase for the whole account; A632: the prices, the 14-day trial, what it includes, nothing
  * ever deleted). Renewals, cancelling and the trial's details follow the usual practice and wait for
  * Faisal's yes; if Wealthit+ changes in the app, this page changes the same day.
@@ -76,19 +76,19 @@ export default function Terms() {
             </li>
           </ul>
           <p>
-            Prices are set in US dollars. On the web you pay through Safepay in Pakistani rupees, and the amount is shown before you pay. In
+            Prices are set in US dollars. On wealthit.app you pay through Safepay in Pakistani rupees, and the amount is shown before you pay. In
             the apps, the App Store or Google Play shows its own price in your currency and charges it under its own terms.
           </p>
 
           <h2>Where you can buy it</h2>
           <p>
-            On the web through Safepay, and in the apps through the App Store or Google Play. In Pakistan, Google Play can also charge it to
-            your mobile account. One purchase unlocks {plus.name} for your account everywhere: on every phone you sign in on, and on the web.
+            On wealthit.app through Safepay, and in the apps through the App Store or Google Play. In Pakistan, Google Play can also charge it to
+            your mobile account. One purchase unlocks {plus.name} for your account everywhere: on every phone you sign in on.
           </p>
 
           <h2 id="trial">The {plus.trialDays}-day trial</h2>
           <p>
-            Try {plus.name} for {plus.trialDays} days, with everything it includes. Each account can try it once. On the web you choose a plan
+            Try {plus.name} for {plus.trialDays} days, with everything it includes. Each account can try it once. On wealthit.app you choose a plan
             when you start; nothing is charged until the {plus.trialDays} days end, and if you cancel before then, nothing is charged at all.
             In the apps, the trial works the way the App Store or Google Play sets it up.
           </p>
@@ -104,7 +104,7 @@ export default function Terms() {
           <p>You can cancel any time, and nothing is charged after the period you have paid for.</p>
           <ul className={p.list}>
             <li>
-              <strong>Bought on the web:</strong> cancel in Wealthit on the web, or write to{' '}
+              <strong>Bought on wealthit.app:</strong> write to{' '}
               <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from your account’s email address.
             </li>
             <li>
@@ -114,7 +114,7 @@ export default function Terms() {
           </ul>
           <p>
             {plus.name} stays until the end of the period you have paid for, then it ends. Deleting your Wealthit account cancels a plan
-            bought on the web; a plan bought in the apps has to be cancelled in the store as well.
+            bought on wealthit.app; a plan bought in the apps has to be cancelled in the store as well.
           </p>
 
           <h2>When {plus.name} ends</h2>

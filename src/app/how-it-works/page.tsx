@@ -56,7 +56,6 @@ const ROWS: Row[] = [
 
 const FACTS: Fact[] = [
   { title: 'Works offline', text: 'Record without a connection. If you sync, it goes up to your account when you’re back online.' },
-  { title: 'On the web too', text: 'Sign in at dashboard.wealthit.app with the same account and your records are there.' },
   { title: 'Your data, yours to take', text: 'Export everything at any time, as a backup file or a spreadsheet.' },
   { title: 'Reminders', text: 'For bills due and budgets running low, scheduled on your phone.' },
   { title: 'Light or dark', text: 'Whichever you like, on every screen.' },

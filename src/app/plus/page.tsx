@@ -11,7 +11,7 @@ import { PageHero } from '@/sections/product/PageHero';
 import s from './plus.module.css';
 
 /**
- * Wealthit+, the paid plan (the app's A631, A632): its prices, its 14-day trial and what it
+ * Wealthit+, the paid plan (the app's A631, A632, A634): its prices, its 14-day trial and what it
  * includes. Ready for Safepay's review but not linked from the menu, the footer or the sitemap, and
  * kept out of search, until Faisal says. Until `plus.checkout` is set, its button says "Coming soon".
  * Never "free": the trial is "Try Wealthit+ for 14 days".
@@ -32,8 +32,8 @@ const PRICES = [
 ];
 
 const INCLUDES: Fact[] = [
-  { title: 'Unlimited wallets', text: `Every account, card and pocket of cash. Without ${plus.name}, Wealthit keeps up to ${plus.wallets}.` },
-  { title: 'Your full history', text: 'Every month you have ever recorded, and a year in review.' },
+  { title: 'Unlimited wallets', text: `Bank, cash, cards, savings and loans. Without ${plus.name}, Wealthit keeps up to ${plus.wallets}; the people you share costs with don’t count.` },
+  { title: 'Your full history', text: `Every month you have recorded, and a year in review. Without ${plus.name}, the last ${plus.historyMonths} months show, and nothing older is ever deleted.` },
   { title: 'PDF and CSV exports', text: 'Your records as a report to keep, or a file for a spreadsheet.' },
   { title: 'Goals', text: 'Put money aside for something and watch it grow.' },
   { title: 'App icons', text: 'Pick the icon Wealthit wears on your home screen.' },
@@ -42,7 +42,8 @@ const INCLUDES: Fact[] = [
 ];
 
 const ALWAYS: Fact[] = [
-  { title: 'The assistant, for everyone', text: `Ask about your money with or without ${plus.name}.` },
+  { title: 'Budgets and scheduled payments', text: 'Included for everyone, as they are.' },
+  { title: 'The assistant, for everyone', text: `Ask about your money with or without ${plus.name}. It answers within what your plan includes.` },
   { title: 'Nothing is ever deleted', text: `If ${plus.name} ends, what you made stays. Its parts come back the moment you start again.` },
   { title: 'One purchase, everywhere', text: 'Buy it once and it works on every phone you sign in on, and on the web.' },
 ];
@@ -60,6 +61,7 @@ const QUESTIONS: QA[] = [
     q: 'Can I cancel any time?',
     a: 'Yes. Nothing is charged after the period you have paid for. On the web, cancel in Wealthit on the web or write to us; in the apps, cancel in your App Store or Google Play subscriptions.',
   },
+  { q: `I already have goals, or more than ${plus.wallets} wallets. What happens?`, a: 'You keep them, and you can go on using them.' },
   { q: 'Can I get a refund?', a: 'Yes, for a web payment within 14 days. Payments in the apps are refunded by Apple or Google. The refund and cancellation policy has the details.' },
   { q: 'What happens to my things if I stop?', a: `Nothing you made is deleted or changed. The parts that need ${plus.name} are hidden, and everything in them comes back the moment you start again.` },
 ];

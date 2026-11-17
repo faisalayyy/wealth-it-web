@@ -8,7 +8,7 @@ import { PageHero } from '@/sections/product/PageHero';
 
 /**
  * The terms of sale for Wealthit+, which Safepay reads before it approves the website as a merchant.
- * Every fact is the app's (A631: Safepay on the web in rupees, the stores' own billing in the apps,
+ * Every fact is the app's (A634: 6 months of history and 5 money wallets without it; A631: Safepay on the web in rupees, the stores' own billing in the apps,
  * one purchase for the whole account; A632: the prices, the 14-day trial, what it includes, nothing
  * ever deleted). Renewals, cancelling and the trial's details follow the usual practice and wait for
  * Faisal's yes; if Wealthit+ changes in the app, this page changes the same day.
@@ -43,15 +43,25 @@ export default function Terms() {
 
           <h2>What {plus.name} includes</h2>
           <ul className={p.list}>
-            <li>Unlimited wallets. Without {plus.name}, Wealthit keeps up to {plus.wallets}.</li>
-            <li>Your full history, and a year in review.</li>
+            <li>
+              Unlimited wallets. Without {plus.name}, Wealthit keeps up to {plus.wallets} money wallets (bank, cash, cards, savings and loans);
+              the people you share costs with don’t count.
+            </li>
+            <li>
+              Your full history, and a year in review. Without {plus.name}, the last {plus.historyMonths} months show, and older records are
+              never deleted.
+            </li>
             <li>Exports to PDF and CSV.</li>
             <li>App icons.</li>
             <li>Goals.</li>
             <li>Investments, shown as coming soon until it is ready.</li>
             <li>Early access to new features, and faster help.</li>
           </ul>
-          <p>Everything else in Wealthit stays included without {plus.name}. The assistant is included for everyone.</p>
+          <p>
+            Everything else in Wealthit stays included without {plus.name}, budgets and scheduled payments among them. Anyone who already
+            has goals, or more than {plus.wallets} wallets, keeps them. The assistant is included for everyone, and it works within what your
+            plan includes.
+          </p>
 
           <h2>Prices</h2>
           <ul className={p.list}>

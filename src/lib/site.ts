@@ -40,6 +40,7 @@ export const plus = {
   prices: { month: '$1.99', year: '$14.99', life: '$39.99' },
   trialDays: 14,
   wallets: 5,
+  historyMonths: 6,
   checkout: null as string | null,
 };
 

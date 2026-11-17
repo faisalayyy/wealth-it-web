@@ -25,9 +25,10 @@ export const stores: { ios: string | null; android: string | null } = {
 /**
  * The web app (../WebApp, built into the wealthit-dashboard-site repository): the same account and
  * the same records as the phone, in a browser. Its root shows sign-in to anyone signed out, so one
- * URL serves "Log in" and "Sign up" alike.
+ * URL serves "Log in" and "Sign up" alike. Offline since 17 November 2026 (Faisal took
+ * dashboard.wealthit.app down), so null until it comes back.
  */
-export const webApp: string | null = 'https://dashboard.wealthit.app';
+export const webApp: string | null = null;
 
 /** The address on the support and privacy pages, read by Faisal (app repo, A376). */
 export const contactEmail = 'support@wealthit.app';

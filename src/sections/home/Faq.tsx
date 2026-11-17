@@ -16,15 +16,11 @@ export type QA = { q: string; a: string | string[] };
 const HOME: QA[] = [
   {
     q: 'Is Wealthit out yet?',
-    a: 'Yes, it’s out now. The buttons on this page take you to the store, and the same account works on the web too.',
+    a: 'Yes, it’s out now. The buttons on this page take you to the store.',
   },
   {
     q: 'Do I need an account?',
     a: 'Yes. You sign in with your email or Google, or with Apple where it’s offered, then choose where your records live: in your account, so they’re the same on every phone you sign in on and a lost or new phone loses nothing, or on this phone only.',
-  },
-  {
-    q: 'Can I use Wealthit on my computer?',
-    a: 'Yes. Sign in at dashboard.wealthit.app with the same account and your records are there, in step with your phone.',
   },
   {
     q: 'Does it connect to my bank?',

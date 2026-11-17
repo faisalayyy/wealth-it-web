@@ -17,14 +17,13 @@ import { Statement } from '@/sections/home/Statement';
 import { TapToRecord } from '@/sections/home/TapToRecord';
 import { Story } from '@/sections/home/Story';
 import { Themes } from '@/sections/home/Themes';
-import { WebApp } from '@/sections/home/WebApp';
 import { Whole } from '@/sections/home/Whole';
 
 /**
  * The homepage: butter.video's structure and rhythm (docs/BUTTER_REFERENCE.md) carrying Wealthit —
  * the keyring, the countries, the statement, everyday moments, recording, scanning and Tap to Record, the whole picture, the
  * features, three ways to record, the screens, bills, two big claims, making it yours, privacy,
- * the web app, questions, and the next step.
+ * questions, and the next step. (The web app's section, sections/home/WebApp, waits for its return.)
  */
 const meta = pageMeta({ title: site.title, description: site.description, path: '/' });
 export const metadata: Metadata = {
@@ -65,7 +64,6 @@ export default function Home() {
         <DoubleBlock />
         <Themes />
         <Privacy />
-        <WebApp />
         <Faq />
         <Closing />
       </main>

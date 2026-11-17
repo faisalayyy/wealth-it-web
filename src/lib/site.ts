@@ -23,11 +23,12 @@ export const stores: { ios: string | null; android: string | null } = {
 };
 
 /**
- * The web app (../WebApp, built into the wealthit-dashboard-site repository): the same account and
- * the same records as the phone, in a browser. Its root shows sign-in to anyone signed out, so one
- * URL serves "Log in" and "Sign up" alike.
+ * The web app (../WebApp): the same account and the same records as the phone, in a browser. Offline
+ * since 17 November 2026 (Faisal): dashboard.wealthit.app is gone and the site says nothing about it.
+ * Its code stays on GitHub; set the address here again, and bring back what PR "remove the web app"
+ * took out, the day it returns.
  */
-export const webApp: string | null = 'https://dashboard.wealthit.app';
+export const webApp: string | null = null;
 
 /**
  * Wealthit+, the paid plan (the app's A631, A632, 17 November 2026). Prices are set in US dollars:

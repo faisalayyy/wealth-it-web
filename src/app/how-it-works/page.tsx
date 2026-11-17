@@ -25,7 +25,7 @@ const ROWS: Row[] = [
   {
     cap: 'Step 1 · Sign in',
     title: 'Sign in, then choose where your records live.',
-    text: 'Sign in with your email or Google, or with Apple where it’s offered. When you make your account, you choose: sync with it, so every phone and the web show the same money, or keep everything on this phone only. You can change it later in Your data.',
+    text: 'Sign in with your email or Google, or with Apple where it’s offered. When you make your account, you choose: sync with it, so every phone you sign in on shows the same money, or keep everything on this phone only. You can change it later in Your data.',
     media: { screen: 'where-records-live-dark', dark: true },
   },
   {
@@ -56,7 +56,6 @@ const ROWS: Row[] = [
 
 const FACTS: Fact[] = [
   { title: 'Works offline', text: 'Record without a connection. If you sync, it goes up to your account when you’re back online.' },
-  { title: 'On the web too', text: 'Sign in at dashboard.wealthit.app with the same account and your records are there.' },
   { title: 'Your data, yours to take', text: 'Export everything at any time, as a backup file or a spreadsheet.' },
   { title: 'Reminders', text: 'For bills due and budgets running low, scheduled on your phone.' },
   { title: 'Light or dark', text: 'Whichever you like, on every screen.' },

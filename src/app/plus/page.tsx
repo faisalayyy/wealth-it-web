@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
 const PRICES = [
   { plan: 'Monthly', price: plus.prices.month, per: 'a month' },
-  { plan: 'Yearly', price: plus.prices.year, per: 'a year', note: 'About $1.25 a month', best: true },
+  { plan: 'Yearly', price: plus.prices.year, per: 'a year', note: 'About Rs 250 a month', best: true },
   { plan: 'Lifetime', price: plus.prices.life, per: 'once, for as long as you have Wealthit' },
 ];
 
@@ -98,8 +98,8 @@ export default function Plus() {
               ))}
             </div>
             <p className={s.small}>
-              Prices are in US dollars. On wealthit.app you pay through Safepay in Pakistani rupees; in the apps, the App Store or Google Play
-              shows its own price in your currency. Monthly and yearly plans renew until you cancel. See the{' '}
+              Prices are in Pakistani rupees, and on wealthit.app you pay exactly these through Safepay. In the apps, the App Store or Google
+              Play sets its own price for your country. Monthly and yearly plans renew until you cancel. See the{' '}
               <Link href="/terms/">terms of sale</Link> and the <Link href="/refunds/">refund and cancellation policy</Link>.
             </p>
           </div>

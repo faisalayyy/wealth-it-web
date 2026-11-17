@@ -9,7 +9,7 @@ import { PageHero } from '@/sections/product/PageHero';
 /**
  * The terms of sale for Wealthit+, which Safepay reads before it approves the website as a merchant.
  * Every fact is the app's (A634: 6 months of history and 5 money wallets without it; A631: Safepay on this website in rupees, the stores' own billing in the apps,
- * one purchase for the whole account; A632: the prices, the 14-day trial, what it includes, nothing
+ * one purchase for the whole account; A636: the prices, in rupees; A632: the 14-day trial, what it includes, nothing
  * ever deleted). Renewals, cancelling and the trial's details follow the usual practice and wait for
  * Faisal's yes; if Wealthit+ changes in the app, this page changes the same day.
  */
@@ -76,8 +76,8 @@ export default function Terms() {
             </li>
           </ul>
           <p>
-            Prices are set in US dollars. On wealthit.app you pay through Safepay in Pakistani rupees, and the amount is shown before you pay. In
-            the apps, the App Store or Google Play shows its own price in your currency and charges it under its own terms.
+            Prices are in Pakistani rupees. On wealthit.app you pay exactly these through Safepay, and the amount is shown before you pay. In
+            the apps, the App Store or Google Play sets its own price for your country and charges it under its own terms.
           </p>
 
           <h2>Where you can buy it</h2>

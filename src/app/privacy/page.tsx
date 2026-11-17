@@ -14,7 +14,8 @@ import { PageHero } from '@/sections/product/PageHero';
  * the phone and on Wealthit's server in the EU; locked so only the person can read them if they turn
  * that on (the app's A430, A439), or on the phone only if they choose (A429); no ads, no tracking,
  * and no analytics service — only which parts are used, as yes or no, and a question sent to Halo
- * when the person taps to send it (Teach Halo, Faisal 13 November 2026). If any of that
+ * when the person taps to send it (Teach Halo, Faisal 13 November 2026). Wealthit+ is paid through
+ * Safepay on the web and the stores in the apps, and Wealthit never sees a card (A631). If any of that
  * changes in the app, it has to change here on the same day — a privacy page that has drifted is
  * worse than no privacy page.
  */
@@ -25,13 +26,14 @@ export const metadata: Metadata = pageMeta({
 });
 
 // the day records only you can read ship (the app's A430)
-const updated = '13 November 2026';
+const updated = '17 November 2026';
 
 const nots = [
   'Your records are kept on your phone and in your account, encrypted on the way and on the server, and used only to give you Wealthit.',
   'Want more? Turn on “Only you can read your records” and they are locked with a key only you hold, so not even Wealthit can read them. Or keep them on your phone only.',
   'No tracking, no advertising, and no analytics service. The app tells Wealthit only which parts you use, as yes or no, never what you record, and a question for Halo only if you choose to send it.',
   'Nothing about you is sold, rented or shared with anyone for their own use.',
+  'If you buy Wealthit+, you pay through Safepay or your phone’s app store. Wealthit never sees your card.',
   'Receipt photos and your profile picture stay on your phone.',
 ];
 
@@ -87,6 +89,10 @@ export default function Privacy() {
             <li>
               <strong>If you sign in with Google or Apple</strong>, they tell Wealthit your email address and an id for that account. Wealthit
               never sees your Google or Apple password. If you choose Apple’s “Hide My Email”, Wealthit only ever sees the address Apple gives it.
+            </li>
+            <li>
+              <strong>If you buy Wealthit+</strong>: whether your account has it, where you bought it (Safepay, the App Store or Google Play)
+              and until when, so it works on every phone you sign in on and on the web. Never your card number.
             </li>
             <li>
               <strong>A password, only if you set one</strong>, stored only as an Argon2 hash, never the password itself. Sign-in codes are stored
@@ -192,6 +198,13 @@ export default function Privacy() {
             <li>
               <strong>Apple and Google</strong>, only if you choose to sign in with them, as described above.
             </li>
+            <li id="payments">
+              <strong>Safepay</strong> takes payments for Wealthit+ on the web, in rupees. You enter your card or account details on Safepay’s
+              own checkout, so Wealthit never sees them, and Safepay tells Wealthit only that a payment went through and for which account.
+              Safepay keeps what you enter there under its own privacy policy. In the apps, the <strong>App Store</strong> or{' '}
+              <strong>Google Play</strong> takes the payment through its own billing, under its own privacy policy, and tells Wealthit the
+              same.
+            </li>
           </ul>
           <p>
             Wealthit only uses services whose terms commit them to protect your data at least as well as this policy does. Nothing about you is
@@ -225,6 +238,9 @@ export default function Privacy() {
             </li>
             <li>
               <strong>To keep it secure</strong>: stopping repeated sign-in tries, and signing out or deleting an account when you ask.
+            </li>
+            <li>
+              <strong>Because you bought it</strong>: Wealthit+, if you pay for it, on every phone you sign in on and on the web.
             </li>
             <li>
               <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record, bank messages and reminders. Turn them off and they stop.

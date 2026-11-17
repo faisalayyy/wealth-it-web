@@ -29,6 +29,20 @@ export const stores: { ios: string | null; android: string | null } = {
  */
 export const webApp: string | null = 'https://dashboard.wealthit.app';
 
+/**
+ * Wealthit+, the paid plan (the app's A631, A632, 17 November 2026). Prices are set in US dollars:
+ * on the web Safepay charges the amount in rupees, and in the apps each store shows its own local
+ * price. `checkout` stays null until Safepay's checkout is live; every button that reads it says
+ * "Coming soon" until then. Never call the trial "free" (Faisal).
+ */
+export const plus = {
+  name: 'Wealthit+',
+  prices: { month: '$1.99', year: '$14.99', life: '$39.99' },
+  trialDays: 14,
+  wallets: 5,
+  checkout: null as string | null,
+};
+
 /** The address on the support and privacy pages, read by Faisal (app repo, A376). */
 export const contactEmail = 'support@wealthit.app';
 

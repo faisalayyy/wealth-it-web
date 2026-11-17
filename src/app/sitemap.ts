@@ -4,7 +4,7 @@ import { pageUrl } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
-/** Every published page (About is not published yet: src/app/_about). */
+/** Every published page (About is not published yet: src/app/_about; Wealthit+ waits for Faisal: src/app/plus). */
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: '/', priority: 1 },
@@ -14,6 +14,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/security/', priority: 0.7 },
     { path: '/support/', priority: 0.6 },
     { path: '/privacy/', priority: 0.5 },
+    { path: '/contact/', priority: 0.5 },
+    { path: '/terms/', priority: 0.4 },
+    { path: '/refunds/', priority: 0.4 },
   ];
   return pages.map(p => ({ url: pageUrl(p.path), changeFrequency: 'monthly', priority: p.priority }));
 }

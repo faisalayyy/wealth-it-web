@@ -620,24 +620,19 @@ a.login:hover {
   letter-spacing: 0.02em;
 }
 
-/* Wealthit+'s ways in, on cards of their own: beside the right pill, and at the top of the menu. The
-   card is the app's metal (PlusCard's finish), with the gold mark and foil words; only Wealthit+ is gold. */
-.end {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  pointer-events: none;
-}
-
+/* Wealthit+'s ways in: in the right pill, the size of Get the app (Button size sm), and a card at the
+   top of the menu. Both are the app's metal (PlusCard's finish), with the gold mark and foil words;
+   only Wealthit+ is gold. */
 .plusCard {
   position: relative;
-  z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  height: 60px;
-  padding: 0 20px 0 16px;
-  border-radius: var(--r-md);
+  justify-content: center;
+  gap: 8px;
+  height: 40px;
+  margin-right: 6px; /* 10px to Get the app, with the pill's 4px gap */
+  padding: 0 16px 0 12px;
+  border-radius: var(--r-sm);
   overflow: hidden;
   background:
     repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 3px),
@@ -645,11 +640,11 @@ a.login:hover {
   box-shadow:
     inset 0 0 0 1px rgba(240, 206, 122, 0.38),
     inset 0 1px 0 rgba(255, 236, 190, 0.25),
-    0 10px 30px rgba(201, 150, 58, 0.12);
-  font-size: 15.5px;
-  font-weight: 700;
+    0 6px 18px rgba(201, 150, 58, 0.14);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   white-space: nowrap;
-  pointer-events: auto;
   transition:
     transform 300ms var(--ease-quint),
     box-shadow 300ms var(--ease-quint);
@@ -662,7 +657,7 @@ a.login:hover {
   box-shadow:
     inset 0 0 0 1px rgba(168, 122, 38, 0.35),
     inset 0 1px 0 rgba(255, 255, 255, 0.9),
-    0 10px 24px rgba(120, 90, 30, 0.16);
+    0 6px 16px rgba(120, 90, 30, 0.14);
 }
 
 /* a light that crosses it on hover */
@@ -686,7 +681,7 @@ a.login:hover {
 }
 
 .plusMark {
-  width: 22px;
+  width: 18px;
   height: auto;
   flex: none;
 }
@@ -791,7 +786,7 @@ a.login:hover {
   }
   .nav,
   .panel,
-  .end {
+  .right {
     display: none;
   }
   .menu {

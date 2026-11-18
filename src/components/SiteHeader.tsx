@@ -315,19 +315,17 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className={s.end}>
-        {/* Wealthit+ on its own card beside the pill (Faisal, 18 Nov) */}
+      <div className={s.right}>
+        <ThemeSwitch className={s.theme} />
+        {/* Wealthit+ in the pill, the size of Get the app, on the app's metal (Faisal, 18 Nov) */}
         <Link href="/plus/" className={s.plusCard} data-active={active('/plus/') ? '' : undefined}>
           <PlusMark className={s.plusMark} />
           <span className={s.plusWords}>
             <span className={s.plusLong}>Explore </span>Wealthit+
           </span>
         </Link>
-        <div className={s.right}>
-          <ThemeSwitch className={s.theme} />
-          <LogIn className={s.login} />
-          <Button label="Get the app" href="/#get" tone="ink" size="sm" onClick={getApp()} />
-        </div>
+        <LogIn className={s.login} />
+        <Button label="Get the app" href="/#get" tone="ink" size="sm" onClick={getApp()} />
       </div>
     </header>
   );

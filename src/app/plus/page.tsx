@@ -8,7 +8,7 @@ import { Faq, type QA } from '@/sections/home/Faq';
 import { PLUS_ICONS, type PlusIconName } from './icons';
 import { Join } from './Join';
 import { Open } from './Open';
-import { PlusCard } from './PlusCard';
+import { PlusCard } from '@/components/PlusCard';
 import { Plans } from './Plans';
 import s from './plus.module.css';
 

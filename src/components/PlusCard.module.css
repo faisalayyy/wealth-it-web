@@ -3,7 +3,12 @@
   --w: var(--card-w, min(440px, 82vw));
   width: var(--w);
   perspective: 1000px;
-  animation: turnIn 1300ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
+  opacity: 0;
+}
+
+.turn[data-in] {
+  opacity: 1;
+  animation: turnIn 1300ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both;
 }
 
 .card {
@@ -72,8 +77,11 @@
   height: 180%;
   background: linear-gradient(115deg, rgba(255, 246, 214, 0) 40%, rgba(255, 246, 214, 0.38) 48%, rgba(255, 246, 214, 0) 56%);
   opacity: 0;
-  animation: sweep 1200ms cubic-bezier(0.4, 0, 0.2, 1) 1150ms both;
   pointer-events: none;
+}
+
+.turn[data-in] .sweep {
+  animation: sweep 1200ms cubic-bezier(0.4, 0, 0.2, 1) 1050ms both;
 }
 
 .mark {
@@ -145,8 +153,13 @@
   }
 }
 
+.turn[data-still] {
+  opacity: 1;
+  animation: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .turn {
+  .turn[data-in] {
     animation: fade 400ms ease both;
   }
   .sweep {

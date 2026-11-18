@@ -11,6 +11,7 @@ import { Gallery } from '@/sections/home/Gallery';
 import { HomeHero } from '@/sections/home/HomeHero';
 import { Moments } from '@/sections/home/Moments';
 import { Planning } from '@/sections/home/Planning';
+import { PlusSpotlight } from '@/sections/home/PlusSpotlight';
 import { Privacy } from '@/sections/home/Privacy';
 import { RecordTabs } from '@/sections/home/RecordTabs';
 import { Statement } from '@/sections/home/Statement';
@@ -64,6 +65,7 @@ export default function Home() {
         <DoubleBlock />
         <Themes />
         <Privacy />
+        <PlusSpotlight />
         <Faq />
         <Closing />
       </main>

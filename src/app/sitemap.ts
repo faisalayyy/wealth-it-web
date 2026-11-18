@@ -4,12 +4,13 @@ import { pageUrl } from '@/lib/seo';
 
 export const dynamic = 'force-static';
 
-/** Every published page (About is not published yet: src/app/_about; Wealthit+ waits for Faisal: src/app/plus). */
+/** Every published page (About is not published yet: src/app/_about). */
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: '/', priority: 1 },
     { path: '/features/', priority: 0.9 },
     ...featurePages.map(f => ({ path: `/features/${f.slug}/`, priority: 0.8 })),
+    { path: '/plus/', priority: 0.8 },
     { path: '/how-it-works/', priority: 0.8 },
     { path: '/security/', priority: 0.7 },
     { path: '/support/', priority: 0.6 },

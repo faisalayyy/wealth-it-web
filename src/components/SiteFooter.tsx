@@ -16,7 +16,7 @@ import s from './SiteFooter.module.css';
  * view. `sheet` is the colour of the page above it, so its rounded lip matches.
  */
 const COLUMNS = [
-  { title: 'Features', links: [...featurePages.map(f => ({ label: f.label, href: `/features/${f.slug}/` })), { label: 'All features', href: '/features/' }] },
+  { title: 'Features', links: [...featurePages.map(f => ({ label: f.label, href: `/features/${f.slug}/` })), { label: 'All features', href: '/features/' }, { label: 'Wealthit+', href: '/plus/' }] },
   {
     title: 'Help',
     links: [

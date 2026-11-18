@@ -43,7 +43,7 @@ node scripts/og.mjs        # the link preview, public/og.png
 ```
 
 - `src/app/` — `/`, `/features/` and `/features/<slug>/` (six, from `src/lib/features.ts`),
-  `/support/` (Help), `/privacy/`, 404; `_about/` is About, kept unpublished (see below). The layout renders `SiteHeader` and
+  `/support/` (Help), `/privacy/`, `/plus/` (Wealthit+), `/terms/`, `/refunds/`, `/contact/`, 404; `_about/` is About, kept unpublished (see below). The layout renders `SiteHeader` and
   `PageTransition`; every page ends in `Closing` (#get) and `SiteFooter`.
 - `src/sections/home/` — the homepage sections. `Story.tsx` exports `Words`, the sentence with
   pieces of the app set inline (a piece never starts a line), used by the statement and stories.
@@ -75,7 +75,8 @@ node scripts/og.mjs        # the link preview, public/og.png
 - **SEO**: `src/lib/seo.tsx` (`pageMeta` for every page's title, description, canonical and
   preview; JSON-LD for the organisation, the app, FAQs and breadcrumbs), `sitemap.ts`, `robots.ts`,
   `manifest.ts`, `public/og.png`.
-- `src/lib/site.ts` — facts, `stores` and `webApp` (the store and web app links), contact address.
+- `src/lib/site.ts` — facts, `stores` and `webApp` (the store and web app links), `plus` (Wealthit+'s
+  prices, trial and the server its page talks to), contact address.
   `src/lib/features.ts` — every feature page's copy. `src/lib/brand.ts` — the mark's geometry and
   the chart colours. `src/lib/screens.json` — every capture, cut and crop.
 - The first (Jeton) homepage and its chrome were removed on 16 October 2026; they are in commit
@@ -107,6 +108,11 @@ node scripts/og.mjs        # the link preview, public/og.png
   3D mark are that light tile too. A dark section with the mark directly on it is fine. Headlines end on the lime full stop,
   `fullStop('…')`, as the App Store posters do. The leaves, the gold coin, Forest, Emerald, Mint
   and Ivory are the old brand: none of them on the site.
+- **Gold is Wealthit+'s, and only Wealthit+'s** (the owner, 18 November 2026; the app's PlusKit,
+  Design & Brands' A · Metal card, A637): the `--gold*` tokens in `system.css` (light and dark), the
+  gold mark (`PlusMark`), the metal card (`PlusCard`), foil words and the gold button. Use them on
+  /plus, the homepage's Wealthit+ section and the header's Wealthit+ card, and nowhere else; on
+  Wealthit+ the headline's full stop is gold. Everything else keeps the lime.
 - **Words** (`App/docs/marketing/app-store-campaign.md`): plain and specific. Never "smart",
   "effortless", "seamless", "all in one" or "take control", no exclamation marks, and never "it
   never leaves your phone" (records sync to the account). The owner wants nothing that reads as
@@ -114,11 +120,12 @@ node scripts/og.mjs        # the link preview, public/og.png
   sake triads or stacked fragments. The voice (17 October 2026): professional and warm, about small
   habits for a better future, with a light Gen Z touch at most once a section ("minus the
   spreadsheet energy", "future you will thank you"); never in legal or help answers.
-- **No invented facts.** No user counts, reviews, partners, certifications or prices. Social links
+- **No invented facts.** No user counts, reviews, partners or certifications, and no prices but
+  Wealthit+'s (A636, `plus` in `site.ts`). Social links
   only for accounts that exist (`socials` in `src/lib/site.ts`: Instagram @wealthitapp, the app's
   own, App/docs/marketing/instagram). Where butter shows client logos the homepage shows the
-  26 countries whose money the app keeps (flags from flag-icons, MIT). No Pricing or Blog page until
-  there is a price or a post.
+  26 countries whose money the app keeps (flags from flag-icons, MIT). Wealthit+'s prices live on /plus; no Blog
+  until there is a post.
 - **Tap to Record** (App/docs/TAP_TO_RECORD.md) is a main feature: a homepage section, one of the
   two large tiles in the features bento, and with Record from bank messages (A440, Android) the
   page **Record as you pay** (`/features/record-as-you-pay/`; the owner, 24 October 2026; the old
@@ -135,10 +142,16 @@ node scripts/og.mjs        # the link preview, public/og.png
   Store". Tap to Record still says it works with Apple Pay, because that is how it works; it is
   never promised for Android. The one exception (the owner, 24 October 2026): Record from bank
   messages says "Android for now", on Record as you pay.
-- **The web app is at https://dashboard.wealthit.app** (`webApp`; ../WebApp, published through the
-  wealthit-dashboard-site repository). "Log in" and "Open Wealthit on the web" go there. One URL
-  serves log in and sign up (its root shows sign-in). Say only what it does: same account, records
-  in step with the phone.
+- **The web app is offline** (the owner, 17 November 2026): `webApp` is null, there is no Log in,
+  and the site says nothing about Wealthit on the web. The day it returns, set `webApp` and bring
+  back what pull request #26 took out.
+- **Wealthit+** (the app's A631 to A647): sold only on wealthit.app, at /plus, through Safepay in
+  rupees; the apps never sell it and never mention the website. /plus's dialog finds the account by
+  its email and a 6-digit code (the server's A644), and keeps the 30-minute key in memory only, so
+  the privacy policy's "This website" paragraph stays true. Never "free": the trial is "Try
+  Wealthit+ for 14 days", with no payment, and it ends by itself. The terms of sale, refunds,
+  contact and privacy pages describe it; when Wealthit+ changes in the app or on the server, they
+  change the same day.
 - **Privacy claims are load-bearing.** `/privacy/` and Help started as the app session's text (11
   October 2026) and were checked against Apple's 5.1.1 and Google Play's user data and account
   deletion rules on 17 October 2026, from the app's code and notes: an account (email, Google,

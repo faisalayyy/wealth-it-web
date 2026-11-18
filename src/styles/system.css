@@ -410,6 +410,13 @@ button {
   --n-hero: #e3e3df; /* the hero's gradient, at its top */
   --soon-bg: rgba(119, 196, 27, 0.22);
   --soon-fg: #2e5f08;
+  /* Wealthit+'s gold (the app's PlusKit, Design & Brands' A · Metal card, A637): only for Wealthit+ */
+  --gold: #c99a3e;
+  --gold-text: #9a6e1e;
+  --gold-line: rgba(168, 122, 38, 0.45);
+  --gold-chip: rgba(201, 154, 62, 0.14);
+  --gold-glow: rgba(214, 170, 90, 0.26);
+  --gold-foil: linear-gradient(120deg, #c9963a 0%, #9a6e1e 35%, #6e4c12 60%, #b8862f 85%, #8a6119 100%);
   --panel: #0b0b0c; /* the dark panels the app's screens sit on */
   --logo-ink: var(--night); /* the two blades and "Wealth" */
   --r-sm: 12px;
@@ -445,6 +452,12 @@ button {
   --n-hero: #1a1a1c;
   --soon-bg: rgba(119, 196, 27, 0.16);
   --soon-fg: var(--lime);
+  --gold: #f0ce7a;
+  --gold-text: #f0ce7a;
+  --gold-line: rgba(240, 206, 122, 0.45);
+  --gold-chip: rgba(240, 206, 122, 0.13);
+  --gold-glow: rgba(240, 206, 122, 0.16);
+  --gold-foil: linear-gradient(120deg, #fff1c7 0%, #f0ce7a 28%, #b98a35 55%, #f6db93 78%, #c99a3e 100%);
   --panel: #161617;
   --logo-ink: var(--blade-white);
   --brand-text: var(--lime);

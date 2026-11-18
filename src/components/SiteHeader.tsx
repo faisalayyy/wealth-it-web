@@ -10,6 +10,8 @@ import { asset, socials, webApp } from '@/lib/site';
 import { Button } from './Button';
 import { Icon } from './Icon';
 import { Logo } from './Logo';
+import { PlusCard } from './PlusCard';
+import { PlusMark } from './PlusMark';
 import { ThemeSwitch } from './ThemeSwitch';
 import s from './SiteHeader.module.css';
 
@@ -256,6 +258,17 @@ export function SiteHeader() {
         {/* the menu: under the pill, from the two dots */}
         <div id={menuId} className={s.menu} data-open={menu ? '' : undefined} inert={!menu}>
           <nav aria-label="Menu">
+            {/* Wealthit+ on its own card, not one of the rows (Faisal, 18 Nov) */}
+            <Link href="/plus/" className={s.menuPlus} data-active={active('/plus/') ? '' : undefined} onClick={close}>
+              <PlusCard still meta="" className={s.menuPlusCard} />
+              <span className={s.menuPlusText}>
+                <span className={s.menuPlusName}>Wealthit+</span>
+                <span className={s.menuPlusLine}>Unlimited wallets, your full history and Goals. Try it for 14 days.</span>
+              </span>
+              <svg className={s.menuPlusArrow} viewBox="0 0 24 24" aria-hidden>
+                <path d="M9 6l6 6-6 6" />
+              </svg>
+            </Link>
             <ul className={s.menuRows}>
               {ROWS.map((r, i) => (
                 <li key={r.href} className={s.menuItem} style={{ '--i': i } as React.CSSProperties}>
@@ -302,10 +315,19 @@ export function SiteHeader() {
         </div>
       </div>
 
-      <div className={s.right}>
-        <ThemeSwitch className={s.theme} />
-        <LogIn className={s.login} />
-        <Button label="Get the app" href="/#get" tone="ink" size="sm" onClick={getApp()} />
+      <div className={s.end}>
+        {/* Wealthit+ on its own card beside the pill (Faisal, 18 Nov) */}
+        <Link href="/plus/" className={s.plusCard} data-active={active('/plus/') ? '' : undefined}>
+          <PlusMark className={s.plusMark} />
+          <span className={s.plusWords}>
+            <span className={s.plusLong}>Explore </span>Wealthit+
+          </span>
+        </Link>
+        <div className={s.right}>
+          <ThemeSwitch className={s.theme} />
+          <LogIn className={s.login} />
+          <Button label="Get the app" href="/#get" tone="ink" size="sm" onClick={getApp()} />
+        </div>
       </div>
     </header>
   );

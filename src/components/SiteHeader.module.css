@@ -630,6 +630,7 @@ a.login:hover {
   justify-content: center;
   gap: 8px;
   height: 40px;
+  margin-right: 6px; /* 10px to Get the app, with the pill's 4px gap */
   padding: 0 16px 0 12px;
   border-radius: var(--r-sm);
   overflow: hidden;

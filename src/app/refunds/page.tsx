@@ -55,9 +55,9 @@ export default function Refunds() {
 
           <h2>Cancelling</h2>
           <p>
-            Cancel any time. Nothing is charged after the period you have paid for, and {plus.name} stays until that period ends. Cancel
-            within the {plus.trialDays}-day trial and nothing is charged at all. To cancel, write to us from your account’s email address.
-            The details are in the{' '}
+            Cancel any time. Nothing is charged after the period you have paid for, and {plus.name} stays until that period ends.
+            The {plus.trialDays}-day trial is never charged. To cancel, choose Stop renewing on wealthit.app/plus, or write to us from your
+            account’s email address. The details are in the{' '}
             <Link href="/terms/#cancel">terms of sale</Link>.
           </p>
 

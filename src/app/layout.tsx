@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { SmoothScroll } from '@/animation/SmoothScroll';
 import { PageTransition } from '@/components/PageTransition';
 import { SiteHeader } from '@/components/SiteHeader';
-import { asset, basePath, contactEmail, seo, site, socials } from '@/lib/site';
+import { asset, basePath, contactEmail, plus, seo, site, socials } from '@/lib/site';
 import '@/styles/system.css';
 
 /**
@@ -63,7 +63,7 @@ const CSP = [
   "img-src 'self' data: blob:",
   "font-src 'self' data:",
   "media-src 'self'",
-  "connect-src 'self'",
+  `connect-src 'self'${plus.api ? ` ${plus.api}` : ''}`,
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",

@@ -81,15 +81,15 @@ export default function Terms() {
 
           <h2>Where you can buy it</h2>
           <p>
-            Only here, on wealthit.app. You enter your Wealthit account’s email address, confirm it with a code sent to that address, and pay
-            on Safepay’s own checkout. The apps don’t sell it. One purchase unlocks {plus.name} for your account on every phone you sign in on.
+            Only here, on <Link href="/plus/">wealthit.app/plus</Link>. You enter your Wealthit account’s email address, confirm it with a code
+            sent to that address, and pay on Safepay’s own checkout. The apps don’t sell it. One purchase unlocks {plus.name} for your account on every phone you sign in on.
           </p>
 
           <h2 id="trial">The {plus.trialDays}-day trial</h2>
           <p>
-            Try {plus.name} for {plus.trialDays} days, with everything it includes. You start it on wealthit.app, and each account can try it
-            once. You choose a plan when you start; nothing is charged until the {plus.trialDays} days end, and if you cancel before then,
-            nothing is charged at all.
+            Try {plus.name} for {plus.trialDays} days, with everything it includes. You start it on wealthit.app/plus, and each account can
+            try it once. There is no payment to start it and nothing is charged for it: when the {plus.trialDays} days end, {plus.name} stops
+            by itself, unless you have chosen a plan.
           </p>
 
           <h2>Renewals</h2>
@@ -101,8 +101,9 @@ export default function Terms() {
 
           <h2 id="cancel">Cancelling</h2>
           <p>
-            You can cancel any time: write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from your account’s email address.
-            Nothing is charged after the period you have paid for. {plus.name} stays until that period ends, then it ends. Deleting your
+            You can cancel any time. On wealthit.app/plus, enter your email and the code we send, then choose Stop renewing. Or write to{' '}
+            <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from your account’s email address. Nothing is charged after the period you
+            have paid for. {plus.name} stays until that period ends, then it ends. Deleting your
             Wealthit account cancels {plus.name} too.
           </p>
 

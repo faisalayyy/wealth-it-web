@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { SiteFooter } from '@/components/SiteFooter';
+import { fullStop } from '@/components/Stop';
 import type { Fact } from '@/lib/features';
 import { pageMeta } from '@/lib/seo';
 import { plus } from '@/lib/site';
@@ -9,11 +10,13 @@ import { Faq, type QA } from '@/sections/home/Faq';
 import { Facts } from '@/sections/product/Facts';
 import { PageHero } from '@/sections/product/PageHero';
 import s from './plus.module.css';
+import { Start } from './Start';
 
 /**
  * Wealthit+, the paid plan (the app's A631, A632, A634, A643): its prices, its 14-day trial and what it
  * includes. The only place to buy it: the apps never sell it (A643). Ready for Safepay's review but not linked from the menu, the footer or the sitemap, and
- * kept out of search, until Faisal says. Until `plus.checkout` is set, its button says "Coming soon".
+ * kept out of search, until Faisal says. Until `plus.api` is set, its button says "Coming soon" and
+ * the start panel (Start.tsx: email, code, trial, Safepay, stop renewing) isn't on the page.
  * Never "free": the trial is "Try Wealthit+ for 14 days".
  */
 export const metadata: Metadata = {
@@ -51,7 +54,7 @@ const ALWAYS: Fact[] = [
 const QUESTIONS: QA[] = [
   {
     q: 'How does the trial work?',
-    a: `Try ${plus.name} for ${plus.trialDays} days, with everything it includes. You start it here and choose a plan when you do, and nothing is charged until the ${plus.trialDays} days end. Cancel before then and nothing is charged at all.`,
+    a: `Try ${plus.name} for ${plus.trialDays} days, with everything it includes. Start it here with your Wealthit account’s email. There is no payment to start, and when the ${plus.trialDays} days end it stops by itself, unless you choose a plan.`,
   },
   {
     q: 'Where can I buy it?',
@@ -59,7 +62,7 @@ const QUESTIONS: QA[] = [
   },
   {
     q: 'Can I cancel any time?',
-    a: 'Yes. Write to us from your account’s email address, and nothing is charged after the period you have paid for.',
+    a: 'Yes. Do it here: enter your email and the code we send, then choose Stop renewing. Or write to us from your account’s email address. Nothing is charged after the period you have paid for.',
   },
   { q: `I already have goals, or more than ${plus.wallets} wallets. What happens?`, a: 'You keep them, and you can go on using them.' },
   { q: 'Can I get a refund?', a: 'Yes, within 14 days of a payment. The refund and cancellation policy has the details.' },
@@ -76,8 +79,8 @@ export default function Plus() {
           lead={`Everything in Wealthit, with unlimited wallets, your full history, exports and Goals. Try ${plus.name} for ${plus.trialDays} days.`}
           actions={
             <>
-              {plus.checkout ? (
-                <Button label={`Try ${plus.name} for ${plus.trialDays} days`} href={plus.checkout} tone="brand" external />
+              {plus.api ? (
+                <Button label={`Try ${plus.name} for ${plus.trialDays} days`} href="#start" tone="brand" />
               ) : (
                 <Button label="Coming soon" tone="brand" as="span" />
               )}
@@ -104,6 +107,16 @@ export default function Plus() {
             </p>
           </div>
         </section>
+        {plus.api && (
+          <section id="start" className={s.start} aria-labelledby="start-title">
+            <div className="wrap">
+              <h2 id="start-title" className={s.head}>
+                {fullStop('Start here.')}
+              </h2>
+              <Start api={plus.api} />
+            </div>
+          </section>
+        )}
         <Facts title={`Everything in ${plus.name}.`} facts={INCLUDES} />
         <Facts title="Always, with or without it." facts={ALWAYS} />
         <Faq sectionId="plus" cap={plus.name} title="Good questions, answered." items={QUESTIONS} more={false} />

@@ -34,8 +34,13 @@ export const webApp: string | null = null;
  * Wealthit+, the paid plan (the app's A631, A632, A636, A643). Bought, started (the trial) and
  * cancelled only on wealthit.app, through Safepay, in Pakistani rupees: the apps never sell it and
  * never mention the website or prices (A643, 18 November 2026). With the web app offline, /plus finds
- * the account by its email and a one-time code. No dollar prices anywhere (A636). `checkout` stays null until Safepay's checkout is live; every button that reads it says
- * "Coming soon" until then. Never call the trial "free" (Faisal).
+ * the account by its email and a one-time code (the server's A644). No dollar prices anywhere (A636).
+ *
+ * `api` is Wealthit's server, which /plus talks to. It stays null until Faisal switches Wealthit+ on
+ * (WEALTHIT_PLUS on the server, https://wealthit.app in its WEALTHIT_WEB_ORIGINS, Safepay out of test
+ * mode); until then /plus says "Coming soon", the content security policy lets the page reach
+ * nothing, and the privacy policy leaves out the paragraph about the page. Then it is
+ * 'https://wealthit-api.onrender.com'. Never call the trial "free" (Faisal).
  */
 export const plus = {
   name: 'Wealthit+',
@@ -43,7 +48,7 @@ export const plus = {
   trialDays: 14,
   wallets: 5,
   historyMonths: 6,
-  checkout: null as string | null,
+  api: null as string | null,
 };
 
 /** The address on the support and privacy pages, read by Faisal (app repo, A376). */

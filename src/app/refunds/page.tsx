@@ -8,8 +8,8 @@ import { PageHero } from '@/sections/product/PageHero';
 
 /**
  * Refunds and cancelling Wealthit+, for Safepay's review and for anyone who paid. Wealthit+ is sold
- * only on this website, through Safepay (the app's A631, A643); the 14 days for a refund is a draft
- * waiting for Faisal's yes.
+ * only on this website, through Safepay (the app's A631, A643); a full refund within 14 days of a
+ * payment, as Faisal approved on 18 November 2026.
  */
 export const metadata: Metadata = pageMeta({
   title: 'Refund and cancellation policy',

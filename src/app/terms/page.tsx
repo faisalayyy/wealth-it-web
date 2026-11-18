@@ -10,8 +10,9 @@ import { PageHero } from '@/sections/product/PageHero';
  * The terms of sale for Wealthit+, which Safepay reads before it approves the website as a merchant.
  * Every fact is the app's (A634: 6 months of history and 5 money wallets without it; A631, A643: sold only on this website, through
  * Safepay in rupees, never in the apps, one purchase for the whole account; A636: the prices, in rupees; A632: the 14-day trial, what it includes, nothing
- * ever deleted). Renewals, cancelling and the trial's details follow the usual practice and wait for
- * Faisal's yes; if Wealthit+ changes in the app, this page changes the same day.
+ * ever deleted; A644, A646: the trial, Stop renewing, and deleting the account stopping a Safepay plan, as the
+ * server does them). Refunds, the trial, lifetime, price rises, cancelling and deleting the account are as
+ * Faisal approved them on 18 November 2026. If Wealthit+ changes in the app, this page changes the same day.
  */
 export const metadata: Metadata = pageMeta({
   title: 'Terms of sale for Wealthit+',

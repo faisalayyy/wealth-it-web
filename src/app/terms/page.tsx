@@ -8,8 +8,8 @@ import { PageHero } from '@/sections/product/PageHero';
 
 /**
  * The terms of sale for Wealthit+, which Safepay reads before it approves the website as a merchant.
- * Every fact is the app's (A634: 6 months of history and 5 money wallets without it; A631: Safepay on this website in rupees, the stores' own billing in the apps,
- * one purchase for the whole account; A636: the prices, in rupees; A632: the 14-day trial, what it includes, nothing
+ * Every fact is the app's (A634: 6 months of history and 5 money wallets without it; A631, A643: sold only on this website, through
+ * Safepay in rupees, never in the apps, one purchase for the whole account; A636: the prices, in rupees; A632: the 14-day trial, what it includes, nothing
  * ever deleted). Renewals, cancelling and the trial's details follow the usual practice and wait for
  * Faisal's yes; if Wealthit+ changes in the app, this page changes the same day.
  */
@@ -76,21 +76,20 @@ export default function Terms() {
             </li>
           </ul>
           <p>
-            Prices are in Pakistani rupees. On wealthit.app you pay exactly these through Safepay, and the amount is shown before you pay. In
-            the apps, the App Store or Google Play sets its own price for your country and charges it under its own terms.
+            Prices are in Pakistani rupees, and you pay exactly these through Safepay. The amount is shown before you pay.
           </p>
 
           <h2>Where you can buy it</h2>
           <p>
-            On wealthit.app through Safepay, and in the apps through the App Store or Google Play. In Pakistan, Google Play can also charge it to
-            your mobile account. One purchase unlocks {plus.name} for your account everywhere: on every phone you sign in on.
+            Only here, on wealthit.app. You enter your Wealthit account’s email address, confirm it with a code sent to that address, and pay
+            on Safepay’s own checkout. The apps don’t sell it. One purchase unlocks {plus.name} for your account on every phone you sign in on.
           </p>
 
           <h2 id="trial">The {plus.trialDays}-day trial</h2>
           <p>
-            Try {plus.name} for {plus.trialDays} days, with everything it includes. Each account can try it once. On wealthit.app you choose a plan
-            when you start; nothing is charged until the {plus.trialDays} days end, and if you cancel before then, nothing is charged at all.
-            In the apps, the trial works the way the App Store or Google Play sets it up.
+            Try {plus.name} for {plus.trialDays} days, with everything it includes. You start it on wealthit.app, and each account can try it
+            once. You choose a plan when you start; nothing is charged until the {plus.trialDays} days end, and if you cancel before then,
+            nothing is charged at all.
           </p>
 
           <h2>Renewals</h2>
@@ -101,20 +100,10 @@ export default function Terms() {
           </p>
 
           <h2 id="cancel">Cancelling</h2>
-          <p>You can cancel any time, and nothing is charged after the period you have paid for.</p>
-          <ul className={p.list}>
-            <li>
-              <strong>Bought on wealthit.app:</strong> write to{' '}
-              <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from your account’s email address.
-            </li>
-            <li>
-              <strong>Bought in the apps:</strong> cancel in your App Store or Google Play subscriptions. Wealthit can’t cancel a store
-              subscription for you.
-            </li>
-          </ul>
           <p>
-            {plus.name} stays until the end of the period you have paid for, then it ends. Deleting your Wealthit account cancels a plan
-            bought on wealthit.app; a plan bought in the apps has to be cancelled in the store as well.
+            You can cancel any time: write to <a href={`mailto:${contactEmail}`}>{contactEmail}</a> from your account’s email address.
+            Nothing is charged after the period you have paid for. {plus.name} stays until that period ends, then it ends. Deleting your
+            Wealthit account cancels {plus.name} too.
           </p>
 
           <h2>When {plus.name} ends</h2>

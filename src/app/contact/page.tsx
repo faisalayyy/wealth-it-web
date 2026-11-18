@@ -35,8 +35,7 @@ export default function Contact() {
 
           <h2>About a payment</h2>
           <p>
-            Write from your Wealthit account’s email address and say where you paid (on wealthit.app, the App Store or Google Play), with the
-            date and the amount. Never send a card number. How refunds work is in the{' '}
+            Write from your Wealthit account’s email address, with the date and the amount of the payment. Never send a card number. How refunds work is in the{' '}
             <Link href="/refunds/">refund and cancellation policy</Link>, and what {plus.name} includes is in the{' '}
             <Link href="/terms/">terms of sale</Link>.
           </p>

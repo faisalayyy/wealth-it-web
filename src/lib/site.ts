@@ -31,9 +31,10 @@ export const stores: { ios: string | null; android: string | null } = {
 export const webApp: string | null = null;
 
 /**
- * Wealthit+, the paid plan (the app's A631, A632, A636, 17 November 2026). Prices are in Pakistani
- * rupees, charged exactly by Safepay on wealthit.app; in the apps each store sets its own price from
- * its tiers. No dollar prices anywhere (A636). `checkout` stays null until Safepay's checkout is live; every button that reads it says
+ * Wealthit+, the paid plan (the app's A631, A632, A636, A643). Bought, started (the trial) and
+ * cancelled only on wealthit.app, through Safepay, in Pakistani rupees: the apps never sell it and
+ * never mention the website or prices (A643, 18 November 2026). With the web app offline, /plus finds
+ * the account by its email and a one-time code. No dollar prices anywhere (A636). `checkout` stays null until Safepay's checkout is live; every button that reads it says
  * "Coming soon" until then. Never call the trial "free" (Faisal).
  */
 export const plus = {

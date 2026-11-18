@@ -11,8 +11,8 @@ import { PageHero } from '@/sections/product/PageHero';
 import s from './plus.module.css';
 
 /**
- * Wealthit+, the paid plan (the app's A631, A632, A634): its prices, its 14-day trial and what it
- * includes. Ready for Safepay's review but not linked from the menu, the footer or the sitemap, and
+ * Wealthit+, the paid plan (the app's A631, A632, A634, A643): its prices, its 14-day trial and what it
+ * includes. The only place to buy it: the apps never sell it (A643). Ready for Safepay's review but not linked from the menu, the footer or the sitemap, and
  * kept out of search, until Faisal says. Until `plus.checkout` is set, its button says "Coming soon".
  * Never "free": the trial is "Try Wealthit+ for 14 days".
  */
@@ -45,24 +45,24 @@ const ALWAYS: Fact[] = [
   { title: 'Budgets and scheduled payments', text: 'Included for everyone, as they are.' },
   { title: 'The assistant, for everyone', text: `Ask about your money with or without ${plus.name}. It answers within what your plan includes.` },
   { title: 'Nothing is ever deleted', text: `If ${plus.name} ends, what you made stays. Its parts come back the moment you start again.` },
-  { title: 'One purchase, everywhere', text: 'Buy it once and it works on every phone you sign in on.' },
+  { title: 'One purchase, everywhere', text: 'Buy it once here and it works on every phone you sign in on.' },
 ];
 
 const QUESTIONS: QA[] = [
   {
     q: 'How does the trial work?',
-    a: `Try ${plus.name} for ${plus.trialDays} days, with everything it includes. On wealthit.app you choose a plan when you start, and nothing is charged until the ${plus.trialDays} days end. Cancel before then and nothing is charged at all. In the apps, the trial works the way the App Store or Google Play sets it up.`,
+    a: `Try ${plus.name} for ${plus.trialDays} days, with everything it includes. You start it here and choose a plan when you do, and nothing is charged until the ${plus.trialDays} days end. Cancel before then and nothing is charged at all.`,
   },
   {
     q: 'Where can I buy it?',
-    a: 'On wealthit.app through Safepay, in Pakistani rupees, or in the apps through the App Store or Google Play, which show their own local price. One purchase unlocks it for your account everywhere.',
+    a: 'Only here, on wealthit.app, through Safepay, in Pakistani rupees. Enter your Wealthit account’s email, confirm it with the code we send, and pay on Safepay’s checkout. It then works on every phone you sign in on.',
   },
   {
     q: 'Can I cancel any time?',
-    a: 'Yes. Nothing is charged after the period you have paid for. Bought on wealthit.app? Write to us. In the apps, cancel in your App Store or Google Play subscriptions.',
+    a: 'Yes. Write to us from your account’s email address, and nothing is charged after the period you have paid for.',
   },
   { q: `I already have goals, or more than ${plus.wallets} wallets. What happens?`, a: 'You keep them, and you can go on using them.' },
-  { q: 'Can I get a refund?', a: 'Yes, for a web payment within 14 days. Payments in the apps are refunded by Apple or Google. The refund and cancellation policy has the details.' },
+  { q: 'Can I get a refund?', a: 'Yes, within 14 days of a payment. The refund and cancellation policy has the details.' },
   { q: 'What happens to my things if I stop?', a: `Nothing you made is deleted or changed. The parts that need ${plus.name} are hidden, and everything in them comes back the moment you start again.` },
 ];
 
@@ -98,8 +98,8 @@ export default function Plus() {
               ))}
             </div>
             <p className={s.small}>
-              Prices are in Pakistani rupees, and on wealthit.app you pay exactly these through Safepay. In the apps, the App Store or Google
-              Play sets its own price for your country. Monthly and yearly plans renew until you cancel. See the{' '}
+              Prices are in Pakistani rupees, and you pay exactly these through Safepay. Monthly and yearly plans renew until you cancel. See
+              the{' '}
               <Link href="/terms/">terms of sale</Link> and the <Link href="/refunds/">refund and cancellation policy</Link>.
             </p>
           </div>

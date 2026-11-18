@@ -1,125 +1,184 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { Button } from '@/components/Button';
+import { PlusMark } from '@/components/PlusMark';
 import { SiteFooter } from '@/components/SiteFooter';
-import { fullStop } from '@/components/Stop';
-import type { Fact } from '@/lib/features';
-import { pageMeta } from '@/lib/seo';
+import { breadcrumbs, JsonLd, pageMeta } from '@/lib/seo';
 import { plus } from '@/lib/site';
 import { Faq, type QA } from '@/sections/home/Faq';
-import { Facts } from '@/sections/product/Facts';
-import { PageHero } from '@/sections/product/PageHero';
+import { PLUS_ICONS, type PlusIconName } from './icons';
+import { Join } from './Join';
+import { Open } from './Open';
+import { PlusCard } from './PlusCard';
+import { Plans } from './Plans';
 import s from './plus.module.css';
-import { Start } from './Start';
 
 /**
- * Wealthit+, the paid plan (the app's A631, A632, A634, A643): its prices, its 14-day trial and what it
- * includes. The only place to buy it: the apps never sell it (A643). Ready for Safepay's review but not linked from the menu, the footer or the sitemap, and
- * kept out of search, until Faisal says. Until `plus.api` is set, its button says "Coming soon" and
- * the start panel (Start.tsx: email, code, trial, Safepay, stop renewing) isn't on the page.
- * Never "free": the trial is "Try Wealthit+ for 14 days".
+ * Wealthit+, the paid plan (the app's A631, A632, A634, A636, A643): the only place it is sold, the
+ * apps never sell it. In the app's Wealthit+ look (Design & Brands' A · Metal card, A637): the gold,
+ * the gold mark and the metal card. Hero, plans, what you get, questions, footer (Faisal, 18 Nov).
+ * Every button opens one dialog (Join.tsx: email, code, then the trial, Safepay or the plan); while
+ * `plus.api` is null they say "Coming soon". Never "free": the trial is "Try Wealthit+ for 14 days".
  */
-export const metadata: Metadata = {
-  ...pageMeta({
-    title: plus.name,
-    description: `Unlimited wallets, your full history and a year in review, PDF and CSV exports, app icons and Goals. ${plus.prices.month} a month, ${plus.prices.year} a year or ${plus.prices.life} once.`,
-    path: '/plus/',
-  }),
-  robots: { index: false, follow: true },
-};
+export const metadata: Metadata = pageMeta({
+  title: `${plus.name}: unlimited wallets, full history and exports`,
+  description: `Everything in Wealthit, without limits: unlimited wallets, your full history, PDF and CSV exports and Goals. Try ${plus.name} for ${plus.trialDays} days. ${plus.prices.month} a month, ${plus.prices.year} a year or ${plus.prices.life} once.`,
+  path: '/plus/',
+});
 
-const PRICES = [
-  { plan: 'Monthly', price: plus.prices.month, per: 'a month' },
-  { plan: 'Yearly', price: plus.prices.year, per: 'a year', note: 'About Rs 250 a month', best: true },
-  { plan: 'Lifetime', price: plus.prices.life, per: 'once, for as long as you have Wealthit' },
-];
+/** A headline's full stop in gold, as the lime one is everywhere else. */
+const goldStop = (t: string) => (
+  <>
+    {t.replace(/\.$/, '')}
+    <span className={s.stop}>.</span>
+  </>
+);
 
-const INCLUDES: Fact[] = [
-  { title: 'Unlimited wallets', text: `Bank, cash, cards, savings and loans. Without ${plus.name}, Wealthit keeps up to ${plus.wallets}; the people you share costs with don’t count.` },
-  { title: 'Your full history', text: `Every month you have recorded, and a year in review. Without ${plus.name}, the last ${plus.historyMonths} months show, and nothing older is ever deleted.` },
-  { title: 'PDF and CSV exports', text: 'Your records as a report to keep, or a file for a spreadsheet.' },
-  { title: 'Goals', text: 'Put money aside for something and watch it grow.' },
-  { title: 'App icons', text: 'Pick the icon Wealthit wears on your home screen.' },
-  { title: 'Investments, coming soon', text: 'Keep your investments beside the rest of your money.' },
-  { title: 'Early access and faster help', text: 'New features first, and your emails answered first.' },
-];
-
-const ALWAYS: Fact[] = [
-  { title: 'Budgets and scheduled payments', text: 'Included for everyone, as they are.' },
-  { title: 'The assistant, for everyone', text: `Ask about your money with or without ${plus.name}. It answers within what your plan includes.` },
-  { title: 'Nothing is ever deleted', text: `If ${plus.name} ends, what you made stays. Its parts come back the moment you start again.` },
-  { title: 'One purchase, everywhere', text: 'Buy it once here and it works on every phone you sign in on.' },
+const GET: { icon: PlusIconName; title: string; text: string; soon?: boolean }[] = [
+  { icon: 'wallet', title: 'Unlimited wallets', text: `Every account, card and loan. Without it, Wealthit keeps ${plus.wallets}.` },
+  { icon: 'restore', title: 'Your full history', text: `Every month you’ve recorded, and a year in review. Without it, you see the last ${plus.historyMonths} months.` },
+  { icon: 'download', title: 'PDF and CSV exports', text: 'A report to keep, or a file for your spreadsheet.' },
+  { icon: 'target', title: 'Goals', text: 'Put money aside for something and watch it grow.' },
+  { icon: 'grid', title: 'App icons', text: 'Pick the icon on your home screen, gold included.' },
+  { icon: 'trend', title: 'Investments', text: 'Your investments beside the rest of your money.', soon: true },
+  { icon: 'rocket', title: 'Early access', text: 'New features reach you first.' },
+  { icon: 'chat', title: 'Faster help', text: 'Your emails are answered first.' },
 ];
 
 const QUESTIONS: QA[] = [
   {
     q: 'How does the trial work?',
-    a: `Try ${plus.name} for ${plus.trialDays} days, with everything it includes. Start it here with your Wealthit account’s email. There is no payment to start, and when the ${plus.trialDays} days end it stops by itself, unless you choose a plan.`,
+    a: `Tap Try ${plus.name} for ${plus.trialDays} days and confirm the email you use for Wealthit. Everything opens at once, with no payment. When the ${plus.trialDays} days end it stops by itself, unless you choose a plan. Each account can try it once.`,
   },
   {
-    q: 'Where can I buy it?',
-    a: 'Only here, on wealthit.app, through Safepay, in Pakistani rupees. Enter your Wealthit account’s email, confirm it with the code we send, and pay on Safepay’s checkout. It then works on every phone you sign in on.',
+    q: 'Where do I pay?',
+    a: `Here on wealthit.app, through Safepay, in rupees. One payment unlocks ${plus.name} on every phone you sign in on.`,
   },
   {
     q: 'Can I cancel any time?',
-    a: 'Yes. Do it here: enter your email and the code we send, then choose Stop renewing. Or write to us from your account’s email address. Nothing is charged after the period you have paid for.',
+    a: `Yes. Choose Manage your plan, then Stop renewing, or write to us. ${plus.name} stays until the end of what you paid for, and nothing more is charged.`,
   },
+  { q: 'Can I get a refund?', a: 'Yes, in full within 14 days of a payment. The refund and cancellation policy has the details.' },
   { q: `I already have goals, or more than ${plus.wallets} wallets. What happens?`, a: 'You keep them, and you can go on using them.' },
-  { q: 'Can I get a refund?', a: 'Yes, within 14 days of a payment. The refund and cancellation policy has the details.' },
-  { q: 'What happens to my things if I stop?', a: `Nothing you made is deleted or changed. The parts that need ${plus.name} are hidden, and everything in them comes back the moment you start again.` },
+  {
+    q: 'What happens to my things if I stop?',
+    a: `Nothing you made is deleted or changed. The parts that need ${plus.name} are hidden, and they come back the moment you start again. Budgets, scheduled payments and the assistant stay with you either way.`,
+  },
 ];
 
-export default function Plus() {
+function Icon({ name }: { name: PlusIconName }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden>
+      {PLUS_ICONS[name].map((p, i) =>
+        'stroke' in p ? (
+          <path key={i} d={p.d} fill="none" stroke="currentColor" strokeWidth={p.stroke} strokeLinecap="round" strokeLinejoin="round" />
+        ) : (
+          <path key={i} d={p.d} fillRule={'even' in p && p.even ? 'evenodd' : undefined} />
+        ),
+      )}
+    </svg>
+  );
+}
+
+export default function PlusPage() {
+  const live = !!plus.api;
   return (
     <div className="page">
-      <main id="main">
-        <PageHero
-          cap={plus.name}
-          title="More room for big goals."
-          lead={`Everything in Wealthit, with unlimited wallets, your full history, exports and Goals. Try ${plus.name} for ${plus.trialDays} days.`}
-          actions={
-            <>
-              {plus.api ? (
-                <Button label={`Try ${plus.name} for ${plus.trialDays} days`} href="#start" tone="brand" />
-              ) : (
-                <Button label="Coming soon" tone="brand" as="span" />
-              )}
-              <Button label="Read the terms" href="/terms/" tone="ink" variant="secondary" />
-            </>
-          }
+      <main id="main" className={s.page}>
+        <JsonLd
+          data={breadcrumbs([
+            { name: 'Home', path: '/' },
+            { name: plus.name, path: '/plus/' },
+          ])}
         />
-        <section className={s.section} aria-label="Prices">
-          <div className="wrap">
-            <div className={s.grid}>
-              {PRICES.map(pr => (
-                <div key={pr.plan} className={s.card} data-best={pr.best || undefined}>
-                  <span className={s.plan}>{pr.plan}</span>
-                  <span className={s.price}>{pr.price}</span>
-                  <span className={s.per}>{pr.per}</span>
-                  {pr.note && <span className={s.note}>{pr.note}</span>}
-                </div>
-              ))}
+
+        <section className={s.hero} data-tilt="">
+          <div className={`wrap ${s.heroGrid}`}>
+            <div className={s.heroCopy}>
+              <p className={s.tag}>
+                <PlusMark className={s.tagMark} />
+                <span className={s.foil}>{plus.name}</span>
+              </p>
+              <h1 className={s.h1}>{goldStop('Everything in Wealthit, without limits.')}</h1>
+              <p className={s.lead}>
+                Unlimited wallets, your full history, exports and Goals, on every phone you sign in on. Try it for {plus.trialDays} days with no
+                payment to start.
+              </p>
+              <div className={s.heroActions}>
+                {live ? (
+                  <Open intent={{ kind: 'trial' }} className={s.gold}>
+                    Try {plus.name} for {plus.trialDays} days
+                  </Open>
+                ) : (
+                  <span className={s.gold} data-soon="">
+                    Coming soon
+                  </span>
+                )}
+                <a href="#plans" className={s.ghost}>
+                  See the plans
+                </a>
+              </div>
+              {live && (
+                <p className={s.member}>
+                  Already have it?{' '}
+                  <Open intent={{ kind: 'manage' }} className={s.textLink}>
+                    Manage your plan
+                  </Open>
+                </p>
+              )}
             </div>
+            <div className={s.heroCard}>
+              <PlusCard />
+            </div>
+          </div>
+        </section>
+
+        <section id="plans" className={s.section} aria-labelledby="plans-title">
+          <div className="wrap">
+            <div className={s.head}>
+              <p className={s.cap}>Plans</p>
+              <h2 id="plans-title" className={s.h2}>
+                {goldStop('Pick how you pay.')}
+              </h2>
+            </div>
+            <Plans live={live} />
             <p className={s.small}>
-              Prices are in Pakistani rupees, and you pay exactly these through Safepay. Monthly and yearly plans renew until you cancel. See
-              the{' '}
-              <Link href="/terms/">terms of sale</Link> and the <Link href="/refunds/">refund and cancellation policy</Link>.
+              Prices in Pakistani rupees. Monthly and yearly renew until you stop them. <Link href="/terms/">Terms of sale</Link> ·{' '}
+              <Link href="/refunds/">Refunds</Link> · <Link href="/privacy/#payments">Privacy</Link>
             </p>
           </div>
         </section>
-        {plus.api && (
-          <section id="start" className={s.start} aria-labelledby="start-title">
-            <div className="wrap">
-              <h2 id="start-title" className={s.head}>
-                {fullStop('Start here.')}
+
+        <section className={s.section} aria-labelledby="get-title">
+          <div className="wrap">
+            <div className={s.head}>
+              <p className={s.cap}>What you get</p>
+              <h2 id="get-title" className={s.h2}>
+                {goldStop('More room for big goals.')}
               </h2>
-              <Start api={plus.api} />
             </div>
-          </section>
-        )}
-        <Facts title={`Everything in ${plus.name}.`} facts={INCLUDES} />
-        <Facts title="Always, with or without it." facts={ALWAYS} />
-        <Faq sectionId="plus" cap={plus.name} title="Good questions, answered." items={QUESTIONS} more={false} />
+            <ul className={s.getGrid}>
+              {GET.map(g => (
+                <li key={g.title} className={s.getItem}>
+                  <span className={s.getIcon}>
+                    <Icon name={g.icon} />
+                  </span>
+                  <span className={s.getTitle}>
+                    {g.title}
+                    {g.soon && <span className={s.soon}>Soon</span>}
+                  </span>
+                  <span className={s.getText}>{g.text}</span>
+                </li>
+              ))}
+            </ul>
+            <p className={s.always}>
+              <span className={s.alwaysDot} aria-hidden />
+              With or without it: budgets, scheduled payments and the assistant stay included, and nothing you make is ever deleted.
+            </p>
+          </div>
+        </section>
+
+        <Faq sectionId="questions" cap={plus.name} title="Good to know." items={QUESTIONS} more={false} />
+        {live && plus.api && <Join api={plus.api} />}
       </main>
       <SiteFooter />
     </div>

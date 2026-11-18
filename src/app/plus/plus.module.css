@@ -1,133 +1,580 @@
-/* The three prices, in the cards Facts uses, the yearly one lit. */
-.section {
-  padding: clamp(24px, 4vw, 56px) 0 clamp(72px, 8vw, 120px);
+/* Wealthit+ (/plus): the app's Wealthit+ look on the site's grid. Gold only here and in the header's
+   way in; tokens in system.css (--gold, --gold-text, --gold-line, --gold-chip, --gold-glow, --gold-foil). */
+.page {
   background: var(--n-50);
   color: var(--n-ink);
 }
 
-.grid {
+/* ── hero: copy on the left, the card on a soft gold light on the right ─────────────────── */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(128px, 14vw, 184px) 0 clamp(64px, 8vw, 112px);
+  background:
+    radial-gradient(48% 62% at 76% 42%, var(--gold-glow), transparent 70%),
+    radial-gradient(40% 50% at 10% 0%, var(--gold-chip), transparent 70%),
+    var(--n-50);
+}
+
+.heroGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(32px, 5vw, 72px);
 }
 
-.card {
+.heroCopy {
   display: grid;
-  align-content: start;
-  gap: 6px;
-  padding: 28px;
-  border-radius: var(--r-md);
-  background: var(--n-100);
-  box-shadow: inset 0 0 0 1px var(--n-line);
+  justify-items: start;
+  gap: 22px;
 }
 
-.card[data-best] {
-  box-shadow: inset 0 0 0 2px var(--lime);
+.heroCard {
+  display: grid;
+  place-items: center;
+  min-height: calc(min(440px, 82vw) * 0.63 + 80px);
 }
 
-.plan {
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 10px;
+  border-radius: 999px;
+  background: var(--gold-chip);
+  box-shadow: inset 0 0 0 1px var(--gold-line);
   font-size: 15px;
-  font-weight: 600;
-  color: var(--n-text);
+  font-weight: 700;
 }
 
-.price {
-  font-size: clamp(40px, 4vw, 52px);
-  line-height: 1;
+.tagMark {
+  width: 20px;
+  height: auto;
+}
+
+.foil {
+  background: var(--gold-foil);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.h1 {
+  max-width: 12em;
+  font-size: clamp(44px, 6.4vw, 92px);
+  line-height: 0.98;
   font-weight: 750;
-  letter-spacing: -0.04em;
-  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.045em;
 }
 
-.per {
+.stop {
+  color: var(--gold);
+}
+
+.lead {
+  max-width: 32em;
+  font-size: clamp(17px, 1.5vw, 20px);
+  line-height: 1.5;
+  color: var(--n-text);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.member {
   font-size: 15px;
   color: var(--n-text);
 }
 
-.note {
-  margin-top: 10px;
-  font-size: 14px;
-  color: var(--brand-text);
-  font-weight: 600;
+/* the gold button: the app's metal top to bottom, one light band, a soft glow */
+.gold {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f8e2a6 0%, #ebc46e 48%, #c9963a 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 8px 24px rgba(201, 150, 58, 0.28);
+  color: #241906;
+  font: inherit;
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    transform 200ms var(--ease-quint),
+    box-shadow 200ms var(--ease-quint);
 }
 
-.small {
-  max-width: 46em;
-  margin-top: 18px;
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--n-text);
+.gold::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.45) 46%, transparent 60%);
+  transform: translateX(-100%);
+  transition: transform 700ms var(--ease-quint);
+  pointer-events: none;
 }
 
-/* Starting, buying and cancelling (Start.tsx): one panel, one step at a time. */
-.start {
-  padding: 0 0 clamp(72px, 8vw, 120px);
-  background: var(--n-50);
+@media (hover: hover) and (pointer: fine) {
+  .gold:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.6),
+      0 12px 32px rgba(201, 150, 58, 0.38);
+  }
+  .gold:hover::after {
+    transform: translateX(100%);
+  }
+}
+
+.gold:focus-visible {
+  outline: 2px solid var(--gold-text);
+  outline-offset: 3px;
+}
+
+.gold:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.gold[data-soon] {
+  filter: saturate(0.4);
+  opacity: 0.75;
+  cursor: default;
+}
+
+.ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 0 24px;
+  border-radius: 999px;
+  box-shadow: inset 0 0 0 1px var(--n-line);
   color: var(--n-ink);
-  scroll-margin-top: 96px;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ghost:hover {
+    background: var(--n-tint);
+  }
+}
+
+.textLink {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--gold-text);
+  font: inherit;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-color: var(--gold-line);
+  text-underline-offset: 4px;
+  cursor: pointer;
+}
+
+/* ── sections ───────────────────────────────────────────────────────────────────────────── */
+.section {
+  padding: clamp(64px, 8vw, 128px) 0;
+  scroll-margin-top: 72px;
 }
 
 .head {
-  margin-bottom: 20px;
-  font-size: clamp(28px, 3vw, 40px);
-  line-height: 1.1;
-  font-weight: 700;
-  letter-spacing: -0.03em;
+  display: grid;
+  gap: 12px;
+  margin-bottom: clamp(28px, 4vw, 48px);
 }
 
-.flow {
-  --bad: #b23a26;
-  max-width: 640px;
-  padding: clamp(24px, 4vw, 40px);
+.cap {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-text);
+}
+
+.h2 {
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 1;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.small {
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--n-cap);
+}
+
+.small a {
+  color: var(--n-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ── plans: three cards as one radio group, then the gold button ───────────────────────── */
+.plans {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr);
+  align-items: start;
+  gap: clamp(20px, 3vw, 40px);
+}
+
+.planList {
+  display: grid;
+  gap: 12px;
+}
+
+.planCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  grid-template-areas:
+    'tick name price'
+    'tick sub per';
+  column-gap: 16px;
+  row-gap: 4px;
+  align-items: center;
+  padding: 22px 24px;
+  border-radius: var(--r-md);
+  background: var(--n-100);
+  box-shadow: inset 0 0 0 1px var(--n-line);
+  cursor: pointer;
+  transition:
+    box-shadow 200ms var(--ease-quint),
+    background 200ms var(--ease-quint);
+}
+
+.planCard[data-on] {
+  background: linear-gradient(135deg, var(--gold-chip), transparent 70%), var(--n-100);
+  box-shadow:
+    inset 0 0 0 2px var(--gold),
+    0 10px 30px var(--gold-chip);
+}
+
+.planCard:has(.planRadio:focus-visible) {
+  outline: 2px solid var(--gold-text);
+  outline-offset: 3px;
+}
+
+.planRadio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.planTick {
+  grid-area: tick;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1.5px var(--n-line);
+}
+
+.planTick svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: transparent;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.planCard[data-on] .planTick {
+  background: linear-gradient(180deg, #f8e2a6, #c9963a);
+  box-shadow: none;
+}
+
+.planCard[data-on] .planTick svg {
+  stroke: #241906;
+}
+
+.planName {
+  grid-area: name;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.badge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f8e2a6, #c9963a);
+  color: #241906;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+.planSub {
+  grid-area: sub;
+  font-size: 14.5px;
+  color: var(--n-text);
+}
+
+.planPrice {
+  grid-area: price;
+  justify-self: end;
+  font-size: 22px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.planPer {
+  grid-area: per;
+  justify-self: end;
+  font-size: 14px;
+  color: var(--n-text);
+}
+
+.planGo {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 14px;
+  padding: 28px;
+  border-radius: var(--r-md);
+  background: var(--n-100);
+  box-shadow: inset 0 0 0 1px var(--gold-line);
+}
+
+.planGo .gold {
+  width: 100%;
+}
+
+.planNote {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--n-text);
+}
+
+/* ── what you get: icons in gold tiles ─────────────────────────────────────────────────── */
+.getGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  list-style: none;
+}
+
+.getItem {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 24px;
   border-radius: var(--r-md);
   background: var(--n-100);
   box-shadow: inset 0 0 0 1px var(--n-line);
 }
 
-:global([data-theme='dark']) .flow {
-  --bad: #ff8a73;
+.getIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  background: var(--gold-chip);
+  box-shadow: inset 0 0 0 1px var(--gold-line);
 }
 
-.form {
+.getIcon svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--gold-text);
+  color: var(--gold-text);
+}
+
+.getTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.getText {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--n-text);
+}
+
+.soon {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--n-tint);
+  color: var(--n-text);
+  font-size: 11.5px;
+  font-weight: 650;
+}
+
+.always {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 24px;
+  font-size: 15.5px;
+  line-height: 1.5;
+  color: var(--n-text);
+}
+
+.alwaysDot {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* ── the dialog ───────────────────────────────────────────────────────────────────────── */
+.modal {
+  width: min(460px, calc(100vw - 32px));
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 24px;
+  background: var(--n-100);
+  color: var(--n-ink);
+  box-shadow:
+    inset 0 0 0 1px var(--gold-line),
+    0 40px 80px rgba(0, 0, 0, 0.45);
+  overflow: auto;
+}
+
+.modal::backdrop {
+  background: rgba(5, 5, 6, 0.62);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.modal[open] {
+  animation: rise 560ms var(--ease-quint) both;
+}
+
+.modal[open]::backdrop {
+  animation: dim 320ms ease both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+}
+
+@keyframes dim {
+  from {
+    opacity: 0;
+  }
+}
+
+.mBox {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  padding: 32px 28px 28px;
+  background: radial-gradient(80% 50% at 50% 0%, var(--gold-chip), transparent 70%);
+}
+
+.mClose {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--n-tint);
+  color: var(--n-ink);
+  cursor: pointer;
+}
+
+.mClose svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.mMark {
+  width: 40px;
+  height: auto;
+}
+
+.mTitle {
+  padding-right: 40px;
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+}
+
+.mForm {
   display: grid;
   gap: 16px;
 }
 
-.step {
-  font-size: 22px;
-  font-weight: 700;
-  letter-spacing: -0.02em;
+.mForm .gold {
+  width: 100%;
 }
 
-/* Focused only so a screen reader hears the new step; nothing to show. */
-.step:focus,
-.step:focus-visible {
-  outline: none;
-}
-
-.text {
+.mText {
   font-size: 16px;
   line-height: 1.5;
+  color: var(--n-text);
   overflow-wrap: anywhere;
 }
 
-.field {
+.mText strong {
+  color: var(--n-ink);
+  font-weight: 650;
+}
+
+.mField {
   display: grid;
   gap: 8px;
 }
 
-.label {
+.mLabel {
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 650;
   color: var(--n-text);
 }
 
-.input {
+.mInput {
   width: 100%;
-  min-height: 52px;
+  min-height: 54px;
   padding: 0 16px;
   border: 0;
-  border-radius: 12px;
+  border-radius: 14px;
   background: var(--n-50);
   box-shadow: inset 0 0 0 1px var(--n-line);
   color: var(--n-ink);
@@ -135,80 +582,170 @@
   font-size: 17px;
 }
 
-.input:focus-visible {
-  outline: none;
-  box-shadow: inset 0 0 0 2px var(--brand-text);
+.mInput::placeholder {
+  color: var(--n-cap);
 }
 
-.input[aria-invalid] {
+.mInput:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--gold);
+}
+
+.mInput[aria-invalid] {
   box-shadow: inset 0 0 0 2px var(--bad);
 }
 
-.code {
-  max-width: 220px;
-  font-size: 24px;
-  letter-spacing: 0.3em;
+.mCode {
+  font-size: 26px;
+  letter-spacing: 0.4em;
+  text-align: center;
   font-variant-numeric: tabular-nums;
 }
 
-.actions {
+.mLinks {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  gap: 12px 20px;
+  justify-content: center;
+  gap: 8px 24px;
 }
 
-.choice {
-  display: grid;
-  gap: 12px;
-  padding-top: 16px;
-  border-top: 1px solid var(--n-line);
-}
-
-.hint {
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--n-text);
-}
-
-.link {
-  justify-self: start;
-  padding: 4px 0;
+.mLink,
+.mDanger {
+  padding: 6px 0;
   border: 0;
   background: none;
   color: var(--n-ink);
   font: inherit;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 650;
   text-decoration: underline;
   text-underline-offset: 3px;
   cursor: pointer;
 }
 
-.link:disabled {
+.mDanger {
+  color: var(--bad);
+}
+
+.mLink:disabled,
+.mDanger:disabled {
   opacity: 0.5;
   cursor: default;
 }
 
-.error,
-.said {
-  font-size: 15px;
-  line-height: 1.5;
+.mBuy {
+  display: grid;
+  gap: 8px;
 }
 
-.error:empty,
-.said:empty {
+.mPlan {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: var(--n-50);
+  box-shadow: inset 0 0 0 1px var(--n-line);
+  color: var(--n-ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.mPlan span:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.mPlan strong {
+  font-size: 16px;
+}
+
+.mPlan small {
+  font-size: 13.5px;
+  color: var(--n-text);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .mPlan:hover {
+    box-shadow: inset 0 0 0 1.5px var(--gold);
+  }
+}
+
+.mPrice {
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.mStop {
+  padding-top: 14px;
+  border-top: 1px solid var(--n-line);
+}
+
+.mError {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--bad);
+}
+
+.mError:empty {
   display: none;
 }
 
-.error {
-  margin-top: 16px;
-  color: var(--bad);
-  font-weight: 600;
+.page,
+.modal {
+  --bad: #b23a26;
 }
 
-.said {
-  margin-top: 16px;
-  color: var(--brand-text);
-  font-weight: 600;
+:global([data-theme='dark']) .page,
+:global([data-theme='dark']) .modal {
+  --bad: #ff8a73;
+}
+
+/* ── phones and tablets ───────────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .getGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .plans {
+    grid-template-columns: 1fr;
+  }
+  .planGo {
+    position: static;
+  }
+}
+
+@media (max-width: 899px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+  .heroCard {
+    order: -1;
+    min-height: 0;
+    padding: 8px 0 12px;
+  }
+  .heroCard {
+    --card-w: min(360px, 84vw);
+  }
+}
+
+@media (max-width: 599px) {
+  .getGrid {
+    grid-template-columns: 1fr;
+  }
+  .heroActions > * {
+    flex: 1 1 100%;
+  }
+  .planCard {
+    padding: 18px;
+    column-gap: 12px;
+  }
+  .planPrice {
+    font-size: 19px;
+  }
 }

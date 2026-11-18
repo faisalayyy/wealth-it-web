@@ -10,6 +10,7 @@ import { asset, socials, webApp } from '@/lib/site';
 import { Button } from './Button';
 import { Icon } from './Icon';
 import { Logo } from './Logo';
+import { PlusMark } from './PlusMark';
 import { ThemeSwitch } from './ThemeSwitch';
 import s from './SiteHeader.module.css';
 
@@ -40,6 +41,7 @@ const LINKS = [
 /** The menu's large rows, each with its 3D piece (public/art). */
 const ROWS = [
   { label: 'Features', hint: 'Every feature, up close', href: '/features/', art: 'budget' },
+  { label: 'Wealthit+', hint: 'Unlimited wallets, full history, Goals', href: '/plus/', art: 'plus' },
   { label: 'How it works', hint: 'From sign-in to where you stand', href: '/how-it-works/', art: 'goal' },
   { label: 'Record as you pay', hint: 'Pay, then tap Save', href: '/features/record-as-you-pay/', art: 'tap' },
   { label: 'Security', hint: 'What keeps your money private', href: '/security/', art: 'privacy' },
@@ -47,6 +49,8 @@ const ROWS = [
 ] as const;
 
 function Thumb({ art }: { art: string }) {
+  // Wealthit+ has no 3D piece: its gold mark stands in
+  if (art === 'plus') return <PlusMark className={s.thumbPlus} />;
   return (
     <picture>
       <source type="image/avif" srcSet={asset(`/art/${art}.avif`)} />
@@ -264,7 +268,9 @@ export function SiteHeader() {
                       <span className={s.thumb}>
                         {armed && <Thumb art={r.art} />}
                       </span>
-                      <span className={s.menuLabel}>{r.label}</span>
+                      <span className={s.menuLabel} data-plus={r.art === 'plus' ? '' : undefined}>
+                        {r.label}
+                      </span>
                     </span>
                     <span className={s.menuHint}>{r.hint}</span>
                   </Link>
@@ -304,6 +310,10 @@ export function SiteHeader() {
 
       <div className={s.right}>
         <ThemeSwitch className={s.theme} />
+        <Link href="/plus/" className={s.plus} data-active={active('/plus/') ? '' : undefined}>
+          <PlusMark className={s.plusMark} />
+          <span>Explore Wealthit+</span>
+        </Link>
         <LogIn className={s.login} />
         <Button label="Get the app" href="/#get" tone="ink" size="sm" onClick={getApp()} />
       </div>

@@ -48,7 +48,7 @@ export const plus = {
   trialDays: 14,
   wallets: 5,
   historyMonths: 6,
-  api: null as string | null,
+  api: 'https://wealthit-api.onrender.com' as string | null,
 };
 
 /** The address on the support and privacy pages, read by Faisal (app repo, A376). */

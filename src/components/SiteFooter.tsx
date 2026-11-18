@@ -29,6 +29,7 @@ const COLUMNS = [
   {
     title: 'Get in touch',
     links: [
+      { label: 'Contact', href: '/contact/' },
       { label: contactEmail, href: `mailto:${contactEmail}` },
       { label: 'Get the app', href: '/#get' },
     ],
@@ -39,6 +40,8 @@ const COLUMNS = [
     links: [
       { label: 'Security', href: '/security/' },
       { label: 'Privacy policy', href: '/privacy/' },
+      { label: 'Terms of sale', href: '/terms/' },
+      { label: 'Refunds & cancellation', href: '/refunds/' },
       { label: 'Delete your account', href: '/privacy/#delete-account' },
     ],
   },

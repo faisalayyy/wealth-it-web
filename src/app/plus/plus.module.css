@@ -1,0 +1,214 @@
+/* The three prices, in the cards Facts uses, the yearly one lit. */
+.section {
+  padding: clamp(24px, 4vw, 56px) 0 clamp(72px, 8vw, 120px);
+  background: var(--n-50);
+  color: var(--n-ink);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 28px;
+  border-radius: var(--r-md);
+  background: var(--n-100);
+  box-shadow: inset 0 0 0 1px var(--n-line);
+}
+
+.card[data-best] {
+  box-shadow: inset 0 0 0 2px var(--lime);
+}
+
+.plan {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--n-text);
+}
+
+.price {
+  font-size: clamp(40px, 4vw, 52px);
+  line-height: 1;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+
+.per {
+  font-size: 15px;
+  color: var(--n-text);
+}
+
+.note {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--brand-text);
+  font-weight: 600;
+}
+
+.small {
+  max-width: 46em;
+  margin-top: 18px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--n-text);
+}
+
+/* Starting, buying and cancelling (Start.tsx): one panel, one step at a time. */
+.start {
+  padding: 0 0 clamp(72px, 8vw, 120px);
+  background: var(--n-50);
+  color: var(--n-ink);
+  scroll-margin-top: 96px;
+}
+
+.head {
+  margin-bottom: 20px;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.flow {
+  --bad: #b23a26;
+  max-width: 640px;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: var(--r-md);
+  background: var(--n-100);
+  box-shadow: inset 0 0 0 1px var(--n-line);
+}
+
+:global([data-theme='dark']) .flow {
+  --bad: #ff8a73;
+}
+
+.form {
+  display: grid;
+  gap: 16px;
+}
+
+.step {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Focused only so a screen reader hears the new step; nothing to show. */
+.step:focus,
+.step:focus-visible {
+  outline: none;
+}
+
+.text {
+  font-size: 16px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--n-text);
+}
+
+.input {
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--n-50);
+  box-shadow: inset 0 0 0 1px var(--n-line);
+  color: var(--n-ink);
+  font: inherit;
+  font-size: 17px;
+}
+
+.input:focus-visible {
+  outline: none;
+  box-shadow: inset 0 0 0 2px var(--brand-text);
+}
+
+.input[aria-invalid] {
+  box-shadow: inset 0 0 0 2px var(--bad);
+}
+
+.code {
+  max-width: 220px;
+  font-size: 24px;
+  letter-spacing: 0.3em;
+  font-variant-numeric: tabular-nums;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+}
+
+.choice {
+  display: grid;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--n-line);
+}
+
+.hint {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--n-text);
+}
+
+.link {
+  justify-self: start;
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--n-ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.link:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.error,
+.said {
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.error:empty,
+.said:empty {
+  display: none;
+}
+
+.error {
+  margin-top: 16px;
+  color: var(--bad);
+  font-weight: 600;
+}
+
+.said {
+  margin-top: 16px;
+  color: var(--brand-text);
+  font-weight: 600;
+}

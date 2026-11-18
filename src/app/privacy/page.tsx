@@ -1,9 +1,10 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
 import { pageMeta } from '@/lib/seo';
 import { Icon } from '@/components/Icon';
 import p from '@/components/Prose.module.css';
 import { SiteFooter } from '@/components/SiteFooter';
-import { contactEmail } from '@/lib/site';
+import { contactEmail, plus } from '@/lib/site';
 import { PageHero } from '@/sections/product/PageHero';
 
 /**
@@ -14,7 +15,8 @@ import { PageHero } from '@/sections/product/PageHero';
  * the phone and on Wealthit's server in the EU; locked so only the person can read them if they turn
  * that on (the app's A430, A439), or on the phone only if they choose (A429); no ads, no tracking,
  * and no analytics service — only which parts are used, as yes or no, and a question sent to Halo
- * when the person taps to send it (Teach Halo, Faisal 13 November 2026). If any of that
+ * when the person taps to send it (Teach Halo, Faisal 13 November 2026). Wealthit+ is paid only through
+ * Safepay on this website, never in the apps, and Wealthit never sees a card (A631, A643). If any of that
  * changes in the app, it has to change here on the same day — a privacy page that has drifted is
  * worse than no privacy page.
  */
@@ -32,6 +34,7 @@ const nots = [
   'Want more? Turn on “Only you can read your records” and they are locked with a key only you hold, so not even Wealthit can read them. Or keep them on your phone only.',
   'No tracking, no advertising, and no analytics service. The app tells Wealthit only which parts you use, as yes or no, never what you record, and a question for Halo only if you choose to send it.',
   'Nothing about you is sold, rented or shared with anyone for their own use.',
+  'If you buy Wealthit+, you pay on wealthit.app through Safepay. Wealthit never sees your card.',
   'Receipt photos and your profile picture stay on your phone.',
 ];
 
@@ -89,8 +92,13 @@ export default function Privacy() {
               never sees your Google or Apple password. If you choose Apple’s “Hide My Email”, Wealthit only ever sees the address Apple gives it.
             </li>
             <li>
-              <strong>A password, only if you set one</strong>, stored only as an Argon2 hash, never the password itself. Sign-in codes are stored
-              only as a keyed hash, and expire after ten minutes.
+              <strong>If you try or buy Wealthit+</strong>: which plan your account has, until when, whether it renews and whether you have had
+              the trial, so it works on every phone you sign in on. For each payment: the plan, the amount in rupees, Safepay’s reference for
+              it and when it happened, which is how a payment finds your account. Never your card number.
+            </li>
+            <li>
+              <strong>A password, only if you set one</strong>, stored only as an Argon2 hash, never the password itself. Sign-in codes, and the codes
+              for the Wealthit+ page, are stored only as a keyed hash, expire after ten minutes and are deleted after a day.
             </li>
             <li>
               <strong>When you joined and when you last used Wealthit</strong>, and a sign-in session for each phone you are signed in on, so
@@ -177,7 +185,8 @@ export default function Privacy() {
               the request on its way. Wealthit has no account with Cloudflare and no access to its logs.
             </li>
             <li>
-              <strong>Resend</strong> sends the sign-in emails. It receives your address and the message, and nothing else.
+              <strong>Resend</strong> sends the sign-in emails, and the codes for the Wealthit+ page. It receives your address and the message,
+              and nothing else.
             </li>
             <li>
               <strong>Zoho Mail</strong> receives the emails you send to {contactEmail}. A message is kept only as long as it takes to help you.
@@ -191,6 +200,11 @@ export default function Privacy() {
             </li>
             <li>
               <strong>Apple and Google</strong>, only if you choose to sign in with them, as described above.
+            </li>
+            <li id="payments">
+              <strong>Safepay</strong> takes payments for Wealthit+, only on wealthit.app, in rupees. You enter your card or account details on
+              Safepay’s own checkout, so Wealthit never sees them, and Safepay tells Wealthit only that a payment went through and for which
+              account. Safepay keeps what you enter there under its own privacy policy.
             </li>
           </ul>
           <p>
@@ -225,6 +239,9 @@ export default function Privacy() {
             </li>
             <li>
               <strong>To keep it secure</strong>: stopping repeated sign-in tries, and signing out or deleting an account when you ask.
+            </li>
+            <li>
+              <strong>Because you bought it</strong>: Wealthit+, if you pay for it, on every phone you sign in on.
             </li>
             <li>
               <strong>Because you turned it on</strong>: daily exchange rates, Tap to Record, bank messages and reminders. Turn them off and they stop.
@@ -326,6 +343,13 @@ export default function Privacy() {
             record of your visit. If you switch the site between dark and light, that choice is saved in your own browser and never sent
             anywhere.
           </p>
+          {plus.api && (
+            <p>
+              On the <Link href="/plus/">Wealthit+ page</Link>, the email address you type goes to Wealthit’s server, which sends a code to it
+              if it belongs to an account. The key that code opens lasts 30 minutes, reaches only your Wealthit+ plan, and is held only by the
+              open page: it is never saved in your browser, and it is gone when you leave the page. You pay on Safepay’s own page.
+            </p>
+          )}
 
           <h2>Changes</h2>
           <p>If the app starts doing something this page does not describe, this page changes first, and the date at the top changes with it.</p>

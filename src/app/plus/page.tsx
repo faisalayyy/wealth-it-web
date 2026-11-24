@@ -38,6 +38,7 @@ const GET: { icon: PlusIconName; title: string; text: string; soon?: boolean }[]
   { icon: 'restore', title: 'Your full history', text: `Every month you’ve recorded, and a year in review. Without it, you see the last ${plus.historyMonths} months.` },
   { icon: 'download', title: 'PDF and CSV exports', text: 'A report to keep, or a file for your spreadsheet.' },
   { icon: 'target', title: 'Goals', text: 'Put money aside for something and watch it grow.' },
+  { icon: 'chart', title: 'Outlook', text: 'See where your money is likely to land, in Statistics.' },
   { icon: 'grid', title: 'App icons', text: 'Pick the icon on your home screen, gold included.' },
   { icon: 'trend', title: 'Investments', text: 'Your investments beside the rest of your money.', soon: true },
   { icon: 'rocket', title: 'Early access', text: 'New features reach you first.' },

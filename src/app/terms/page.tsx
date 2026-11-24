@@ -55,6 +55,7 @@ export default function Terms() {
             <li>Exports to PDF and CSV.</li>
             <li>App icons.</li>
             <li>Goals.</li>
+            <li>Outlook, in Statistics, which shows where your money is likely to land.</li>
             <li>Investments, shown as coming soon until it is ready.</li>
             <li>Early access to new features, and faster help.</li>
           </ul>

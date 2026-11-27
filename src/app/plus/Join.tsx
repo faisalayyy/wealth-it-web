@@ -13,10 +13,15 @@ import s from './plus.module.css';
  * (A644) finds the account by its email and a 6-digit code, and the code opens a 30-minute key that
  * reaches only the account's plan.
  *
- * The key is held in this component's memory only: never in a cookie or the browser's storage, so
- * the privacy policy's "This website" paragraph stays true. Safepay's checkout is a full page change,
- * so the key is gone when the person comes back; Wealthit+ starts anyway, because Safepay tells the
- * server directly, and "See your plan" asks for a new code and then has the server ask Safepay again.
+ * The key is kept for this tab only (Faisal, 27 Nov: typing the email again shows the plan rather than
+ * sending another code), on Security's five conditions: one sessionStorage entry, never a cookie,
+ * localStorage or a web address; tied to the email the server returned, and used only when the typed
+ * email matches it (any other email drops it and asks for a code); stored with its expiry and dropped
+ * once that passes or on any 401; and "Use another email" forgets it. The privacy policy's "This
+ * website" paragraph says so. Safepay's checkout is a full page change in the same tab, so the key is
+ * still there when the person comes back: "See your plan" and the same email have the server ask
+ * Safepay again, with no new code. Showing a plan before any code is never done: anyone could look
+ * up someone else's.
  */
 
 export type Intent = { kind: 'trial' } | { kind: 'buy'; plan: Plan } | { kind: 'manage' };
@@ -34,6 +39,26 @@ const EVENT = 'wealthit:plus';
 /** Opens the dialog for a trial, a plan or the account's plan. */
 export function openPlus(intent: Intent) {
   window.dispatchEvent(new CustomEvent<Intent>(EVENT, { detail: intent }));
+}
+
+/** This tab's key: one sessionStorage entry, with the email it belongs to and when it ends (ms). */
+const STORE = 'wealthit-plus-key';
+const LIFE = 1800;
+type Saved = { token: string; email: string; until: number };
+const norm = (e: string) => e.trim().toLowerCase();
+function readSaved(): Saved | null {
+  try {
+    const v = JSON.parse(sessionStorage.getItem(STORE) ?? 'null') as Saved | null;
+    if (v && typeof v.token === 'string' && typeof v.email === 'string' && typeof v.until === 'number' && v.until > Date.now()) return v;
+    sessionStorage.removeItem(STORE);
+  } catch {}
+  return null;
+}
+function writeSaved(v: Saved | null) {
+  try {
+    if (v) sessionStorage.setItem(STORE, JSON.stringify(v));
+    else sessionStorage.removeItem(STORE);
+  } catch {}
 }
 
 const day = (ms: number) => new Date(ms).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -69,26 +94,41 @@ export function Join({ api }: { api: string }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState('');
   const [stopping, setStopping] = useState(false);
-  /** The 30-minute key, in memory only. */
-  const key = useRef<string | null>(null);
+  /** The 30-minute key for this tab, with its email and expiry (mirrored in sessionStorage). */
+  const key = useRef<Saved | null>(null);
   /** Back from Safepay: after the code, the server asks Safepay again. */
   const back = useRef(false);
+
+  /** The key, if it is still in time; an expired one is forgotten. */
+  const live = () => {
+    if (key.current && key.current.until <= Date.now()) forget();
+    return key.current;
+  };
+  function forget() {
+    key.current = null;
+    writeSaved(null);
+    setHeld(null);
+  }
+
+  // A key this tab already has (a reload, or back from Safepay).
+  useEffect(() => {
+    key.current = readSaved();
+  }, []);
 
   const show = () => {
     if (!dialog.current?.open) dialog.current?.showModal();
     lenis?.stop();
   };
 
-  // The page's buttons open it; a key still held (this visit) goes straight to what was asked.
+  // The page's buttons open it at the email; the same email as this tab's key skips the code.
   useEffect(() => {
     const on = (e: Event) => {
       const next = (e as CustomEvent<Intent>).detail;
       setIntent(next);
       setError('');
       setStopping(false);
-      setStep(key.current ? 'plan' : 'email');
+      setStep('email');
       show();
-      if (key.current) act(next);
     };
     window.addEventListener(EVENT, on);
     return () => window.removeEventListener(EVENT, on);
@@ -115,7 +155,7 @@ export function Join({ api }: { api: string }) {
         method,
         headers: {
           ...(body ? { 'Content-Type': 'application/json' } : {}),
-          ...(key.current ? { Authorization: `Bearer ${key.current}` } : {}),
+          ...(key.current ? { Authorization: `Bearer ${key.current.token}` } : {}),
         },
         body: body ? JSON.stringify(body) : undefined,
         credentials: 'omit',
@@ -139,8 +179,7 @@ export function Join({ api }: { api: string }) {
     } catch (e) {
       const r = e instanceof Refused ? e : new Refused(0, OOPS);
       if (r.status === 401 && key.current) {
-        key.current = null;
-        setHeld(null);
+        forget();
         setStep('email');
       }
       setError(r.message);
@@ -174,6 +213,16 @@ export function Join({ api }: { api: string }) {
   const ask = (e?: FormEvent) => {
     e?.preventDefault();
     if (!/^\S+@\S+\.\S+$/.test(email.trim())) return setError('Enter the email address of your Wealthit account.');
+    const k = live();
+    if (k && k.email === norm(email)) {
+      if (!back.current) return act(intent);
+      return run(async () => {
+        const h = await call<Held>('/v1/plus/web/check');
+        back.current = false;
+        act(intent, h);
+      });
+    }
+    if (k) forget();
     run(async () => {
       await call('/v1/plus/web/code', { email: email.trim() });
       setCode('');
@@ -185,8 +234,10 @@ export function Join({ api }: { api: string }) {
     e.preventDefault();
     if (!/^\d{6}$/.test(code)) return setError('Enter the 6-digit code from the email.');
     run(async () => {
-      const out = await call<{ token: string; email: string; plus: Held }>('/v1/plus/web/verify', { email: email.trim(), code });
-      key.current = out.token;
+      const out = await call<{ token: string; expiresIn?: number; email: string; plus: Held }>('/v1/plus/web/verify', { email: email.trim(), code });
+      const life = Math.min(out.expiresIn && out.expiresIn > 0 ? out.expiresIn : LIFE, LIFE);
+      key.current = { token: out.token, email: norm(out.email || email), until: Date.now() + life * 1000 };
+      writeSaved(key.current);
       setEmail(out.email);
       const h = back.current ? await call<Held>('/v1/plus/web/check') : out.plus;
       back.current = false;
@@ -226,6 +277,9 @@ export function Join({ api }: { api: string }) {
     left: 'Nothing was charged',
   };
 
+  /** The typed email is this tab's key's, so Continue shows the plan with no new code. */
+  const known = !!key.current && key.current.until > Date.now() && key.current.email === norm(email);
+
   let body: ReactNode = null;
   if (step === 'email')
     body = (
@@ -253,7 +307,7 @@ export function Join({ api }: { api: string }) {
           />
         </label>
         <button type="submit" className={s.gold} disabled={busy}>
-          {busy ? 'Sending…' : 'Send me a code'}
+          {busy ? (known ? 'Checking…' : 'Sending…') : known ? 'Continue' : 'Send me a code'}
         </button>
       </form>
     );
@@ -345,6 +399,22 @@ export function Join({ api }: { api: string }) {
             )}
           </div>
         )}
+        <div className={s.mLinks}>
+          <button
+            type="button"
+            className={s.mLink}
+            onClick={() => {
+              forget();
+              setEmail('');
+              setError('');
+              setStopping(false);
+              setStep('email');
+            }}
+            disabled={busy}
+          >
+            Use another email
+          </button>
+        </div>
       </div>
     );
   else if (step === 'started')

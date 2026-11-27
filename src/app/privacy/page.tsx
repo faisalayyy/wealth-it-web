@@ -346,8 +346,10 @@ export default function Privacy() {
           {plus.api && (
             <p>
               On the <Link href="/plus/">Wealthit+ page</Link>, the email address you type goes to Wealthit’s server, which sends a code to it
-              if it belongs to an account. The key that code opens lasts 30 minutes, reaches only your Wealthit+ plan, and is held only by the
-              open page: it is never saved in your browser, and it is gone when you leave the page. You pay on Safepay’s own page.
+              if it belongs to an account. The key that code opens lasts 30 minutes and reaches only your Wealthit+ plan. It is kept in this
+              browser tab only and used again only when you type the same email, so a reload or coming back from Safepay needs no new code.
+              It is never sent anywhere else, and it is gone after 30 minutes, when you close the tab, or when you choose Use another email.
+              You pay on Safepay’s own page.
             </p>
           )}
 
